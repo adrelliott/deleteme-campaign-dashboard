@@ -17,13 +17,15 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
+	
+	public $data = array();
+
 	public function index()
 	{
 		$this->output->enable_profiler(TRUE);
 		$this->load->model('contact_model');
-		
-		print_r($this->contact_model->get_all());
-		$this->load->view('welcome_message');
+		$this->data['contact_list'] = $this->contact_model->get_all();
+		$this->load->view('welcome_message', $this->data);
 	}
 }
 
