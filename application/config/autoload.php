@@ -112,5 +112,13 @@ $autoload['language'] = array();
 $autoload['model'] = array();
 
 
+/*
+| -------------------------------------------------------------------
+|  Load Presenter class
+| -------------------------------------------------------------------
+| This provides a thin ;ayer of abstraction, like in Ruby on Rails
+|
+*/
+require_once APPPATH . 'presenters/Presenter.php';
 /* End of file autoload.php */
 /* Location: ./application/config/autoload.php */

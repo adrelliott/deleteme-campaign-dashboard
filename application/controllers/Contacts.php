@@ -3,6 +3,8 @@
 /**
 * Controller for contacts table
 */
+
+
 class Contacts extends MY_Controller
 {
 	public $data = array();
@@ -15,7 +17,8 @@ class Contacts extends MY_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		//$this->output->enable_profiler(TRUE);
+		require_once APPPATH . 'presenters/Contact_Presenter.php';
+		$this->output->enable_profiler(TRUE);
 	}
 
 	/*
@@ -24,5 +27,11 @@ class Contacts extends MY_Controller
 	public function index()
 	{
 		$this->data['contacts_list'] = $this->contact->get_all();
+	}
+
+	public function show($contact_id)
+	{
+		$this->data['contact'] = new Contact_Presenter($this->contact->get($contact_id));
+		//$this->data['contact'] = $this->contact->get($contact_id);
 	}
 }
