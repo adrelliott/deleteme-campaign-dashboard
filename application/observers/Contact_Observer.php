@@ -1,7 +1,8 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
-* Contact_presenter - deals with allt he functions for the contact view
+* Contact_Observer - Put any client specefic 
 */
+	
 
 class Contact_Presenter extends Presenter
 {

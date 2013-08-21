@@ -1849,3 +1849,1014 @@ DEBUG - 2013-08-21 02:04:24 --> Language file loaded: language/english/profiler_
 DEBUG - 2013-08-21 02:04:24 --> Helper loaded: text_helper
 DEBUG - 2013-08-21 02:04:24 --> Final output sent to browser
 DEBUG - 2013-08-21 02:04:24 --> Total execution time: 0.0156
+DEBUG - 2013-08-21 10:32:30 --> Config Class Initialized
+DEBUG - 2013-08-21 10:32:30 --> Hooks Class Initialized
+DEBUG - 2013-08-21 10:32:30 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 10:32:30 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 10:32:30 --> URI Class Initialized
+DEBUG - 2013-08-21 10:32:30 --> Router Class Initialized
+DEBUG - 2013-08-21 10:32:30 --> Output Class Initialized
+DEBUG - 2013-08-21 10:32:30 --> Security Class Initialized
+DEBUG - 2013-08-21 10:32:30 --> Input Class Initialized
+DEBUG - 2013-08-21 10:32:30 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 10:32:30 --> Language Class Initialized
+DEBUG - 2013-08-21 10:32:30 --> Loader Class Initialized
+DEBUG - 2013-08-21 10:32:30 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 10:32:30 --> Controller Class Initialized
+DEBUG - 2013-08-21 10:32:30 --> Model Class Initialized
+DEBUG - 2013-08-21 10:32:30 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 10:32:30 --> Model Class Initialized
+DEBUG - 2013-08-21 10:32:30 --> File loaded: ../application/views/contacts/show.php
+DEBUG - 2013-08-21 10:32:30 --> File loaded: ../application/views/layouts/contacts.php
+DEBUG - 2013-08-21 10:32:30 --> Language file loaded: language/english/profiler_lang.php
+DEBUG - 2013-08-21 10:32:30 --> Helper loaded: text_helper
+DEBUG - 2013-08-21 10:32:30 --> Final output sent to browser
+DEBUG - 2013-08-21 10:32:30 --> Total execution time: 0.1603
+DEBUG - 2013-08-21 10:32:35 --> Config Class Initialized
+DEBUG - 2013-08-21 10:32:35 --> Hooks Class Initialized
+DEBUG - 2013-08-21 10:32:35 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 10:32:35 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 10:32:35 --> URI Class Initialized
+DEBUG - 2013-08-21 10:32:35 --> Router Class Initialized
+DEBUG - 2013-08-21 10:32:35 --> Output Class Initialized
+DEBUG - 2013-08-21 10:32:35 --> Security Class Initialized
+DEBUG - 2013-08-21 10:32:35 --> Input Class Initialized
+DEBUG - 2013-08-21 10:32:35 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 10:32:35 --> Language Class Initialized
+DEBUG - 2013-08-21 10:32:35 --> Loader Class Initialized
+DEBUG - 2013-08-21 10:32:35 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 10:32:35 --> Controller Class Initialized
+DEBUG - 2013-08-21 10:32:35 --> Model Class Initialized
+DEBUG - 2013-08-21 10:32:35 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 10:32:35 --> Model Class Initialized
+DEBUG - 2013-08-21 10:32:35 --> File loaded: ../application/views/contacts/index.php
+DEBUG - 2013-08-21 10:32:35 --> File loaded: ../application/views/layouts/contacts.php
+DEBUG - 2013-08-21 10:32:35 --> Language file loaded: language/english/profiler_lang.php
+DEBUG - 2013-08-21 10:32:35 --> Helper loaded: text_helper
+DEBUG - 2013-08-21 10:32:35 --> Final output sent to browser
+DEBUG - 2013-08-21 10:32:35 --> Total execution time: 0.0300
+DEBUG - 2013-08-21 10:32:40 --> Config Class Initialized
+DEBUG - 2013-08-21 10:32:40 --> Hooks Class Initialized
+DEBUG - 2013-08-21 10:32:40 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 10:32:40 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 10:32:40 --> URI Class Initialized
+DEBUG - 2013-08-21 10:32:40 --> Router Class Initialized
+DEBUG - 2013-08-21 10:32:40 --> Output Class Initialized
+DEBUG - 2013-08-21 10:32:40 --> Security Class Initialized
+DEBUG - 2013-08-21 10:32:40 --> Input Class Initialized
+DEBUG - 2013-08-21 10:32:40 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 10:32:40 --> Language Class Initialized
+DEBUG - 2013-08-21 10:32:40 --> Loader Class Initialized
+DEBUG - 2013-08-21 10:32:40 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 10:32:40 --> Controller Class Initialized
+DEBUG - 2013-08-21 10:32:40 --> Model Class Initialized
+DEBUG - 2013-08-21 10:32:40 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 10:32:40 --> Model Class Initialized
+ERROR - 2013-08-21 10:32:40 --> 404 Page Not Found --> contacts/list
+ERROR - 2013-08-21 10:32:40 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/presenters/Presenter.php:2) /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/system/core/Common.php 442
+DEBUG - 2013-08-21 10:36:00 --> Config Class Initialized
+DEBUG - 2013-08-21 10:36:00 --> Hooks Class Initialized
+DEBUG - 2013-08-21 10:36:00 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 10:36:00 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 10:36:00 --> URI Class Initialized
+DEBUG - 2013-08-21 10:36:00 --> Router Class Initialized
+DEBUG - 2013-08-21 10:36:00 --> Output Class Initialized
+DEBUG - 2013-08-21 10:36:00 --> Security Class Initialized
+DEBUG - 2013-08-21 10:36:00 --> Input Class Initialized
+DEBUG - 2013-08-21 10:36:00 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 10:36:00 --> Language Class Initialized
+DEBUG - 2013-08-21 10:36:00 --> Loader Class Initialized
+DEBUG - 2013-08-21 10:36:00 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 10:36:00 --> Controller Class Initialized
+DEBUG - 2013-08-21 10:36:00 --> Model Class Initialized
+DEBUG - 2013-08-21 10:36:00 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 10:36:00 --> Model Class Initialized
+DEBUG - 2013-08-21 10:36:00 --> File loaded: ../application/views/contacts/index.php
+DEBUG - 2013-08-21 10:36:00 --> File loaded: ../application/views/layouts/contacts.php
+DEBUG - 2013-08-21 10:36:00 --> Language file loaded: language/english/profiler_lang.php
+DEBUG - 2013-08-21 10:36:00 --> Helper loaded: text_helper
+DEBUG - 2013-08-21 10:36:00 --> Final output sent to browser
+DEBUG - 2013-08-21 10:36:00 --> Total execution time: 0.0267
+DEBUG - 2013-08-21 10:36:06 --> Config Class Initialized
+DEBUG - 2013-08-21 10:36:06 --> Hooks Class Initialized
+DEBUG - 2013-08-21 10:36:06 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 10:36:06 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 10:36:06 --> URI Class Initialized
+DEBUG - 2013-08-21 10:36:06 --> Router Class Initialized
+DEBUG - 2013-08-21 10:36:06 --> Output Class Initialized
+DEBUG - 2013-08-21 10:36:06 --> Security Class Initialized
+DEBUG - 2013-08-21 10:36:06 --> Input Class Initialized
+DEBUG - 2013-08-21 10:36:06 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 10:36:06 --> Language Class Initialized
+DEBUG - 2013-08-21 10:36:06 --> Loader Class Initialized
+DEBUG - 2013-08-21 10:36:06 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 10:36:06 --> Controller Class Initialized
+DEBUG - 2013-08-21 10:36:06 --> Model Class Initialized
+DEBUG - 2013-08-21 10:36:06 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 10:36:06 --> Model Class Initialized
+DEBUG - 2013-08-21 10:36:06 --> File loaded: ../application/views/contacts/index.php
+DEBUG - 2013-08-21 10:36:06 --> File loaded: ../application/views/layouts/contacts.php
+DEBUG - 2013-08-21 10:36:06 --> Language file loaded: language/english/profiler_lang.php
+DEBUG - 2013-08-21 10:36:06 --> Helper loaded: text_helper
+DEBUG - 2013-08-21 10:36:06 --> Final output sent to browser
+DEBUG - 2013-08-21 10:36:06 --> Total execution time: 0.0305
+DEBUG - 2013-08-21 10:36:10 --> Config Class Initialized
+DEBUG - 2013-08-21 10:36:10 --> Hooks Class Initialized
+DEBUG - 2013-08-21 10:36:10 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 10:36:10 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 10:36:10 --> URI Class Initialized
+DEBUG - 2013-08-21 10:36:10 --> Router Class Initialized
+DEBUG - 2013-08-21 10:36:10 --> Output Class Initialized
+DEBUG - 2013-08-21 10:36:10 --> Security Class Initialized
+DEBUG - 2013-08-21 10:36:10 --> Input Class Initialized
+DEBUG - 2013-08-21 10:36:10 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 10:36:10 --> Language Class Initialized
+DEBUG - 2013-08-21 10:36:10 --> Loader Class Initialized
+DEBUG - 2013-08-21 10:36:10 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 10:36:10 --> Controller Class Initialized
+DEBUG - 2013-08-21 10:36:10 --> Model Class Initialized
+DEBUG - 2013-08-21 10:36:10 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 10:36:10 --> Model Class Initialized
+DEBUG - 2013-08-21 10:36:10 --> File loaded: ../application/views/contacts/index.php
+DEBUG - 2013-08-21 10:36:10 --> File loaded: ../application/views/layouts/contacts.php
+DEBUG - 2013-08-21 10:36:10 --> Language file loaded: language/english/profiler_lang.php
+DEBUG - 2013-08-21 10:36:10 --> Helper loaded: text_helper
+DEBUG - 2013-08-21 10:36:10 --> Final output sent to browser
+DEBUG - 2013-08-21 10:36:10 --> Total execution time: 0.0123
+DEBUG - 2013-08-21 11:33:48 --> Config Class Initialized
+DEBUG - 2013-08-21 11:33:48 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:33:48 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:33:48 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:33:48 --> URI Class Initialized
+DEBUG - 2013-08-21 11:33:48 --> Router Class Initialized
+DEBUG - 2013-08-21 11:33:48 --> Output Class Initialized
+DEBUG - 2013-08-21 11:33:48 --> Security Class Initialized
+DEBUG - 2013-08-21 11:33:48 --> Input Class Initialized
+DEBUG - 2013-08-21 11:33:48 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:33:48 --> Language Class Initialized
+DEBUG - 2013-08-21 11:33:48 --> Loader Class Initialized
+DEBUG - 2013-08-21 11:33:48 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 11:33:48 --> Controller Class Initialized
+DEBUG - 2013-08-21 11:33:48 --> Model Class Initialized
+DEBUG - 2013-08-21 11:33:48 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 11:33:48 --> Model Class Initialized
+DEBUG - 2013-08-21 11:33:48 --> File loaded: ../application/views/contacts/index.php
+DEBUG - 2013-08-21 11:33:48 --> File loaded: ../application/views/layouts/contacts.php
+DEBUG - 2013-08-21 11:33:48 --> Language file loaded: language/english/profiler_lang.php
+DEBUG - 2013-08-21 11:33:48 --> Helper loaded: text_helper
+DEBUG - 2013-08-21 11:33:48 --> Final output sent to browser
+DEBUG - 2013-08-21 11:33:48 --> Total execution time: 0.0522
+DEBUG - 2013-08-21 11:33:54 --> Config Class Initialized
+DEBUG - 2013-08-21 11:33:54 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:33:54 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:33:54 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:33:54 --> URI Class Initialized
+DEBUG - 2013-08-21 11:33:54 --> Router Class Initialized
+DEBUG - 2013-08-21 11:33:54 --> Output Class Initialized
+DEBUG - 2013-08-21 11:33:54 --> Security Class Initialized
+DEBUG - 2013-08-21 11:33:54 --> Input Class Initialized
+DEBUG - 2013-08-21 11:33:54 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:33:54 --> Language Class Initialized
+DEBUG - 2013-08-21 11:33:54 --> Loader Class Initialized
+DEBUG - 2013-08-21 11:33:54 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 11:33:54 --> Controller Class Initialized
+DEBUG - 2013-08-21 11:33:54 --> Model Class Initialized
+DEBUG - 2013-08-21 11:33:54 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 11:33:54 --> Model Class Initialized
+DEBUG - 2013-08-21 11:33:54 --> File loaded: ../application/views/contacts/show.php
+DEBUG - 2013-08-21 11:33:54 --> File loaded: ../application/views/layouts/contacts.php
+DEBUG - 2013-08-21 11:33:54 --> Language file loaded: language/english/profiler_lang.php
+DEBUG - 2013-08-21 11:33:54 --> Helper loaded: text_helper
+DEBUG - 2013-08-21 11:33:54 --> Final output sent to browser
+DEBUG - 2013-08-21 11:33:54 --> Total execution time: 0.0318
+DEBUG - 2013-08-21 11:40:48 --> Config Class Initialized
+DEBUG - 2013-08-21 11:40:48 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:40:48 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:40:48 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:40:48 --> URI Class Initialized
+DEBUG - 2013-08-21 11:40:48 --> Router Class Initialized
+DEBUG - 2013-08-21 11:40:48 --> Output Class Initialized
+DEBUG - 2013-08-21 11:40:48 --> Security Class Initialized
+DEBUG - 2013-08-21 11:40:48 --> Input Class Initialized
+DEBUG - 2013-08-21 11:40:48 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:40:48 --> Language Class Initialized
+DEBUG - 2013-08-21 11:41:01 --> Config Class Initialized
+DEBUG - 2013-08-21 11:41:01 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:41:01 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:41:01 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:41:01 --> URI Class Initialized
+DEBUG - 2013-08-21 11:41:01 --> Router Class Initialized
+DEBUG - 2013-08-21 11:41:01 --> Output Class Initialized
+DEBUG - 2013-08-21 11:41:01 --> Security Class Initialized
+DEBUG - 2013-08-21 11:41:01 --> Input Class Initialized
+DEBUG - 2013-08-21 11:41:01 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:41:01 --> Language Class Initialized
+DEBUG - 2013-08-21 11:41:24 --> Config Class Initialized
+DEBUG - 2013-08-21 11:41:24 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:41:24 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:41:24 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:41:24 --> URI Class Initialized
+DEBUG - 2013-08-21 11:41:24 --> Router Class Initialized
+DEBUG - 2013-08-21 11:41:24 --> Output Class Initialized
+DEBUG - 2013-08-21 11:41:24 --> Security Class Initialized
+DEBUG - 2013-08-21 11:41:24 --> Input Class Initialized
+DEBUG - 2013-08-21 11:41:24 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:41:24 --> Language Class Initialized
+DEBUG - 2013-08-21 11:41:42 --> Config Class Initialized
+DEBUG - 2013-08-21 11:41:42 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:41:42 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:41:42 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:41:42 --> URI Class Initialized
+DEBUG - 2013-08-21 11:41:42 --> Router Class Initialized
+DEBUG - 2013-08-21 11:41:42 --> Output Class Initialized
+DEBUG - 2013-08-21 11:41:42 --> Security Class Initialized
+DEBUG - 2013-08-21 11:41:42 --> Input Class Initialized
+DEBUG - 2013-08-21 11:41:42 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:41:42 --> Language Class Initialized
+DEBUG - 2013-08-21 11:41:54 --> Config Class Initialized
+DEBUG - 2013-08-21 11:41:54 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:41:54 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:41:54 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:41:54 --> URI Class Initialized
+DEBUG - 2013-08-21 11:41:54 --> Router Class Initialized
+DEBUG - 2013-08-21 11:41:54 --> Output Class Initialized
+DEBUG - 2013-08-21 11:41:54 --> Security Class Initialized
+DEBUG - 2013-08-21 11:41:54 --> Input Class Initialized
+DEBUG - 2013-08-21 11:41:54 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:41:54 --> Language Class Initialized
+DEBUG - 2013-08-21 11:42:08 --> Config Class Initialized
+DEBUG - 2013-08-21 11:42:08 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:42:08 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:42:08 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:42:08 --> URI Class Initialized
+DEBUG - 2013-08-21 11:42:08 --> Router Class Initialized
+DEBUG - 2013-08-21 11:42:08 --> Output Class Initialized
+DEBUG - 2013-08-21 11:42:08 --> Security Class Initialized
+DEBUG - 2013-08-21 11:42:08 --> Input Class Initialized
+DEBUG - 2013-08-21 11:42:08 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:42:08 --> Language Class Initialized
+DEBUG - 2013-08-21 11:42:26 --> Config Class Initialized
+DEBUG - 2013-08-21 11:42:26 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:42:26 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:42:26 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:42:26 --> URI Class Initialized
+DEBUG - 2013-08-21 11:42:26 --> Router Class Initialized
+DEBUG - 2013-08-21 11:42:26 --> Output Class Initialized
+DEBUG - 2013-08-21 11:42:26 --> Security Class Initialized
+DEBUG - 2013-08-21 11:42:26 --> Input Class Initialized
+DEBUG - 2013-08-21 11:42:26 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:42:26 --> Language Class Initialized
+DEBUG - 2013-08-21 11:42:26 --> Loader Class Initialized
+DEBUG - 2013-08-21 11:42:26 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 11:42:26 --> Controller Class Initialized
+DEBUG - 2013-08-21 11:42:26 --> Model Class Initialized
+DEBUG - 2013-08-21 11:42:26 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 11:42:26 --> Model Class Initialized
+DEBUG - 2013-08-21 11:42:26 --> File loaded: ../application/views/contacts/index.php
+DEBUG - 2013-08-21 11:42:26 --> File loaded: ../application/views/layouts/contacts.php
+DEBUG - 2013-08-21 11:42:26 --> Language file loaded: language/english/profiler_lang.php
+DEBUG - 2013-08-21 11:42:26 --> Helper loaded: text_helper
+DEBUG - 2013-08-21 11:42:26 --> Final output sent to browser
+DEBUG - 2013-08-21 11:42:26 --> Total execution time: 0.0194
+DEBUG - 2013-08-21 11:42:35 --> Config Class Initialized
+DEBUG - 2013-08-21 11:42:35 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:42:35 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:42:35 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:42:35 --> URI Class Initialized
+DEBUG - 2013-08-21 11:42:35 --> Router Class Initialized
+DEBUG - 2013-08-21 11:42:35 --> Output Class Initialized
+DEBUG - 2013-08-21 11:42:35 --> Security Class Initialized
+DEBUG - 2013-08-21 11:42:35 --> Input Class Initialized
+DEBUG - 2013-08-21 11:42:35 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:42:35 --> Language Class Initialized
+DEBUG - 2013-08-21 11:42:35 --> Loader Class Initialized
+DEBUG - 2013-08-21 11:42:35 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 11:42:35 --> Controller Class Initialized
+DEBUG - 2013-08-21 11:42:35 --> Model Class Initialized
+DEBUG - 2013-08-21 11:42:35 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 11:42:35 --> Model Class Initialized
+DEBUG - 2013-08-21 11:42:35 --> File loaded: ../application/views/contacts/index.php
+DEBUG - 2013-08-21 11:42:35 --> File loaded: ../application/views/layouts/contacts.php
+DEBUG - 2013-08-21 11:42:35 --> Language file loaded: language/english/profiler_lang.php
+DEBUG - 2013-08-21 11:42:35 --> Helper loaded: text_helper
+DEBUG - 2013-08-21 11:42:35 --> Final output sent to browser
+DEBUG - 2013-08-21 11:42:35 --> Total execution time: 0.0161
+DEBUG - 2013-08-21 11:43:06 --> Config Class Initialized
+DEBUG - 2013-08-21 11:43:06 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:43:06 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:43:06 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:43:06 --> URI Class Initialized
+DEBUG - 2013-08-21 11:43:06 --> Router Class Initialized
+DEBUG - 2013-08-21 11:43:06 --> Output Class Initialized
+DEBUG - 2013-08-21 11:43:06 --> Security Class Initialized
+DEBUG - 2013-08-21 11:43:06 --> Input Class Initialized
+DEBUG - 2013-08-21 11:43:06 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:43:06 --> Language Class Initialized
+DEBUG - 2013-08-21 11:43:06 --> Loader Class Initialized
+DEBUG - 2013-08-21 11:43:06 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 11:43:06 --> Controller Class Initialized
+DEBUG - 2013-08-21 11:43:06 --> Model Class Initialized
+DEBUG - 2013-08-21 11:43:06 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 11:43:06 --> Model Class Initialized
+DEBUG - 2013-08-21 11:43:06 --> File loaded: ../application/views/contacts/index.php
+DEBUG - 2013-08-21 11:43:06 --> File loaded: ../application/views/layouts/contacts.php
+DEBUG - 2013-08-21 11:43:06 --> Language file loaded: language/english/profiler_lang.php
+DEBUG - 2013-08-21 11:43:06 --> Helper loaded: text_helper
+DEBUG - 2013-08-21 11:43:06 --> Final output sent to browser
+DEBUG - 2013-08-21 11:43:06 --> Total execution time: 0.0167
+DEBUG - 2013-08-21 11:43:09 --> Config Class Initialized
+DEBUG - 2013-08-21 11:43:09 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:43:09 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:43:09 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:43:09 --> URI Class Initialized
+DEBUG - 2013-08-21 11:43:09 --> Router Class Initialized
+DEBUG - 2013-08-21 11:43:09 --> Output Class Initialized
+DEBUG - 2013-08-21 11:43:09 --> Security Class Initialized
+DEBUG - 2013-08-21 11:43:09 --> Input Class Initialized
+DEBUG - 2013-08-21 11:43:09 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:43:09 --> Language Class Initialized
+DEBUG - 2013-08-21 11:43:09 --> Loader Class Initialized
+DEBUG - 2013-08-21 11:43:09 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 11:43:09 --> Controller Class Initialized
+DEBUG - 2013-08-21 11:43:09 --> Model Class Initialized
+DEBUG - 2013-08-21 11:43:09 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 11:43:09 --> Model Class Initialized
+DEBUG - 2013-08-21 11:43:09 --> File loaded: ../application/views/contacts/show.php
+DEBUG - 2013-08-21 11:43:09 --> File loaded: ../application/views/layouts/contacts.php
+DEBUG - 2013-08-21 11:43:09 --> Language file loaded: language/english/profiler_lang.php
+DEBUG - 2013-08-21 11:43:09 --> Helper loaded: text_helper
+DEBUG - 2013-08-21 11:43:09 --> Final output sent to browser
+DEBUG - 2013-08-21 11:43:09 --> Total execution time: 0.0093
+DEBUG - 2013-08-21 11:43:13 --> Config Class Initialized
+DEBUG - 2013-08-21 11:43:13 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:43:13 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:43:13 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:43:13 --> URI Class Initialized
+DEBUG - 2013-08-21 11:43:13 --> Router Class Initialized
+DEBUG - 2013-08-21 11:43:13 --> Output Class Initialized
+DEBUG - 2013-08-21 11:43:13 --> Security Class Initialized
+DEBUG - 2013-08-21 11:43:13 --> Input Class Initialized
+DEBUG - 2013-08-21 11:43:13 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:43:13 --> Language Class Initialized
+DEBUG - 2013-08-21 11:43:13 --> Loader Class Initialized
+DEBUG - 2013-08-21 11:43:13 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 11:43:13 --> Controller Class Initialized
+DEBUG - 2013-08-21 11:43:13 --> Model Class Initialized
+DEBUG - 2013-08-21 11:43:13 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 11:43:13 --> Model Class Initialized
+ERROR - 2013-08-21 11:43:13 --> Severity: Notice  --> Undefined variable: contact /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/views/contacts/show.php 3
+ERROR - 2013-08-21 11:43:13 --> Severity: Notice  --> Undefined variable: contact /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/views/contacts/show.php 9
+ERROR - 2013-08-21 11:43:13 --> Severity: Notice  --> Trying to get property of non-object /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/views/contacts/show.php 9
+ERROR - 2013-08-21 11:43:13 --> Severity: Notice  --> Undefined variable: contact /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/views/contacts/show.php 10
+ERROR - 2013-08-21 11:43:13 --> Severity: Notice  --> Trying to get property of non-object /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/views/contacts/show.php 10
+ERROR - 2013-08-21 11:43:13 --> Severity: Notice  --> Undefined variable: contact /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/views/contacts/show.php 11
+DEBUG - 2013-08-21 11:43:29 --> Config Class Initialized
+DEBUG - 2013-08-21 11:43:29 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:43:29 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:43:29 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:43:29 --> URI Class Initialized
+DEBUG - 2013-08-21 11:43:29 --> Router Class Initialized
+DEBUG - 2013-08-21 11:43:29 --> Output Class Initialized
+DEBUG - 2013-08-21 11:43:29 --> Security Class Initialized
+DEBUG - 2013-08-21 11:43:29 --> Input Class Initialized
+DEBUG - 2013-08-21 11:43:29 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:43:29 --> Language Class Initialized
+DEBUG - 2013-08-21 11:43:29 --> Loader Class Initialized
+DEBUG - 2013-08-21 11:43:29 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 11:43:29 --> Controller Class Initialized
+DEBUG - 2013-08-21 11:43:29 --> Model Class Initialized
+DEBUG - 2013-08-21 11:43:29 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 11:43:29 --> Model Class Initialized
+ERROR - 2013-08-21 11:43:29 --> Severity: Notice  --> Undefined variable: contact /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/views/contacts/show.php 3
+ERROR - 2013-08-21 11:43:29 --> Severity: Notice  --> Undefined variable: contact /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/views/contacts/show.php 9
+ERROR - 2013-08-21 11:43:29 --> Severity: Notice  --> Trying to get property of non-object /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/views/contacts/show.php 9
+ERROR - 2013-08-21 11:43:29 --> Severity: Notice  --> Undefined variable: contact /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/views/contacts/show.php 10
+ERROR - 2013-08-21 11:43:29 --> Severity: Notice  --> Trying to get property of non-object /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/views/contacts/show.php 10
+ERROR - 2013-08-21 11:43:29 --> Severity: Notice  --> Undefined variable: contact /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/views/contacts/show.php 11
+DEBUG - 2013-08-21 11:43:41 --> Config Class Initialized
+DEBUG - 2013-08-21 11:43:41 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:43:41 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:43:41 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:43:41 --> URI Class Initialized
+DEBUG - 2013-08-21 11:43:41 --> Router Class Initialized
+DEBUG - 2013-08-21 11:43:41 --> Output Class Initialized
+DEBUG - 2013-08-21 11:43:41 --> Security Class Initialized
+DEBUG - 2013-08-21 11:43:41 --> Input Class Initialized
+DEBUG - 2013-08-21 11:43:41 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:43:41 --> Language Class Initialized
+DEBUG - 2013-08-21 11:43:41 --> Loader Class Initialized
+DEBUG - 2013-08-21 11:43:41 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 11:43:41 --> Controller Class Initialized
+DEBUG - 2013-08-21 11:43:41 --> Model Class Initialized
+DEBUG - 2013-08-21 11:43:41 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 11:43:41 --> Model Class Initialized
+ERROR - 2013-08-21 11:43:41 --> Severity: Notice  --> Undefined variable: contact /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/views/contacts/show.php 3
+ERROR - 2013-08-21 11:43:41 --> Severity: Notice  --> Undefined variable: contact /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/views/contacts/show.php 9
+ERROR - 2013-08-21 11:43:41 --> Severity: Notice  --> Trying to get property of non-object /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/views/contacts/show.php 9
+ERROR - 2013-08-21 11:43:41 --> Severity: Notice  --> Undefined variable: contact /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/views/contacts/show.php 10
+ERROR - 2013-08-21 11:43:41 --> Severity: Notice  --> Trying to get property of non-object /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/views/contacts/show.php 10
+ERROR - 2013-08-21 11:43:41 --> Severity: Notice  --> Undefined variable: contact /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/views/contacts/show.php 11
+DEBUG - 2013-08-21 11:44:16 --> Config Class Initialized
+DEBUG - 2013-08-21 11:44:16 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:44:16 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:44:16 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:44:16 --> URI Class Initialized
+DEBUG - 2013-08-21 11:44:16 --> Router Class Initialized
+DEBUG - 2013-08-21 11:44:16 --> Output Class Initialized
+DEBUG - 2013-08-21 11:44:16 --> Security Class Initialized
+DEBUG - 2013-08-21 11:44:16 --> Input Class Initialized
+DEBUG - 2013-08-21 11:44:16 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:44:16 --> Language Class Initialized
+DEBUG - 2013-08-21 11:44:16 --> Loader Class Initialized
+DEBUG - 2013-08-21 11:44:16 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 11:44:16 --> Controller Class Initialized
+DEBUG - 2013-08-21 11:44:16 --> Model Class Initialized
+DEBUG - 2013-08-21 11:44:16 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 11:44:16 --> Model Class Initialized
+DEBUG - 2013-08-21 11:44:32 --> Config Class Initialized
+DEBUG - 2013-08-21 11:44:32 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:44:32 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:44:32 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:44:32 --> URI Class Initialized
+DEBUG - 2013-08-21 11:44:32 --> Router Class Initialized
+DEBUG - 2013-08-21 11:44:32 --> Output Class Initialized
+DEBUG - 2013-08-21 11:44:32 --> Security Class Initialized
+DEBUG - 2013-08-21 11:44:32 --> Input Class Initialized
+DEBUG - 2013-08-21 11:44:32 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:44:32 --> Language Class Initialized
+DEBUG - 2013-08-21 11:44:32 --> Loader Class Initialized
+DEBUG - 2013-08-21 11:44:32 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 11:44:32 --> Controller Class Initialized
+DEBUG - 2013-08-21 11:44:32 --> Model Class Initialized
+DEBUG - 2013-08-21 11:44:32 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 11:44:32 --> Model Class Initialized
+
+
+
+DEBUG - 2013-08-21 11:44:55 --> Config Class Initialized
+DEBUG - 2013-08-21 11:44:55 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:44:55 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:44:55 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:44:55 --> URI Class Initialized
+DEBUG - 2013-08-21 11:44:55 --> Router Class Initialized
+DEBUG - 2013-08-21 11:44:55 --> Output Class Initialized
+DEBUG - 2013-08-21 11:44:55 --> Security Class Initialized
+DEBUG - 2013-08-21 11:44:55 --> Input Class Initialized
+DEBUG - 2013-08-21 11:44:55 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:44:55 --> Language Class Initialized
+DEBUG - 2013-08-21 11:44:55 --> Loader Class Initialized
+DEBUG - 2013-08-21 11:44:55 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 11:44:55 --> Controller Class Initialized
+DEBUG - 2013-08-21 11:44:55 --> Model Class Initialized
+DEBUG - 2013-08-21 11:44:55 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 11:44:55 --> Model Class Initialized
+DEBUG - 2013-08-21 11:45:24 --> Config Class Initialized
+DEBUG - 2013-08-21 11:45:24 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:45:24 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:45:24 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:45:24 --> URI Class Initialized
+DEBUG - 2013-08-21 11:45:24 --> Router Class Initialized
+DEBUG - 2013-08-21 11:45:24 --> Output Class Initialized
+DEBUG - 2013-08-21 11:45:24 --> Security Class Initialized
+DEBUG - 2013-08-21 11:45:24 --> Input Class Initialized
+DEBUG - 2013-08-21 11:45:24 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:45:24 --> Language Class Initialized
+DEBUG - 2013-08-21 11:45:24 --> Loader Class Initialized
+DEBUG - 2013-08-21 11:45:24 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 11:45:24 --> Controller Class Initialized
+DEBUG - 2013-08-21 11:45:24 --> Model Class Initialized
+DEBUG - 2013-08-21 11:45:24 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 11:45:24 --> Model Class Initialized
+DEBUG - 2013-08-21 11:46:03 --> Config Class Initialized
+DEBUG - 2013-08-21 11:46:03 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:46:03 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:46:03 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:46:03 --> URI Class Initialized
+DEBUG - 2013-08-21 11:46:03 --> Router Class Initialized
+DEBUG - 2013-08-21 11:46:03 --> Output Class Initialized
+DEBUG - 2013-08-21 11:46:03 --> Security Class Initialized
+DEBUG - 2013-08-21 11:46:03 --> Input Class Initialized
+DEBUG - 2013-08-21 11:46:03 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:46:03 --> Language Class Initialized
+DEBUG - 2013-08-21 11:46:03 --> Loader Class Initialized
+DEBUG - 2013-08-21 11:46:03 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 11:46:03 --> Controller Class Initialized
+DEBUG - 2013-08-21 11:46:03 --> Model Class Initialized
+DEBUG - 2013-08-21 11:46:03 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 11:46:03 --> Model Class Initialized
+DEBUG - 2013-08-21 11:46:03 --> File loaded: ../application/views/contacts/index.php
+DEBUG - 2013-08-21 11:46:03 --> File loaded: ../application/views/layouts/contacts.php
+DEBUG - 2013-08-21 11:46:03 --> Language file loaded: language/english/profiler_lang.php
+DEBUG - 2013-08-21 11:46:03 --> Helper loaded: text_helper
+DEBUG - 2013-08-21 11:46:03 --> Final output sent to browser
+DEBUG - 2013-08-21 11:46:03 --> Total execution time: 0.0208
+DEBUG - 2013-08-21 11:46:12 --> Config Class Initialized
+DEBUG - 2013-08-21 11:46:12 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:46:12 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:46:12 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:46:12 --> URI Class Initialized
+DEBUG - 2013-08-21 11:46:12 --> Router Class Initialized
+DEBUG - 2013-08-21 11:46:12 --> Output Class Initialized
+DEBUG - 2013-08-21 11:46:12 --> Security Class Initialized
+DEBUG - 2013-08-21 11:46:12 --> Input Class Initialized
+DEBUG - 2013-08-21 11:46:12 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:46:12 --> Language Class Initialized
+DEBUG - 2013-08-21 11:46:12 --> Loader Class Initialized
+DEBUG - 2013-08-21 11:46:12 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 11:46:12 --> Controller Class Initialized
+DEBUG - 2013-08-21 11:46:12 --> Model Class Initialized
+DEBUG - 2013-08-21 11:46:12 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 11:46:12 --> Model Class Initialized
+DEBUG - 2013-08-21 11:47:15 --> Config Class Initialized
+DEBUG - 2013-08-21 11:47:15 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:47:15 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:47:15 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:47:15 --> URI Class Initialized
+DEBUG - 2013-08-21 11:47:15 --> Router Class Initialized
+DEBUG - 2013-08-21 11:47:15 --> Output Class Initialized
+DEBUG - 2013-08-21 11:47:15 --> Security Class Initialized
+DEBUG - 2013-08-21 11:47:15 --> Input Class Initialized
+DEBUG - 2013-08-21 11:47:15 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:47:15 --> Language Class Initialized
+DEBUG - 2013-08-21 11:47:15 --> Loader Class Initialized
+DEBUG - 2013-08-21 11:47:15 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 11:47:15 --> Controller Class Initialized
+DEBUG - 2013-08-21 11:47:15 --> Model Class Initialized
+DEBUG - 2013-08-21 11:47:15 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 11:47:15 --> Model Class Initialized
+ERROR - 2013-08-21 11:47:15 --> Severity: Notice  --> Undefined variable: contact /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/views/contacts/show.php 3
+ERROR - 2013-08-21 11:47:15 --> Severity: Notice  --> Undefined variable: contact /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/views/contacts/show.php 9
+ERROR - 2013-08-21 11:47:15 --> Severity: Notice  --> Trying to get property of non-object /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/views/contacts/show.php 9
+ERROR - 2013-08-21 11:47:15 --> Severity: Notice  --> Undefined variable: contact /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/views/contacts/show.php 10
+ERROR - 2013-08-21 11:47:15 --> Severity: Notice  --> Trying to get property of non-object /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/views/contacts/show.php 10
+ERROR - 2013-08-21 11:47:15 --> Severity: Notice  --> Undefined variable: contact /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/views/contacts/show.php 11
+DEBUG - 2013-08-21 11:47:42 --> Config Class Initialized
+DEBUG - 2013-08-21 11:47:42 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:47:42 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:47:42 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:47:42 --> URI Class Initialized
+DEBUG - 2013-08-21 11:47:42 --> Router Class Initialized
+DEBUG - 2013-08-21 11:47:42 --> Output Class Initialized
+DEBUG - 2013-08-21 11:47:42 --> Security Class Initialized
+DEBUG - 2013-08-21 11:47:42 --> Input Class Initialized
+DEBUG - 2013-08-21 11:47:42 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:47:42 --> Language Class Initialized
+DEBUG - 2013-08-21 11:47:42 --> Loader Class Initialized
+DEBUG - 2013-08-21 11:47:42 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 11:47:42 --> Controller Class Initialized
+DEBUG - 2013-08-21 11:47:42 --> Model Class Initialized
+DEBUG - 2013-08-21 11:47:42 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 11:47:42 --> Model Class Initialized
+ERROR - 2013-08-21 11:47:42 --> Severity: Notice  --> Undefined variable: contact /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/views/contacts/show.php 3
+ERROR - 2013-08-21 11:47:42 --> Severity: Notice  --> Undefined variable: contact /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/views/contacts/show.php 9
+ERROR - 2013-08-21 11:47:42 --> Severity: Notice  --> Trying to get property of non-object /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/views/contacts/show.php 9
+ERROR - 2013-08-21 11:47:42 --> Severity: Notice  --> Undefined variable: contact /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/views/contacts/show.php 10
+ERROR - 2013-08-21 11:47:42 --> Severity: Notice  --> Trying to get property of non-object /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/views/contacts/show.php 10
+ERROR - 2013-08-21 11:47:42 --> Severity: Notice  --> Undefined variable: contact /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/views/contacts/show.php 11
+DEBUG - 2013-08-21 11:47:56 --> Config Class Initialized
+DEBUG - 2013-08-21 11:47:56 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:47:56 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:47:56 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:47:56 --> URI Class Initialized
+DEBUG - 2013-08-21 11:47:56 --> Router Class Initialized
+DEBUG - 2013-08-21 11:47:56 --> Output Class Initialized
+DEBUG - 2013-08-21 11:47:56 --> Security Class Initialized
+DEBUG - 2013-08-21 11:47:56 --> Input Class Initialized
+DEBUG - 2013-08-21 11:47:56 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:47:56 --> Language Class Initialized
+DEBUG - 2013-08-21 11:47:56 --> Loader Class Initialized
+DEBUG - 2013-08-21 11:47:56 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 11:47:56 --> Controller Class Initialized
+DEBUG - 2013-08-21 11:47:56 --> Model Class Initialized
+DEBUG - 2013-08-21 11:47:56 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 11:47:56 --> Model Class Initialized
+DEBUG - 2013-08-21 11:48:06 --> Config Class Initialized
+DEBUG - 2013-08-21 11:48:06 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:48:06 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:48:06 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:48:06 --> URI Class Initialized
+DEBUG - 2013-08-21 11:48:06 --> Router Class Initialized
+DEBUG - 2013-08-21 11:48:06 --> Output Class Initialized
+DEBUG - 2013-08-21 11:48:06 --> Security Class Initialized
+DEBUG - 2013-08-21 11:48:06 --> Input Class Initialized
+DEBUG - 2013-08-21 11:48:06 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:48:06 --> Language Class Initialized
+DEBUG - 2013-08-21 11:48:06 --> Loader Class Initialized
+DEBUG - 2013-08-21 11:48:06 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 11:48:06 --> Controller Class Initialized
+DEBUG - 2013-08-21 11:48:06 --> Model Class Initialized
+DEBUG - 2013-08-21 11:48:06 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 11:48:06 --> Model Class Initialized
+DEBUG - 2013-08-21 11:48:18 --> Config Class Initialized
+DEBUG - 2013-08-21 11:48:18 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:48:18 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:48:18 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:48:18 --> URI Class Initialized
+DEBUG - 2013-08-21 11:48:18 --> Router Class Initialized
+DEBUG - 2013-08-21 11:48:18 --> Output Class Initialized
+DEBUG - 2013-08-21 11:48:18 --> Security Class Initialized
+DEBUG - 2013-08-21 11:48:18 --> Input Class Initialized
+DEBUG - 2013-08-21 11:48:18 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:48:18 --> Language Class Initialized
+DEBUG - 2013-08-21 11:48:18 --> Loader Class Initialized
+DEBUG - 2013-08-21 11:48:18 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 11:48:18 --> Controller Class Initialized
+DEBUG - 2013-08-21 11:48:18 --> Model Class Initialized
+DEBUG - 2013-08-21 11:48:18 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 11:48:18 --> Model Class Initialized
+DEBUG - 2013-08-21 11:48:24 --> Config Class Initialized
+DEBUG - 2013-08-21 11:48:24 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:48:24 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:48:24 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:48:24 --> URI Class Initialized
+DEBUG - 2013-08-21 11:48:24 --> Router Class Initialized
+DEBUG - 2013-08-21 11:48:24 --> Output Class Initialized
+DEBUG - 2013-08-21 11:48:24 --> Security Class Initialized
+DEBUG - 2013-08-21 11:48:24 --> Input Class Initialized
+DEBUG - 2013-08-21 11:48:24 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:48:24 --> Language Class Initialized
+DEBUG - 2013-08-21 11:48:24 --> Loader Class Initialized
+DEBUG - 2013-08-21 11:48:24 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 11:48:24 --> Controller Class Initialized
+DEBUG - 2013-08-21 11:48:24 --> Model Class Initialized
+DEBUG - 2013-08-21 11:48:24 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 11:48:24 --> Model Class Initialized
+DEBUG - 2013-08-21 11:49:18 --> Config Class Initialized
+DEBUG - 2013-08-21 11:49:18 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:49:18 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:49:18 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:49:18 --> URI Class Initialized
+DEBUG - 2013-08-21 11:49:18 --> Router Class Initialized
+DEBUG - 2013-08-21 11:49:18 --> Output Class Initialized
+DEBUG - 2013-08-21 11:49:18 --> Security Class Initialized
+DEBUG - 2013-08-21 11:49:18 --> Input Class Initialized
+DEBUG - 2013-08-21 11:49:18 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:49:18 --> Language Class Initialized
+DEBUG - 2013-08-21 11:49:45 --> Config Class Initialized
+DEBUG - 2013-08-21 11:49:45 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:49:45 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:49:45 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:49:45 --> URI Class Initialized
+DEBUG - 2013-08-21 11:49:45 --> Router Class Initialized
+DEBUG - 2013-08-21 11:49:45 --> Output Class Initialized
+DEBUG - 2013-08-21 11:49:45 --> Security Class Initialized
+DEBUG - 2013-08-21 11:49:45 --> Input Class Initialized
+DEBUG - 2013-08-21 11:49:45 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:49:45 --> Language Class Initialized
+DEBUG - 2013-08-21 11:49:45 --> Loader Class Initialized
+DEBUG - 2013-08-21 11:49:45 --> Helper loaded: url_helper
+DEBUG - 2013-08-21 11:49:45 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 11:49:45 --> Controller Class Initialized
+DEBUG - 2013-08-21 11:49:45 --> Model Class Initialized
+DEBUG - 2013-08-21 11:49:45 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 11:49:45 --> Model Class Initialized
+ERROR - 2013-08-21 11:49:45 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/presenters/Presenter.php:2) /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/system/helpers/url_helper.php 542
+DEBUG - 2013-08-21 11:50:41 --> Config Class Initialized
+DEBUG - 2013-08-21 11:50:41 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:50:41 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:50:41 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:50:41 --> URI Class Initialized
+DEBUG - 2013-08-21 11:50:41 --> Router Class Initialized
+DEBUG - 2013-08-21 11:50:41 --> Output Class Initialized
+DEBUG - 2013-08-21 11:50:41 --> Security Class Initialized
+DEBUG - 2013-08-21 11:50:41 --> Input Class Initialized
+DEBUG - 2013-08-21 11:50:41 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:50:41 --> Language Class Initialized
+DEBUG - 2013-08-21 11:51:01 --> Config Class Initialized
+DEBUG - 2013-08-21 11:51:01 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:51:01 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:51:01 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:51:01 --> URI Class Initialized
+DEBUG - 2013-08-21 11:51:01 --> Router Class Initialized
+DEBUG - 2013-08-21 11:51:01 --> Output Class Initialized
+DEBUG - 2013-08-21 11:51:01 --> Security Class Initialized
+DEBUG - 2013-08-21 11:51:01 --> Input Class Initialized
+DEBUG - 2013-08-21 11:51:01 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:51:01 --> Language Class Initialized
+DEBUG - 2013-08-21 11:51:15 --> Config Class Initialized
+DEBUG - 2013-08-21 11:51:15 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:51:15 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:51:15 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:51:15 --> URI Class Initialized
+DEBUG - 2013-08-21 11:51:15 --> Router Class Initialized
+DEBUG - 2013-08-21 11:51:15 --> Output Class Initialized
+DEBUG - 2013-08-21 11:51:15 --> Security Class Initialized
+DEBUG - 2013-08-21 11:51:15 --> Input Class Initialized
+DEBUG - 2013-08-21 11:51:15 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:51:15 --> Language Class Initialized
+DEBUG - 2013-08-21 11:51:43 --> Config Class Initialized
+DEBUG - 2013-08-21 11:51:43 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:51:43 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:51:43 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:51:43 --> URI Class Initialized
+DEBUG - 2013-08-21 11:51:43 --> Router Class Initialized
+DEBUG - 2013-08-21 11:51:43 --> Output Class Initialized
+DEBUG - 2013-08-21 11:51:43 --> Security Class Initialized
+DEBUG - 2013-08-21 11:51:43 --> Input Class Initialized
+DEBUG - 2013-08-21 11:51:43 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:51:43 --> Language Class Initialized
+DEBUG - 2013-08-21 11:51:43 --> Loader Class Initialized
+DEBUG - 2013-08-21 11:51:43 --> Helper loaded: url_helper
+DEBUG - 2013-08-21 11:51:43 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 11:51:43 --> Controller Class Initialized
+DEBUG - 2013-08-21 11:51:43 --> Model Class Initialized
+DEBUG - 2013-08-21 11:51:43 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 11:51:43 --> Model Class Initialized
+DEBUG - 2013-08-21 11:51:43 --> Config Class Initialized
+DEBUG - 2013-08-21 11:51:43 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:51:43 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:51:43 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:51:43 --> URI Class Initialized
+DEBUG - 2013-08-21 11:51:43 --> Router Class Initialized
+DEBUG - 2013-08-21 11:51:43 --> Output Class Initialized
+DEBUG - 2013-08-21 11:51:43 --> Security Class Initialized
+DEBUG - 2013-08-21 11:51:43 --> Input Class Initialized
+DEBUG - 2013-08-21 11:51:43 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:51:43 --> Language Class Initialized
+DEBUG - 2013-08-21 11:51:43 --> Loader Class Initialized
+DEBUG - 2013-08-21 11:51:43 --> Helper loaded: url_helper
+DEBUG - 2013-08-21 11:51:43 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 11:51:43 --> Controller Class Initialized
+DEBUG - 2013-08-21 11:51:43 --> Model Class Initialized
+DEBUG - 2013-08-21 11:51:43 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 11:51:43 --> Model Class Initialized
+DEBUG - 2013-08-21 11:51:43 --> File loaded: ../application/views/contacts/index.php
+DEBUG - 2013-08-21 11:51:43 --> File loaded: ../application/views/layouts/contacts.php
+DEBUG - 2013-08-21 11:51:43 --> Language file loaded: language/english/profiler_lang.php
+DEBUG - 2013-08-21 11:51:43 --> Helper loaded: text_helper
+DEBUG - 2013-08-21 11:51:43 --> Final output sent to browser
+DEBUG - 2013-08-21 11:51:43 --> Total execution time: 0.0117
+DEBUG - 2013-08-21 11:51:47 --> Config Class Initialized
+DEBUG - 2013-08-21 11:51:47 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:51:47 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:51:47 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:51:47 --> URI Class Initialized
+DEBUG - 2013-08-21 11:51:47 --> Router Class Initialized
+DEBUG - 2013-08-21 11:51:47 --> Output Class Initialized
+DEBUG - 2013-08-21 11:51:47 --> Security Class Initialized
+DEBUG - 2013-08-21 11:51:47 --> Input Class Initialized
+DEBUG - 2013-08-21 11:51:47 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:51:47 --> Language Class Initialized
+DEBUG - 2013-08-21 11:51:47 --> Loader Class Initialized
+DEBUG - 2013-08-21 11:51:47 --> Helper loaded: url_helper
+DEBUG - 2013-08-21 11:51:47 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 11:51:47 --> Controller Class Initialized
+DEBUG - 2013-08-21 11:51:47 --> Model Class Initialized
+DEBUG - 2013-08-21 11:51:47 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 11:51:47 --> Model Class Initialized
+DEBUG - 2013-08-21 11:51:47 --> Config Class Initialized
+DEBUG - 2013-08-21 11:51:47 --> Hooks Class Initialized
+DEBUG - 2013-08-21 11:51:47 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 11:51:47 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 11:51:47 --> URI Class Initialized
+DEBUG - 2013-08-21 11:51:47 --> Router Class Initialized
+DEBUG - 2013-08-21 11:51:47 --> Output Class Initialized
+DEBUG - 2013-08-21 11:51:47 --> Security Class Initialized
+DEBUG - 2013-08-21 11:51:47 --> Input Class Initialized
+DEBUG - 2013-08-21 11:51:47 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 11:51:47 --> Language Class Initialized
+DEBUG - 2013-08-21 11:51:47 --> Loader Class Initialized
+DEBUG - 2013-08-21 11:51:47 --> Helper loaded: url_helper
+DEBUG - 2013-08-21 11:51:47 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 11:51:47 --> Controller Class Initialized
+DEBUG - 2013-08-21 11:51:47 --> Model Class Initialized
+DEBUG - 2013-08-21 11:51:47 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 11:51:47 --> Model Class Initialized
+DEBUG - 2013-08-21 11:51:47 --> File loaded: ../application/views/contacts/index.php
+DEBUG - 2013-08-21 11:51:47 --> File loaded: ../application/views/layouts/contacts.php
+DEBUG - 2013-08-21 11:51:47 --> Language file loaded: language/english/profiler_lang.php
+DEBUG - 2013-08-21 11:51:47 --> Helper loaded: text_helper
+DEBUG - 2013-08-21 11:51:47 --> Final output sent to browser
+DEBUG - 2013-08-21 11:51:47 --> Total execution time: 0.0190
+DEBUG - 2013-08-21 12:01:51 --> Config Class Initialized
+DEBUG - 2013-08-21 12:01:51 --> Hooks Class Initialized
+DEBUG - 2013-08-21 12:01:51 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 12:01:51 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 12:01:51 --> URI Class Initialized
+DEBUG - 2013-08-21 12:01:51 --> Router Class Initialized
+DEBUG - 2013-08-21 12:01:51 --> Output Class Initialized
+DEBUG - 2013-08-21 12:01:51 --> Security Class Initialized
+DEBUG - 2013-08-21 12:01:51 --> Input Class Initialized
+DEBUG - 2013-08-21 12:01:51 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 12:01:51 --> Language Class Initialized
+DEBUG - 2013-08-21 12:01:51 --> Loader Class Initialized
+DEBUG - 2013-08-21 12:01:51 --> Helper loaded: url_helper
+DEBUG - 2013-08-21 12:01:51 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 12:01:51 --> Controller Class Initialized
+DEBUG - 2013-08-21 12:01:51 --> Model Class Initialized
+DEBUG - 2013-08-21 12:01:51 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 12:01:51 --> Model Class Initialized
+DEBUG - 2013-08-21 12:01:51 --> File loaded: ../application/views/contacts/show.php
+DEBUG - 2013-08-21 12:01:51 --> File loaded: ../application/views/layouts/contacts.php
+DEBUG - 2013-08-21 12:01:51 --> Language file loaded: language/english/profiler_lang.php
+DEBUG - 2013-08-21 12:01:51 --> Helper loaded: text_helper
+DEBUG - 2013-08-21 12:01:51 --> Final output sent to browser
+DEBUG - 2013-08-21 12:01:51 --> Total execution time: 0.0196
+DEBUG - 2013-08-21 12:02:12 --> Config Class Initialized
+DEBUG - 2013-08-21 12:02:12 --> Hooks Class Initialized
+DEBUG - 2013-08-21 12:02:12 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 12:02:12 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 12:02:12 --> URI Class Initialized
+DEBUG - 2013-08-21 12:02:12 --> Router Class Initialized
+DEBUG - 2013-08-21 12:02:12 --> Output Class Initialized
+DEBUG - 2013-08-21 12:02:12 --> Security Class Initialized
+DEBUG - 2013-08-21 12:02:12 --> Input Class Initialized
+DEBUG - 2013-08-21 12:02:12 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 12:02:12 --> Language Class Initialized
+DEBUG - 2013-08-21 12:02:12 --> Loader Class Initialized
+DEBUG - 2013-08-21 12:02:12 --> Helper loaded: url_helper
+DEBUG - 2013-08-21 12:02:12 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 12:02:12 --> Controller Class Initialized
+DEBUG - 2013-08-21 12:02:12 --> Model Class Initialized
+DEBUG - 2013-08-21 12:02:12 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 12:02:12 --> Model Class Initialized
+DEBUG - 2013-08-21 12:02:12 --> File loaded: ../application/views/contacts/show.php
+DEBUG - 2013-08-21 12:02:12 --> File loaded: ../application/views/layouts/contacts.php
+DEBUG - 2013-08-21 12:02:12 --> Language file loaded: language/english/profiler_lang.php
+DEBUG - 2013-08-21 12:02:12 --> Helper loaded: text_helper
+DEBUG - 2013-08-21 12:02:12 --> Final output sent to browser
+DEBUG - 2013-08-21 12:02:12 --> Total execution time: 0.0146
+DEBUG - 2013-08-21 12:03:07 --> Config Class Initialized
+DEBUG - 2013-08-21 12:03:07 --> Hooks Class Initialized
+DEBUG - 2013-08-21 12:03:07 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 12:03:07 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 12:03:07 --> URI Class Initialized
+DEBUG - 2013-08-21 12:03:07 --> Router Class Initialized
+DEBUG - 2013-08-21 12:03:07 --> Output Class Initialized
+DEBUG - 2013-08-21 12:03:07 --> Security Class Initialized
+DEBUG - 2013-08-21 12:03:07 --> Input Class Initialized
+DEBUG - 2013-08-21 12:03:07 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 12:03:07 --> Language Class Initialized
+DEBUG - 2013-08-21 12:03:07 --> Loader Class Initialized
+DEBUG - 2013-08-21 12:03:07 --> Helper loaded: url_helper
+DEBUG - 2013-08-21 12:03:07 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 12:03:07 --> Controller Class Initialized
+DEBUG - 2013-08-21 12:03:07 --> Model Class Initialized
+DEBUG - 2013-08-21 12:03:07 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 12:03:07 --> Model Class Initialized
+DEBUG - 2013-08-21 12:03:07 --> File loaded: ../application/views/contacts/show.php
+DEBUG - 2013-08-21 12:03:07 --> File loaded: ../application/views/layouts/contacts.php
+DEBUG - 2013-08-21 12:03:07 --> Language file loaded: language/english/profiler_lang.php
+DEBUG - 2013-08-21 12:03:07 --> Helper loaded: text_helper
+DEBUG - 2013-08-21 12:03:07 --> Final output sent to browser
+DEBUG - 2013-08-21 12:03:07 --> Total execution time: 0.0265
+DEBUG - 2013-08-21 12:03:22 --> Config Class Initialized
+DEBUG - 2013-08-21 12:03:22 --> Hooks Class Initialized
+DEBUG - 2013-08-21 12:03:22 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 12:03:22 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 12:03:22 --> URI Class Initialized
+DEBUG - 2013-08-21 12:03:22 --> Router Class Initialized
+DEBUG - 2013-08-21 12:03:22 --> Output Class Initialized
+DEBUG - 2013-08-21 12:03:22 --> Security Class Initialized
+DEBUG - 2013-08-21 12:03:22 --> Input Class Initialized
+DEBUG - 2013-08-21 12:03:22 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 12:03:22 --> Language Class Initialized
+DEBUG - 2013-08-21 12:03:22 --> Loader Class Initialized
+DEBUG - 2013-08-21 12:03:22 --> Helper loaded: url_helper
+DEBUG - 2013-08-21 12:03:22 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 12:03:22 --> Controller Class Initialized
+DEBUG - 2013-08-21 12:03:22 --> Model Class Initialized
+DEBUG - 2013-08-21 12:03:22 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 12:03:22 --> Model Class Initialized
+DEBUG - 2013-08-21 12:03:22 --> File loaded: ../application/views/contacts/show.php
+DEBUG - 2013-08-21 12:03:22 --> File loaded: ../application/views/layouts/contacts.php
+DEBUG - 2013-08-21 12:03:22 --> Language file loaded: language/english/profiler_lang.php
+DEBUG - 2013-08-21 12:03:22 --> Helper loaded: text_helper
+DEBUG - 2013-08-21 12:03:22 --> Final output sent to browser
+DEBUG - 2013-08-21 12:03:22 --> Total execution time: 0.0151
+DEBUG - 2013-08-21 12:08:56 --> Config Class Initialized
+DEBUG - 2013-08-21 12:08:56 --> Hooks Class Initialized
+DEBUG - 2013-08-21 12:08:56 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 12:08:56 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 12:08:56 --> URI Class Initialized
+DEBUG - 2013-08-21 12:08:56 --> Router Class Initialized
+DEBUG - 2013-08-21 12:08:56 --> Output Class Initialized
+DEBUG - 2013-08-21 12:08:56 --> Security Class Initialized
+DEBUG - 2013-08-21 12:08:56 --> Input Class Initialized
+DEBUG - 2013-08-21 12:08:56 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 12:08:56 --> Language Class Initialized
+DEBUG - 2013-08-21 12:08:56 --> Loader Class Initialized
+DEBUG - 2013-08-21 12:08:56 --> Helper loaded: url_helper
+DEBUG - 2013-08-21 12:08:56 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 12:08:56 --> Controller Class Initialized
+DEBUG - 2013-08-21 12:08:56 --> Model Class Initialized
+DEBUG - 2013-08-21 12:08:56 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 12:08:56 --> Model Class Initialized
+DEBUG - 2013-08-21 12:08:56 --> File loaded: ../application/views/contacts/show.php
+DEBUG - 2013-08-21 12:08:56 --> File loaded: ../application/views/layouts/contacts.php
+DEBUG - 2013-08-21 12:08:56 --> Language file loaded: language/english/profiler_lang.php
+DEBUG - 2013-08-21 12:08:56 --> Helper loaded: text_helper
+DEBUG - 2013-08-21 12:08:56 --> Final output sent to browser
+DEBUG - 2013-08-21 12:08:56 --> Total execution time: 0.0376
+DEBUG - 2013-08-21 12:09:02 --> Config Class Initialized
+DEBUG - 2013-08-21 12:09:02 --> Hooks Class Initialized
+DEBUG - 2013-08-21 12:09:02 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 12:09:02 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 12:09:02 --> URI Class Initialized
+DEBUG - 2013-08-21 12:09:02 --> Router Class Initialized
+DEBUG - 2013-08-21 12:09:02 --> Output Class Initialized
+DEBUG - 2013-08-21 12:09:02 --> Security Class Initialized
+DEBUG - 2013-08-21 12:09:02 --> Input Class Initialized
+DEBUG - 2013-08-21 12:09:02 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 12:09:02 --> Language Class Initialized
+DEBUG - 2013-08-21 12:09:02 --> Loader Class Initialized
+DEBUG - 2013-08-21 12:09:02 --> Helper loaded: url_helper
+DEBUG - 2013-08-21 12:09:02 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 12:09:02 --> Controller Class Initialized
+DEBUG - 2013-08-21 12:09:02 --> Model Class Initialized
+DEBUG - 2013-08-21 12:09:02 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 12:09:02 --> Model Class Initialized
+DEBUG - 2013-08-21 12:09:02 --> File loaded: ../application/views/contacts/index.php
+DEBUG - 2013-08-21 12:09:02 --> File loaded: ../application/views/layouts/contacts.php
+DEBUG - 2013-08-21 12:09:02 --> Language file loaded: language/english/profiler_lang.php
+DEBUG - 2013-08-21 12:09:02 --> Helper loaded: text_helper
+DEBUG - 2013-08-21 12:09:02 --> Final output sent to browser
+DEBUG - 2013-08-21 12:09:02 --> Total execution time: 0.0158
+DEBUG - 2013-08-21 12:09:11 --> Config Class Initialized
+DEBUG - 2013-08-21 12:09:11 --> Hooks Class Initialized
+DEBUG - 2013-08-21 12:09:11 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 12:09:11 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 12:09:11 --> URI Class Initialized
+DEBUG - 2013-08-21 12:09:11 --> Router Class Initialized
+DEBUG - 2013-08-21 12:09:11 --> Output Class Initialized
+DEBUG - 2013-08-21 12:09:11 --> Security Class Initialized
+DEBUG - 2013-08-21 12:09:11 --> Input Class Initialized
+DEBUG - 2013-08-21 12:09:11 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 12:09:11 --> Language Class Initialized
+DEBUG - 2013-08-21 12:09:11 --> Loader Class Initialized
+DEBUG - 2013-08-21 12:09:11 --> Helper loaded: url_helper
+DEBUG - 2013-08-21 12:09:11 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 12:09:11 --> Controller Class Initialized
+ERROR - 2013-08-21 12:09:11 --> Severity: Notice  --> Undefined property: Contacts::$contact /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/controllers/contacts.php 28
+DEBUG - 2013-08-21 12:09:23 --> Config Class Initialized
+DEBUG - 2013-08-21 12:09:23 --> Hooks Class Initialized
+DEBUG - 2013-08-21 12:09:23 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 12:09:23 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 12:09:23 --> URI Class Initialized
+DEBUG - 2013-08-21 12:09:23 --> Router Class Initialized
+DEBUG - 2013-08-21 12:09:23 --> Output Class Initialized
+DEBUG - 2013-08-21 12:09:23 --> Security Class Initialized
+DEBUG - 2013-08-21 12:09:23 --> Input Class Initialized
+DEBUG - 2013-08-21 12:09:23 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 12:09:23 --> Language Class Initialized
+DEBUG - 2013-08-21 12:09:23 --> Loader Class Initialized
+DEBUG - 2013-08-21 12:09:23 --> Helper loaded: url_helper
+DEBUG - 2013-08-21 12:09:23 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 12:09:23 --> Controller Class Initialized
+DEBUG - 2013-08-21 12:09:23 --> Model Class Initialized
+DEBUG - 2013-08-21 12:09:23 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 12:09:23 --> Model Class Initialized
+DEBUG - 2013-08-21 12:09:23 --> File loaded: ../application/views/contacts/index.php
+DEBUG - 2013-08-21 12:09:23 --> File loaded: ../application/views/layouts/contacts.php
+DEBUG - 2013-08-21 12:09:23 --> Language file loaded: language/english/profiler_lang.php
+DEBUG - 2013-08-21 12:09:23 --> Helper loaded: text_helper
+DEBUG - 2013-08-21 12:09:23 --> Final output sent to browser
+DEBUG - 2013-08-21 12:09:23 --> Total execution time: 0.0158
+DEBUG - 2013-08-21 12:09:28 --> Config Class Initialized
+DEBUG - 2013-08-21 12:09:28 --> Hooks Class Initialized
+DEBUG - 2013-08-21 12:09:28 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 12:09:28 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 12:09:28 --> URI Class Initialized
+DEBUG - 2013-08-21 12:09:28 --> Router Class Initialized
+DEBUG - 2013-08-21 12:09:28 --> Output Class Initialized
+DEBUG - 2013-08-21 12:09:28 --> Security Class Initialized
+DEBUG - 2013-08-21 12:09:28 --> Input Class Initialized
+DEBUG - 2013-08-21 12:09:28 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 12:09:28 --> Language Class Initialized
+DEBUG - 2013-08-21 12:09:28 --> Loader Class Initialized
+DEBUG - 2013-08-21 12:09:28 --> Helper loaded: url_helper
+DEBUG - 2013-08-21 12:09:28 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 12:09:28 --> Controller Class Initialized
+DEBUG - 2013-08-21 12:09:28 --> Model Class Initialized
+DEBUG - 2013-08-21 12:09:28 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 12:09:28 --> Model Class Initialized
+DEBUG - 2013-08-21 12:09:28 --> File loaded: ../application/views/contacts/show.php
+DEBUG - 2013-08-21 12:09:28 --> File loaded: ../application/views/layouts/contacts.php
+DEBUG - 2013-08-21 12:09:28 --> Language file loaded: language/english/profiler_lang.php
+DEBUG - 2013-08-21 12:09:28 --> Helper loaded: text_helper
+DEBUG - 2013-08-21 12:09:28 --> Final output sent to browser
+DEBUG - 2013-08-21 12:09:28 --> Total execution time: 0.0136
+DEBUG - 2013-08-21 15:17:46 --> Config Class Initialized
+DEBUG - 2013-08-21 15:17:46 --> Hooks Class Initialized
+DEBUG - 2013-08-21 15:17:46 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 15:17:46 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 15:17:46 --> URI Class Initialized
+DEBUG - 2013-08-21 15:17:46 --> Router Class Initialized
+DEBUG - 2013-08-21 15:17:46 --> Output Class Initialized
+DEBUG - 2013-08-21 15:17:46 --> Security Class Initialized
+DEBUG - 2013-08-21 15:17:46 --> Input Class Initialized
+DEBUG - 2013-08-21 15:17:46 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 15:17:46 --> Language Class Initialized
+DEBUG - 2013-08-21 15:17:46 --> Loader Class Initialized
+DEBUG - 2013-08-21 15:17:46 --> Helper loaded: url_helper
+DEBUG - 2013-08-21 15:17:46 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 15:17:46 --> Controller Class Initialized
+DEBUG - 2013-08-21 15:17:46 --> Model Class Initialized
+DEBUG - 2013-08-21 15:17:46 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-21 15:17:46 --> Model Class Initialized
+DEBUG - 2013-08-21 15:17:46 --> File loaded: ../application/views/contacts/show.php
+DEBUG - 2013-08-21 15:17:46 --> File loaded: ../application/views/layouts/contacts.php
+DEBUG - 2013-08-21 15:17:46 --> Language file loaded: language/english/profiler_lang.php
+DEBUG - 2013-08-21 15:17:46 --> Helper loaded: text_helper
+DEBUG - 2013-08-21 15:17:46 --> Final output sent to browser
+DEBUG - 2013-08-21 15:17:46 --> Total execution time: 0.0395

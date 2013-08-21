@@ -1,13 +1,12 @@
-<?php 
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
 * Controller for contacts table
 */
 
-
 class Contacts extends MY_Controller
 {
-	public $data = array();
+	//public $data = array();
 
 	public $models = array('contact');
 
@@ -26,12 +25,28 @@ class Contacts extends MY_Controller
 	 */
 	public function index()
 	{
-		$this->data['contacts_list'] = $this->contact->get_all();
+		$this->data['contacts_list'] = new Contact_Presenter($this->contact->get_all());
 	}
 
-	public function show($contact_id)
+	public function show($id = FALSE)
 	{
-		$this->data['contact'] = new Contact_Presenter($this->contact->get($contact_id));
-		//$this->data['contact'] = $this->contact->get($contact_id);
+		if ($id) $this->data['contact'] = new Contact_Presenter($this->contact->get($id));
+
+		else redirect(site_url('contacts'));
+	}
+
+	public function create()
+	{
+		//  insert a new record
+	}
+
+	public function edit($id = FALSE)
+	{
+		// Update a record
+	}
+
+	public function delete($id)
+	{
+		// Destroy a record (not really - 'softdelete' it!)
 	}
 }

@@ -1,5 +1,4 @@
-<?php 
-echo "<small>main presenter classbeen called</small>";
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
 * Presenter class is a thin layer between the view and the data object returned
 *
