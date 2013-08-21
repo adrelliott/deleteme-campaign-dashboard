@@ -128,6 +128,10 @@ class Base_Model extends CI_Model
             $this->_database->where($this->soft_delete_key, (bool)$this->_temporary_only_deleted);
         }
 
+         //Decide what fields to retrieve (set up in each model)
+        if (is_array($this->_cols['single_record']))
+            $this->_database->select(array_values($this->_cols['single_record']));
+
         $row = $this->_database->where($this->primary_key, $primary_value)
                         ->get($this->_table)
                         ->{$this->_return_type()}();
@@ -208,7 +212,7 @@ class Base_Model extends CI_Model
         {
             $this->_database->where($this->soft_delete_key, (bool)$this->_temporary_only_deleted);
         }
-        
+
         $result = $this->_database->get($this->_table)
                            ->{$this->_return_type(1)}();
         $this->_temporary_return_type = $this->return_type;

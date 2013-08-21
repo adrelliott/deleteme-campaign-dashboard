@@ -3,9 +3,8 @@
 * Contact_presenter - deals with allt he functions for the contact view
 */
 
-class Contact_presenter extends Presenter
+class Contact_Presenter extends Presenter
 {
-
 	//For the index() function only
 	public function create_table($contacts_list, $cols = array())
 	{
@@ -75,7 +74,6 @@ class Contact_presenter extends Presenter
 	{
 		return $this->$property;
 	}
-
 
 	
 }

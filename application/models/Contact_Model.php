@@ -1,11 +1,15 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Contact_model extends MY_Model {
-	/*
-		Overides the standard naming convention of the table/models (for autoloading).
-		Only define the table name here if it is NOT the plural of the model name
-	 */
-	//public $_table = '';	//e.g. public $_table = 'custom_fields' if model = custom_model
+
+	//define what columns to return in a search
+	protected $_cols = array(
+                 'single_record' => array(
+                                  'id', 'first_name', 'last_name', 'email', 'deleted', 'owner_id'),
+                 'multiple_record' => array(
+                                  'id', 'first_name', 'last_name', 'email', 'owner_id')
+                 );
+
 	
 	/*
 		You can set observers to call methods before create, update, get and delete

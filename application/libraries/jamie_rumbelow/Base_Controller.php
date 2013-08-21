@@ -108,6 +108,8 @@ class Base_Controller extends CI_Controller
         // If $this->view == FALSE, we don't want to load anything
         if ($this->view !== FALSE)
         {
+            //pass through the contents of $this->data for debug
+            if (ENVIRONMENT !== 'production') $this->data['debug'] = $this->data;
             // If $this->view isn't empty, load it. If it isn't, try and guess based on the controller and action name
             $view = (!empty($this->view)) ? $this->view : $this->router->directory . $this->router->class . '/' . $this->router->method;
 

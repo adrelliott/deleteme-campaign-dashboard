@@ -25,13 +25,14 @@ class Contacts extends MY_Controller
 	 */
 	public function index()
 	{
-		$this->data['contacts_list'] = new Contact_Presenter($this->contact->get_all());
+		$this->data['result'] = new Contact_Presenter($this->contact->get_all());
+		//$this->data['22220'] = new Contact_Presenter($this->contact->get_many_by('owner_id', '22220'));
+		//$this->data['11110'] = new Contact_Presenter($this->contact->get_many_by('owner_id', '11110'));
 	}
 
 	public function show($id = FALSE)
 	{
-		if ($id) $this->data['contact'] = new Contact_Presenter($this->contact->get($id));
-
+		if ($id) $this->data['result'] = new Contact_Presenter($this->contact->get($id));
 		else redirect(site_url('contacts'));
 	}
 

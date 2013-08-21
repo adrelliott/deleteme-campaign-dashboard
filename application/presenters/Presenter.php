@@ -9,7 +9,7 @@ class Presenter {
 	
 	public function __construct($object = NULL)
 	{
-		$name = strtolower(str_replace("_presenter", "", strtolower(get_class($this))));
+		$name = strtolower(str_replace("_presenter", "", get_class($this)));
 		$this->$name = $object;
 	}
 
@@ -20,5 +20,6 @@ class Presenter {
 			return get_instance()->$attr;
 		}
 	}
+
         
 }
