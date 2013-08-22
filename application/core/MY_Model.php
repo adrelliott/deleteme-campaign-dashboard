@@ -124,6 +124,17 @@ class MY_Model extends CI_Model
 
     }
 
+    /*
+        Override the protected attirbutes for owner_id for insertion
+     */
+    private function _set_owner_id($data)
+    {
+        $owner_id = $_SESSION['owner_id'] = 22210;  //******************* FIX THIS WITH LOGOIN!!****
+        $data['owner_id'] = $owner_id;
+
+        return $data;
+    }
+
     /* --------------------------------------------------------------
      * CRUD INTERFACE
      * ------------------------------------------------------------ */
@@ -262,6 +273,7 @@ class MY_Model extends CI_Model
         {
             $data = $this->trigger('before_create', $data);
 
+            $data = $this->_set_owner_id($data);
             $this->_database->insert($this->_table, $data);
             $insert_id = $this->_database->insert_id();
 
