@@ -119,6 +119,6 @@ $autoload['model'] = array();
 | This provides a thin ;ayer of abstraction, like in Ruby on Rails
 |
 */
-require_once APPPATH . 'presenters/Presenter.php';
+require_once APPPATH . 'presenters/presenter.php';
 /* End of file autoload.php */
 /* Location: ./application/config/autoload.php */

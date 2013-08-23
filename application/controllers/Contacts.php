@@ -16,7 +16,7 @@ class Contacts extends MY_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		require_once APPPATH . 'presenters/Contact_Presenter.php';
+		require_once APPPATH . 'presenters/contact_presenter.php';
 		$this->output->enable_profiler(TRUE);
 	}
 
