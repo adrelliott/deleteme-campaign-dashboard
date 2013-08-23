@@ -21,6 +21,26 @@ class Contact_action_model extends MY_Model {
         parent::__construct();
     }
 
+    /*-----------------------------------------------
+	/ CONTACT ACTION METHODS
+	/*-----------------------------------------------
+	/ 
+	/ These are all the methods for retriveing and sorting contact actions
+	*/
+	public function sort_actions($all_actions)
+	{
+		$retval = array();
+
+		//Cycle through the actions and sort into type - Store in $retval
+		foreach ($all_actions as $k => $action)
+		{
+			$type = $action->action_type;
+			$retval[$type][] = $action;
+		}
+
+		return $retval;
+	}
+
 }
 
 /* End of file xxxxxx.php */

@@ -3,46 +3,12 @@
 * Contact_presenter - deals with allt he functions for the contact view
 */
 
-class Contact_presenter extends Presenter
+class Contact_Presenter extends Presenter
 {
-
-	/*-----------------------------------------------
-	/ CONTACT PROPERTY METHODS
-	/*-----------------------------------------------
-	/ 
-	/ These are all the methods for retriveing contact properties
-	/ e.g. full name
-	*/
-
-	//Create full name
-	public function full_name()
-	{
-		return $this->contact->first_name . ' ' . $this->contact->last_name;
-	}
-
-	//Create ownership, e.g John's
-	public function name_owned()
-	{
-		return $this->contact->first_name . '\'s';
-	}
-
-	
-
-
-
-
-
-	/*-----------------------------------------------
-	/ DATA DISPLAY METHODS
-	/*-----------------------------------------------
-	/ 
-	/ These are all the methods for data retrieval.
-	*/
-	//Create a table
+	//For the index() function only
 	public function create_table($contacts_list, $cols = array())
 	{
 		$output['html'] = '';
-		$link = '';
 		$col_count = count($cols);
 		
 		//Do we have columns to show?
@@ -60,10 +26,9 @@ class Contact_presenter extends Presenter
 			{
 				foreach ($cols as $col => $col_name)
 				{
-					$link = '<a href="' . site_url('contacts/show/' . $data->id) . '">';
-					$output['tr'][$row]['td'][] = '<td>' . $link;
+					$output['tr'][$row]['td'][] = '<td>';
 					$output['tr'][$row]['td'][] = $data->$col_name;
-					$output['tr'][$row]['td'][] = '</a></td>';
+					$output['tr'][$row]['td'][] = '</td>';
 				}
 				$output['td'][$row] = '<tr>' . join('', $output['tr'][$row]['td']) . '</tr>';
 				
@@ -79,7 +44,36 @@ class Contact_presenter extends Presenter
 	} 
 
 
-	
+	//record Id
+	public function record_id()
+	{
+		return $this->contact->id;
+	}
+
+	//Same thing in the contact context
+	public function contact_id()
+	{
+		return $this->contact->id;
+	}
+
+	//Cfeate full name
+	public function full_name()
+	{
+		return $this->contact->first_name . ' ' . $this->contact->last_name;
+	}
+
+
+	//Create full name
+	public function last_name()
+	{
+		return $this->last_name;
+	}
+
+	//Return a property
+	public function get1($property)
+	{
+		return $this->$property;
+	}
 
 	
 }

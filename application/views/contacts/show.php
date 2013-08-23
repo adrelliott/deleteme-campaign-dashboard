@@ -1,14 +1,19 @@
+<?php 
+	$contact = new Contact_Presenter($contacts);
+	//$contact_actions = $contact->sort_actions($contact_actions);
+
+	//$contact_actions = new Contact_Action_Presenter($contacts);
+?>
+<?php if ($this->session->flashdata('message')) echo $this->session->flashdata('message'); ?>
 <hr/>
+<?php dump($contact); ?>
+<?php //dump($contact_actions); ?>
 <div style='width:47.5%;border-right:1px solid grey;float:left;height:100%;padding:1%'>
 	<?php 
-		echo form_open('contact/edit/' . $result->contact->id);
-		echo form_label('First Name', 'first_name');
-		echo form_input('first_name', 'xxx'), '<br/>';
-		echo form_label('Last Name', 'last_name');
-		echo form_input('last_name', 'xxx'), '<br/>';
-		echo form_label('Email', 'email');
-		echo form_input('email', 'xxx'), '<br/>';
-		echo form_submit('SUBMIT', 'submit');
+	//get partial
+		echo form_open('contacts/edit/' . $contact->id());
+		include (APPPATH. 'views/partials/_contact_form.php');
+		echo form_submit('', 'submit');
 		echo form_close();
 	?>
 </div>
@@ -18,12 +23,14 @@
 <hr style='clear:both'>
 
 	this si contact/show.php
-	<br/>This si the record_id - <?php //echo $result->record_id(); ?>
-	<br/>This si the contact_id - <?php //echo $result->contact_id(); ?>
-	<br/>This is <?php //echo $result->name_owned(); ?> record...
-	<br/><?php //echo $result->name_owned(); ?> last name: <?php //echo $result->contact->last_name; ?>
+	<br/>This si the record_id - <?php echo $contact->id(); ?>
+	<br/>This si the contact_id - <?php echo $contact->first_name(); ?>
+	<br/>This is <?php echo $contact->name_owned(); ?> record...
+	<br/><?php echo $contact->name_owned(); ?> last name: <?php echo $contact->contact->last_name; ?>
 
-	<?php //dump($result); ?>
+	<?php 
+	//$contact_actions = $result->contact;
+	//echo '<br/><br/><br/>here it is!'; dump($data); ?>
 
 	<?php 
 	//dump($result->get_actions('task')); 

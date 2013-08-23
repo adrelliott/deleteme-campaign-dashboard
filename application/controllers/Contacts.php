@@ -25,57 +25,63 @@ class Contacts extends MY_Controller
 	 */
 	public function index()
 	{
-		$this->data['result'] = new Contact_Presenter($this->contact->get_all());
+		$this->data['contacts'] = $this->contact->get_all();
 		//$this->data['22220'] = new Contact_Presenter($this->contact->get_many_by('owner_id', '22220'));
 		//$this->data['11110'] = new Contact_Presenter($this->contact->get_many_by('owner_id', '11110'));
 	}
 
 	public function show($id = NULL)
 	{
-		//just show an empty record if $id == 'new'
-		if ($id == 'new')
-		{
-			$this->data['result'] = new Contact_Presenter();
-			return;
-		} 
+		//Query contacts table for a record where 'id' = $id
+		$query['contacts'] = $this->contact->get($id);
 
-		//Get the query
-		$query = $this->contact->get($id);
-
-		//Do we have any results?
-		if (isset($query->id))
+		//If a record has been returned, get the related records and load the view
+		if (isset($query['contacts']->id))
 		{
-			$this->data['result'] = new Contact_Presenter($query);
+			$query['contact_actions'] = $this->contact_action->get_many_by('contact_id', $id);
+			$query['contact_actions'] = $this->contact_action->sort_actions($query['contact_actions']);
+			//$this->data['orders'] = $this->contact->get($id);
+			//$this->data['leads'] = $this->contact->get($id);
+			
+			//Copy across to $this->data to pass to view
+			$this->data = $query;
 		}
 
-		//Nope, no results
-		else 
+		//Otherwise, set a message and go to index
+		else
 		{
-			//set message & direct back to contents
 			$this->session->set_flashdata('message', 'Ooops. Not found anyone. Try one of these:');
 			redirect(site_url('contacts'));
-		} 
-
-		//
-
-/*
-		if (! $id) //if id hasn't been passed
-		{
-			redirect(site_url('contacts'));
-			return;
 		}
-		
-		*/
 	}
+		
+		
 
 	public function create()
 	{
-		//  insert a new record
+		//Shows a blank record with the form action = create/edit
 	}
 
 	public function edit($id = FALSE)
 	{
-		// Update a record
+		if ($id && $this->input->post())
+		{
+			//update
+			//unset($this->input->post('SUBMIT'));
+			$this->contact->update($id, $this->input->post());
+		}
+		elseif (!$id && $this->input->post())
+		{
+			//Insert
+			//unset($this->input->post('SUBMIT'));
+			$id = $this->contact->insert($this->input->post());
+		}
+		else 
+		{
+			$this->session->set_flashdata('message', 'Ooops. No record info to update');
+		}
+
+		redirect(site_url('contacts/show/' . $id));
 	}
 
 	public function delete($id)

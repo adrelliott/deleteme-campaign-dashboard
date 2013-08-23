@@ -1,16 +1,43 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
 /**
-* Presenter class is a thin layer between the view and the data object returned
-*
-* e.g $contact_list is an object full of the contact records. We'd use contact_presenter
-* to format this into a tabnle ready for outputting
-*/
-class Presenter {
-	
-	public function __construct($object = NULL)
+ * Clean up your view code and remove nasty, brittle logic using
+ * the presenters - from The CodeIgniter Handbook - Volume One - Who Needs Ruby?
+ *
+ * @link http://github.com/jamierumbelow/codeigniter-presenters
+ * @copyright Copyright (c) 2012, Jamie Rumbelow <http://jamierumbelow.net>
+ */
+
+class Presenter
+{
+	/**
+	 * Stores the object's name
+	 */
+	protected $_objectName = '';
+
+	/**
+	 * Takes an object and prepares to present . Default to 'NULL' to allow 'create' view to work
+	 */
+	public function __construct($object = NULL, $name = '')
 	{
-		$name = strtolower(str_replace("_presenter", "", get_class($this)));
-		$this->$name = $object;
+		$this->_objectName = $name ?: strtolower(str_ireplace('_presenter', '', get_class($this)));
+		$this->{$this->_objectName} = $object;
+	}
+
+	/**
+	 * Dynamically fetch properties from the object
+	 */
+	public function __call($name, $args = array())
+	{
+		if (isset($this->{$this->_objectName}->$name))
+		{
+			return $this->{$this->_objectName}->$name;
+		}
+		else
+		{
+			//Remove the erro message and allow us to use the object in new records too
+			//throw new BadMethodCallException("Call to undefined method " . get_class($this) . "::" . $name . '()');
+			return '';
+		}
 	}
 
 	public function __get($attr)
@@ -20,6 +47,4 @@ class Presenter {
 			return get_instance()->$attr;
 		}
 	}
-
-        
 }

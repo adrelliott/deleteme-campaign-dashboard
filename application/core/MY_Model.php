@@ -48,7 +48,8 @@ class MY_Model extends CI_Model
      * simple lists of method names (methods will be run on $this).
      */
     //protected $before_create = array('created_at', 'updated_at', 'set_client_id');
-    protected $before_create = array('created_at', 'updated_at', 'set_owner_id');
+    protected $before_create = array('created_at', 'updated_at');
+    //protected $before_create = array('created_at', 'updated_at', 'set_owner_id');
     protected $after_create = array();
     protected $before_update = array('updated_at');
     protected $after_update = array();
@@ -127,12 +128,20 @@ class MY_Model extends CI_Model
     /*
         Override the protected attirbutes for owner_id for insertion
      */
-    private function _set_owner_id($data)
+    private function _set_owner_id($query_type = 'get', $data = array())
     {
-        $owner_id = $_SESSION['owner_id'] = 22210;  //******************* FIX THIS WITH LOGOIN!!****
-        $data['owner_id'] = $owner_id;
-
-        return $data;
+        //die('_set owner id called');
+        //Get owner id from session
+        $owner_id = $_SESSION['owner_id'] = 22220;  //******************* FIX THIS WITH LOGOIN!!****
+        
+        //Is it update/insert data, or a get query?
+        if ($query_type !== 'get')
+        {
+            $data['owner_id'] = $owner_id;
+            return $data;
+        } 
+        else $this->_database->where('owner_id', $owner_id);
+        
     }
 
     /* --------------------------------------------------------------
@@ -245,6 +254,9 @@ class MY_Model extends CI_Model
         if (is_array($this->_cols['multiple_record']))
             $this->_database->select(array_values($this->_cols['multiple_record']));
 
+        //Restrict to just this owner_id's records
+        $this->_set_owner_id();
+
         $result = $this->_database->get($this->_table)
                            ->{$this->_return_type(1)}();
         $this->_temporary_return_type = $this->return_type;
@@ -273,7 +285,7 @@ class MY_Model extends CI_Model
         {
             $data = $this->trigger('before_create', $data);
 
-            $data = $this->_set_owner_id($data);
+            $data = $this->_set_owner_id('insert', $data);
             $this->_database->insert($this->_table, $data);
             $insert_id = $this->_database->insert_id();
 
