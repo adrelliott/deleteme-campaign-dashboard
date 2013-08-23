@@ -7223,3 +7223,136 @@ DEBUG - 2013-08-23 16:39:50 --> Language file loaded: language/english/profiler_
 DEBUG - 2013-08-23 16:39:50 --> Helper loaded: text_helper
 DEBUG - 2013-08-23 16:39:50 --> Final output sent to browser
 DEBUG - 2013-08-23 16:39:50 --> Total execution time: 0.0223
+DEBUG - 2013-08-23 16:45:12 --> Config Class Initialized
+DEBUG - 2013-08-23 16:45:12 --> Hooks Class Initialized
+DEBUG - 2013-08-23 16:45:12 --> Utf8 Class Initialized
+DEBUG - 2013-08-23 16:45:12 --> UTF-8 Support Enabled
+DEBUG - 2013-08-23 16:45:12 --> URI Class Initialized
+DEBUG - 2013-08-23 16:45:12 --> Router Class Initialized
+DEBUG - 2013-08-23 16:45:12 --> Output Class Initialized
+DEBUG - 2013-08-23 16:45:12 --> Security Class Initialized
+DEBUG - 2013-08-23 16:45:12 --> Input Class Initialized
+DEBUG - 2013-08-23 16:45:12 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-23 16:45:12 --> Language Class Initialized
+DEBUG - 2013-08-23 16:45:12 --> Loader Class Initialized
+DEBUG - 2013-08-23 16:45:12 --> Helper loaded: url_helper
+DEBUG - 2013-08-23 16:45:12 --> Helper loaded: general_helper
+DEBUG - 2013-08-23 16:45:12 --> Helper loaded: form_helper
+DEBUG - 2013-08-23 16:45:12 --> Helper loaded: array_helper
+DEBUG - 2013-08-23 16:45:12 --> Helper loaded: message_helper
+DEBUG - 2013-08-23 16:45:12 --> Database Driver Class Initialized
+DEBUG - 2013-08-23 16:45:12 --> Session Class Initialized
+DEBUG - 2013-08-23 16:45:12 --> Helper loaded: string_helper
+ERROR - 2013-08-23 16:45:12 --> The session cookie data did not match what was expected. This could be a possible hacking attempt.
+DEBUG - 2013-08-23 16:45:12 --> Session routines successfully run
+DEBUG - 2013-08-23 16:45:12 --> Controller Class Initialized
+DEBUG - 2013-08-23 16:45:12 --> Model Class Initialized
+DEBUG - 2013-08-23 16:45:12 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-23 16:45:12 --> Model Class Initialized
+DEBUG - 2013-08-23 16:45:12 --> Model Class Initialized
+DEBUG - 2013-08-23 16:45:12 --> File loaded: ../application/views/contacts/show.php
+DEBUG - 2013-08-23 16:45:12 --> File loaded: ../application/views/layouts/contacts.php
+DEBUG - 2013-08-23 16:45:12 --> Language file loaded: language/english/profiler_lang.php
+DEBUG - 2013-08-23 16:45:12 --> Helper loaded: text_helper
+DEBUG - 2013-08-23 16:45:12 --> Final output sent to browser
+DEBUG - 2013-08-23 16:45:12 --> Total execution time: 0.0680
+DEBUG - 2013-08-23 16:54:50 --> Config Class Initialized
+DEBUG - 2013-08-23 16:54:50 --> Hooks Class Initialized
+DEBUG - 2013-08-23 16:54:50 --> Utf8 Class Initialized
+DEBUG - 2013-08-23 16:54:50 --> UTF-8 Support Enabled
+DEBUG - 2013-08-23 16:54:50 --> URI Class Initialized
+DEBUG - 2013-08-23 16:54:50 --> Router Class Initialized
+DEBUG - 2013-08-23 16:54:50 --> Output Class Initialized
+DEBUG - 2013-08-23 16:54:50 --> Security Class Initialized
+DEBUG - 2013-08-23 16:54:50 --> Input Class Initialized
+DEBUG - 2013-08-23 16:54:50 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-23 16:54:50 --> Language Class Initialized
+DEBUG - 2013-08-23 16:54:50 --> Loader Class Initialized
+DEBUG - 2013-08-23 16:54:50 --> Helper loaded: url_helper
+DEBUG - 2013-08-23 16:54:50 --> Helper loaded: general_helper
+DEBUG - 2013-08-23 16:54:50 --> Helper loaded: form_helper
+DEBUG - 2013-08-23 16:54:50 --> Helper loaded: array_helper
+DEBUG - 2013-08-23 16:54:50 --> Helper loaded: message_helper
+DEBUG - 2013-08-23 16:54:50 --> Database Driver Class Initialized
+DEBUG - 2013-08-23 16:54:50 --> Session Class Initialized
+DEBUG - 2013-08-23 16:54:50 --> Helper loaded: string_helper
+ERROR - 2013-08-23 16:54:50 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/public_html/index.php:21) /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/system/libraries/Session.php 675
+DEBUG - 2013-08-23 16:54:50 --> Session routines successfully run
+DEBUG - 2013-08-23 16:54:50 --> Controller Class Initialized
+DEBUG - 2013-08-23 16:54:50 --> Model Class Initialized
+DEBUG - 2013-08-23 16:54:50 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-23 16:54:50 --> Model Class Initialized
+DEBUG - 2013-08-23 16:54:50 --> Model Class Initialized
+DEBUG - 2013-08-23 16:54:50 --> File loaded: ../application/views/contacts/index.php
+DEBUG - 2013-08-23 16:54:50 --> File loaded: ../application/views/layouts/contacts.php
+DEBUG - 2013-08-23 16:54:50 --> Language file loaded: language/english/profiler_lang.php
+DEBUG - 2013-08-23 16:54:50 --> Helper loaded: text_helper
+DEBUG - 2013-08-23 16:54:50 --> Final output sent to browser
+DEBUG - 2013-08-23 16:54:50 --> Total execution time: 0.0821
+DEBUG - 2013-08-23 17:02:31 --> Config Class Initialized
+DEBUG - 2013-08-23 17:02:31 --> Hooks Class Initialized
+DEBUG - 2013-08-23 17:02:31 --> Utf8 Class Initialized
+DEBUG - 2013-08-23 17:02:31 --> UTF-8 Support Enabled
+DEBUG - 2013-08-23 17:02:31 --> URI Class Initialized
+DEBUG - 2013-08-23 17:02:31 --> Router Class Initialized
+DEBUG - 2013-08-23 17:02:31 --> Output Class Initialized
+DEBUG - 2013-08-23 17:02:31 --> Security Class Initialized
+DEBUG - 2013-08-23 17:02:31 --> Input Class Initialized
+DEBUG - 2013-08-23 17:02:31 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-23 17:02:31 --> Language Class Initialized
+DEBUG - 2013-08-23 17:02:31 --> Loader Class Initialized
+DEBUG - 2013-08-23 17:02:31 --> Helper loaded: url_helper
+DEBUG - 2013-08-23 17:02:31 --> Helper loaded: general_helper
+DEBUG - 2013-08-23 17:02:31 --> Helper loaded: form_helper
+DEBUG - 2013-08-23 17:02:31 --> Helper loaded: array_helper
+DEBUG - 2013-08-23 17:02:31 --> Helper loaded: message_helper
+DEBUG - 2013-08-23 17:02:31 --> Database Driver Class Initialized
+DEBUG - 2013-08-23 17:02:31 --> Session Class Initialized
+DEBUG - 2013-08-23 17:02:31 --> Helper loaded: string_helper
+ERROR - 2013-08-23 17:02:31 --> The session cookie data did not match what was expected. This could be a possible hacking attempt.
+DEBUG - 2013-08-23 17:02:31 --> Session routines successfully run
+DEBUG - 2013-08-23 17:02:31 --> Controller Class Initialized
+DEBUG - 2013-08-23 17:02:31 --> Model Class Initialized
+DEBUG - 2013-08-23 17:02:31 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-23 17:02:31 --> Model Class Initialized
+DEBUG - 2013-08-23 17:02:31 --> Model Class Initialized
+DEBUG - 2013-08-23 17:02:31 --> File loaded: ../application/views/contacts/index.php
+ERROR - 2013-08-23 17:02:31 --> Severity: Notice  --> Undefined variable: debug /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/views/partials/_footer.php 2
+DEBUG - 2013-08-23 17:02:31 --> File loaded: ../application/views/layouts/contacts.php
+DEBUG - 2013-08-23 17:02:31 --> Language file loaded: language/english/profiler_lang.php
+DEBUG - 2013-08-23 17:02:31 --> Helper loaded: text_helper
+DEBUG - 2013-08-23 17:02:31 --> Final output sent to browser
+DEBUG - 2013-08-23 17:02:31 --> Total execution time: 0.0869
+DEBUG - 2013-08-23 17:02:36 --> Config Class Initialized
+DEBUG - 2013-08-23 17:02:36 --> Hooks Class Initialized
+DEBUG - 2013-08-23 17:02:36 --> Utf8 Class Initialized
+DEBUG - 2013-08-23 17:02:36 --> UTF-8 Support Enabled
+DEBUG - 2013-08-23 17:02:36 --> URI Class Initialized
+DEBUG - 2013-08-23 17:02:36 --> Router Class Initialized
+DEBUG - 2013-08-23 17:02:36 --> Output Class Initialized
+DEBUG - 2013-08-23 17:02:36 --> Security Class Initialized
+DEBUG - 2013-08-23 17:02:36 --> Input Class Initialized
+DEBUG - 2013-08-23 17:02:36 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-23 17:02:36 --> Language Class Initialized
+DEBUG - 2013-08-23 17:02:36 --> Loader Class Initialized
+DEBUG - 2013-08-23 17:02:36 --> Helper loaded: url_helper
+DEBUG - 2013-08-23 17:02:36 --> Helper loaded: general_helper
+DEBUG - 2013-08-23 17:02:36 --> Helper loaded: form_helper
+DEBUG - 2013-08-23 17:02:36 --> Helper loaded: array_helper
+DEBUG - 2013-08-23 17:02:36 --> Helper loaded: message_helper
+DEBUG - 2013-08-23 17:02:36 --> Database Driver Class Initialized
+DEBUG - 2013-08-23 17:02:36 --> Session Class Initialized
+DEBUG - 2013-08-23 17:02:36 --> Helper loaded: string_helper
+DEBUG - 2013-08-23 17:02:36 --> Session routines successfully run
+DEBUG - 2013-08-23 17:02:36 --> Controller Class Initialized
+DEBUG - 2013-08-23 17:02:36 --> Model Class Initialized
+DEBUG - 2013-08-23 17:02:36 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-23 17:02:36 --> Model Class Initialized
+DEBUG - 2013-08-23 17:02:36 --> Model Class Initialized
+DEBUG - 2013-08-23 17:02:36 --> File loaded: ../application/views/Contacts/index.php
+ERROR - 2013-08-23 17:02:36 --> Severity: Notice  --> Undefined variable: debug /Applications/MAMP/htdocs/projects/campaigndashboard.co.uk/application/views/partials/_footer.php 2
+DEBUG - 2013-08-23 17:02:36 --> File loaded: ../application/views/layouts/Contacts.php
+DEBUG - 2013-08-23 17:02:36 --> Language file loaded: language/english/profiler_lang.php
+DEBUG - 2013-08-23 17:02:36 --> Helper loaded: text_helper
+DEBUG - 2013-08-23 17:02:36 --> Final output sent to browser
+DEBUG - 2013-08-23 17:02:36 --> Total execution time: 0.0516
