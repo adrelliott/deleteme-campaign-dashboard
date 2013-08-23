@@ -19,11 +19,11 @@
  *
  */
 //var_dump($_SERVER);
-//$http_host = strtolower($_SERVER['HTTP_HOST']);
+$http_host = strtolower($_SERVER['HTTP_HOST']);
 
 if ($http_host == 'localhost:8888') 
 	define('ENVIRONMENT', 'development');
-elseif ($http_host == 'leadfarm_staging.co.uk') 
+elseif ($http_host == 'leadfarm-staging.co.uk') 
 	define('ENVIRONMENT', 'staging');
 else define('ENVIRONMENT', 'production');
 
@@ -42,10 +42,10 @@ if (defined('ENVIRONMENT'))
 	switch (ENVIRONMENT)
 	{
 		case 'development':
+		case 'staging':
 			error_reporting(E_ALL);
 		break;
 	
-		case 'staging':
 		case 'production':
 			error_reporting(0);
 		break;
