@@ -126,16 +126,16 @@ class MY_Model extends CI_Model
     }
 
     /*
-        Override the protected attirbutes for owner_id for insertion
+        Ensure that we only GET the owner's records, plus set the owner_id when inserting
+        (Note, the owner_id is protected under $protect_attributes, so this is why we need this) 
      */
     private function _set_owner_id($query_type = 'get', $data = array())
     {
-        //die('_set owner id called');
         //Get owner id from session
         $owner_id = $_SESSION['owner_id'] = 22220;  //******************* FIX THIS WITH LOGOIN!!****
         
-        //Is it update/insert data, or a get query?
-        if ($query_type !== 'get')
+        //Is it a get query?
+        if ($query_type === 'insert')
         {
             $data['owner_id'] = $owner_id;
             return $data;
