@@ -6915,3 +6915,67 @@ DEBUG - 2013-08-23 14:37:29 --> Language file loaded: language/english/profiler_
 DEBUG - 2013-08-23 14:37:29 --> Helper loaded: text_helper
 DEBUG - 2013-08-23 14:37:29 --> Final output sent to browser
 DEBUG - 2013-08-23 14:37:29 --> Total execution time: 0.0186
+DEBUG - 2013-08-23 14:53:11 --> Config Class Initialized
+DEBUG - 2013-08-23 14:53:11 --> Hooks Class Initialized
+DEBUG - 2013-08-23 14:53:11 --> Utf8 Class Initialized
+DEBUG - 2013-08-23 14:53:11 --> UTF-8 Support Enabled
+DEBUG - 2013-08-23 14:53:11 --> URI Class Initialized
+DEBUG - 2013-08-23 14:53:11 --> Router Class Initialized
+DEBUG - 2013-08-23 14:53:11 --> Output Class Initialized
+DEBUG - 2013-08-23 14:53:11 --> Security Class Initialized
+DEBUG - 2013-08-23 14:53:11 --> Input Class Initialized
+DEBUG - 2013-08-23 14:53:11 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-23 14:53:11 --> Language Class Initialized
+DEBUG - 2013-08-23 14:53:11 --> Loader Class Initialized
+DEBUG - 2013-08-23 14:53:11 --> Helper loaded: url_helper
+DEBUG - 2013-08-23 14:53:11 --> Helper loaded: general_helper
+DEBUG - 2013-08-23 14:53:11 --> Helper loaded: form_helper
+DEBUG - 2013-08-23 14:53:11 --> Helper loaded: array_helper
+DEBUG - 2013-08-23 14:53:11 --> Helper loaded: message_helper
+DEBUG - 2013-08-23 14:53:11 --> Database Driver Class Initialized
+DEBUG - 2013-08-23 14:53:11 --> Session Class Initialized
+DEBUG - 2013-08-23 14:53:11 --> Helper loaded: string_helper
+DEBUG - 2013-08-23 14:53:11 --> Session routines successfully run
+DEBUG - 2013-08-23 14:53:11 --> Controller Class Initialized
+DEBUG - 2013-08-23 14:53:11 --> Model Class Initialized
+DEBUG - 2013-08-23 14:53:11 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-23 14:53:11 --> Model Class Initialized
+DEBUG - 2013-08-23 14:53:11 --> Model Class Initialized
+DEBUG - 2013-08-23 14:53:11 --> File loaded: ../application/views/contacts/show.php
+DEBUG - 2013-08-23 14:53:11 --> File loaded: ../application/views/layouts/contacts.php
+DEBUG - 2013-08-23 14:53:11 --> Language file loaded: language/english/profiler_lang.php
+DEBUG - 2013-08-23 14:53:11 --> Helper loaded: text_helper
+DEBUG - 2013-08-23 14:53:11 --> Final output sent to browser
+DEBUG - 2013-08-23 14:53:11 --> Total execution time: 0.0213
+DEBUG - 2013-08-23 14:53:29 --> Config Class Initialized
+DEBUG - 2013-08-23 14:53:29 --> Hooks Class Initialized
+DEBUG - 2013-08-23 14:53:29 --> Utf8 Class Initialized
+DEBUG - 2013-08-23 14:53:29 --> UTF-8 Support Enabled
+DEBUG - 2013-08-23 14:53:29 --> URI Class Initialized
+DEBUG - 2013-08-23 14:53:29 --> Router Class Initialized
+DEBUG - 2013-08-23 14:53:29 --> Output Class Initialized
+DEBUG - 2013-08-23 14:53:29 --> Security Class Initialized
+DEBUG - 2013-08-23 14:53:29 --> Input Class Initialized
+DEBUG - 2013-08-23 14:53:29 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-23 14:53:29 --> Language Class Initialized
+DEBUG - 2013-08-23 14:53:29 --> Loader Class Initialized
+DEBUG - 2013-08-23 14:53:29 --> Helper loaded: url_helper
+DEBUG - 2013-08-23 14:53:29 --> Helper loaded: general_helper
+DEBUG - 2013-08-23 14:53:29 --> Helper loaded: form_helper
+DEBUG - 2013-08-23 14:53:29 --> Helper loaded: array_helper
+DEBUG - 2013-08-23 14:53:29 --> Helper loaded: message_helper
+DEBUG - 2013-08-23 14:53:29 --> Database Driver Class Initialized
+DEBUG - 2013-08-23 14:53:29 --> Session Class Initialized
+DEBUG - 2013-08-23 14:53:29 --> Helper loaded: string_helper
+DEBUG - 2013-08-23 14:53:29 --> Session routines successfully run
+DEBUG - 2013-08-23 14:53:29 --> Controller Class Initialized
+DEBUG - 2013-08-23 14:53:29 --> Model Class Initialized
+DEBUG - 2013-08-23 14:53:29 --> Helper loaded: inflector_helper
+DEBUG - 2013-08-23 14:53:29 --> Model Class Initialized
+DEBUG - 2013-08-23 14:53:29 --> Model Class Initialized
+DEBUG - 2013-08-23 14:53:29 --> File loaded: ../application/views/contacts/show.php
+DEBUG - 2013-08-23 14:53:29 --> File loaded: ../application/views/layouts/contacts.php
+DEBUG - 2013-08-23 14:53:29 --> Language file loaded: language/english/profiler_lang.php
+DEBUG - 2013-08-23 14:53:29 --> Helper loaded: text_helper
+DEBUG - 2013-08-23 14:53:29 --> Final output sent to browser
+DEBUG - 2013-08-23 14:53:29 --> Total execution time: 0.0276
