@@ -49,9 +49,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'local_admin';
-$db['default']['password'] = 'G6tdV7Hj8u9J6g5G';
-$db['default']['database'] = 'dev_barebones';
+$db['default']['username'] = 'campdash_local';
+$db['default']['password'] = 'kZNzw)si95d2xTl3>INQE=~5-@7S6R';
+$db['default']['database'] = 'campdash_local';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

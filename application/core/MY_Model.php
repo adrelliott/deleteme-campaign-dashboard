@@ -122,6 +122,8 @@ class MY_Model extends CI_Model
 
         $this->_temporary_return_type = $this->return_type;
 
+        
+
 
     }
 
@@ -164,6 +166,9 @@ class MY_Model extends CI_Model
         if (is_array($this->_cols['single_record']))
             $this->_database->select(array_values($this->_cols['single_record']));
 
+        //Just perform for this client's records: 
+        $this->_set_owner_id();
+
         $row = $this->_database->where($this->primary_key, $primary_value)
                         ->get($this->_table)
                         ->{$this->_return_type()}();
@@ -194,6 +199,9 @@ class MY_Model extends CI_Model
          //Decide what fields to retrieve (set up in each model)
         if (is_array($this->_cols['single_record']))
             $this->_database->select(array_values($this->_cols['single_record']));
+
+        //Just perform for this client's records: 
+        $this->_set_owner_id();
 
         $row = $this->_database->get($this->_table)
                         ->{$this->_return_type()}();
@@ -254,7 +262,7 @@ class MY_Model extends CI_Model
         if (is_array($this->_cols['multiple_record']))
             $this->_database->select(array_values($this->_cols['multiple_record']));
 
-        //Restrict to just this owner_id's records
+        //Just perform for this client's records: 
         $this->_set_owner_id();
 
         $result = $this->_database->get($this->_table)
@@ -285,7 +293,9 @@ class MY_Model extends CI_Model
         {
             $data = $this->trigger('before_create', $data);
 
+            //Just perform for this client's records: 
             $data = $this->_set_owner_id('insert', $data);
+
             $this->_database->insert($this->_table, $data);
             $insert_id = $this->_database->insert_id();
 
@@ -308,6 +318,9 @@ class MY_Model extends CI_Model
 
         foreach ($data as $key => $row)
         {
+            //Just perform for this client's records: 
+            $this->_set_owner_id('insert', $data);
+
             $ids[] = $this->insert($row, $skip_validation, ($key == count($data) - 1));
         }
 
@@ -417,6 +430,9 @@ class MY_Model extends CI_Model
 
         $this->_database->where($this->primary_key, $id);
 
+        //Just perform for this client's records: 
+        $this->_set_owner_id();
+
         if ($this->soft_delete)
         {
             $result = $this->_database->update($this->_table, array( $this->soft_delete_key => TRUE ));
@@ -442,6 +458,9 @@ class MY_Model extends CI_Model
 
         $this->_set_where($where);
 
+        //Just perform for this client's records: 
+        $this->_set_owner_id();
+
 
         if ($this->soft_delete)
         {
@@ -466,6 +485,9 @@ class MY_Model extends CI_Model
 
         $this->_database->where_in($this->primary_key, $primary_values);
 
+        //Just perform for this client's records: 
+        $this->_set_owner_id();
+
         if ($this->soft_delete)
         {
             $result = $this->_database->update($this->_table, array( $this->soft_delete_key => TRUE ));
@@ -484,12 +506,13 @@ class MY_Model extends CI_Model
     /**
      * Truncates the table
      */
-    public function truncate()
+    /*public function truncate()
     {
         $result = $this->_database->truncate($this->_table);
 
         return $result;
     }
+    */
 
     /* --------------------------------------------------------------
      * RELATIONSHIPS
@@ -601,6 +624,9 @@ class MY_Model extends CI_Model
             $this->_database->where($this->soft_delete_key, FALSE);
         }
 
+        //Just perform for this client's records: 
+        $this->_set_owner_id();
+
         $result = $this->_database->select(array($key, $value))
                            ->get($this->_table)
                            ->result();
@@ -625,6 +651,9 @@ class MY_Model extends CI_Model
         $where = func_get_args();
         $this->_set_where($where);
 
+        //Just perform for this client's records: 
+        $this->_set_owner_id();
+
         return $this->_database->count_all_results($this->_table);
     }
 
@@ -633,7 +662,24 @@ class MY_Model extends CI_Model
      */
     public function count_all()
     {
+        //Just perform for this client's records: 
+        $this->_set_owner_id();
+        
         return $this->_database->count_all($this->_table);
+    }
+
+    /**
+     * Fetch a total count of rows for the last query only
+     */
+    public function count_all_owner_records($table  = 'contacts', $where = array())
+    {
+        //Set up the WHERE statements
+        $this->_set_owner_id();
+        if (count($where)) $this->_database->where($where);
+        $this->_database->from($table);
+
+        //return the number of records counted
+        return $this->_database->count_all_results();
     }
 
     /**

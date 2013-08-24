@@ -187,6 +187,26 @@ class My_Controller extends CI_Controller
     }
 
     /* --------------------------------------------------------------
+     * Pagination
+     * ------------------------------------------------------------ */
+
+    /**
+     * Sets up pagination (uses application/config/pagination.php to customise for Bootstrap)
+     */
+    public function pagination($config)
+    {
+        $retval = array();
+
+        $this->pagination->initialize($config);
+        $retval['pagination_links'] = $this->pagination->create_links();
+        $retval['pagination_text'] = 'Viewing records ' . $config['offset'] . ' to ';
+        $retval['pagination_text'] .= $config['offset'] + $config['per_page'];
+        $retval['pagination_text'] .= ' of ' . $config['total_rows'] . ' records';
+
+        return $retval;
+    }
+
+    /* --------------------------------------------------------------
      * HELPER LOADING
      * ------------------------------------------------------------ */
 

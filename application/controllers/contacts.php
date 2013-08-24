@@ -25,9 +25,34 @@ class Contacts extends MY_Controller
 	 */
 	public function index()
 	{
-		$this->data['contacts'] = $this->contact->get_all();
-		//$this->data['22220'] = new Contact_Presenter($this->contact->get_many_by('owner_id', '22220'));
-		//$this->data['11110'] = new Contact_Presenter($this->contact->get_many_by('owner_id', '11110'));
+		//Set up pagination config
+		$config = array
+		(	
+		 	'per_page' => 10,	//Or can take from a client config array?
+		 	'offset' => $this->uri->segment(3),	//change for staging *&production
+		 	//'table' => $this->table,
+		 	'base_url' => site_url('contacts/index'),
+		 	'total_rows' => $this->contact->count_all_owner_records(),
+		);
+
+		//Do the query * buld the pagination array
+		$this->data['contacts'] = $this->contact
+		->limit($config['per_page'], $config['offset'])
+		->contact->get_all();
+		$this->data['pagination'] = $this->pagination($config);
+	}
+
+	public function pagination($config)
+	{
+		$retval = array();
+
+		$this->pagination->initialize($config);
+		$retval['pagination_links'] = $this->pagination->create_links();
+		$retval['pagination_text'] = 'Viewing records ' . $config['offset'] . ' to ';
+		$retval['pagination_text'] .= $config['offset'] + $config['per_page'];
+		$retval['pagination_text'] .= ' of ' . $config['total_rows'] . ' records';
+
+		return $retval;
 	}
 
 	public function show($id = NULL)

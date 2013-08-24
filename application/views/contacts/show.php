@@ -6,7 +6,7 @@
 ?>
 <?php if ($this->session->flashdata('message')) echo $this->session->flashdata('message'); ?>
 <hr/>
-<?php dump($contact); ?>
+<?php //dump($contact); ?>
 <?php //dump($contact_actions); ?>
 <div style='width:47.5%;border-right:1px solid grey;float:left;height:100%;padding:1%'>
 	<?php 
