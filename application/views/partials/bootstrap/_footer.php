@@ -7,6 +7,7 @@
 
 <?php if (ENVIRONMENT === 'development'): ?> 
 	<script src="<?php echo base_url('assets/js/jquery-203.js'); ?>"></script>
+	<script src="<?php echo base_url('assets/js/jquery.dataTables.js'); ?>"></script>
 	<script src="<?php //echo base_url('assets/js/jquery-ui.min.js'); ?>"></script>
 	<script src="<?php //echo base_url('assets/lodash/lodash.min.js'); ?>"></script>
 <?php else : ?>

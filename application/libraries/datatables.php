@@ -22,11 +22,12 @@
     private $ci;
     private $table;
     private $distinct;
-    private $group_by;
+    private $group_by       = array();
     private $select         = array();
     private $joins          = array();
     private $columns        = array();
     private $where          = array();
+    private $like           = array();
     private $filter         = array();
     private $add_columns    = array();
     private $edit_columns   = array();
@@ -84,15 +85,15 @@
     }
 
     /**
-    * Generates the GROUP_BY portion of the query
+    * Generates a custom GROUP BY portion of the query
     *
-    * @param string $column
+    * @param string $val
     * @return mixed
     */
-    public function group_by($column)
+    public function group_by($val)
     {
-      $this->group_by = $column;
-      $this->ci->db->group_by($column);
+      $this->group_by[] = $val;
+      $this->ci->db->group_by($val);
       return $this;
     }
 
@@ -177,7 +178,7 @@
     */
     public function like($key_condition, $val = NULL, $backtick_protect = TRUE)
     {
-      $this->where[] = array($key_condition, $val, $backtick_protect);
+      $this->like[] = array($key_condition, $val, $backtick_protect);
       $this->ci->db->like($key_condition, $val, $backtick_protect);
       return $this;
     }
@@ -225,15 +226,18 @@
     /**
     * Builds all the necessary query segments and performs the main query based on results set from chained statements
     *
-    * @param string charset
+    * @param string $output
+    * @param string $charset
     * @return string
     */
-    public function generate($charset = 'UTF-8')
+    public function generate($output = 'json', $charset = 'UTF-8')
     {
-      $this->get_paging();
+      if(strtolower($output) == 'json')
+        $this->get_paging();
+
       $this->get_ordering();
       $this->get_filtering();
-      return $this->produce_output($charset);
+      return $this->produce_output(strtolower($output), strtolower($charset));
     }
 
     /**
@@ -245,7 +249,9 @@
     {
       $iStart = $this->ci->input->post('iDisplayStart');
       $iLength = $this->ci->input->post('iDisplayLength');
-      $this->ci->db->limit(($iLength != '' && $iLength != '-1')? $iLength : 100, ($iStart)? $iStart : 0);
+
+      if($iLength != '' && $iLength != '-1')
+        $this->ci->db->limit($iLength, ($iStart)? $iStart : 0);
     }
 
     /**
@@ -286,7 +292,6 @@
 
       $sWhere = '';
       $sSearch = $this->ci->db->escape_like_str($this->ci->input->post('sSearch'));
-      //$sSearch = $this->ci->input->post('sSearch');
       $mColArray = array_values(array_diff($mColArray, $this->unset_columns));
       $columns = array_values(array_diff($this->columns, $this->unset_columns));
 
@@ -300,6 +305,8 @@
       if($sWhere != '')
         $this->ci->db->where('(' . $sWhere . ')');
 
+      $sRangeSeparator = $this->ci->input->post('sRangeSeparator');
+
       for($i = 0; $i < intval($this->ci->input->post('iColumns')); $i++)
       {
         if(isset($_POST['sSearch_' . $i]) && $this->ci->input->post('sSearch_' . $i) != '' && in_array($mColArray[$i], $columns))
@@ -310,8 +317,21 @@
           {
             if(preg_match("/(<=|>=|=|<|>)(\s*)(.+)/i", trim($val), $matches))
               $this->ci->db->where($this->select[$mColArray[$i]].' '.$matches[1], $matches[3]);
+            elseif(!empty($sRangeSeparator) && preg_match("/(.*)$sRangeSeparator(.*)/i", trim($val), $matches))
+            {
+              $rangeQuery = '';
+
+              if(!empty($matches[1]))
+                $rangeQuery = 'STR_TO_DATE(' . $this->select[$mColArray[$i]] . ",'%d/%m/%y %H:%i:%s') >= STR_TO_DATE('" . $matches[1] . " 00:00:00','%d/%m/%y %H:%i:%s')";
+
+              if(!empty($matches[2]))
+                $rangeQuery .= (!empty($rangeQuery)? ' AND ': '') . 'STR_TO_DATE('. $this->select[$mColArray[$i]] . ",'%d/%m/%y %H:%i:%s') <= STR_TO_DATE('" . $matches[2] . " 23:59:59','%d/%m/%y %H:%i:%s')";
+
+              if(!empty($matches[1]) || !empty($matches[2]))
+                $this->ci->db->where($rangeQuery);
+            }
             else
-              $this->ci->db->where($this->select[$mColArray[$i]].' LIKE', '%'.$val.'%');
+              $this->ci->db->where($this->select[$mColArray[$i]] . ' LIKE', '%' . $val . '%');
           }
         }
       }
@@ -331,17 +351,22 @@
     }
 
     /**
-    * Builds a JSON encoded string data
+    * Builds an encoded string data. Returns JSON by default, and an array of aaData and sColumns if output is set to raw.
     *
-    * @param string charset
-    * @return string
+    * @param string $output
+    * @param string $charset
+    * @return mixed
     */
-    private function produce_output($charset)
+    private function produce_output($output, $charset)
     {
       $aaData = array();
       $rResult = $this->get_display_result();
-      $iTotal = $this->get_total_results();
-      $iFilteredTotal = $this->get_total_results(TRUE);
+
+      if($output == 'json')
+      {
+        $iTotal = $this->get_total_results();
+        $iFilteredTotal = $this->get_total_results(TRUE);
+      }
 
       foreach($rResult->result_array() as $row_key => $row_val)
       {
@@ -366,20 +391,24 @@
       $sColumns = array_diff($this->columns, $this->unset_columns);
       $sColumns = array_merge_recursive($sColumns, array_keys($this->add_columns));
 
-      $sOutput = array
-      (
-        'sEcho'                => 10,
-        //'sEcho'                => intval($this->ci->input->post('sEcho')),
-        'iTotalRecords'        => $iTotal,
-        'iTotalDisplayRecords' => $iFilteredTotal,
-        'aaData'               => $aaData,
-        'sColumns'             => implode(',', $sColumns)
-      );
+      if($output == 'json')
+      {
+        $sOutput = array
+        (
+          'sEcho'                => intval($this->ci->input->post('sEcho')),
+          'iTotalRecords'        => $iTotal,
+          'iTotalDisplayRecords' => $iFilteredTotal,
+          'aaData'               => $aaData,
+          'sColumns'             => implode(',', $sColumns)
+        );
 
-      if(strtolower($charset) == 'utf-8')
-        return json_encode($sOutput);
+        if($charset == 'utf-8')
+          return json_encode($sOutput);
+        else
+          return $this->jsonify($sOutput);
+      }
       else
-        return $this->jsonify($sOutput);
+        return array('aaData' => $aaData, 'sColumns' => $sColumns);
     }
 
     /**
@@ -398,10 +427,14 @@
       foreach($this->where as $val)
         $this->ci->db->where($val[0], $val[1], $val[2]);
 
-      if($this->group_by != null)
-        $this->ci->db->group_by($this->group_by);
-      $q = $this->ci->db->get($this->table);
-      return $q->num_rows(); 
+      foreach($this->group_by as $val)
+        $this->ci->db->group_by($val);
+
+      foreach($this->like as $val)
+        $this->ci->db->like($val[0], $val[1], $val[2]);
+
+      $query = $this->ci->db->get($this->table, NULL, NULL, FALSE);
+      return $query->num_rows(); 
     }
 
     /**
@@ -532,7 +565,7 @@
     /**
     * Workaround for json_encode's UTF-8 encoding if a different charset needs to be used
     *
-    * @param mixed result
+    * @param mixed $result
     * @return string
     */
     private function jsonify($result = FALSE)

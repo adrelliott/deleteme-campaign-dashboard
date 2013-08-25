@@ -60,6 +60,38 @@ class Contacts extends MY_Controller
 		return $retval;
 	}*/
 
+
+
+
+
+	public function test()
+	{
+		//$this->layout = FALSE;
+		$this->view = 'contacts/post';
+	}
+
+	public function get_by_ajax()
+	{
+		$this->layout = FALSE;
+		$this->view = FALSE;
+		$this->output->enable_profiler(FALSE);
+
+		$this->load->library('datatables');
+		$this->datatables->select('id, first_name, last_name, owner_id')->from('contacts');
+		echo $this->datatables->generate();
+
+
+	}
+
+
+
+
+
+
+
+
+
+
 	public function show($id = NULL)
 	{
 		//Query contacts table for a record where 'id' = $id
