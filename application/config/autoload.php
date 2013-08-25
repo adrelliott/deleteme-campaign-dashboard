@@ -80,7 +80,7 @@ $autoload['helper'] = array('url', 'general', 'form', 'array', 'message', 'html'
 |
 */
 
-$autoload['config'] = array();
+$autoload['config'] = array('client_configs/22220');	/************************ SET THIS TO SESSION!!!! */
 
 
 /*

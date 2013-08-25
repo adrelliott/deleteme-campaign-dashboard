@@ -12,9 +12,9 @@ function message($message = FALSE, $class = 'info')
 	//Is there  a message to show? If so, add the passed css class
 	if ($message)
 	{
-		$retval = '<span class="notification ' . $class . '">';
+		$retval = '<div class="alert alert-' . $class . '">';
 		$retval .= $message;
-		$retval .= '</span>';
+		$retval .= '</div>';
 	} 
 
 	return $retval;

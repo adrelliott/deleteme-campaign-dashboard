@@ -110,7 +110,8 @@ class My_Controller extends CI_Controller
         {
             //pass through the contents of $this->data for debug
             if (ENVIRONMENT !== 'production') $this->data['debug'] = $this->data;
-            // If $this->view isn't empty, load it. If it isn't, try and guess based on the controller and action name
+
+            // If $this->view isn't empty, load it. If it is, try and guess based on the controller and action name
             $view = (!empty($this->view)) ? $this->view : $this->router->directory . $this->router->class . '/' . $this->router->method;
 
             // Load the view into $yield

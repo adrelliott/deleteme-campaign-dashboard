@@ -675,6 +675,12 @@ class MY_Model extends CI_Model
     {
         //Set up the WHERE statements
         $this->_set_owner_id();
+
+        if ($this->soft_delete && $this->_temporary_with_deleted !== TRUE)
+        {
+            $this->_database->where($this->soft_delete_key, FALSE);
+        }
+        
         if (count($where)) $this->_database->where($where);
         $this->_database->from($table);
 

@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  
-$config['full_tag_open'] = '<div class="pagination"><ul>';
+$config['full_tag_open'] = '<div><ul class="pagination">';
 $config['full_tag_close'] = '</ul></div><!--pagination-->';
 $config['first_link'] = '&laquo; First';
 $config['first_tag_open'] = '<li class="prev page">';

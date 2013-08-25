@@ -7,7 +7,7 @@
 class Contacts extends MY_Controller
 {
 	//public $data = array();
-
+	
 	public $models = array('contact', 'contact_action');
 
 	public $view ; //FALSE = load no view, 'view_name' = load view_name.php instead
@@ -16,8 +16,13 @@ class Contacts extends MY_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		require_once APPPATH . 'presenters/contact_presenter.php';
+		require_once (APPPATH . 'presenters/contact_presenter.php');
 		$this->output->enable_profiler(TRUE);
+
+		//What layout folder are we using? (Set in config/client_configs/{owner_id}.php)
+		$this->layout = 'layouts/' . $this->config->item('layout_folder') . '/contacts';
+/*@todo Move the above to my_controller?*/
+
 	}
 
 	/*
@@ -42,7 +47,7 @@ class Contacts extends MY_Controller
 		$this->data['pagination'] = $this->pagination($config);
 	}
 
-	public function pagination($config)
+	/*public function pagination($config)
 	{
 		$retval = array();
 
@@ -53,7 +58,7 @@ class Contacts extends MY_Controller
 		$retval['pagination_text'] .= ' of ' . $config['total_rows'] . ' records';
 
 		return $retval;
-	}
+	}*/
 
 	public function show($id = NULL)
 	{
@@ -75,7 +80,7 @@ class Contacts extends MY_Controller
 		//Otherwise, set a message and go to index
 		else
 		{
-			$this->session->set_flashdata('message', 'Ooops. Not found anyone. Try one of these:');
+			$this->session->set_flashdata('message', '<strong>Ooops.</strong> Not found anyone. Try one of these:');
 			redirect(site_url('contacts'));
 		}
 	}
@@ -93,17 +98,17 @@ class Contacts extends MY_Controller
 		{
 			//update
 			$this->contact->update($id, $this->input->post());
-			$this->session->set_flashdata('message', 'Record updated!');
+			$this->session->set_flashdata('message', '<strong>Yay!</strong> Record updated!');
 		}
 		elseif (!$id && $this->input->post())
 		{
 			//Insert
 			$id = $this->contact->insert($this->input->post());
-			$this->session->set_flashdata('message', 'New record created!');
+			$this->session->set_flashdata('message', '<strong>Woo hoo!</strong> New record created!');
 		}
 		else 
 		{
-			$this->session->set_flashdata('message', 'Ooops. No record info to update');
+			$this->session->set_flashdata('message', '<strong>Uh oh...</strong>. Couldn\'t find that record to change it.');
 		}
 
 		redirect(site_url('contacts/show/' . $id));
@@ -113,7 +118,7 @@ class Contacts extends MY_Controller
 	{
 		// Destroy a record (not really - 'softdelete' it!)
 		$this->contact->delete($id);
-		$this->session->set_flashdata('message', 'Deleted contact with ID of ' . $id);
+		$this->session->set_flashdata('message', '<strong>They\'re OUTTA here!</strong> Deleted contact with id of ' . $id);
 
 		redirect(site_url('contacts'));
 	}

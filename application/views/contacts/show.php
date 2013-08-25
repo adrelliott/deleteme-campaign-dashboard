@@ -1,25 +1,33 @@
 <?php $contact = new Contact_Presenter($contacts);?>
-<?php if ($this->session->flashdata('message')) echo $this->session->flashdata('message'); ?>
-<hr/>
-<div style='width:47.5%;border-right:1px solid grey;float:left;height:100%;padding:1%'>
-	<?php 
-		echo form_open('contacts/edit/' . $contact->id());
-		include (APPPATH. 'views/partials/_contact_form.php');
-		echo form_submit('', 'submit');
-		echo form_close();
-	?>
-	
-<a href="<?php echo site_url('contacts/delete/' . $contact->id()); ?>">
-	<button>
-		<h4>Delete this Contact</h4>
-	</button>
-</a>
-</div>
-<div style='width:47.5%;float:left;height:100%;padding:1%'>
-	col 2
-</div>
-<hr style='clear:both'>
-	<br/>This si the record_id - <?php echo $contact->id(); ?>
-	<br/>This si the contact_id - <?php echo $contact->first_name(); ?>
-	<br/>This is <?php echo $contact->name_owned(); ?> record...
-	<br/><?php echo $contact->name_owned(); ?> last name: <?php echo $contact->contact->last_name; ?>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+		  <div class="panel-heading">
+		    <h4 class="panel-title">Contact Details <a href="<?php echo site_url('contacts/delete/' . $contact->id()); ?>"><button class="btn btn-danger btn-xs pull-right">Delete Contact</button></a></h4>
+
+		  </div>
+		  <div class="panel-body">
+		    <?php 
+				echo message($this->session->flashdata('message'), 'success');
+				echo form_open('contacts/edit/' . $contact->id(), 'role="form"');
+				include (APPPATH. 'views/partials/' . $this->config->item('layout_folder') . '/_contact_form.php');
+				echo form_submit('', 'submit', 'class="btn btn-default pull-right"');
+				echo form_close();
+			?>
+		  </div>
+		</div>
+	</div>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">Contact Details</h3>
+		  </div>
+		  <div class="panel-body">
+		    Panel content
+		  </div>
+		</div>
+   </div>
+  </div>  <!-- /row -->
+</div> <!-- /container -->
