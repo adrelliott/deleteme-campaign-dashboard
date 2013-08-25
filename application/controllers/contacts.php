@@ -92,14 +92,14 @@ class Contacts extends MY_Controller
 		if ($id && $this->input->post())
 		{
 			//update
-			//unset($this->input->post('SUBMIT'));
 			$this->contact->update($id, $this->input->post());
+			$this->session->set_flashdata('message', 'Record updated!');
 		}
 		elseif (!$id && $this->input->post())
 		{
 			//Insert
-			//unset($this->input->post('SUBMIT'));
 			$id = $this->contact->insert($this->input->post());
+			$this->session->set_flashdata('message', 'New record created!');
 		}
 		else 
 		{
@@ -112,5 +112,9 @@ class Contacts extends MY_Controller
 	public function delete($id)
 	{
 		// Destroy a record (not really - 'softdelete' it!)
+		$this->contact->delete($id);
+		$this->session->set_flashdata('message', 'Deleted contact with ID of ' . $id);
+
+		redirect(site_url('contacts'));
 	}
 }

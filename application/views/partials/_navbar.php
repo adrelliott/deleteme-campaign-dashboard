@@ -1,1 +1,3 @@
-<p><em>This is the navbar</em></p>
+<ul>
+	<li><a href="<?php echo site_url('contacts'); ?>">Contacts</a></li>
+</ul>

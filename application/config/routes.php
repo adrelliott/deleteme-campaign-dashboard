@@ -38,8 +38,10 @@
 |
 */
 
-$route['default_controller'] = "welcome";
+$route['default_controller'] = "dashboards";
 $route['(:any)/list'] = "$1/index";
+$route['contact'] = "contacts";
+$route['contacts/(:num)'] = "contacts/show/$1";
 $route['404_override'] = '';
 
 
