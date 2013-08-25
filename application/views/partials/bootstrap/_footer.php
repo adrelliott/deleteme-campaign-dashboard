@@ -9,4 +9,12 @@
 </body>
 </html>
 
-<small><?php if (ENVIRONMENT !== 'production') echo '<br/>Heres the contents of data';dump($debug); ?></small>
+<small>
+	<?php 
+		if (ENVIRONMENT !== 'production')
+		{
+			$this->output->enable_profiler(TRUE);
+			echo '<br/>Heres the contents of data';dump($debug);
+		} 
+	?>
+</small>

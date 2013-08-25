@@ -133,16 +133,13 @@ class MY_Model extends CI_Model
      */
     private function _set_owner_id($query_type = 'get', $data = array())
     {
-        //Get owner id from session
-        $owner_id = $_SESSION['owner_id'] = 22220;  //******************* FIX THIS WITH LOGOIN!!****
-        
         //Is it a get query?
         if ($query_type === 'insert')
         {
-            $data['owner_id'] = $owner_id;
+            $data['owner_id'] = OWNER_ID;
             return $data;
         } 
-        else $this->_database->where('owner_id', $owner_id);
+        else $this->_database->where('owner_id', OWNER_ID);
         
     }
 
@@ -1004,4 +1001,21 @@ class MY_Model extends CI_Model
         $method = ($multi) ? 'result' : 'row';
         return $this->_temporary_return_type == 'array' ? $method . '_array' : $method;
     }
+
+    /**
+     * Returns an ajax output from the current model ready for Datatables to consume
+     */
+    public function get_datatables_ajax($cols, $where = array())
+    {
+        $where['deleted'] = 0;
+        $where['owner_id'] = OWNER_ID;
+
+        $this->load->library('datatables');
+        $this->datatables->select($cols)
+        ->from($this->_table)
+        ->where($where);
+
+        return $this->datatables->generate();
+    }
+
 }

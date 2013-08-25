@@ -11,6 +11,7 @@ class Contact_model extends MY_Model {
                  );
 
 	
+	
 	/*
 		You can set observers to call methods before create, update, get and delete
 		See here: https://github.com/jamierumbelow/codeigniter-base-model
@@ -19,6 +20,13 @@ class Contact_model extends MY_Model {
 	public function __construct() 
 	{ 
         parent::__construct();
+    }
+
+    public function get_datatables_ajax($cols, $where = array())
+    {
+    	//Define a condition for the ajax call
+		//$where = array('last_name' => 'Bridges', 'first_name' => 'Lunea');
+		return parent::get_datatables_ajax($cols, $where);
     }
 
 }

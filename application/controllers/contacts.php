@@ -6,18 +6,17 @@
 
 class Contacts extends MY_Controller
 {
-	//public $data = array();
-	
+	//What models should we load?
 	public $models = array('contact', 'contact_action');
 
-	public $view ; //FALSE = load no view, 'view_name' = load view_name.php instead
+	//What views are we suing? Fedaults to views/__CLASS__/__METHOD__
+	//public $view ; //FALSE = load no view, 'view_name' = load view_name.php instead
 
 
 	public function __construct()
 	{
 		parent::__construct();
 		require_once (APPPATH . 'presenters/contact_presenter.php');
-		$this->output->enable_profiler(TRUE);
 
 		//What layout folder are we using? (Set in config/client_configs/{owner_id}.php)
 		$this->layout = 'layouts/' . $this->config->item('layout_folder') . '/contacts';
@@ -70,19 +69,7 @@ class Contacts extends MY_Controller
 		$this->view = 'contacts/post';
 	}
 
-	public function get_by_ajax()
-	{
-		$this->layout = FALSE;
-		$this->view = FALSE;
-		$this->output->enable_profiler(FALSE);
-
-		$this->load->library('datatables');
-		$this->datatables->select('id, first_name, last_name, owner_id')->from('contacts');
-		echo $this->datatables->generate();
-
-
-	}
-
+	
 
 
 

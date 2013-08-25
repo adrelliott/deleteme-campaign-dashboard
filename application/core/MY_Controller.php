@@ -65,6 +65,10 @@ class My_Controller extends CI_Controller
     {
         parent::__construct();
 
+        //Set owner_id and load vars
+        define ('OWNER_ID', 22220); ///////////////////////////////////Set this on login!
+        $this->config->load('client_configs/' . OWNER_ID);
+
         $this->_load_models();
         $this->_load_helpers();
     }
@@ -187,8 +191,24 @@ class My_Controller extends CI_Controller
         return str_replace('%', $model, $this->model_string);
     }
 
+  
     /* --------------------------------------------------------------
-     * Pagination
+     * HELPER LOADING
+     * ------------------------------------------------------------ */
+
+    /**
+     * Load helpers based on the $this->helpers array
+     */
+    private function _load_helpers()
+    {
+        foreach ($this->helpers as $helper)
+        {
+            $this->load->helper($helper);
+        }
+    }
+
+    /* --------------------------------------------------------------
+     * Tables & pagination
      * ------------------------------------------------------------ */
 
     /**
@@ -207,18 +227,24 @@ class My_Controller extends CI_Controller
         return $retval;
     }
 
-    /* --------------------------------------------------------------
-     * HELPER LOADING
-     * ------------------------------------------------------------ */
-
     /**
-     * Load helpers based on the $this->helpers array
+     * Sets up an ajax call fro datatables
+     * @return [json] [a JSON array for the datatables plugin to display]
      */
-    private function _load_helpers()
+    public function get_by_ajax()
     {
-        foreach ($this->helpers as $helper)
-        {
-            $this->load->helper($helper);
-        }
+        $this->layout = FALSE;
+        $this->view = FALSE;
+        
+        //Get the segmentts as an array and unset the first 3 (the class & method)
+        $cols = $this->uri->segment_array();
+        unset($cols[0]);
+        unset($cols[1]);    //I know - there must be a better way to do this?
+        unset($cols[2]);
+        $cols = implode(',', $cols);
+        
+        //Echo out the JSON array
+        echo $this->contact->get_datatables_ajax($cols);
     }
+
 }

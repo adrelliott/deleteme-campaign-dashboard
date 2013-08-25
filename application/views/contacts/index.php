@@ -2,42 +2,7 @@
 <?php 
   $headings = array('id' => 'Id', 'first_name' => 'First Name', 'last_name' => 'Last name', 'email' => 'Email Address');
   $this->table->set_heading(array_values($headings));
-  $tmpl = array (
-        'table_open'          => '<table class="table table-bordered table-striped"  >',
-
-        'heading_row_start'   => '<tr>',
-        'heading_row_end'     => '</tr>',
-        'heading_cell_start'  => '<th>',
-        'heading_cell_end'    => '</th>',
-        'tbody_open'      => '<tbody data-provides="">',
-        'tbody_close'     => '</tbody>',
-
-        'row_start'           => '<tr class="">',
-        'row_end'             => '</tr>',
-        'cell_start'          => '<td>',
-        'cell_end'            => '</td>',
-
-        'row_alt_start'       => '<tr class=" a">',
-        'row_alt_end'         => '</tr>',
-        'cell_alt_start'      => '<td>',
-        'cell_alt_end'        => '</td>',
-
-        'table_close'         => '</table>'
-  );
-$this->table->set_template($tmpl);
-
-foreach ($contacts->contact as $count => $row)
-{
-  $output = array();
-  foreach (array_keys($headings) as $header)
-  {
-     $output[] = anchor('contacts/show/' . $row->id, $row->$header, 'class="" title="View ' . $row->first_name . '\'s Record"');
-     //$output[] = $row->$header;
-  }
-  //$output[] = anchor('contacts/show/' . $row->id, 'View');
-  $table_row[$count] = array_values($output);
-}
-
+  $this->table->set_template(array('table_open' => '<table class="table table-striped table-bordered" id="example">'));
 ?>
 <div class="container">
     <div class="row">
@@ -47,7 +12,7 @@ foreach ($contacts->contact as $count => $row)
       <div class="">
         <p><?php echo $pagination['pagination_text']; ?></p>
         <div class="table-responsive">
-          <?php echo $this->table->generate($table_row); ?>
+          <?php echo $this->table->generate(); ?>
           <?php echo $pagination['pagination_links']; ?>
         </div>
       </div>
@@ -56,3 +21,18 @@ foreach ($contacts->contact as $count => $row)
     </div>
   </div>
 </div>
+
+<script type="text/javascript" charset="utf-8">
+      $(document).ready(function() {
+        $('#example').dataTable( {
+          "bProcessing": true,
+          "sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+          "bServerSide": true,
+          "sAjaxSource": "<?php echo site_url('contacts/get_by_ajax/id/first_name/last_name/owner_id'); ?>",
+          "sServerMethod": "POST"
+        } );
+        $.extend( $.fn.dataTableExt.oStdClasses, {
+    "sWrapper": "dataTables_wrapper form-inline"
+} );
+      } );
+    </script>

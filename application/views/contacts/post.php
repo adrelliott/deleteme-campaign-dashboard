@@ -6,7 +6,7 @@
 					"bProcessing": true,
 					"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
 					"bServerSide": true,
-					"sAjaxSource": "<?php echo site_url('contacts/get_by_ajax'); ?>",
+					"sAjaxSource": "<?php echo site_url('contacts/get_by_ajax/id/first_name/last_name/owner_id'); ?>",
 					"sServerMethod": "POST"
 				} );
 				$.extend( $.fn.dataTableExt.oStdClasses, {
