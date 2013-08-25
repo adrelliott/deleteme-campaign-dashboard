@@ -227,8 +227,15 @@ class My_Controller extends CI_Controller
         return $retval;
     }
 
+
+    public function generate_datatable()
+    {
+        $this->load->library('datatables');
+        return $this->datatables->generate_table(array('id', 'first_name'));
+    }
+
     /**
-     * Sets up an ajax call fro datatables
+     * Sets up an ajax call for datatables
      * @return [json] [a JSON array for the datatables plugin to display]
      */
     public function get_by_ajax()
@@ -242,7 +249,7 @@ class My_Controller extends CI_Controller
         unset($cols[1]);    //I know - there must be a better way to do this?
         unset($cols[2]);
         $cols = implode(',', $cols);
-        
+
         //Echo out the JSON array
         echo $this->contact->get_datatables_ajax($cols);
     }

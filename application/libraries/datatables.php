@@ -621,6 +621,57 @@
         return '{' . join(',', $json) . '}';
       }
     }
+
+
+    /**
+     * Create the headers for the table
+     *
+     *    MOVED TO TABLE_HELPER.php
+     */
+    public function generate_table($cols, $table = '', $table_class = '')
+    {
+      //generate the table HTML
+      $output = '<table class="table data_table ' . table_class . '">';
+      $output .= '<thead><tr>';
+      foreach ($cols as $col)
+      {
+          $output .= '<th>' . $col . '</th>';
+      }
+      $output .= '</tr></thead>';
+
+      //Create a 'loading data' notice
+      $output .= '<tbody><tr><td colspan="5" class="dataTables_empty">Loading data from server</td></tr></tbody>';
+      $output .= '</table>';
+      $table['html'] = $output;
+
+      //Now create javascript required to run this
+      $cols = join('/', $cols);
+      $url_for_ajax = site_url($this->table . '/get_by_ajax/' . $cols);
+      $table['js'] = '<script type="text/javascript" charset="utf-8">
+              $(document).ready(function() {
+                $(".data_table").dataTable( {
+                  "bProcessing": true,
+                  "bServerSide": true,
+                  "sAjaxSource": "' . $url_for_ajax . '"
+                  "sServerMethod": "POST"
+                } );
+                $.extend( $.fn.dataTableExt.oStdClasses, {
+            "sWrapper": "dataTables_wrapper form-inline"
+        } );
+              } );
+            </script>';
+
+      //Outputs the HTML for table, headers and sdds the classes
+      die(dump($table));
+      return $table;
+    }
+
+
+
+
+
+
+
   }
 /* End of file Datatables.php */
 /* Location: ./application/libraries/Datatables.php */

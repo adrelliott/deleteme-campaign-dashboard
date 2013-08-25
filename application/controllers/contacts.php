@@ -46,38 +46,6 @@ class Contacts extends MY_Controller
 		$this->data['pagination'] = $this->pagination($config);
 	}
 
-	/*public function pagination($config)
-	{
-		$retval = array();
-
-		$this->pagination->initialize($config);
-		$retval['pagination_links'] = $this->pagination->create_links();
-		$retval['pagination_text'] = 'Viewing records ' . $config['offset'] . ' to ';
-		$retval['pagination_text'] .= $config['offset'] + $config['per_page'];
-		$retval['pagination_text'] .= ' of ' . $config['total_rows'] . ' records';
-
-		return $retval;
-	}*/
-
-
-
-
-
-	public function test()
-	{
-		//$this->layout = FALSE;
-		$this->view = 'contacts/post';
-	}
-
-	
-
-
-
-
-
-
-
-
 
 	public function show($id = NULL)
 	{
@@ -141,4 +109,17 @@ class Contacts extends MY_Controller
 
 		redirect(site_url('contacts'));
 	}
+
+
+
+
+
+
+	public function test()
+	{
+		//$this->layout = FALSE;
+		$this->view = 'contacts/post';
+	}
+
+	
 }

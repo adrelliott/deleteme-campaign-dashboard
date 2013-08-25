@@ -1,6 +1,6 @@
-
-		<link href="<?php echo site_url('assets/css/demo_table.css'); ?>" rel="stylesheet">
-		<script type="text/javascript" charset="utf-8">
+<?php $table = generate_datatable(array('id', 'first_name'), 'contacts'); ?>
+		
+		<?php /*<script type="text/javascript" charset="utf-8">
 			$(document).ready(function() {
 				$('#example').dataTable( {
 					"bProcessing": true,
@@ -13,8 +13,10 @@
     "sWrapper": "dataTables_wrapper form-inline"
 } );
 			} );
-		</script>
-	
+		</script>*/
+		echo $table['js']; 
+		echo $table['html']; 
+	/*
 <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
 
 	<thead>
@@ -28,3 +30,5 @@
 	
 	
 </table>
+*/
+?>
