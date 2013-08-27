@@ -1,4 +1,4 @@
-
+<?php $table = generate_ajax_datatable(array('first_name' => 'First Name', 'last_name' => 'Last Name'), 'contacts', 'table-striped table-bordered'); ?>
 <div class="container">
 
    <!-- Main component for a primary marketing message or call to action -->
@@ -14,8 +14,9 @@
   <div class="row">
     <div class="col-md-8">
       <h2>Your Contacts</h2>
-      <code>Datatable of contacts goes here</code>
-
+        <div class="table-responsive">
+            <?php echo $table['html']; ?>
+        </div>
       <p><a class="btn btn-lg btn-primary pull-right padding-right-10" href="#">Create a new contact &raquo;</a></p>
     </div>
     <div class="col-md-4">
@@ -24,3 +25,4 @@
    </div>
   </div>
 </div> <!-- /container -->
+<?php echo $table['js']; ?>

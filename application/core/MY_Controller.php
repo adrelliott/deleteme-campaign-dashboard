@@ -69,6 +69,9 @@ class My_Controller extends CI_Controller
         define ('OWNER_ID', 22220); ///////////////////////////////////Set this on login!
         $this->config->load('client_configs/' . OWNER_ID);
 
+        //Set the layout file. (overide with $layout = FALSE in a controller/method)
+        $this->layout = 'layouts/' . $this->config->item('layout_folder') . '/' . $this->router->class;
+
         $this->_load_models();
         $this->_load_helpers();
     }
@@ -230,8 +233,8 @@ class My_Controller extends CI_Controller
 
     public function generate_datatable()
     {
-        $this->load->library('datatables');
-        return $this->datatables->generate_table(array('id', 'first_name'));
+        //$this->load->library('datatables');
+        //return $this->datatables->generate_table(array('id', 'first_name'));
     }
 
     /**

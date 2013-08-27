@@ -1,12 +1,6 @@
 <?php 
     $contacts = new Contact_Presenter($contacts); 
-    $table = generate_datatable(array('id', 'first_name', 'last_name'), 'contacts', 'table-striped table-bordered');
-    echo $table['js'];
-?>
-<?php 
-  //$headings = array('id' => 'Id', 'first_name' => 'First Name', 'last_name' => 'Last name', 'email' => 'Email Address');
-  //$this->table->set_heading(array_values($headings));
-  //$this->table->set_template(array('table_open' => '<table class="table table-striped table-bordered" id="example">'));
+    $table = generate_ajax_datatable(array('first_name' => 'First Name', 'last_name' => 'Last Name', 'owner_id' => 'Owner Id'), 'contacts', 'table-striped table-bordered');
 ?>
 <div class="container">
     <div class="row">
@@ -14,26 +8,22 @@
         <h2>Your Contacts</h2>
         <?php echo message($this->session->flashdata('message'), 'success');?>
         <div class="table-responsive">
-            <?php echo $table['html']; ?>
+            <?php //echo $table['html']; ?>
+            <table class="table data_table_ajax" data-source="<?php echo site_url('contacts/get_by_ajax/id/first_name/last_name/owner_id'); ?>">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Owner Id</th>
+                    </tr>
+                </thead>
+            </table>
         </div>
         <p><a class="btn btn-lg btn-primary pull-right padding-right-10" href="#">Create a new contact &raquo;</a></p>
       
       </div>
   </div>
 </div>
+<?php //echo $table['js']; ?>
 
-<script type="text/javascript" charset="utf-8">
-      $(document).ready(function() {
-        $('#example').dataTable( {
-          "bProcessing": true,
-          //"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
-          //"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
-          "bServerSide": true,
-          "sAjaxSource": "<?php echo site_url('contacts/get_by_ajax/id/first_name/last_name/owner_id'); ?>",
-          "sServerMethod": "POST"
-        } );
-        $.extend( $.fn.dataTableExt.oStdClasses, {
-    "sWrapper": "dataTables_wrapper form-inline"
-} );
-      } );
-    </script>

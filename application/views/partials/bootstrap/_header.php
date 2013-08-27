@@ -12,6 +12,7 @@
    <link href="<?php echo base_url('assets/css/bootstrap.css') ?>" rel="stylesheet">
    <link href="<?php echo base_url('assets/css/navbar-fixed-top.css') ?>" rel="stylesheet">
    <link href="<?php //echo base_url('assets/css/bootstrap-responsive.min.css') ?>" rel="stylesheet">
+   <link href="<?php echo base_url('assets/css/datatables_table.css') ?>" rel="stylesheet">
    <link href="<?php //echo base_url('assets/css/font-awesome.css') ?>" rel="stylesheet">
    <link href="<?php echo base_url('assets/css/custom.css') ?>" rel="stylesheet">
 
@@ -36,7 +37,10 @@
 <?php endif; ?>
   <script src="<?php echo base_url('assets/js/jquery.js'); ?>"></script>
   <script src="<?php echo base_url('assets/js/bootstrap.js') ?>"></script>
+  <script src="<?php //echo base_url('assets/js/bootstrap-typeahead.js') ?>"></script>
+  <script src="<?php echo base_url('assets/js/jasny-bootstrap.js') ?>"></script>
   <script src="<?php echo base_url('assets/js/jquery.dataTables.js'); ?>"></script>
+  <script src="<?php echo base_url('assets/js/app.js'); ?>"></script>
 
    
 </head>

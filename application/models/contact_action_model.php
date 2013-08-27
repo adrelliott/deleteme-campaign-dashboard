@@ -34,7 +34,9 @@ class Contact_action_model extends MY_Model {
 		//Cycle through the actions and sort into type - Store in $retval
 		foreach ($all_actions as $k => $action)
 		{
-			$type = $action->action_type;
+			//
+			if (is_array($action)) $type = $action['action_type'];
+			else $type = $action->action_type;
 			$retval[$type][] = $action;
 		}
 

@@ -17,11 +17,6 @@ class Contacts extends MY_Controller
 	{
 		parent::__construct();
 		require_once (APPPATH . 'presenters/contact_presenter.php');
-
-		//What layout folder are we using? (Set in config/client_configs/{owner_id}.php)
-		$this->layout = 'layouts/' . $this->config->item('layout_folder') . '/contacts';
-/*@todo Move the above to my_controller?*/
-
 	}
 
 	/*
@@ -29,21 +24,7 @@ class Contacts extends MY_Controller
 	 */
 	public function index()
 	{
-		//Set up pagination config
-		$config = array
-		(	
-		 	'per_page' => 10,	//Or can take from a client config array?
-		 	'offset' => $this->uri->segment(3),	//change for staging *&production
-		 	//'table' => $this->table,
-		 	'base_url' => site_url('contacts/index'),
-		 	'total_rows' => $this->contact->count_all_owner_records(),
-		);
-
-		//Do the query * buld the pagination array
-		$this->data['contacts'] = $this->contact
-		->limit($config['per_page'], $config['offset'])
-		->contact->get_all();
-		$this->data['pagination'] = $this->pagination($config);
+		$this->data['contacts'] = $this->contact->get_all();
 	}
 
 
@@ -55,8 +36,8 @@ class Contacts extends MY_Controller
 		//If a record has been returned, get the related records and load the view
 		if (isset($query['contacts']->id))
 		{
-			$query['contact_actions'] = $this->contact_action->get_many_by('contact_id', $id);
-			$query['contact_actions'] = $this->contact_action->sort_actions($query['contact_actions']);
+			//$query['contact_actions'] = $this->contact_action->get_many_by('contact_id', $id);
+			$query['contact_actions'] = $this->contact_action->sort_actions($this->contact_action->as_array()->get_many_by('contact_id', $id));
 			//$this->data['orders'] = $this->contact->get($id);
 			//$this->data['leads'] = $this->contact->get($id);
 			
@@ -114,6 +95,47 @@ class Contacts extends MY_Controller
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public function index_old()
+	{
+		//Set up pagination config
+		$config = array
+		(	
+		 	'per_page' => 10,	//Or can take from a client config array?
+		 	'offset' => $this->uri->segment(3),	//change for staging *&production
+		 	//'table' => $this->table,
+		 	'base_url' => site_url('contacts/index'),
+		 	'total_rows' => $this->contact->count_all_owner_records(),
+		);
+
+		//Do the query * buld the pagination array
+		$this->data['contacts'] = $this->contact
+		->limit($config['per_page'], $config['offset'])
+		->contact->get_all();
+		$this->data['pagination'] = $this->pagination($config);
+	}
 
 	public function test()
 	{
