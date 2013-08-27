@@ -27,7 +27,7 @@ class Contact_action_model extends MY_Model {
 	/ 
 	/ These are all the methods for retriveing and sorting contact actions
 	*/
-	public function sort_actions($all_actions)
+	/*public function sort_actions($all_actions)
 	{
 		$retval = array();
 
@@ -41,7 +41,9 @@ class Contact_action_model extends MY_Model {
 		}
 
 		return $retval;
-	}
+	}*/
+
+
 
 }
 

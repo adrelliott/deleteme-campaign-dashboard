@@ -1,4 +1,4 @@
-<?php $contact = new Contact_Presenter($contacts);?>
+<?php $contact = new Contact_Presenter($contact);?>
 
 <div class="container">
   <div class="row">
@@ -27,12 +27,16 @@
 		    <h3 class="panel-title">Contact Details</h3>
 		  </div>
 		  <div class="panel-body">
-		  	<?php //$this->table->set_heading('Id', 'Cid', 'Action type', 'sub', 'title', 'owner'); ?>
-		    <?php 
-		    	
-		    	echo $this->table->generate_custom(array('action_type' => 'Action type', 'action_subtype' => 'SubType', 'action_title' => 'Title', 'id' => 'Id'), $contact_actions['task'], 'table-striped data_table');
-
-		    //echo //$this->table->generate($contact_actions['email']); ?>
+		  	<table class="table data_table_ajax" data-source="<?php echo site_url('ajax/contact_actions/id/action_type/action_subtype/owner_id?contact_id=' . $contact->id()); ?>" link="contacts/show/">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Action Type</th>
+                        <th>Subtype</th>
+                        <th>Title</th>
+                    </tr>
+                </thead>
+            </table>
 		  </div>
 		</div>
    </div>

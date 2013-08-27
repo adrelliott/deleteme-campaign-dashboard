@@ -241,20 +241,23 @@ class My_Controller extends CI_Controller
      * Sets up an ajax call for datatables
      * @return [json] [a JSON array for the datatables plugin to display]
      */
-    public function get_by_ajax()
+    /*public function get_by_ajax()
     {
         $this->layout = FALSE;
         $this->view = FALSE;
+        $class_name = singular($this->router->class);
         
-        //Get the segmentts as an array and unset the first 3 (the class & method)
+        //Get the segments as an array and unset the first 3 (the class & method)
         $cols = $this->uri->segment_array();
-        unset($cols[0]);
+        unset($cols[0]);    
         unset($cols[1]);    //I know - there must be a better way to do this?
         unset($cols[2]);
+
         $cols = implode(',', $cols);
 
         //Echo out the JSON array
-        echo $this->contact->get_datatables_ajax($cols);
+        echo $this->$class_name->get_datatables_ajax($cols);
     }
+    */
 
 }

@@ -1,6 +1,6 @@
 <?php 
     $contacts = new Contact_Presenter($contacts); 
-    $table = generate_ajax_datatable(array('first_name' => 'First Name', 'last_name' => 'Last Name', 'owner_id' => 'Owner Id'), 'contacts', 'table-striped table-bordered');
+    //$table = generate_ajax_datatable(array('first_name' => 'First Name', 'last_name' => 'Last Name', 'owner_id' => 'Owner Id'), 'contacts', 'table-striped table-bordered');
 ?>
 <div class="container">
     <div class="row">
@@ -9,7 +9,7 @@
         <?php echo message($this->session->flashdata('message'), 'success');?>
         <div class="table-responsive">
             <?php //echo $table['html']; ?>
-            <table class="table data_table_ajax" data-source="<?php echo site_url('contacts/get_by_ajax/id/first_name/last_name/owner_id'); ?>">
+            <table class="table data_table_ajax" data-source="<?php echo site_url('ajax/contacts/get/id/first_name/last_name/owner_id'); ?>" link="contacts/show/">
                 <thead>
                     <tr>
                         <th>Id</th>

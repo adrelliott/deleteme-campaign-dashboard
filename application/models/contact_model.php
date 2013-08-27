@@ -22,13 +22,7 @@ class Contact_model extends MY_Model {
         parent::__construct();
     }
 
-    public function get_datatables_ajax($cols, $where = array())
-    {
-    	//Define a condition for the ajax call
-		//$where = array('last_name' => 'Bridges', 'first_name' => 'Lunea');
-		return parent::get_datatables_ajax($cols, $where);
-    }
-
+    
 }
 
 /* End of file xxxxxx.php */
