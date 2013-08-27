@@ -1013,6 +1013,7 @@ class MY_Model extends CI_Model
         $this->load->library('datatables');
         $this->datatables->select($cols)
         ->from($this->_table)
+       // ->order_by('id')
         ->where($where);
 
         return $this->datatables->generate();

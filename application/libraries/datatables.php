@@ -24,6 +24,7 @@
     private $distinct;
     private $group_by       = array();
     private $select         = array();
+    private $order_by       = array();
     private $joins          = array();
     private $columns        = array();
     private $where          = array();
@@ -94,6 +95,19 @@
     {
       $this->group_by[] = $val;
       $this->ci->db->group_by($val);
+      return $this;
+    }
+
+    /**
+    * Generates a custom ORDER BY portion of the query
+    *
+    * @param string $val
+    * @return mixed
+    */
+    public function order_by($val)
+    {
+      //$this->group_by[] = $val;
+      $this->ci->db->order_by($val);
       return $this;
     }
 

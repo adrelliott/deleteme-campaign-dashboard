@@ -27,7 +27,7 @@
 		    <h3 class="panel-title">Contact Details</h3>
 		  </div>
 		  <div class="panel-body">
-		  	<table class="table data_table_ajax" data-source="<?php echo site_url('ajax/contact_actions/id/action_type/action_subtype/owner_id?contact_id=' . $contact->id()); ?>" link="contacts/show/">
+		  	<table class="table data_table_ajax" data-source="<?php echo site_url('ajax/contact_actions/get/id/action_type/action_subtype/owner_id?contact_id=' . $contact->id()); ?>" link="contacts/show/">
                 <thead>
                     <tr>
                         <th>Id</th>

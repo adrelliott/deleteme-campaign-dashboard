@@ -21,15 +21,20 @@ class Ajax extends MY_Controller
 	    //Load the model
 	    $model_name = substr($table, 0, -1) . '_model';
 	    $this->load->model($model_name, 'model');
-
+	    
 	    //Extract the method & load it (pass through the params)
-	    return call_user_func_array(array($this, 'get'), $params);
+	    $method = $params[0];
+	    if (method_exists($this, $method))
+	    {
+	        return call_user_func_array(array($this, $method), $params);
+	    }
+	    show_404();
 	}
 
 
 	protected function set_cols()
 	{
-		$cols = array_slice($this->uri->rsegment_array(), 2);
+		$cols = array_slice($this->uri->rsegment_array(), 3);
 		return implode(',', $cols);
 	}
 
