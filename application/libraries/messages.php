@@ -76,7 +76,7 @@
                 break;
                 
             case '[deleted]':
-                $this->message = '<strong>Well that\'s done it.</strong> That record has gone forever. Happy now?';
+                $this->message = '<h4>Well that\'s done it.</h4> That record has gone forever. Happy now?';
                 $this->css = 'info';
                 break;
                 
@@ -86,7 +86,7 @@
                 break;
                 
             case '[uhoh]':
-                $this->message = '<strong>Oh bum. Something bad has happened.</strong><br/> I tried to make those changes but I couldn\'t find that record. I\'m really, really sorry. <br/><br/>(If this happens lots, maybe your should tell the Dallas Matthews crew...)';
+                $this->message = '<h4>Oh Bum. Something bad has happened.</h4><br/> I tried to make those changes but I couldn\'t find that record. I\'m really, really sorry. <br/><br/>(If this happens lots, maybe your should tell the Dallas Matthews crew...)';
                 $this->css = 'danger';
                 break;
 

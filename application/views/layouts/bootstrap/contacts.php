@@ -9,5 +9,4 @@
 	echo $yield;
 
 	//finally incldue the footer
-	include (APPPATH . 'views/partials/bootstrap/_footer.php'); 
-?>
+	include (APPPATH . 'views/partials/bootstrap/_footer.php');

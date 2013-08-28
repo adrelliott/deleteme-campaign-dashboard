@@ -1019,4 +1019,15 @@ class MY_Model extends CI_Model
         return $this->datatables->generate();
     }
 
+    /**
+     * Sets the columns to return (used mainly in the Ajax class)
+     * @param string $type either multiple_record or single_record (this determines the fields to get in either get_all(), or get($id) respectively)    
+     * @param array $cols a comma separated list of columns to return
+     */
+    public function set_select($type, $cols)
+    {
+        $this->_cols[$type] = $cols;
+        //die(dump($this->_cols));
+    }
+
 }

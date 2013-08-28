@@ -3,11 +3,13 @@
     //$table = generate_ajax_datatable(array('first_name' => 'First Name', 'last_name' => 'Last Name', 'owner_id' => 'Owner Id'), 'contacts', 'table-striped table-bordered');
 ?>
 <div class="container">
+    <div class="page-header">
+      <h1>Just look at all those lovely people...</h1>
+    </div>
     <div class="row">
       <div class="col-md-12">
-        <h2>Your Contacts</h2>
         <?php echo $this->messages->show(); ?>
-        <div class="table-responsive">
+        <div class="table-responsive clearfix">
             <table class="table DataTable" table-id="contacts-table" id="contacts-table" data-source="<?php echo site_url('ajax/contacts/get/id/first_name/last_name/owner_id'); ?>" link="contacts/show/">
                 <thead>
                     <tr>

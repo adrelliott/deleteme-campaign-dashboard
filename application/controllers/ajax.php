@@ -32,10 +32,11 @@ class Ajax extends MY_Controller
 	}
 
 
-	protected function set_cols()
+	protected function set_cols($csv = FALSE)
 	{
 		$cols = array_slice($this->uri->rsegment_array(), 3);
-		return implode(',', $cols);
+		if ($csv) return implode(',', $cols);
+		else return $cols;
 	}
 
 	
@@ -50,11 +51,36 @@ class Ajax extends MY_Controller
 
 	public function get()
 	{
-		$cols = $this->set_cols();
+		$cols = $this->set_cols(TRUE);
 		$where = $_GET;
 
 		//Send to the datatables library
 		echo $this->model->get_datatables_ajax($cols, $where);
+	}
+
+	/**
+	 * Return a JSON array ready for the typeahead function.
+	 *
+	 * Use the URI segments ot define the fields and the $_GET array to define the where
+	 * conditions:
+	 *
+	 * e.g. domain.com/ajax/contacts/id/first_name?owner_id=222
+	 */
+
+	public function typeahead()
+	{
+		$cols = $this->set_cols();
+		$where = $_GET;
+
+		//set the cols
+		$this->model->set_select('multiple_record', $cols);
+		$this->model->order_by('first_name');
+		
+		echo json_encode($this->model->get_all());
+		//do the query
+
+		//Send to the datatables library
+		//echo $this->model->get_datatables_ajax($cols, $where);
 	}
 
 
