@@ -4,13 +4,11 @@ class Contact_model extends MY_Model {
 
 	//define what columns to return in a search
 	protected $_cols = array(
-                 'single_record' => array(
-                                  'id', 'first_name', 'last_name', 'email', 'deleted', 'owner_id'),
-                 'multiple_record' => array(
-                                  'id', 'first_name', 'last_name', 'email', 'owner_id')
-                 );
-
-	
+	     'single_record' => array(
+	                      'id', 'first_name', 'last_name', 'email', 'deleted', 'owner_id'),
+	     'multiple_record' => array(
+	                      'id', 'first_name', 'last_name', 'email', 'owner_id')
+	);
 	
 	/*
 		You can set observers to call methods before create, update, get and delete

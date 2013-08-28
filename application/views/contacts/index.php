@@ -6,10 +6,9 @@
     <div class="row">
       <div class="col-md-12">
         <h2>Your Contacts</h2>
-        <?php echo message($this->session->flashdata('message'), 'success');?>
+        <?php echo $this->messages->show(); ?>
         <div class="table-responsive">
-            <?php //echo $table['html']; ?>
-            <table class="table data_table_ajax" data-source="<?php echo site_url('ajax/contacts/get/id/first_name/last_name/owner_id'); ?>" link="contacts/show/">
+            <table class="table DataTable" table-id="contacts-table" id="contacts-table" data-source="<?php echo site_url('ajax/contacts/get/id/first_name/last_name/owner_id'); ?>" link="contacts/show/">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -20,7 +19,7 @@
                 </thead>
             </table>
         </div>
-        <p><a class="btn btn-lg btn-primary pull-right padding-right-10" href="#">Create a new contact &raquo;</a></p>
+        <p><a class="btn btn-lg btn-primary pull-right padding-right-10" href="<?php echo site_url('contacts/create'); ?>">Create a new contact &raquo;</a></p>
       
       </div>
   </div>

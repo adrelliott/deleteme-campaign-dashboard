@@ -5,7 +5,7 @@
 	This helper shows messages if they are passed.
  */
 
-function message($message = FALSE, $class = 'info')
+function message($message = FALSE, $class = 'success')
 {
 	$retval = '';
 

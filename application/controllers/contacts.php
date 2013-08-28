@@ -32,24 +32,12 @@ class Contacts extends MY_Controller
 	{
 		//Query contacts table for a record where 'id' = $id
 		$this->data['contact'] = $this->contact->get($id);
-
-
-		//If a record has been returned, get the related records and load the view
-		if (isset($query['contacts']->id))
+		//dump($this->data['contact']);
+		
+		//If there is no record found, set a message and go to index
+		if ( ! count($this->data['contact']))
 		{
-			//$query['contact_actions'] = $this->contact_action->get_many_by('contact_id', $id);
-			//$query['contact_actions'] = $this->contact_action->sort_actions($this->contact_action->as_array()->get_many_by('contact_id', $id));
-			//$this->data['orders'] = $this->contact->get($id);
-			//$this->data['leads'] = $this->contact->get($id);
-			
-			//Copy across to $this->data to pass to view
-			//$this->data = $query;
-		}
-
-		//Otherwise, set a message and go to index
-		if ( ! isset($this->data['contact']))
-		{
-			$this->session->set_flashdata('message', '<strong>Ooops.</strong> Not found anyone. Try one of these:');
+			$this->session->set_flashdata(array('message' => '[not_found]'));
 			redirect(site_url('contacts'));
 		}
 	}
@@ -67,19 +55,20 @@ class Contacts extends MY_Controller
 		{
 			//update
 			$this->contact->update($id, $this->input->post());
-			$this->session->set_flashdata('message', '<strong>Yay!</strong> Record updated!');
+			$message = array('message' => '[updated]');
 		}
 		elseif (!$id && $this->input->post())
 		{
 			//Insert
 			$id = $this->contact->insert($this->input->post());
-			$this->session->set_flashdata('message', '<strong>Woo hoo!</strong> New record created!');
+			$message = array('message' => '[created]');
 		}
 		else 
 		{
-			$this->session->set_flashdata('message', '<strong>Uh oh...</strong>. Couldn\'t find that record to change it.');
+			$message = array('message' => '[uhoh]');
 		}
 
+		$this->session->set_flashdata($message);
 		redirect(site_url('contacts/show/' . $id));
 	}
 
@@ -87,7 +76,7 @@ class Contacts extends MY_Controller
 	{
 		// Destroy a record (not really - 'softdelete' it!)
 		$this->contact->delete($id);
-		$this->session->set_flashdata('message', '<strong>They\'re OUTTA here!</strong> Deleted contact with id of ' . $id);
+		$this->session->set_flashdata('message', '[deleted]');
 
 		redirect(site_url('contacts'));
 	}

@@ -14,8 +14,9 @@
   <div class="row">
     <div class="col-md-8">
       <h2>Your Contacts</h2>
+      
         <div class="table-responsive">
-            <table class="table data_table_ajax" data-source="<?php echo site_url('ajax/contacts/get/id/first_name/last_name/owner_id'); ?>" link="contacts/show/">
+            <table class="table DataTable" table-id="dashboard-table" id="dashboard-table" data-source="<?php echo site_url('ajax/contacts/get/id/first_name/last_name/owner_id'); ?>" link="contacts/show/">
                 <thead>
                     <tr>
                         <th>Id</th>
