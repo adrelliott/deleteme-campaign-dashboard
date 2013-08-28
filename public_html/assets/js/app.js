@@ -32,9 +32,9 @@
                 contacts = [];
                 map = {};
                 url = 'http://campaigndashboard.dev/ajax/contacts/typeahead/id/first_name/last_name/postal_code';
-              var data = $.get('http://campaigndashboard.dev/ajax/contacts/typeahead/id/first_name/last_name/postal_code');
+              var data1 = $.get('http://campaigndashboard.dev/ajax/contacts/typeahead/id/first_name/last_name/postal_code');
 
-                var data1 = [
+                var data = [
                    /* {"id": "33", "first_name": "Al"},
                     {"id": "34", "firstName": "Lea"},
                     {"id": "35", "firstName": "Charlie"},
