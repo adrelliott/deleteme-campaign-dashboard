@@ -47,4 +47,17 @@ class Presenter
 			return get_instance()->$attr;
 		}
 	}
+
+
+	/*   User name functions */
+	
+	/**
+	 * Echos logged in user's name
+	 * @return [string] e.g. Al
+	 */
+	public function user_first_name()
+	{
+
+	}
+
 }

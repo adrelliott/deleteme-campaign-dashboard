@@ -17,15 +17,19 @@ class Contact_presenter extends Presenter
 	//Create full name
 	public function full_name()
 	{
-		return $this->contact->first_name . ' ' . $this->contact->last_name;
+		return trim($this->contact->first_name . ' ' . $this->contact->last_name);
 	}
 
 	//Create ownership, e.g John's
 	public function name_owned()
 	{
-		return $this->contact->first_name . '\'s';
+		return trim($this->contact->first_name) . '\'s';
 	}
 
+
+
+
+	
 	
 
 

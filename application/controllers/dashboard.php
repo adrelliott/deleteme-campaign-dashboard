@@ -1,21 +1,24 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
-* Controller for contacts table
+* Controller for Dashboard
 */
 
 class Dashboard extends MY_Controller
 {
-	
 	//What models should we load?
 	public $models = array('contact', 'contact_action', 'saved_search');
-	
 
+	// What view are we using?
 	protected $view = 'dashboard/index';
 
 	public function index()
 	{
-		//What layout folder are we using? (Set in config/client_configs/{owner_id}.php)
-		$this->layout = 'layouts/' . $this->config->item('layout_folder') . '/contacts';
+	}
+
+	public function ajax()
+	{
+		$this->view = FALSE;
+		echo 'Not loading anythign else but the ajax stuff';
 	}
 }

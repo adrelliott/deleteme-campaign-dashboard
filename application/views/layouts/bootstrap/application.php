@@ -5,8 +5,8 @@
 	//Load the navbar 
 	include (APPPATH . 'views/partials/bootstrap/_navbar.php');
 
-	//Echo the view (this could be seperated out or layed out like widgets)
-	echo $yield;
+	//Load the body
+	include (APPPATH . 'views/partials/bootstrap/_body.php');
 
-	//finally incldue the footer
+	//finally include the footer
 	include (APPPATH . 'views/partials/bootstrap/_footer.php');
