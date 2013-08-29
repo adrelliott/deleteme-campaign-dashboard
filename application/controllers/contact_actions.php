@@ -9,7 +9,9 @@ class Contact_actions extends MY_Controller
 	//What models should we load?
 	public $models = array('contact_action');
 
-	//What views are we suing? Defaults to views/__CLASS__/__METHOD__
+	//Set the layout to false (we're loading into a modal)
+	public $layout = FALSE;
+	//What views are we using? Defaults to views/__CLASS__/__METHOD__
 	//public $view ; //FALSE = load no view, 'view_name' = load view_name.php instead
 
 
@@ -34,27 +36,51 @@ class Contact_actions extends MY_Controller
 		$this->data['contact_action'] = $this->contact_action->get($id);
 		
 		//If there is no record found, set a message and go to index
-		if ( ! isset($this->data['contact_action']))
+		if ( ! count($this->data['contact_action']))
 		{
-			$this->session->set_flashdata('message', '<strong>Ooops.</strong> Not found this record.');
+			$this->session->set_flashdata(array('message' => '[not_found]'));
+			redirect(site_url('contacts'));
 		}
 	}
-		
-		
 
 	public function create()
 	{
 		//Shows a blank record with the form action = create/edit
 	}
+	
 
 	public function edit($id = FALSE)
 	{
-	
+		if ($id && $this->input->post())
+		{
+			//update
+			$this->contact_action->update($id, $this->input->post());
+			$message = array('message' => '[updated]');
+		}
+		elseif (!$id && $this->input->post())
+		{
+			//Insert
+			$id = $this->contact_action->insert($this->input->post());
+			$message = array('message' => '[created]');
+		}
+		else 
+		{
+			$message = array('message' => '[uhoh]');
+		}
+
+		$this->session->set_flashdata($message);
+		redirect(site_url('contact_actions/show/' . $id));
 	}
 
 	public function delete($id)
 	{
+		// Destroy a record (not really - 'softdelete' it!)
+		$this->contact_action->delete($id);
+		$this->session->set_flashdata('message', '[deleted]');
+
+		redirect(site_url('contacts'));
 	}
+
 
 
 

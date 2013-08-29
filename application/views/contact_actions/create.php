@@ -1,4 +1,4 @@
-<?php $contact_action = new Contact_action_Presenter($contact_action);?>
+<?php $contact_action = new Contact_action_Presenter();?>
 
 <div class="container">
 	<div class="row">
@@ -13,7 +13,7 @@
 				//Start contact form
 				//
 					echo $this->messages->show();
-					echo form_open('contact_actions/edit/' . $contact_action->id(), 'role="form"');
+					echo form_open('contact_actions/edit/', 'role="form"');
 					include (APPPATH. 'views/partials/' . $this->config->item('layout_folder') . '/_contact_action_form.php');
 					echo form_submit('', 'submit', 'class="btn btn-default pull-right"');
 					echo form_close();

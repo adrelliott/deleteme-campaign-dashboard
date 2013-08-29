@@ -32,7 +32,6 @@ class Contacts extends MY_Controller
 	{
 		//Query contacts table for a record where 'id' = $id
 		$this->data['contact'] = $this->contact->get($id);
-		//dump($this->data['contact']);
 		
 		//If there is no record found, set a message and go to index
 		if ( ! count($this->data['contact']))
@@ -88,44 +87,6 @@ class Contacts extends MY_Controller
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-public function index_old()
-	{
-		//Set up pagination config
-		$config = array
-		(	
-		 	'per_page' => 10,	//Or can take from a client config array?
-		 	'offset' => $this->uri->segment(3),	//change for staging *&production
-		 	//'table' => $this->table,
-		 	'base_url' => site_url('contacts/index'),
-		 	'total_rows' => $this->contact->count_all_owner_records(),
-		);
-
-		//Do the query * buld the pagination array
-		$this->data['contacts'] = $this->contact
-		->limit($config['per_page'], $config['offset'])
-		->contact->get_all();
-		$this->data['pagination'] = $this->pagination($config);
-	}
 
 	public function test()
 	{

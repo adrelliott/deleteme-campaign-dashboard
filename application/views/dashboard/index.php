@@ -1,4 +1,4 @@
-<?php //$table = generate_ajax_datatable(array('first_name' => 'First Name', 'last_name' => 'Last Name'), 'contacts', 'table-striped table-bordered'); ?>
+<?php //$dashboard = new Dashboard_Presenter();?>
 <div class="container">
 
    <!-- Main component for a primary marketing message or call to action -->
@@ -27,11 +27,23 @@
                 </thead>
             </table>
         </div>
+        <div class="table-responsive">
+            <table class="table DataTable" table-id="saved-search-table" id="saved-search-table" data-source="<?php echo site_url('ajax//saved_searches/get/id/search_name/search_description?search_type=search'); ?>" link="contacts/show/">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Search Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
       <p><a class="btn btn-lg btn-primary pull-right padding-right-10" href="#">Create a new contact &raquo;</a></p>
     </div>
     <div class="col-md-4">
       <h2>Quick Actions</h2>
       <code>Buttons go here</code>
+      <h4>Stat1: Number of records = <?php echo $this->saved_search->get_stat(1000); ?></h4>
    </div>
   </div>
 </div> <!-- /container -->

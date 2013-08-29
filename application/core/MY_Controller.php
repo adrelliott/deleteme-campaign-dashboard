@@ -15,6 +15,13 @@ class My_Controller extends CI_Controller
      * ------------------------------------------------------------ */
 
     /**
+     * The main model for this contorller class. E.g. if its 'contacts', then the 
+     * model we use is 'contact'
+     */
+    protected $main_model = '';
+
+
+    /**
      * The current request's view. Automatically guessed
      * from the name of the controller and action
      */
@@ -68,9 +75,10 @@ class My_Controller extends CI_Controller
         //Set owner_id and load vars
         define ('OWNER_ID', 22220); ///////////////////////////////////Set this on login!
         $this->config->load('client_configs/' . OWNER_ID);
+        $this->load->helper('inflector');
 
         //Set the layout file. (overide with $layout = FALSE in a controller/method)
-        $this->layout = 'layouts/' . $this->config->item('layout_folder') . '/' . $this->router->class;
+        //$this->layout = 'layouts/' . $this->config->item('layout_folder') . '/' . $this->router->class;
 
         $this->_load_models();
         $this->_load_helpers();
@@ -140,13 +148,13 @@ class My_Controller extends CI_Controller
             // If we didn't specify the layout, try to guess it
             if (!isset($this->layout))
             {
-                if (file_exists(APPPATH . 'views/layouts/' . $this->router->class . '.php'))
+                if (file_exists(APPPATH . 'views/layouts/' . $this->config->item('layout_folder') . '/' . $this->router->class . '.php'))
                 {
-                    $layout = 'layouts/' . $this->router->class;
+                    $layout = 'layouts/' . $this->config->item('layout_folder')  . '/' . $this->router->class;
                 }
                 else
                 {
-                    $layout = 'layouts/application';
+                    $layout = 'layouts/' . $this->config->item('layout_folder') .'/application';
                 }
             }
 
@@ -192,6 +200,15 @@ class My_Controller extends CI_Controller
     protected function _model_name($model)
     {
         return str_replace('%', $model, $this->model_string);
+    }
+    
+    /**
+     * Returns the main model name based on
+     * the model formatting string
+     */
+    protected function _main_model_name()
+    {
+        $this->main_model = singular($this->router->class);
     }
 
   

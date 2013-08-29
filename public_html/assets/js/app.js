@@ -10,7 +10,6 @@
             "bProcessing": true,
             "bServerSide": true,
             "sPaginationType": "bootstrap",
-            //"sAjaxSource": 'http://campaigndashboard.dev/ajax/contacts/get/id/first_name/last_name/owner_id',
             "sAjaxSource": dataSource,
             "sServerMethod": "POST",
             "bScrollInfinite": true,
@@ -76,45 +75,6 @@
         });
 
 
-      var users = {};
-      var userLabels = [];
-      var url = 'http://campaigndashboard.dev/ajax/contacts/typeahead/id/first_name/last_name/postal_code';
-
-      $( "#user-input" ).typeahead({
-          source: function ( query, process ) {
-            $.get(url, function ( data ) {
-
-                //reset these containers
-                users = {};
-                userLabels = [];
-
-                //for each item returned, if the display name is already included 
-                //(e.g. multiple "John Smith" records) then add a unique value to the end
-                //so that the user can tell them apart. Using underscore.js for a functional approach.  
-                _.each( data, function( item, ix, list ){
-                    if ( _.contains( users, item.label ) ){
-                        item.label = item.label + ' #' + item.value;
-                    }
-
-                    //add the label to the display array
-                    userLabels.push( item.label );
-
-                    //also store a mapping to get from label back to ID
-                    users[ item.label ] = item.value;
-                });
-
-                //return the display array
-                process( userLabels );
-        });
-    }
-    , updater: function (item) {
-        //save the id value into the hidden field   
-        $( "#userId" ).val( users[ item ] );
-
-        //return the string you want to go into the textbox (e.g. name)
-        return item;
-    }
-});
 
 } );
 	

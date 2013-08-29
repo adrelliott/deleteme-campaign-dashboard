@@ -19,7 +19,8 @@ class Ajax extends MY_Controller
 	public function _remap($table, $params = array())
 	{
 	    //Load the model
-	    $model_name = substr($table, 0, -1) . '_model';
+	    //$model_name = substr($table, 0, -1) . '_model';
+	    $model_name = singular($table) . '_model';
 	    $this->load->model($model_name, 'model');
 	    
 	    //Extract the method & load it (pass through the params)
