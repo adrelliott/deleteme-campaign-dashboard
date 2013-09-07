@@ -1,6 +1,12 @@
 
 //secondary email
 //date of birth
+//username
+//password
+//landline
+//overseas number
+//twitter
+
 <div class="form-group">
   <label for="optionsRadios" class="col-lg-3 control-label">Gender: </label>
   <div class="radio-inline">

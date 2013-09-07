@@ -39,18 +39,18 @@
         <div class="tab-content">
           <div class="tab-pane active" id="contacts">
             <br/><p class="lead">Your Contacts...</p>
-            <table class="table table-striped table-bordered table-hover">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Column heading</th>
-                  <th>Column heading</th>
-                  <th>Column heading</th>
-                </tr>
-              </thead>
-              <tbody>
-              </tbody>
+            <div class="table-responsive">
+            <table class="table DataTable" table-id="dashboard-table" id="dashboard-table" data-source="<?php echo site_url('ajax/contacts/get/id/first_name/last_name/owner_id'); ?>" link="contacts/show/">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Owner Id</th>
+                    </tr>
+                </thead>
             </table>
+        </div>
           </div>
           <div class="tab-pane" id="leads">
              <br/><p class="lead">Your Leads...</p>

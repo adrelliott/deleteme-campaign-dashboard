@@ -1,6 +1,6 @@
 <div class="form-group">
   <label for="title" class="col-lg-3 control-label">Title</label>
-  <div class="col-lg-9">
+  <div class="col-lg-3">
     <select class="form-control" id="select" name="title">
       <option>Mr</option>
       <option>Mrs</option>

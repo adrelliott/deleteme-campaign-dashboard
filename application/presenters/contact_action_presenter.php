@@ -14,10 +14,30 @@ class Contact_action_presenter extends Presenter
 	/ e.g. full name
 	*/
 
+public function test()
+{
+	echo '<h1>this is a test</h1>';
+}
+
 	//Create full name
-	public function full_name()
+	public function create_notes()
 	{
-		//return $this->contact->first_name . ' ' . $this->contact->last_name;
+		foreach ($this->contact_action['note'] as $note)
+		{
+			echo '<br/>Note: '. dump($note);
+		}
+		//return $this->$action->action_title;
+	}
+	//Create full name
+	public function note_title($action)
+	{
+		dump($action);
+		//return $this->$action->action_title;
+	}
+
+	public function note_body()
+	{
+		return $this->action_title;
 	}
 
 	

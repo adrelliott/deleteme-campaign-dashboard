@@ -21,6 +21,7 @@ class Presenter
 	{
 		$this->_objectName = $name ?: strtolower(str_ireplace('_presenter', '', get_class($this)));
 		$this->{$this->_objectName} = $object;
+		//$this->_objectName = $object;
 	}
 
 	/**
@@ -29,7 +30,9 @@ class Presenter
 	public function __call($name, $args = array())
 	{
 		if (isset($this->{$this->_objectName}->$name))
+		//if (isset($this->_objectName->$name))
 		{
+			//return $this->_objectName->$name;
 			return $this->{$this->_objectName}->$name;
 		}
 		else

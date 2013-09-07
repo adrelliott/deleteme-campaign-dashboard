@@ -17,6 +17,7 @@ class Contacts extends MY_Controller
 	{
 		parent::__construct();
 		require_once (APPPATH . 'presenters/contact_presenter.php');
+		//require_once (APPPATH . 'presenters/contact_action_presenter.php');
 	}
 
 	/*
@@ -31,10 +32,19 @@ class Contacts extends MY_Controller
 	public function show($id = NULL)
 	{
 		//Query contacts table for a record where 'id' = $id
-		$this->data['contact'] = $this->contact->get($id);
+		$q = $this->contact->get($id);
 		
-		//If there is no record found, set a message and go to index
-		if ( ! count($this->data['contact']))
+		//If we return a record, then set up the record...
+		if (isset($q->id))
+		{
+			//$this->data = new Contact_Presenter($q);
+			$this->data['contact'] = new Contact_Presenter($q);
+			//$this->data['actions'] = new Contact_Action_Presenter($this->contact_action->get_records($id));
+			$this->data['actions'] = $this->contact_action->get_records($id);
+		}
+
+		//...otherwise, set a message and go to index
+		else
 		{
 			$this->session->set_flashdata(array('message' => '[not_found]'));
 			redirect(site_url('contacts'));
@@ -46,6 +56,7 @@ class Contacts extends MY_Controller
 	public function create()
 	{
 		//Shows a blank record with the form action = create/edit
+		$this->data['contact'] = new Contact_Presenter();
 	}
 
 	public function edit($id = FALSE)
@@ -84,15 +95,6 @@ class Contacts extends MY_Controller
 
 
 
-
-
-
-
-	public function test()
-	{
-		//$this->layout = FALSE;
-		$this->view = 'contacts/post';
-	}
 
 	
 }

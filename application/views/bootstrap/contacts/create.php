@@ -1,4 +1,3 @@
-<? $contact = new Contact_Presenter();?>
 <div class="page-header">
   <h1 id="navbar">Add a new contact here...</h1>
 </div>

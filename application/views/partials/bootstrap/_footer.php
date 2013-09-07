@@ -15,6 +15,7 @@
     <script src="<?php echo site_url('assets/bootstrap-3/js/bootstrap.js'); ?>"></script>
     <script src="<?php echo site_url('assets/bootstrap-3/js/jasny-bootstrap.js'); ?>"></script>
     <script src="<?php echo site_url('assets/bootstrap-3/js/bootstrap-datepicker.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/bootstrap-3/js/jquery.dataTables.js'); ?>"></script>
     <script src="<?php echo site_url('assets/bootstrap-3/js/app.js'); ?>"></script>
   </body>
 </html>

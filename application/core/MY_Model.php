@@ -1030,4 +1030,14 @@ class MY_Model extends CI_Model
         //die(dump($this->_cols));
     }
 
+    /**
+     * Wrapper for the group_by() active record method
+     * @param  mixed $params Can be an array of col names or a single col 
+     * @return none         
+     */
+    public function group_by($params)
+    {
+        $this->_database->group_by($params);
+    }
+
 }

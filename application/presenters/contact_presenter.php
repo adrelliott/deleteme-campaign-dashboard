@@ -6,6 +6,7 @@
 class Contact_presenter extends Presenter
 {
 
+
 	/*-----------------------------------------------
 	/ CONTACT PROPERTY METHODS
 	/*-----------------------------------------------
@@ -14,18 +15,80 @@ class Contact_presenter extends Presenter
 	/ e.g. full name
 	*/
 
-	//Create full name
-	public function full_name()
+	/**
+	 * Tidy up a name
+	 */
+	public function tidy_name($name)
 	{
-		return trim($this->contact->first_name . ' ' . $this->contact->last_name);
+		if ( ! $name) $name = 'this contact';
+		else
+		{
+			//Upper capitals of the words
+			$name = ucwords(strtolower($name));
+
+			//Trim any whitespace
+			trim($name);	
+		}
+
+		
+
+		return $name;
+	}
+
+	//Create full name
+	public function get_first_name()
+	{
+		return $this->tidy_name($this->contact->first_name);
+	}
+
+	//Create full name
+	public function get_last_name()
+	{
+		return $this->tidy_name($this->contact->last_name);
+	}
+
+	//Create full name
+	public function get_full_name()
+	{
+		if ($this->contact->first_name && $this->contact->last_name)
+		{
+			 
+			return 'Let me tell you a story about ' . $this->tidy_name($this->contact->first_name . ' ' . $this->contact->last_name) . '...';
+		}
+		else return 'Hang on, why do we not know this contact\'s full name, eh?';
+		
 	}
 
 	//Create ownership, e.g John's
-	public function name_owned()
+	public function get_name_owned()
 	{
-		return trim($this->contact->first_name) . '\'s';
+		return $this->tidy_name($this->contact->first_name) . '\'s';
 	}
 
+
+	public function get_actions($actions, $type, $cols = FALSE)
+	{
+		$data = array();
+
+		if (isset($actions[$type]))
+		{
+			//If cols has been passed then go through the cols passed
+			//and remove the array elements not requested
+			if ($cols)
+			{
+				foreach ($actions[$type] as $id => $array)
+				{
+					foreach ($cols as $col)
+					{
+						$data[$id][$col] = $actions[$type][$id]->$col;
+					}
+				} 
+			}
+			else $data = $actions[$type];
+		}
+		
+		return $data;
+	}
 
 
 

@@ -5,17 +5,15 @@
       <p class="lead">Just <em>look</em> at them - sitting there all shiny and proud... (And the best bit? They're all yours!)</p>
     </div>
 
-    <table class="table table-striped table-bordered table-hover">
+    <table class="table DataTable" table-id="dashboard-table" id="dashboard-table" data-source="<?php echo site_url('ajax/contacts/get/id/first_name/last_name/owner_id'); ?>" link="contacts/show/">
       <thead>
         <tr>
-          <th>#</th>
-          <th>Column heading</th>
-          <th>Column heading</th>
-          <th>Column heading</th>
+          <th>Id</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Owner Id</th>
         </tr>
       </thead>
-      <tbody>
-      </tbody>
     </table>
   </div>
 </div>

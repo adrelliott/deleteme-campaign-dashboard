@@ -11,20 +11,19 @@
           </div>
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="<?php echo site_url('dashboard'); ?>"><i class="icon-dashboard "></i> Dashboard</a></li>
-              <li><a href="<?php echo site_url('contacts'); ?>"><i class="icon-user "></i> Contacts</a></li>
-              <li><a href="<?php echo site_url('contacts'); ?>"><i class="icon-briefcase "></i> Leads</a></li>
-              <li><a href="<?php echo site_url('contacts'); ?>"><i class="icon-gbp "></i> Orders</a></li>
+             <? echo nav_bar_item('dashboard', 'dashboard'); ?>
+             <? echo nav_bar_item('contacts', 'briefcase'); ?>
+             <? echo nav_bar_item('orders', 'gbp'); ?>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#"><i class="icon-search "></i> Search</a></li>
+             <? echo nav_bar_item('search', 'search'); ?>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cogs "></i> Settings<b class="caret"></b></a>
+                <a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cogs "></i> Settings<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#"><i class="icon-off "></i> Log Out</a></li>
-                  <li><a href="#"><i class="icon-pencil "></i> Edit your Profile</a></li>
-                  <li><a href="#"><i class="icon-shopping-cart "></i> Edit Products</a></li>
+                  <? echo nav_bar_item('log_out', 'off', 'Log Out'); ?>
+                  <? echo nav_bar_item('profile', 'pencil', 'Edit your Profile'); ?>
+                  <? echo nav_bar_item('products', 'shopping-cart', 'Edit Products'); ?>
                 </ul>
               </li>
             </ul>
