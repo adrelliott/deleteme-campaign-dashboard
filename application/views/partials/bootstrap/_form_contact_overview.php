@@ -33,12 +33,12 @@
 <br>
 <legend>Address Details</legend>
 <div class="form-group">
-  <label for="last_name" class="col-lg-4 control-label">Postcode</label>
-  <div class="col-lg-8">
+  <label for="last_name" class="col-lg-3 control-label">Postcode</label>
+  <div class="col-lg-4">
     <div class="input-group">
       <input type="text" class="form-control" placeholder"Enter a postcode here & press">
       <span class="input-group-btn">
-        <button class="btn btn-success" type="button">Lookup Postcode</button>
+        <button class="btn btn-success" type="button"><i class="icon-search "></i></button>
       </span>
     </div><!-- /input-group -->
     <span class="help-block">Enter a postcode in the box and press 'Lookup'</span>
@@ -46,7 +46,7 @@
 </div>
 
 <div class="form-group">
-  <label for="org_name" class="col-lg-4 control-label">Organisation Name</label>
+  <label for="org_name" class="col-lg-3 control-label">Organisation Name</label>
   <div class="col-lg-8">
     <input type="text" class="form-control" id="org_name"  value="<?= $contact->org_name(); ?>" name="org_name" placeholder="E.g. Dallas Matthews Ltd...">
   </div>
