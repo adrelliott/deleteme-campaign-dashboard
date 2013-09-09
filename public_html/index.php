@@ -25,6 +25,8 @@ $http_host = strtolower($_SERVER['HTTP_HOST']);
 if ($http_host == 'campaigndashboard.dev') 
 	define('ENVIRONMENT', 'development');
 elseif ($http_host == 'leadfarm-staging.co.uk') 
+	define('ENVIRONMENT', 'staging1');
+elseif ($http_host == '54.229.160.165') 
 	define('ENVIRONMENT', 'staging');
 else define('ENVIRONMENT', 'production');
 
