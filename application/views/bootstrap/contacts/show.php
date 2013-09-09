@@ -1,4 +1,4 @@
-<div class="container">
+
   <div class="page-header">
     <h1 id="navbar"><?= $contact->get_full_name(); ?></h1>
   </div>
@@ -157,7 +157,6 @@
       <button class="btn btn-primary">Save changes</button>
     </div>
   </div>
-</div>
 
 
 

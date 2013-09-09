@@ -1,4 +1,4 @@
-<div class="container">
+
   <div class="row">
     <div class="col-lg-8">
       <div class="jumbotron">
@@ -142,7 +142,6 @@
         <!-- END Pills for the tables -->
       </div>
     </div>
-  </div>
 
   <?php /*
       <table class="table table-striped table-bordered table-hover">
