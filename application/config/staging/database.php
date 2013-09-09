@@ -48,8 +48,8 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
-//$db['default']['hostname'] = '10.168.1.55';
+//$db['default']['hostname'] = 'localhost';
+$db['default']['hostname'] = '10.168.1.55';	//For ec2
 $db['default']['username'] = 'leadfarm_user';
 $db['default']['password'] = '4jdC+QCe5{1@YN0';
 $db['default']['database'] = 'leadfarm_staging';
