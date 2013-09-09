@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-lg-8">
       <div class="jumbotron">
-        <div class="container">
+        <div class="container"><? //was class='container' ?>
          <h1>Hi Al!</h1>
          <p>While you've been out eating cake and pretending you're a busy person, I've been hard at work.</p>
          <p>

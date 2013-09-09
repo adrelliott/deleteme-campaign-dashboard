@@ -1,3 +1,4 @@
+      </div><!-- end of container div -->
     </div><!-- end of wrap div -->
     <div id="footer">
       <div class="container">

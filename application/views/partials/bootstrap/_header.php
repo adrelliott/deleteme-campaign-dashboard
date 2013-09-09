@@ -29,6 +29,3 @@
   </head>
 
   <body>
-
-    <!-- Wrap all page content here -->
-    <div id="wrap">
