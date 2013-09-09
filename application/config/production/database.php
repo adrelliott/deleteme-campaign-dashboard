@@ -48,10 +48,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'local_admin';
-$db['default']['password'] = 'G6tdV7Hj8u9J6g5G';
-$db['default']['database'] = 'dev_barebones';
+$db['default']['hostname'] = '10.168.1.55';
+$db['default']['username'] = 'campaign2_master';
+$db['default']['password'] = 'F9%,a&f5:|m2TxO,z<+X-4pY';
+$db['default']['database'] = 'campaign2_production';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
