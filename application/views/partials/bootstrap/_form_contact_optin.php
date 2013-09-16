@@ -1,4 +1,4 @@
-<form role="form">
+
   <p>OK. So does <?php echo $contact->first_name(); ?> want us to send...</p>
   <div class="form-group">
     <label for="optionsRadio" class="col-lg-3 control-label">..emails?</label>

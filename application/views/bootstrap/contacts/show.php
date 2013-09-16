@@ -1,3 +1,6 @@
+ 
+
+
 
   <div class="page-header">
     <h1 id="navbar"><?= $contact->get_full_name(); ?></h1>
@@ -81,7 +84,7 @@
                 <?= form_close(); ?>
             </div>
 
-            <a href="<?php echo site_url('contacts/delete/' . $contact->id()); ?>"><button class="btn btn-danger btn-xs pull-left" onclick="return deletechecked();">Delete <?= $contact->get_first_name()?></button></a>
+            <a href="<?php echo site_url('contacts/delete/' . $contact->id()); ?>"><button class="btn btn-danger btn-xs pull-left" onclick="return deletechecked();">Delete <?= $contact->get_first_name()?></a>
           </div>
           
         </div><!-- End of pills -->
@@ -107,10 +110,8 @@
                 $this->table->set_template($table_style);
                 echo $this->table->generate($contact->get_actions($actions, 'tweet', $table_header));
               ?>
-              <a href="#modal-task" class="btn" >open Task modal</a>
-              <a class="btn">open Task modal</a>
 
-                <a class="btn btn-lg btn-primary pull-right" href="#modal-task" data-toggle="modal">Open Modal &raquo;</a>
+                <a class="btn btn-lg btn-primary pull-right" href="#myModal" data-toggle="modal">Open Modal... &raquo;</a>
             </div>
             <div class="tab-pane" id="tasks">
               <br><p class="lead">"Todo's for <?= $contact->get_first_name(); ?></p>
@@ -131,32 +132,37 @@
                 $this->table->set_template($table_style);
                 echo $this->table->generate($contact->get_actions($actions, 'role', $table_header));
               ?>
-              <a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
+              
             </div>
           </div>
         </div>
       <!-- End of pills -->
     </div>
   </div>
-  <div class="modal " data-toggle="modal" id="modal-task">
-    <div class="modal-header">Modal Header</div>
-    <div class="modal-body">Modal Body</div>
-    <div class="modal-footer">Modal footer<btn></div>
-  </div>
 
-  <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h3 id="myModalLabel">Modal header</h3>
-    </div>
-    <div class="modal-body">
-      <p>One fine body…</p>
-    </div>
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-      <button class="btn btn-primary">Save changes</button>
-    </div>
-  </div>
+<!-- Button trigger modal -->
+  <a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large">Launch demo modal</a>
+
+  <!-- Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Modal title</h4>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="btn">Close</a>
+          <a href="#" class="btn btn-primary">Save changes</a>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->  
+
+  
 
 
 

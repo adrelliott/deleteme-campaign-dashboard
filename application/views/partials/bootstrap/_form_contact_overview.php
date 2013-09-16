@@ -36,7 +36,7 @@
   <label for="last_name" class="col-lg-3 control-label">Postcode</label>
   <div class="col-lg-4">
     <div class="input-group">
-      <input type="text" class="form-control" placeholder"Enter a postcode here & press">
+      <input type="text" class="form-control" placeholder="Enter a postcode here & press">
       <span class="input-group-btn">
         <button class="btn btn-success" type="button"><i class="icon-search "></i></button>
       </span>

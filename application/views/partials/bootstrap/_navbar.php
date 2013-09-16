@@ -7,7 +7,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><i class="icon-bullhorn "></i> Campaign Dashboard</a>
+            <a class="navbar-brand" href="<?= site_url(); ?>"><i class="icon-bullhorn "></i> Campaign Dashboard</a>
           </div>
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -31,5 +31,4 @@
         </div>
       </div>
   
-  <div id="wrap">
-      <div class="container">
+    <div class="container">

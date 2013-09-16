@@ -13,7 +13,7 @@
     <link href="<?php echo site_url('assets/bootstrap-3/css/bootstrap.css'); ?>" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="<?php echo site_url('assets/bootstrap-3/css/sticky-footer-navbar.css'); ?>" rel="stylesheet">
+    <link href="<?php echo site_url('assets/bootstrap-3/css/custom.css'); ?>" rel="stylesheet">
 
     <!-- Include Font-awesome -->
     <link href="<?php echo site_url('assets/bootstrap-3/font-awesome/css/font-awesome.css'); ?>" rel="stylesheet">
