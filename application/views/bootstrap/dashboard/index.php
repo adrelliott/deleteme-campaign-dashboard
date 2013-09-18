@@ -40,7 +40,7 @@
             <div class="tab-pane active" id="contacts">
               <br/><p class="lead">Your Contacts...</p>
               <div class="table-responsive">
-              <table class="table DataTable" table-id="dashboard-table" id="dashboard-table" data-source="<?php echo site_url('ajax/contacts/get/id/first_name/last_name/owner_id'); ?>" link="contacts/show/">
+              <table class="table DataTable" table-id="dashboard-table" id="dashboard-table" data-source="<?php echo site_url('ajax/contacts/get_table/id/first_name/last_name/owner_id'); ?>" link="contacts/show/" data-link="contacts/show/">
                   <thead>
                       <tr>
                           <th>Id</th>

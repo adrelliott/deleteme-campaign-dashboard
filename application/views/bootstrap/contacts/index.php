@@ -6,7 +6,7 @@
         <p class="lead">Just <em>look</em> at them - sitting there all shiny and proud... (And the best bit? They're all yours!)</p>
       </div>
 
-      <table class="table DataTable" table-id="dashboard-table" id="dashboard-table" data-source="<?php echo site_url('ajax/contacts/get/id/first_name/last_name/owner_id'); ?>" link="contacts/show/">
+      <table class="table DataTable" table-id="dashboard-table" id="dashboard-table" data-source="<?php echo site_url('ajax/contacts/get_table/id/first_name/last_name/owner_id'); ?>" data-link="contacts/show/">
         <thead>
           <tr>
             <th>Id</th>

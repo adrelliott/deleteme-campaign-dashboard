@@ -21,7 +21,7 @@
           <div class="tab-content">
             
             <div class="tab-pane active" id="overview">
-              <br/><p class="lead">Use the blue tabs to see more of <?= $contact->get_name_owned(); ?> information</p>
+              <br/><p class="lead">More of <?= $contact->get_name_owned(); ?> data under each blue tab</p>
                 <?= form_open('contacts/edit/' . $contact->id(), 'class="form-horizontal" role="form"'); ?>
                 <?php include (APPPATH. 'views/partials/' . $this->config->item('layout_folder') . '/_form_contact_overview.php'); ?>
                 <div class="form-group">

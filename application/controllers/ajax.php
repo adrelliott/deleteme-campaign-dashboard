@@ -14,12 +14,12 @@ class Ajax extends MY_Controller
 	public function __construct()
     {
         parent::__construct();
+        $this->output->enable_profiler(FALSE);
 	}
 
 	public function _remap($table, $params = array())
 	{
 	    //Load the model
-	    //$model_name = substr($table, 0, -1) . '_model';
 	    $model_name = singular($table) . '_model';
 	    $this->load->model($model_name, 'model');
 	    
@@ -31,15 +31,6 @@ class Ajax extends MY_Controller
 	    }
 	    show_404();
 	}
-
-
-	protected function set_cols($csv = FALSE)
-	{
-		$cols = array_slice($this->uri->rsegment_array(), 3);
-		if ($csv) return implode(',', $cols);
-		else return $cols;
-	}
-
 	
 	/**
 	 * Return a JSON array.
@@ -50,13 +41,21 @@ class Ajax extends MY_Controller
 	 * e.g. domain.com/ajax/contacts/id/first_name?owner_id=222
 	 */
 
-	public function get()
+	public function get_table()
 	{
+		//Pass link=uri/to/record to set a link on each table row
+		if (isset($_GET['link']))
+		{
+			$link = site_url($_GET['link']);
+			unset($_GET['link']);
+		}
+			
+		//Now get the data (using datatables library)
 		$cols = $this->set_cols(TRUE);
 		$where = $_GET;
+		$output = $this->model->get_datatables_ajax($cols, $where);
 
-		//Send to the datatables library
-		echo $this->model->get_datatables_ajax($cols, $where);
+		echo $output;
 	}
 
 	/**
@@ -82,6 +81,18 @@ class Ajax extends MY_Controller
 
 		//Send to the datatables library
 		//echo $this->model->get_datatables_ajax($cols, $where);
+	}
+
+	/**
+	 * Set the columns for the query. They are passed as URI paramaters
+	 * //e.g. /ajax/table_name/col1/col2/col3/col4
+	 * @param boolean $csv Output as a comma sep list (FALSE = array)
+	 */
+	protected function set_cols($csv = FALSE)
+	{
+		$cols = array_slice($this->uri->rsegment_array(), 3);
+		if ($csv) return implode(',', $cols);
+		else return $cols;
 	}
 
 

@@ -19,7 +19,7 @@
     <script src="<?php echo site_url('assets/bootstrap-3/js/bootstrap/bootstrap.min.js'); ?>"></script>
     <script src="<?php //echo site_url('assets/bootstrap-3/js/jasny-bootstrap.js'); ?>"></script>
     <script src="<?php //echo site_url('assets/bootstrap-3/js/bootstrap-modal.js'); ?>"></script>
-    
+
   <?php 
   /* ...else get them from CDNs... */
   else: ?>

@@ -77,6 +77,9 @@ class My_Controller extends CI_Controller
         $this->config->load('client_configs/' . OWNER_ID);
         $this->load->helper('inflector');
 
+        //Show profiler
+        $this->output->enable_profiler(ENVIRONMENT === 'development');
+
         //Set the layout file. (overide with $layout = FALSE in a controller/method)
         //$this->layout = 'layouts/' . $this->config->item('layout_folder') . '/' . $this->router->class;
 

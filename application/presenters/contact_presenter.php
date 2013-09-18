@@ -53,7 +53,7 @@ class Contact_presenter extends Presenter
 		if ($this->contact->first_name && $this->contact->last_name)
 		{
 			 
-			return 'Let me tell you a story about ' . $this->tidy_name($this->contact->first_name . ' ' . $this->contact->last_name) . '...';
+			return 'Introducing ' . $this->tidy_name($this->contact->first_name . ' ' . $this->contact->last_name);
 		}
 		else return 'Hang on, why do we not know this contact\'s full name, eh?';
 		

@@ -17,7 +17,6 @@ class Contacts extends MY_Controller
 	{
 		parent::__construct();
 		require_once (APPPATH . 'presenters/contact_presenter.php');
-		//require_once (APPPATH . 'presenters/contact_action_presenter.php');
 	}
 
 	/*
@@ -58,6 +57,7 @@ class Contacts extends MY_Controller
 		//Shows a blank record with the form action = create/edit
 		$this->data['contact'] = new Contact_Presenter();
 	}
+
 
 	public function edit($id = FALSE)
 	{

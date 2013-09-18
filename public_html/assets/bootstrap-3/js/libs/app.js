@@ -9,6 +9,7 @@ $(document).ready(function () {
     $('.DataTable').each(function() {
         var dataSource = $(this).attr("data-source");
         var tableId = $(this).attr("table-id");
+        var link = $(this).attr('data-link');
         var datatableoptions = {
             "bProcessing": true,
             "bServerSide": true,
@@ -20,11 +21,21 @@ $(document).ready(function () {
             "sScrollY": "200px",
             "iDisplayLength": 5,
             "bDestroy": true,
+            "aoColumnDefs": [
+               {
+                    "aTargets": [ '_all' ],
+                    //"mData": null,
+                    "mRender": function (data, type, full) {                        return '<a href="'+ link + full[0] +'">' + data + '</a>';
+                    }
+                }
+             ]
         };
-        $("#" + tableId ).dataTable(datatableoptions);
+        var dTable = $("#" + tableId ).dataTable(datatableoptions);
         $.extend( $.fn.dataTableExt.oStdClasses, {
               "sWrapper": "dataTables_wrapper form-inline"
         } );
+
+
 
       });
 
