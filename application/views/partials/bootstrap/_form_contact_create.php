@@ -31,13 +31,13 @@
     <div class="radio-inline">
       <label>
         <input type="radio" name="contact_type" id="optionsRadio1" value="individual" checked="">
-        <i class="icon-user"></i> Individual
+        <i class="icon-user"></i> Indiv.
       </label>
     </div>
     <div class="radio-inline">
       <label>
         <input type="radio" name="contact_type" id="optionsRadio2" value="organisation">
-        <i class="icon-truck"></i>  Organisation
+        <i class="icon-truck"></i>  Org.
       </label>
     </div>
   </div>
@@ -47,9 +47,4 @@
       <input type="date" class="form-control input-lg " placeholder="Date of Birth...">
     </div>
   </div>
-
-  <div class="form-group">
-    <div class="col-lg-10 col-lg-offset-2">
-      <button type="submit" class="btn btn-success pull-right"><i class="icon-ok"></i> Save & Edit Record</button> 
-    </div>
-  </div>
+  <button type="submit" class="btn btn-success pull-right clearfix"><i class="icon-ok"></i> Save & Edit Record</button>

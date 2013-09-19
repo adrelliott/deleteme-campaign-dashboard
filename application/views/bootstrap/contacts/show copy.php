@@ -26,21 +26,25 @@
                     <button type="submit" class="btn btn-success pull-right"><i class="icon-ok"></i> Save Changes</button> 
                   </div>
                 </div>
+                <?= //form_close(); ?>
             </div>
 
             <div class="tab-pane" id="indepth">
               <br/><p class="lead">All of <?= $contact->get_name_owned(); ?> secrets...</p>
+                <?= //form_open('contacts/edit/' . $contact->id(), 'class="form-horizontal" role="form"'); ?>
                 <?php include (APPPATH. 'views/partials/' . $this->config->item('layout_folder') . '/_form_contact_indepth.php'); ?>
                 <div class="form-group">
                   <div class="col-lg-10 col-lg-offset-2">
                     <button type="submit" class="btn btn-success pull-right"><i class="icon-ok"></i> Save Changes</button> 
                   </div>
                 </div>
-              </div>
+                <?= //form_close(); ?>
+            </div>
 
             <div class="tab-pane" id="optins">
               <br/><p class="lead">Manage <?= $contact->get_name_owned(); ?>
                communication preferences...</p>
+                <?= //form_open('contacts/edit/' . $contact->id(), 'class="form-horizontal" role="form"'); ?>
                 <?php include (APPPATH. 'views/partials/' . $this->config->item('layout_folder') . '/_form_contact_optin.php'); ?>
                 <div class="form-group">
                   <div class="col-lg-10 col-lg-offset-2">
@@ -52,27 +56,20 @@
 
             <div class="tab-pane" id="notes">
               <br/><p class="lead">All the stuff we've said about <?= $contact->get_first_name(); ?>...</p>
-                <? foreach ($contact->get_actions($actions, 'note') as $note): ?>
-                  <? include (APPPATH. 'views/partials/' . $this->config->item('layout_folder') . '/_form_contact_notes.php');?>
+                <?= //form_open('contacts/edit/' . $contact->id(), 'class="form-horizontal" role="form"'); ?>
+                  <? foreach ($contact->get_actions($actions, 'note') as $note): ?>
+                    <? include (APPPATH. 'views/partials/' . $this->config->item('layout_folder') . '/_form_contact_notes.php');?>
                 <? endforeach; ?>
-
-                <?php echo form_open('contact_actions/edit', 'class="ajax"'); ?>
-                <?php echo form_input('action_title'); ?>
-                <?php echo form_input('action_description'); ?>
-                <?php echo form_hidden('contact_id', $contact->id()); ?>
-                <?php echo form_hidden('action_type', 'note'); ?>
-                <?php echo form_submit('', 'Save', 'id="submit"'); ?>
-                <?php echo form_close();?>
-
                 <div class="form-group">
                   <div class="col-lg-10 col-lg-offset-2">
                     <button type="" class="btn btn-success pull-right"><i class="icon-ok"></i> Add New Relationship</button> 
                   </div>
                 </div>
-              </div>
+                <?= //form_close(); ?>
+            </div>
 
             <div class="tab-pane" id="relationships">
-              <br/><p class="lead">Who does <?= $contact->get_first_name(); ?> know?</p>
+              <br/><p class="lead">Who does <?= $contact->get_first_name(); ?> know?</p><?= //form_open('contacts/edit/' . $contact->id(), 'class="form-horizontal" role="form"'); ?>
                 <? foreach ($contact->get_actions($actions, 'relationship') as $note): ?>
                     <? include (APPPATH. 'views/partials/' . $this->config->item('layout_folder') . '/_form_contact_relationships.php');?>
                 <? endforeach; ?>
@@ -81,6 +78,7 @@
                     <button type="" class="btn btn-success pull-right"><i class="icon-ok"></i> Add XXX Changes</button> 
                   </div>
                 </div>
+                <?= //form_close(); ?>
             </div>
 
             
@@ -114,29 +112,17 @@
                 echo $this->table->generate($contact->get_actions($actions, 'tweet', $table_header));
               ?>
 
-                <a class="btn btn-lg btn-primary pull-right" href="#contactaction-modal" data-toggle="modal">Create New Order &raquo;</a>
+                <a class="btn btn-lg btn-primary pull-right" href="#myModal" data-toggle="modal">Open Modal... &raquo;</a>
             </div>
             <div class="tab-pane" id="tasks">
               <br><p class="lead">"Todo's for <?= $contact->get_first_name(); ?></p>
-                <table class="table DataTable" table-id="task-table" id="task-table" data-source="<?php echo site_url('ajax/contact_actions/get_table/id/action_type/action_title/contact_id?action_type=task&contact_id=' . $contact->id()); ?>" data-link="#" html-source="<?php echo site_url('contact_actions/create'); ?>" table-type="modal">
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Action type</th>
-            <th>Action title</th>
-            <th>Contct Id</th>
-          </tr>
-        </thead>
-      </table>
-
                 <? 
-                /*$table_header = array('id', 'action_type', 'action_title');
+                $table_header = array('id', 'action_type', 'action_title');
                 $table_style = array('table_open' => '<table class="table table-striped table-bordered table-hover">');
                 $this->table->set_heading($table_header);
                 $this->table->set_template($table_style);
-                echo $this->table->generate($contact->get_actions($actions, 'task', $table_header));*/
+                echo $this->table->generate($contact->get_actions($actions, 'task', $table_header));
               ?>
-               <a class="btn btn-lg btn-primary pull-right" data-target="#contactaction-modal" href="" data-toggle="modal">Create New Task &raquo;</a>
             </div>
             <div class="tab-pane" id="roles">
               <br><p class="lead">"Remember when " <?= $contact->get_first_name(); ?> did that thing..?</p>
@@ -155,22 +141,23 @@
     </div>
   </div>
 
+<!-- Button trigger modal -->
+  <a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large">Launch demo modal</a>
+
   <!-- Modal -->
-  <div class="modal fade" id="contactaction-modal" tabindex="-1" role="dialog" aria-labelledby="contactaction-modal-label" aria-hidden="true">
+  <div class="modal" id="myModal">
     <div class="modal-dialog">
       <div class="modal-content">
-
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           <h4 class="modal-title">Modal title</h4>
         </div>
-
         <div class="modal-body">
           ...
         </div>
-
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <a href="#" class="btn">Close</a>
+          <a href="#" class="btn btn-primary">Save changes</a>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

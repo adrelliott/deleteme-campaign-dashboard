@@ -69,6 +69,14 @@ class Contact_actions extends MY_Controller
 		}
 
 		$this->session->set_flashdata($message);
+
+		//if its ajax then do this:
+		if ($this->input->is_ajax_request())
+		{
+			$this->load->view('partials/bootstrap/_form_contact_notes');
+		}
+		//
+		//
 		redirect(site_url('contact_actions/show/' . $id));
 	}
 

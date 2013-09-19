@@ -48,21 +48,21 @@
 <div class="form-group">
   <label for="org_name" class="col-lg-3 control-label">Organisation Name</label>
   <div class="col-lg-8">
-    <input type="text" class="form-control" id="org_name"  value="<?= $contact->org_name(); ?>" name="org_name" placeholder="E.g. Dallas Matthews Ltd...">
+    <input type="text" class="form-control" id="org_name"  value="<?= $contact->org_name(); ?>" xxxname="org_name" placeholder="E.g. Dallas Matthews Ltd...">
   </div>
 </div>
 
 <div class="form-group">
   <label for="first_name" class="col-lg-3 control-label">First Name</label>
   <div class="col-lg-9">
-    <input type="text" class="form-control" id="first_name"  value="<?= $contact->first_name(); ?>" name="first_name" placeholder="What does your Ma call you..?">
+    <input type="text" class="form-control" id="first_name"  value="<?= $contact->first_name(); ?>" xxxname="first_name" placeholder="What does your Ma call you..?">
   </div>
 </div>
 
 <div class="form-group">
   <label for="first_name" class="col-lg-3 control-label">First Name</label>
   <div class="col-lg-9">
-    <input type="text" class="form-control" id="first_name"  value="<?= $contact->first_name(); ?>" name="first_name" placeholder="What does your Ma call you..?">
+    <input type="text" class="form-control" id="first_name"  value="<?= $contact->first_name(); ?>" xxxname="first_name" placeholder="What does your Ma call you..?">
   </div>
 </div>
 
@@ -73,14 +73,14 @@
   <label for="optionsRadio" class="col-lg-3 control-label">Record type: </label>
   <div class="radio-inline">
     <label>
-      <input type="radio" name="contact_type" id="optionsRadio1" value="individual" checked="">
-      <i class="icon-user"></i> Individual
+      <input type="radio" xxxname="contact_type" id="optionsRadio1" value="individual" checked="">
+      <i class="icon-user"></i> Indiv.
     </label>
   </div>
   <div class="radio-inline">
     <label>
-      <input type="radio" name="contact_type" id="optionsRadio2" value="organisation">
-      <i class="icon-truck"></i>  Organisation
+      <input type="radio" xxxname="contact_type" id="optionsRadio2" value="organisation">
+      <i class="icon-truck"></i>  Org.
     </label>
   </div>
 </div>
