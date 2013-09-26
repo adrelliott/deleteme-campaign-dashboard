@@ -153,7 +153,6 @@
 
         <div class="modal-body">
           <!-- The rest fo the form is added in modal window -->
-           
         </div>
 
         <div class="modal-footer">

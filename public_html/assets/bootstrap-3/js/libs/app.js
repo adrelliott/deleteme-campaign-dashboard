@@ -83,14 +83,14 @@ $(document).ready(function () {
     $(document).on('click', '.edit-record-modal', function(e) {
         e.preventDefault();
         var htmlSource = $(this).attr("html-source");
-        var existingHtml = $(".modal-body").html();
+        //var existingHtml = $(".modal-body").html();
 
         $(".modal-body").html('');
         $("#contactaction-modal").modal('show');
         $.post(htmlSource,
                {id: $(this).attr('data-id')},
                function(html) {
-                $(".modal-body").html(html + existingHtml);
+                $(".modal-body").html(html);
                }
         );
     });
@@ -103,7 +103,7 @@ $(document).ready(function () {
         var that = $(this),
             url = that.attr('action'),
             type = that.attr('method'),
-            sectionId = that.attr("data-section"),
+            //sectionId = that.attr("data-section"),
             data = {};
 
         that.find('[name]').each(function(index, value) {
@@ -116,7 +116,7 @@ $(document).ready(function () {
 
         console.log(url);
         console.log(type);
-        console.log(sectionId);
+        //console.log(sectionId);
         console.log(data);
         
         $.ajax({

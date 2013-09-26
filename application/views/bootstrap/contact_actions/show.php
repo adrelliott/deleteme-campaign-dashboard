@@ -18,4 +18,3 @@
 <?	//Remove me when going live 
 dump($contact_action); 
 $this->output->enable_profiler(FALSE); 
-?>
