@@ -95,14 +95,11 @@ $(document).ready(function () {
         );
     });
 
-$('button.modal-submit').submit(function(e){
-    e.preventDefault();
-    alert('defaultprevented');
-});
+
 
 /* Turns all forms with class 'ajax' into ajax powered forms */
-    $('form.ajax').on('submit', function(e) {
-        e.preventDefault();
+    $('form.ajax').on('submit', function() {
+        //e.preventDefault();
         var that = $(this),
             url = that.attr('action'),
             type = that.attr('method'),
@@ -127,7 +124,6 @@ $('button.modal-submit').submit(function(e){
             type: type,
             data: data,
             success: function(response) {
- alert('Ajax wokring');
                 console.log(response);
                 $(".message-" + sectionId).html(response);
                 window.setTimeout(function() {
