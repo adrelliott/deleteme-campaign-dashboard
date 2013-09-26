@@ -54,7 +54,7 @@ class Ajax extends MY_Controller
               	);
 
 			$where['deleted'] = 0;
-			$where['owner_id'] = owner_id;
+			$where['owner_id'] = OWNER_ID;
 
 			unset($_GET['join']);
 

@@ -1007,8 +1007,8 @@ class MY_Model extends CI_Model
      */
     public function get_datatables_ajax($cols, $where = array(), $join = array())
     {
-        //if ( !isset($where['deleted'])) $where['deleted'] = 0;
-        //if ( !isset($where['owner_id'])) $where['owner_id'] = OWNER_ID;
+        if ( !isset($where['deleted'])) $where['deleted'] = 0;
+        if ( !isset($where['owner_id'])) $where['owner_id'] = OWNER_ID;
 
         $this->load->library('datatables');
 
