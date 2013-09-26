@@ -13,7 +13,7 @@
 
   <?php 
     /* Get local copies of libraries if its a local version... */ 
-    if (ENVIRONMENT === 'development') :
+    if (ENVIRONMENT === 'development1') :
   ?>
     <script src="<?php echo site_url('assets/bootstrap-3/js/jquery/1.9.1/jquery.min.js'); ?>"></script>
     <script src="<?php echo site_url('assets/bootstrap-3/js/bootstrap/bootstrap.min.js'); ?>"></script>

@@ -1,3 +1,13 @@
 application/logs
 application/public_html/.htaccess
 application/uploads
+application/public_html/uploads
+__old
+.ssh
+_backups
+mysql_backups
+.DS_Store
+license.txt
+README.md
+.htaccess
+.bash_history

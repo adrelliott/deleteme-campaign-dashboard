@@ -98,12 +98,12 @@ $(document).ready(function () {
 
 
 /* Turns all forms with class 'ajax' into ajax powered forms */
-    $('form.ajax').on('submit', function() {
-        //e.preventDefault();
+    $('form.ajax').on('submit', function(e) {
+        e.preventDefault();
         var that = $(this),
             url = that.attr('action'),
             type = that.attr('method'),
-            //sectionId = that.attr("data-section"),
+            sectionId = that.attr("data-section"),
             data = {};
 
         that.find('[name]').each(function(index, value) {
@@ -116,7 +116,7 @@ $(document).ready(function () {
 
         console.log(url);
         console.log(type);
-        //console.log(sectionId);
+        console.log(sectionId);
         console.log(data);
         
         $.ajax({

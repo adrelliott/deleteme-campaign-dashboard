@@ -1,5 +1,5 @@
 
-<?= form_open('contact_actions/edit/' . $contact_action->id(), 'class="form-horizontal ajax1" role="form"  '); ?>
+<?= form_open('contact_actions/edit/' . $contact_action->id(), 'class="form-horizontal ajax" role="form" data-section="task" '); ?>
     <?= form_hidden('contact_id', $contact_action->contact_id()); ?>
     <?= form_hidden('action_type', $action_type); ?>
 
@@ -10,7 +10,7 @@
 	      <button type="submit" class="btn btn-success pull-right" class="modal-submit"><i class="icon-ok"></i> Save Changes</button> 
 	    </div>
   	</div>
-  	<div class="message-contact"></div>
+  	<div class="message-task"></div>
 <?= form_close(); ?>
 
 
