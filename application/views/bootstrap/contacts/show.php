@@ -160,25 +160,4 @@
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->  
-
-
-          
-
-
-  <? /*<?= form_open(
-              'contact_actions/edit/', 
-              'class="form-horizontal" role="form" data-async data-target="#contactaction-modal" ',
-              array('contact_id' => $contact->id())
-              );
-            ?>
-          <div class="modal-body-contents">
-
-          </div>
-*/
-          ?>
-
-
-          <? //dump($contact); ?>
-          <? //dump($actions); ?>
-          <? //dump($contact->get_actions($actions, 'note'));  
+  </div><!-- /.modal --> 

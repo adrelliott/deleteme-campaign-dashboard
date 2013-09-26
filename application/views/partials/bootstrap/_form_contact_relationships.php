@@ -1,1 +1,0 @@
-<p>Detals of relatpmship here</p>
