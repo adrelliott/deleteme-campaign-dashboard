@@ -1,5 +1,5 @@
 
-<?= form_open('contact_actions/edit/' . $contact_action->id(), 'class="form-horizontal ajax" role="form"  '); ?>
+<?= form_open('contact_actions/edit/' . $contact_action->id(), 'class="form-horizontal ajax1" role="form"  '); ?>
     <?= form_hidden('contact_id', $contact_action->contact_id()); ?>
     <?= form_hidden('action_type', $action_type); ?>
 
@@ -18,3 +18,4 @@
 <?	//Remove me when going live 
 dump($contact_action); 
 $this->output->enable_profiler(FALSE); 
+?>
