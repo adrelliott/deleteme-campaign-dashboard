@@ -34,33 +34,39 @@
     public function set_css()
     {
       //Check to see if we've passed a css class
-        if ($this->ci->session->flashdata('message_type')) 
-            $this->css = $this->ci->session->flashdata('message_type');
+        $message_type = $this->ci->session->userdata('message_type');
+        $this->ci->session->unset_userdata('message_type');
+        if ($message_type) 
+            $this->css = $message_type;
 
         //...if not, and if there's not one set already by a shortcode then 
         //create a default
         elseif ( ! isset($this->css)) $this->css = 'info';
         
         //Build the message HTML
-        $this->html = '<div class="alert alert-' . $this->css . '">';
+        $this->html = '<div class="alert alert-' . $this->css . ' clearfix">';
         $this->html .= $this->message;
         $this->html .= '</div>';
     }
 
     public function show()
     {
-        if ($this->ci->session->flashdata('message'))
+        $this->message = $this->ci->session->userdata('message');
+        $this->ci->session->unset_userdata('message');
+
+        if ($this->message)
         {
             $this->set_content();
             $this->set_css();
         }
-      
+        
+
         return $this->html;
     }
 
     public function set_content()
     {
-        $this->message = $this->ci->session->flashdata('message');
+        //$this->message = $this->ci->session->flashdata('message');
 
         //See if we've passed a message shortcode
         switch ($this->message)

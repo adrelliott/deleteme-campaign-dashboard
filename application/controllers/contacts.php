@@ -9,9 +9,8 @@ class Contacts extends MY_Controller
 	//What models should we load?
 	public $models = array('contact', 'contact_action');
 
-	//What views are we suing? Fedaults to views/__CLASS__/__METHOD__
+	//What views are we using? Defaults to views/__CLASS__/__METHOD__
 	//public $view ; //FALSE = load no view, 'view_name' = load view_name.php instead
-
 
 	public function __construct()
 	{
@@ -19,14 +18,10 @@ class Contacts extends MY_Controller
 		require_once (APPPATH . 'presenters/contact_presenter.php');
 	}
 
-	/*
-	Lists all contacts
-	 */
 	public function index()
 	{
 		$this->data['contacts'] = $this->contact->get_all();
 	}
-
 
 	public function show($id = NULL)
 	{
@@ -36,16 +31,12 @@ class Contacts extends MY_Controller
 		//If we return a record, then set up the record...
 		if (isset($q->id))
 		{
-			//$this->data = new Contact_Presenter($q);
 			$this->data['contact'] = new Contact_Presenter($q);
-			//$this->data['actions'] = new Contact_Action_Presenter($this->contact_action->get_records($id));
-			$this->data['actions'] = $this->contact_action->get_records($id);
 		}
-
 		//...otherwise, set a message and go to index
 		else
 		{
-			$this->session->set_flashdata(array('message' => '[not_found]'));
+			$this->session->set_userdata(array('message' => '[not_found]'));
 			redirect(site_url('contacts'));
 		}
 	}
@@ -78,15 +69,24 @@ class Contacts extends MY_Controller
 			$message = array('message' => '[uhoh]');
 		}
 
-		$this->session->set_flashdata($message);
-		redirect(site_url('contacts/show/' . $id));
+		//Set the message to show the user
+		$this->session->set_userdata($message);
+
+		if ($this->input->is_ajax_request())
+		{
+			$this->view = FALSE;
+			echo $this->messages->show();
+	/********************************** Remove this line! ***********/
+	$this->output->enable_profiler(FALSE);
+		}
+		else redirect(site_url('contacts/show/' . $id));
 	}
 
 	public function delete($id)
 	{
 		// Destroy a record (not really - 'softdelete' it!)
 		$this->contact->delete($id);
-		$this->session->set_flashdata('message', '[deleted]');
+		$this->session->set_userdata('message', '[deleted]');
 
 		redirect(site_url('contacts'));
 	}

@@ -7,8 +7,10 @@ class Contact_action_model extends MY_Model {
          'single_record' => array(
                           'id', 'contact_id', 'action_type', 'action_subtype', 'action_title', 'action_description', 'owner_id'),
          'multiple_record' => array(
-                          'id', 'contact_id', 'action_type', 'action_subtype', 'action_title', 'action_description', 'owner_id')
+                          'id', 'contact_id', 'action_type', 'action_subtype', 'action_title', 'action_description', 'created_at', 'owner_id')
     );
+
+    public $belongs_to = array('contact');
 	
 	/*
 		You can set observers to call methods before create, update, get and delete

@@ -65,8 +65,38 @@ class Contact_presenter extends Presenter
 		return $this->tidy_name($this->contact->first_name) . '\'s';
 	}
 
+	public function get_contact_actions($action_type)
+	{
+		$this->load->model('contact_action_model', 'm');
+		$where = array(
+			 	'action_type' => $action_type,
+			 	'contact_id' => $this->id(),
+			 	);
+		$q = $this->m->get_many_by($where);
 
-	public function get_actions($actions, $type, $cols = FALSE)
+		return $q;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/* Old methods - no longer neded */
+	/*public function get_actions($actions, $type, $cols = FALSE)
 	{
 		$data = array();
 
@@ -89,15 +119,7 @@ class Contact_presenter extends Presenter
 		
 		return $data;
 	}
-
-
-
-	
-	
-
-
-
-
+	*/
 
 	/*-----------------------------------------------
 	/ DATA DISPLAY METHODS
@@ -106,7 +128,7 @@ class Contact_presenter extends Presenter
 	/ These are all the methods for data retrieval.
 	*/
 	//Create a table
-	public function create_table($contacts_list, $cols = array())
+	/*public function create_table($contacts_list, $cols = array())
 	{
 		$output['html'] = '';
 		$link = '';
@@ -144,7 +166,7 @@ class Contact_presenter extends Presenter
 		}
 		return $output['html'];
 	} 
-
+*/
 
 	
 

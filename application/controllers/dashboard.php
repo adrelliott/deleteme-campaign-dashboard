@@ -14,11 +14,7 @@ class Dashboard extends MY_Controller
 
 	public function index()
 	{
+		//Autoloads the view defined above
 	}
 
-	public function ajax()
-	{
-		$this->view = FALSE;
-		echo 'Not loading anythign else but the ajax stuff';
-	}
 }

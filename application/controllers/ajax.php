@@ -11,6 +11,7 @@
 
 class Ajax extends MY_Controller
 {
+
 	public function __construct()
     {
         parent::__construct();
@@ -21,7 +22,7 @@ class Ajax extends MY_Controller
 	{
 	    //Load the model
 	    $model_name = singular($table) . '_model';
-	    $this->load->model($model_name, 'model');
+	    $this->load->model($model_name, 'm');
 	    
 	    //Extract the method & load it (pass through the params)
 	    $method = $params[0];
@@ -40,23 +41,34 @@ class Ajax extends MY_Controller
 	 *
 	 * e.g. domain.com/ajax/contacts/id/first_name?owner_id=222
 	 */
-
 	public function get_table()
 	{
-		//Pass link=uri/to/record to set a link on each table row
-		if (isset($_GET['link']))
+		//is there a join passed?
+		if (isset($_GET['join']))
 		{
-			$link = site_url($_GET['link']);
-			unset($_GET['link']);
+			$params = explode(',', $_GET['join']);
+			//dump($params);
+			$join = array(
+              	'table' => $params[0],
+              	'fk' => $params[1],
+              	);
+
+			$where['deleted'] = 0;
+			$where['owner_id'] = owner_id;
+
+			unset($_GET['join']);
+
 		}
-			
+		else $join = FALSE;
+
 		//Now get the data (using datatables library)
 		$cols = $this->set_cols(TRUE);
 		$where = $_GET;
-		$output = $this->model->get_datatables_ajax($cols, $where);
+		$output = $this->m->get_datatables_ajax($cols, $where, $join);
 
 		echo $output;
 	}
+
 
 	/**
 	 * Return a JSON array ready for the typeahead function.
@@ -66,21 +78,20 @@ class Ajax extends MY_Controller
 	 *
 	 * e.g. domain.com/ajax/contacts/id/first_name?owner_id=222
 	 */
-
 	public function typeahead()
 	{
 		$cols = $this->set_cols();
 		$where = $_GET;
 
 		//set the cols
-		$this->model->set_select('multiple_record', $cols);
-		$this->model->order_by('first_name');
+		$this->m->set_select('multiple_record', $cols);
+		$this->m->order_by('first_name');
 		
-		echo json_encode($this->model->get_all());
+		echo json_encode($this->m->get_all());
 		//do the query
 
 		//Send to the datatables library
-		//echo $this->model->get_datatables_ajax($cols, $where);
+		//echo $this->m->get_datatables_ajax($cols, $where);
 	}
 
 	/**
@@ -94,6 +105,11 @@ class Ajax extends MY_Controller
 		if ($csv) return implode(',', $cols);
 		else return $cols;
 	}
+
+
+
+
+	
 
 
 }

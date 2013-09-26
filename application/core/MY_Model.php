@@ -1005,12 +1005,20 @@ class MY_Model extends CI_Model
     /**
      * Returns an ajax output from the current model ready for Datatables to consume
      */
-    public function get_datatables_ajax($cols, $where = array())
+    public function get_datatables_ajax($cols, $where = array(), $join = array())
     {
-        $where['deleted'] = 0;
-        $where['owner_id'] = OWNER_ID;
+        //if ( !isset($where['deleted'])) $where['deleted'] = 0;
+        //if ( !isset($where['owner_id'])) $where['owner_id'] = OWNER_ID;
 
         $this->load->library('datatables');
+
+        //if $join has been passed...
+        if ($join)
+        {
+            $this->datatables->join($join['table'], $join['fk']);
+        }
+        
+        //Set the rest of the query
         $this->datatables->select($cols)
         ->from($this->_table)
        // ->order_by('id')
