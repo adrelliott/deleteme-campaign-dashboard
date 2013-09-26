@@ -1,16 +1,16 @@
 <? 
 /* The partial to create/edit a task */
 ?>
-<?= form_hidden('action_type', 'task'); ?>
+
 
 <div class="form-group">
 	<label for="action_title">Task Title</label>
-	<input type="text" class="form-control" id="action_title" name="action_title" placeholder="Enter Task Title">
+	<input type="text" class="form-control" id="action_title" name="action_title" placeholder="Enter Task Title" value="<?= $contact_action->action_title(); ?>">
 </div>
 
 <div class="form-group">
 	<label for="action_description">Task Description</label>
-	<textarea class="form-control" id="action_description" name="action_description" placeholder="Enter a description (optional)" rows="3"></textarea>
+	<textarea class="form-control" id="action_description" name="action_description" placeholder="Enter a description (optional)" rows="3"><?= $contact_action->action_description(); ?></textarea>
 </div>
 
 <div class="form-group">

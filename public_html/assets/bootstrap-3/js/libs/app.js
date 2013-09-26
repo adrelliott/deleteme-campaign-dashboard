@@ -83,18 +83,26 @@ $(document).ready(function () {
     $(document).on('click', '.edit-record-modal', function(e) {
         e.preventDefault();
         var htmlSource = $(this).attr("html-source");
+        var existingHtml = $(".modal-body").html();
 
         $(".modal-body").html('');
         $("#contactaction-modal").modal('show');
         $.post(htmlSource,
                {id: $(this).attr('data-id')},
                function(html) {
-                $(".modal-body").html(html);
+                $(".modal-body").html(html + existingHtml);
                }
         );
     });
 
-    $('form.ajax').on('submit', function() {
+$('button.modal-submit').submit(function(e){
+    e.preventDefault();
+    alert('defaultprevented');
+});
+
+/* Turns all forms with class 'ajax' into ajax powered forms */
+    $('form.ajax').on('submit', function(e) {
+        e.preventDefault();
         var that = $(this),
             url = that.attr('action'),
             type = that.attr('method'),
@@ -119,6 +127,7 @@ $(document).ready(function () {
             type: type,
             data: data,
             success: function(response) {
+ alert('Ajax wokring');
                 console.log(response);
                 $(".message-" + sectionId).html(response);
                 window.setTimeout(function() {

@@ -10,7 +10,7 @@ class Contact_actions extends MY_Controller
 	public $models = array('contact_action');
 
 	//Set the layout to false (we're loading into a modal window)
-	public $layout = FALSE;
+	public $layout = 'modal';
 
 
 	public function __construct()
@@ -24,7 +24,7 @@ class Contact_actions extends MY_Controller
 		//Never call this, do we?
 	}
 
-	public function show($action_type, $id = FALSE)
+	public function show($contact_id, $id = FALSE)
 	{
 		//Get the Id, if passed, and load the record
 		if (!$id) $id = $this->input->post('id');
@@ -34,9 +34,8 @@ class Contact_actions extends MY_Controller
 		if (isset($q->id))
 		{
 			$this->data['contact_action'] = new Contact_action_Presenter($q);
-			$this->data['action_type'] = $action_type;
+			$this->data['action_type'] = $q->action_type;
 		}
-
 		//...otherwise, set a message and go to index
 		else
 		{

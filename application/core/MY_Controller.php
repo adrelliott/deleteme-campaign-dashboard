@@ -164,7 +164,7 @@ class My_Controller extends CI_Controller
             // If we did, use it
             else if ($this->layout !== FALSE)
             {
-                $layout = $this->layout;
+                $layout = 'layouts/' . $this->config->item('layout_folder') .'/' . $this->layout;
             }
 
             // If $layout is FALSE, we're not interested in loading a layout, so output the view directly
