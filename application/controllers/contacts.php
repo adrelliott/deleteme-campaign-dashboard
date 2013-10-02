@@ -52,6 +52,9 @@ class Contacts extends MY_Controller
 
 	public function edit($id = FALSE)
 	{
+		//Don't autoload a view
+		$this->view = FALSE;
+
 		if ($id && $this->input->post())
 		{
 			//update
@@ -74,7 +77,7 @@ class Contacts extends MY_Controller
 
 		if ($this->input->is_ajax_request())
 		{
-			$this->view = FALSE;
+			
 			echo $this->messages->show();
 	/********************************** Remove this line! ***********/
 	$this->output->enable_profiler(FALSE);

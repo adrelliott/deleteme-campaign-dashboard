@@ -55,16 +55,7 @@
 
           <div class="tab-pane" id="notes">
             <br/><p class="lead">All the stuff we've said about <?= $contact->get_first_name(); ?>...</p>
-            <table class="table DataTable" table-id="note-table" id="note-table" data-source="<?php echo site_url('ajax/contact_actions/get_table/id/created_at/action_description?action_type=note&contact_id=' . $contact->id()); ?>"  table-type="">
-              <thead>
-                <tr>
-                  <th>Id</th>
-                  <th>Creation Date</th>
-                  <th>Note</th
-                  </tr>
-                </thead>
-              </table>
-
+              <? include('contacts_tables/notes.php'); ?>
               <div class="form-group">
                 <div class="col-lg-10 col-lg-offset-2">
                   <button type="" class="btn btn-success pull-right"><i class="icon-ok"></i> Add New Note</button> 
@@ -127,7 +118,7 @@
                 </tr>
               </thead>
             </table>
-            <a class="btn btn-lg btn-primary pull-right" data-target="#contactaction-modal" href="" data-toggle="modal">Create New Task &raquo;</a>
+            <a class="btn btn-primary pull-right" data-target="#contactaction-modal" href="" data-toggle="modal">Create New Task &raquo;</a>
           </div>
 
           <div class="tab-pane" id="roles">

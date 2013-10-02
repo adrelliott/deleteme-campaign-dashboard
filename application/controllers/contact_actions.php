@@ -10,6 +10,7 @@ class Contact_actions extends MY_Controller
 	public $models = array('contact_action');
 
 	//Set the layout to false (we're loading into a modal window)
+	//public $layout = FALSE;
 	public $layout = 'modal';
 
 
@@ -53,6 +54,7 @@ class Contact_actions extends MY_Controller
 
 	public function edit($id = FALSE)
 	{
+		$this->view = FALSE;
 		if ($id && $this->input->post())
 		{
 			//update
@@ -75,7 +77,7 @@ class Contact_actions extends MY_Controller
 		//if its ajax then do this:
 		if ($this->input->is_ajax_request())
 		{
-			$this->view = FALSE;
+			//$this->view = FALSE;
 			echo $this->messages->show();
 	/********************************** Remove this line! ***********/
 	$this->output->enable_profiler(FALSE);

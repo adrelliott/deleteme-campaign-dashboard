@@ -11,7 +11,7 @@ $(document).ready(function () {
         var tableId = $(this).attr("table-id");
         var linkClass = $(this).attr("link-class");
 
-        /* If its modal, then set the extra fields up */
+        /* If its modal, then set the link to just # and set the html-source attr */
         if ($(this).attr('table-type') === 'modal') {
             var htmlSource = $(this).attr('html-source');
             var datatableoptions = {
@@ -41,7 +41,7 @@ $(document).ready(function () {
                 ]
             };
         }
-        else {
+        else {  /* Otherwise write the full link out and exclude html-source */
             var link = $(this).attr('data-link');
             var datatableoptions = {
                 "bProcessing": true,
@@ -75,7 +75,7 @@ $(document).ready(function () {
         };
         var dTable = $("#" + tableId ).dataTable(datatableoptions);
         $.extend( $.fn.dataTableExt.oStdClasses, {
-              "sWrapper": "dataTables_wrapper form-inline"
+              "sWrapper": "dataTables_wrapper form-inline" /* This is Bootstrap styling? */
         } );
       });
 
@@ -114,17 +114,17 @@ $(document).ready(function () {
             data[name] = value;
         });
 
-        console.log(url);
+        /*console.log(url);
         console.log(type);
         console.log(sectionId);
-        console.log(data);
+        console.log(data);*/
         
         $.ajax({
             url: url,
             type: type,
             data: data,
             success: function(response) {
-                console.log(response);
+                //console.log(response);
                 $(".message-" + sectionId).html(response);
                 window.setTimeout(function() {
                     $(".alert").fadeTo(500, 0).slideUp(500, function(){
@@ -137,38 +137,5 @@ $(document).ready(function () {
         return false;
     });
 
-
-    //jQuery(function($) {
-        //$('form[data-async]').on('submit', function(e) {
-        /*$(document).on('submit', 'form[data-async]', function(e) {
-            e.preventDefault();
-            var $form = $(this);
-            var $target = $($form.attr('data-target'));
-     
-            $.ajax({
-                type: $form.attr('method'),
-                url: $form.attr('action'),
-                data: $form.serialize(),
-                result: 
-     
-                /*success: function(response)
-                    {
-                        alert(response);
-
-                    },
-                    error: function()
-                    {
-                        alert("Failure");
-                    }*/
-       /*         success: function(data, status) {
-                    //$target.html(data);
-                    //$target.html(data).modal('show');
-                    
-                     alert(status);
-                }
-            });
-     
-        });*/
-   // });
 
 });
