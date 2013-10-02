@@ -10,8 +10,8 @@ class Contact_actions extends MY_Controller
 	public $models = array('contact_action');
 
 	//Set the layout to false (we're loading into a modal window)
-	//public $layout = FALSE;
-	public $layout = 'modal';
+	public $layout = FALSE;
+	//public $layout = 'modal';
 
 
 	public function __construct()
