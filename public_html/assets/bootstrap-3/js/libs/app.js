@@ -11,6 +11,13 @@ $(document).ready(function () {
         var tableId = $(this).attr("table-id");
         var linkClass = $(this).attr("link-class");
 
+        /* Test to see if we've passed $(this).attr("number-rows") */
+        if ($(this).attr('sScrollY')) {
+            var sScrollY = $(this).attr("sScrollY");
+        } else {
+            var sScrollY = 200;
+        }
+
         /* If its modal, then set the link to just # and set the html-source attr */
         if ($(this).attr('table-type') === 'modal') {
             var htmlSource = $(this).attr('html-source');
@@ -27,8 +34,8 @@ $(document).ready(function () {
                 "sServerMethod": "POST",
                 "bScrollInfinite": true,
                 "bScrollCollapse": true,
-                "sScrollY": "200px",
-                "iDisplayLength": 5,
+                "sScrollY": sScrollY + "px",
+                "iDisplayLength": 15,
                 "bDestroy": true,
                 "aoColumnDefs": [
                     {
@@ -56,8 +63,8 @@ $(document).ready(function () {
                 "sServerMethod": "POST",
                 "bScrollInfinite": true,
                 "bScrollCollapse": true,
-                "sScrollY": "200px",
-                "iDisplayLength": 5,
+                "sScrollY": sScrollY + "px",
+                "iDisplayLength": 15,
                 "bDestroy": true,
                 "aoColumnDefs": [
                     {

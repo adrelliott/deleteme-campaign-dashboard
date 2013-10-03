@@ -39,6 +39,11 @@ public function test()
 	{
 		return $this->action_title;
 	}
+	
+	public function action_type()
+	{
+		return $this->uri->segment(3);
+	}
 
 	
 

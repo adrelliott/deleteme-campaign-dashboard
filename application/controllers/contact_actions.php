@@ -25,7 +25,7 @@ class Contact_actions extends MY_Controller
 		//Never call this, do we?
 	}
 
-	public function show($contact_id, $id = FALSE)
+	public function show($id = FALSE)
 	{
 		//Get the Id, if passed, and load the record
 		if (!$id) $id = $this->input->post('id');
@@ -47,8 +47,10 @@ class Contact_actions extends MY_Controller
 
 	public function create($action_type)
 	{
+		$this->data['contact_action'] = new Contact_action_Presenter();
+
 		//Shows a blank record with the form action = create/edit
-		$this->data['action_type'] = $action_type;
+		//$this->data['action_type'] = $action_type;
 	}
 	
 
@@ -59,19 +61,21 @@ class Contact_actions extends MY_Controller
 		{
 			//update
 			$this->contact_action->update($id, $this->input->post());
-			$message = array('message' => '[updated]');
+			$message = array('message' => '[updated_action]');
 		}
 		elseif (!$id && $this->input->post())
 		{
 			//Insert
 			$id = $this->contact_action->insert($this->input->post());
-			$message = array('message' => '[created]');
+			$message = array('message' => '[updated_action]');
 		}
 		else 
 		{
 			$message = array('message' => '[uhoh]');
 		}
 
+		/*if ( !strpos($message['message'], '['))
+		    $message = '<strong>Right!</strong> I\'ve ' . $message['message'] . ' that record for you! <br/>(Take a look if you don\'t believe me...)';*/
 		$this->session->set_userdata($message);
 
 		//if its ajax then do this:
@@ -79,8 +83,6 @@ class Contact_actions extends MY_Controller
 		{
 			//$this->view = FALSE;
 			echo $this->messages->show();
-	/********************************** Remove this line! ***********/
-	$this->output->enable_profiler(FALSE);
 		}
 		else redirect(site_url('contacts/show/' . $this->input->post('contact_id')));
 		
