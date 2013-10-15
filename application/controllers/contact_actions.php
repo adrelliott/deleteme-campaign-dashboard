@@ -30,7 +30,7 @@ class Contact_actions extends MY_Controller
 		//Get the Id, if passed, and load the record
 		if (!$id) $id = $this->input->post('id');
 		$q = $this->contact_action->get($id);
-		
+
 		//If we return a record, then set up the record...
 		if (isset($q->id))
 		{
@@ -42,15 +42,17 @@ class Contact_actions extends MY_Controller
 		{
 			$this->session->set_flashdata(array('message' => '[not_found]'));
 		}
-		//Autoloads the view 'show' which includes the right partial for $action_type
+		//Autoloads the view 'contact_actions/show' which includes the right partial for $action_type
 	}
 
-	public function create($action_type)
+	public function create($action_type, $contact_id)
 	{
-		$this->data['contact_action'] = new Contact_action_Presenter();
+		//Set up an object to pass to Contact_action_presenter
+		$a->action_type = $action_type;
+		$a->contact_id = $contact_id;
+		$this->data['contact_action'] = new Contact_action_Presenter($a);
 
-		//Shows a blank record with the form action = create/edit
-		//$this->data['action_type'] = $action_type;
+		//Autoloads the view 'contact_actions/create'
 	}
 	
 

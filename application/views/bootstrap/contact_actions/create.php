@@ -1,4 +1,5 @@
-hello
+<h3>Create new <?= $contact_action->action_type(); ?>...</h3>
+ID = <?= $contact_action->contact_id(); ?>..
 <?= form_open('contact_actions/edit/', 'class="form-horizontal ajax" role="form" '); ?>
     <?= form_hidden('contact_id', $contact_action->contact_id()); ?>
     <?= form_hidden('action_type', $contact_action->action_type()); ?>
@@ -12,3 +13,4 @@ hello
   	</div>
   	<div class="message-task"></div>
 <?= form_close(); ?>
+<? dump($contact_action); ?>

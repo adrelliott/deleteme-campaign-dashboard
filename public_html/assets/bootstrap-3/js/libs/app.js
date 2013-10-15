@@ -42,7 +42,7 @@ $(document).ready(function () {
                     "aTargets": [ '_all' ],
                     "mRender": function (data, type, full) {
                         /* return the <a> element */
-                        return '<a href="#" class="edit-record-modal" data-id="'+ full[0] + '" html-source="' + htmlSource + '"">' + data + '</a>';
+                        return '<a href="#" class="edit-record-modal" data-id="'+ full[0] + '" html-source="' + htmlSource + '">' + data + '</a>';
                         }
                     }
                 ]

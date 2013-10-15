@@ -115,7 +115,7 @@
       <div class="tab-content">
         <div class="tab-pane active" id="orders">
           <br><p class="lead">See what <?= $contact->get_first_name(); ?> has been buying</p>        
-          <a class="btn btn-lg btn-primary pull-right" href="#contactaction-modal" data-toggle="modal">Create New Order &raquo;</a>
+          <a class="btn btn-lg btn-primary pull-right " href="#contactaction-modal" data-toggle="modal">Create New Order &raquo;</a>
         </div>
 
         <div class="tab-pane" id="tasks">
@@ -130,7 +130,7 @@
               </tr>
             </thead>
           </table>
-          <a class="btn btn-primary pull-right" data-target="#contactaction-modal" href="<?php echo site_url('contact_actions/create/task'); ?>" data-toggle="modal">Create New Task &raquo;</a>
+          <a class="btn btn-primary pull-right edit-record-modal" href="#" html-source="<?php echo site_url('contact_actions/create/task/' . $contact->id() ); ?>" >Create New Task &raquo;</a>
         </div>
 
         <div class="tab-pane" id="roles">
