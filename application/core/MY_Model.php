@@ -150,7 +150,7 @@ class MY_Model extends CI_Model
     /**
      * Fetch a single record based on the primary key. Returns an object.
      */
-    public function get($primary_value)
+    public function get($primary_value, $where = FALSE)
     {
         $this->trigger('before_get');
 
@@ -160,8 +160,10 @@ class MY_Model extends CI_Model
         }
 
          //Decide what fields to retrieve (set up in each model)
-        if (is_array($this->_cols['single_record']))
+        if ( !$where && is_array($this->_cols['single_record']))
             $this->_database->select(array_values($this->_cols['single_record']));
+        elseif (is_array($where))
+            $this->_database->select($where);
 
         //Just perform for this client's records: 
         $this->_set_owner_id();

@@ -5,9 +5,9 @@ class Contact_action_model extends MY_Model {
 	//define what columns to return in a search
 	protected $_cols = array(
          'single_record' => array(
-                          'id', 'contact_id', 'action_type', 'action_subtype', 'action_title', 'action_description', 'owner_id'),
+                          'id', 'contact_id', 'action_type', 'action_subtype', 'action_title', 'action_description', 'action_status', 'completed', 'owner_id'),
          'multiple_record' => array(
-                          'id', 'contact_id', 'action_type', 'action_subtype', 'action_title', 'action_description', 'created_at', 'owner_id')
+                          'id', 'contact_id', 'action_type', 'action_subtype', 'action_title', 'action_description',  'action_status', 'completed', 'created_at', 'owner_id')
     );
 
     public $belongs_to = array('contact');
@@ -30,16 +30,38 @@ class Contact_action_model extends MY_Model {
      */
     public function get_records($contact_id)
     {
-    	$retval = array('note' => array(), 'tweet' => array(), 'email' => array(), 'task'  => array(), 'appointment' => array(), 'TEST' => array());
-    	$action = $this->get_many_by('contact_id', $contact_id);
+        $retval = array('note' => array(), 'tweet' => array(), 'email' => array(), 'task'  => array(), 'appointment' => array(), 'TEST' => array());
+        $action = $this->get_many_by('contact_id', $contact_id);
 
-    	//put them in an assoc array
-    	foreach ($action as $row)
-    	{
-    		$retval[$row->action_type][$row->id] = $row;
-    	}
+        //put them in an assoc array
+        foreach ($action as $row)
+        {
+            $retval[$row->action_type][$row->id] = $row;
+        }
 
-    	return $retval;
+        return $retval;
+    }
+    
+
+    public function toggle_value($id, $field_name)
+    {
+        $q = $this->get($id, array($field_name));
+        dump($q);
+    	//Get current value
+        $new_value = 1;
+        if ($q === 1)
+        {
+            $new_value = 0;
+        }
+
+        
+            
+dump($new_value);
+        //insert new_value
+dump(        $this->update($id, array($field_name => $new_value))  );
+
+        dump($this->get($id, array($field_name)));die();
+        return $new_value;
     }
 
 }

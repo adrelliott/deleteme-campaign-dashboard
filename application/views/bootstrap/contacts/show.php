@@ -120,16 +120,25 @@
 
         <div class="tab-pane" id="tasks">
           <br><p class="lead">"Todo's for <?= $contact->get_first_name(); ?></p>
-          <table class="table DataTable" table-id="task-table" id="task-table" data-source="<?php echo site_url('ajax/contact_actions/get_table/id/action_type/action_title/contact_id?action_type=task&contact_id=' . $contact->id()); ?>" data-link="#" html-source="<?php echo site_url('contact_actions/show'); ?>" table-type="modal">
-            <thead>
-              <tr>
-                <th>Id</th>
-                <th>Action type</th>
-                <th>Action title</th>
-                <th>Contct Id</th>
-              </tr>
-            </thead>
+           <table class="table" table-id="tag-table" id="tag-table">
+            <? 
+              //Set up the table...
+              $cols = array('id' => 'Id', 'action_type' => 'Action type', 'action_title' => 'Action titttle', 'completed' => 'Completed');
+              $attr = array('data-target' => '#contactaction-modal', 'html-source' => site_url('contact_actions/show'), 'data-toggle' => 'modal', 'class' => "edit-record-modal");
+              $delete = '<a href="' . site_url('contact_actions/delete/record_id/' . $contact->id()) . '" data-toggle="tooltip" title="Delete this record"><i class="icon-trash "></i></a>';
+              $completed = '<a href="' . site_url('contact_actions/toggle_completed/record_id/' . $contact->id()) . '" data-toggle="tooltip" title="Mark as Completed"><i class="icon-ok "></i></a>';
+
+              //Output header...
+              echo $contact->table_header($cols, array(''));
+              //Output body...
+              echo $contact->table_body($contact->get_contact_actions('task'), $cols, '#', $attr, $delete, $completed);
+            ?>
           </table>
+
+
+
+
+
           <a class="btn btn-primary pull-right edit-record-modal" href="#" html-source="<?php echo site_url('contact_actions/create/task/' . $contact->id() ); ?>" >Create New Task &raquo;</a>
         </div>
 
@@ -139,17 +148,25 @@
 
          <div class="tab-pane" id="tags">
           <br><p class="lead">"Tags's for <?= $contact->get_first_name(); ?></p>
-          <table class="table DataTable" table-id="tag-table" id="tag-table" data-source="<?php echo site_url('ajax/contact_actions/get_table/id/action_type/action_title/contact_id?action_type=tag&contact_id=' . $contact->id()); ?>" data-link="#" html-source="<?php echo site_url('contact_actions/show/tag/'); ?>" table-type="modal">
-            <thead>
-              <tr>
-                <th>Id</th>
-                <th>Action type</th>
-                <th>Action title</th>
-                <th>Contct Id</th>
-              </tr>
-            </thead>
+
+
+          <table class="table" table-id="tag-table" id="tag-table">
+            <? 
+              //Set up the table...
+              $cols = array('id' => 'Id', 'action_type' => 'Action type', 'action_title' => 'Action titttle');
+              $attr = array('data-target' => '#contactaction-modal', 'html-source' => site_url('contact_actions/show/tag/'), 'data-toggle' => 'modal');
+              $extra_cols = array('<a href="del" data-toggle="tooltip" title="Delete this record"><i class="icon-trash "></i></a>');
+
+              //Output header...
+              echo $contact->table_header($cols, array(''));
+              //Output body...
+              echo $contact->table_body($contact->get_contact_actions('note'), $cols, '#', $attr, $extra_cols);
+            ?>
           </table>
-          <a class="btn btn-primary pull-right" data-target="#contactaction-modal" href="" data-toggle="modal">Create New Task &raquo;</a>
+
+         
+
+          <a class="btn btn-primary pull-right" data-target="#contactaction-modal" href="" data-toggle="modal">Create New Tag &raquo;</a>
         </div>
 
       </div>
@@ -178,3 +195,5 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal --> 
+
+<? dump($contact); ?>

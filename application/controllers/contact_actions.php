@@ -75,20 +75,17 @@ class Contact_actions extends MY_Controller
 		{
 			$message = array('message' => '[uhoh]');
 		}
-
-		/*if ( !strpos($message['message'], '['))
-		    $message = '<strong>Right!</strong> I\'ve ' . $message['message'] . ' that record for you! <br/>(Take a look if you don\'t believe me...)';*/
 		$this->session->set_userdata($message);
 
 		//if its ajax then do this:
 		if ($this->input->is_ajax_request())
 		{
-			//$this->view = FALSE;
 			echo $this->messages->show();
 		}
 		else redirect(site_url('contacts/show/' . $this->input->post('contact_id')));
 		
 	}
+
 
 	public function delete($id, $contact_id)
 	{
@@ -99,6 +96,21 @@ class Contact_actions extends MY_Controller
 		redirect(site_url('contacts/show/' . $contact_id));
 	}
 
+	public function toggle_completed($id, $contact_id)
+	{
+		$this->view = FALSE;
+		
+		$this->contact_action->toggle_value($id,'completed');
+		$message = array('message' => '[updated_action]');
+		
+		//if its ajax then do this:
+		if ($this->input->is_ajax_request())
+		{
+			echo $this->messages->show();
+		}
+		else redirect(site_url('contacts/show/' . $contact_id));
+		
+	}
 
 
 

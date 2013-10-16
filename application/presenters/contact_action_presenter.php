@@ -14,10 +14,8 @@ class Contact_action_presenter extends Presenter
 	/ e.g. full name
 	*/
 
-public function test()
-{
-	echo '<h1>this is a test</h1>';
-}
+	
+	
 
 	//Create full name
 	public function create_notes()

@@ -31,6 +31,15 @@ class Contacts extends MY_Controller
 		//If we return a record, then set up the record...
 		if (isset($q->id))
 		{
+			$id = $q->id;
+
+			//Get the other associated records
+			$q->contact_actions = $this->contact_action->get_records($id);
+			$q->orders = array();
+			$q->tags = array();
+			$q->relationships = array();
+
+			//Create a Presenter object to handle this data
 			$this->data['contact'] = new Contact_Presenter($q);
 		}
 		//...otherwise, set a message and go to index

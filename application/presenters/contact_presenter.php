@@ -65,6 +65,18 @@ class Contact_presenter extends Presenter
 		return $this->tidy_name($this->contact->first_name) . '\'s';
 	}
 
+	public function generate_table($header_array, $record_type, $url=NULL)
+	{
+		$data = $this->contact->contact_actions[$record_type]; 
+		return $data;
+		//$this->table->generate_custom($header_array, $data, $url, $attr = '');
+	}
+
+
+
+
+
+
 	public function get_contact_actions($action_type)
 	{
 		$this->load->model('contact_action_model', 'm');
@@ -76,6 +88,8 @@ class Contact_presenter extends Presenter
 
 		return $q;
 	}
+
+
 
 
 

@@ -63,4 +63,104 @@ class Presenter
 
 	}
 
+
+	/*  	Table Functions */
+	
+	/**
+	 * Generates the <thead> .. </thead> part of the table
+	 * @param  array $cols An array of cols to show in format ('col_name' => 'Col Title')
+	 *                     e.g. array('contact_id' => 'The Contact/'s Id')
+	 * @return string       HTML of the top part of the table
+	 */
+	public function table_header($cols, $extra_cols = FALSE)
+	{
+		//Build the head part of the table
+		$html = '<thead><tr>';
+		foreach ($cols as $field => $nice_name)
+		{
+			$html .= '<th>' . $nice_name . '</th>';
+		}
+
+		//Do we want any extra columns?
+		if (is_array($extra_cols))
+		{
+			foreach ($extra_cols as $col_name)
+			{
+				$html .= '<th>' . $col_name . '</th>';
+			}
+		}
+
+		//Finish and output
+		$html .= '</tr></thead>';
+		return $html;
+	}
+
+
+	public function table_body($data, $cols, $url = FALSE, $attr = FALSE, $delete = FALSE, $completed = FALSE, $extra_cols = FALSE)
+	{
+		$rows = array();
+		$att = array();
+		$cell = '';
+
+		//Go through each column and set up the row
+		foreach ($data as $row => $array)
+		{
+			$rows[$row] = '<tr>';
+			foreach ($cols as $field => $nice_name)
+			{
+				$cell = $array->$field;
+
+				//Have we passed a URL..?
+				if ($url)
+				{
+					$cell = '<a data-id="' . $array->id . '" ';
+					$cell .= 'href="' . $url . '" ';
+					
+					//Have we passed any attributes for this <a tag..?
+					if (is_array($attr))
+					{
+						foreach ($attr as $tag => $val)
+						{
+                			$att[] = $tag . '="' . $val . '"';
+						}
+
+						//Join the array of attributes with a space between each
+						$cell .= implode(' ', $att);
+					}
+					//Complete the link..
+					$cell .= ' >' . $array->$field . '</a>';
+				}
+				$rows[$row] .= '<td>' . $cell . '</td>';
+			}
+
+			//Did we want a 'delete' button...?
+			if ($delete)
+			{
+				//swap out 'record_id' for this id
+				$delete = str_replace('record_id', $array->id, $delete);
+				$rows[$row] .= '<td>' . $delete . '</td>';
+			}
+			
+			//Did we want a 'mark as completed' button (used for tasks)...?
+			if ($completed)
+			{
+				//swap out 'record_id' for this id
+				$completed = str_replace('record_id', $array->id, $completed);
+				$rows[$row] .= '<td>' . $completed . '</td>';
+			}
+			$rows[$row] .= '</tr>';
+		}
+
+		//Now combine to make the full HTML
+		$html = '<tbody>' . implode('', $rows) . '</tbody>';
+		//Does it have a urL?
+		//
+		//Does it need a delete button?
+
+
+		//$data = $this->contact_action[$record_type]; 
+		return $html;
+		//$this->table->generate_custom($header_array, $data, $url, $attr = '');
+	}
+
 }
