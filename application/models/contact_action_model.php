@@ -46,21 +46,22 @@ class Contact_action_model extends MY_Model {
     public function toggle_value($id, $field_name)
     {
         $q = $this->get($id, array($field_name));
-        dump($q);
+    //    dump($q->$field_name);
     	//Get current value
         $new_value = 1;
-        if ($q === 1)
+        if ($q->$field_name == 1)
         {
             $new_value = 0;
         }
 
         
             
-dump($new_value);
+  //dump($new_value);
+// R$new_value = 0;
         //insert new_value
-dump(        $this->update($id, array($field_name => $new_value))  );
-
-        dump($this->get($id, array($field_name)));die();
+        $this->update($id, array($field_name => $new_value));
+//die();
+  //      dump($this->get($id, array($field_name)));die();
         return $new_value;
     }
 

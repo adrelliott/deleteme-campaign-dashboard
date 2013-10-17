@@ -4,7 +4,7 @@ $(document).ready(function () {
     $('.datepicker').datepicker({
         format: "dd/mm/yyyy"
     });
-
+    
     /* Datatable */
     $('.DataTable').each(function() {
         var dataSource = $(this).attr("data-source");

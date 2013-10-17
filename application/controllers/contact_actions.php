@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-/**
+	/**
 * Controller for contacts table
 */
 
@@ -30,6 +30,8 @@ class Contact_actions extends MY_Controller
 		//Get the Id, if passed, and load the record
 		if (!$id) $id = $this->input->post('id');
 		$q = $this->contact_action->get($id);
+		
+  
 
 		//If we return a record, then set up the record...
 		if (isset($q->id))
@@ -54,7 +56,7 @@ class Contact_actions extends MY_Controller
 
 		//Autoloads the view 'contact_actions/create'
 	}
-	
+
 
 	public function edit($id = FALSE)
 	{
@@ -71,7 +73,7 @@ class Contact_actions extends MY_Controller
 			$id = $this->contact_action->insert($this->input->post());
 			$message = array('message' => '[updated_action]');
 		}
-		else 
+		else
 		{
 			$message = array('message' => '[uhoh]');
 		}
@@ -83,7 +85,7 @@ class Contact_actions extends MY_Controller
 			echo $this->messages->show();
 		}
 		else redirect(site_url('contacts/show/' . $this->input->post('contact_id')));
-		
+
 	}
 
 
@@ -99,17 +101,17 @@ class Contact_actions extends MY_Controller
 	public function toggle_completed($id, $contact_id)
 	{
 		$this->view = FALSE;
-		
+
 		$this->contact_action->toggle_value($id,'completed');
 		$message = array('message' => '[updated_action]');
-		
+
 		//if its ajax then do this:
 		if ($this->input->is_ajax_request())
 		{
 			echo $this->messages->show();
 		}
 		else redirect(site_url('contacts/show/' . $contact_id));
-		
+
 	}
 
 
@@ -117,5 +119,5 @@ class Contact_actions extends MY_Controller
 
 
 
-	
+
 }

@@ -106,21 +106,17 @@
     <!-- Start of pills -->
     <div class="tabbable">
       <ul class="nav nav-pills">
-        <li class="active"><a href="#orders" data-toggle="tab">Orders</a></li>
-        <li><a href="#tasks" data-toggle="tab">Tasks</a></li>
+        <li class="active"><a href="#tasks" data-toggle="tab">Tasks</a></li>
+        <li><a href="#orders" data-toggle="tab">Orders</a></li>
         <li><a href="#roles" data-toggle="tab">Roles</a></li>
         <li><a href="#tags" data-toggle="tab">Tags</a></li>
       </ul>
 
       <div class="tab-content">
-        <div class="tab-pane active" id="orders">
-          <br><p class="lead">See what <?= $contact->get_first_name(); ?> has been buying</p>        
-          <a class="btn btn-lg btn-primary pull-right " href="#contactaction-modal" data-toggle="modal">Create New Order &raquo;</a>
-        </div>
-
-        <div class="tab-pane" id="tasks">
+        
+        <div class="tab-pane active" id="tasks">
           <br><p class="lead">"Todo's for <?= $contact->get_first_name(); ?></p>
-           <table class="table" table-id="tag-table" id="tag-table">
+           <table class="table StandardDataTable" table-id="tag-table" id="tag-table">
             <? 
               //Set up the table...
               $cols = array('id' => 'Id', 'action_type' => 'Action type', 'action_title' => 'Action titttle', 'completed' => 'Completed');
@@ -134,21 +130,20 @@
               echo $contact->table_body($contact->get_contact_actions('task'), $cols, '#', $attr, $delete, $completed);
             ?>
           </table>
-
-
-
-
-
           <a class="btn btn-primary pull-right edit-record-modal" href="#" html-source="<?php echo site_url('contact_actions/create/task/' . $contact->id() ); ?>" >Create New Task &raquo;</a>
         </div>
 
+        <div class="tab-pane" id="orders">
+          <br><p class="lead">See what <?= $contact->get_first_name(); ?> has been buying</p>        
+          <a class="btn btn-lg btn-primary pull-right " href="#contactaction-modal" data-toggle="modal">Create New Order &raquo;</a>
+        </div>
+        
         <div class="tab-pane" id="roles">
           <br><p class="lead">"Remember when " <?= $contact->get_first_name(); ?> did that thing..?</p>
         </div>
 
          <div class="tab-pane" id="tags">
           <br><p class="lead">"Tags's for <?= $contact->get_first_name(); ?></p>
-
 
           <table class="table" table-id="tag-table" id="tag-table">
             <? 
@@ -163,9 +158,6 @@
               echo $contact->table_body($contact->get_contact_actions('note'), $cols, '#', $attr, $extra_cols);
             ?>
           </table>
-
-         
-
           <a class="btn btn-primary pull-right" data-target="#contactaction-modal" href="" data-toggle="modal">Create New Tag &raquo;</a>
         </div>
 

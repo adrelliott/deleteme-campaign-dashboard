@@ -106,6 +106,8 @@ class Presenter
 		foreach ($data as $row => $array)
 		{
 			$rows[$row] = '<tr>';
+			$id = $array->id;
+			
 			foreach ($cols as $field => $nice_name)
 			{
 				$cell = $array->$field;
@@ -113,7 +115,7 @@ class Presenter
 				//Have we passed a URL..?
 				if ($url)
 				{
-					$cell = '<a data-id="' . $array->id . '" ';
+					$cell = '<a data-id="' . $id . '" ';
 					$cell .= 'href="' . $url . '" ';
 					
 					//Have we passed any attributes for this <a tag..?
@@ -132,35 +134,28 @@ class Presenter
 				}
 				$rows[$row] .= '<td>' . $cell . '</td>';
 			}
-
 			//Did we want a 'delete' button...?
 			if ($delete)
 			{
 				//swap out 'record_id' for this id
-				$delete = str_replace('record_id', $array->id, $delete);
-				$rows[$row] .= '<td>' . $delete . '</td>';
+				$r_id = str_replace('record_id', $id, $delete);
+				$rows[$row] .= '<td>' . $r_id . '</td>';
 			}
 			
 			//Did we want a 'mark as completed' button (used for tasks)...?
 			if ($completed)
 			{
 				//swap out 'record_id' for this id
-				$completed = str_replace('record_id', $array->id, $completed);
-				$rows[$row] .= '<td>' . $completed . '</td>';
+				$r_id = str_replace('record_id', $id, $completed);
+				$rows[$row] .= '<td>' . $r_id . '</td>';
 			}
 			$rows[$row] .= '</tr>';
 		}
 
 		//Now combine to make the full HTML
 		$html = '<tbody>' . implode('', $rows) . '</tbody>';
-		//Does it have a urL?
-		//
-		//Does it need a delete button?
 
-
-		//$data = $this->contact_action[$record_type]; 
 		return $html;
-		//$this->table->generate_custom($header_array, $data, $url, $attr = '');
 	}
 
 }
