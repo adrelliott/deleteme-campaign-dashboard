@@ -1,0 +1,24 @@
+{
+	"folders":
+	[
+		{
+			"path": "/Applications/MAMP/htdocs/campaigndashboard.co.uk",
+			"file_exclude_patterns": ["*.git", "license.txt"],
+			"folder_exclude_patterns": 
+			[
+				"*/_deleteme",	//Comment this out to see _deleteme files
+				"system", 
+				"application/errors",
+				"application/cache",
+				"application/hooks",
+				"application/language",
+				"application/observers",
+				"application/third_party",
+				"application/views/default",
+				"application/views/layouts/default",
+				"application/views/partials/default"
+
+			]
+		}
+	]
+}

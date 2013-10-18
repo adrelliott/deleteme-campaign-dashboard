@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "dashboards";
+$route['default_controller'] = "dashboard";
 $route['(:any)/list'] = "$1/index";
 $route['contact'] = "contacts";
 $route['contacts/(:num)'] = "contacts/show/$1";

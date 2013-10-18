@@ -20,6 +20,26 @@ class Saved_search_model extends MY_Model {
         parent::__construct();
     }
 
+
+    public function do_query($id)
+    {
+        //Get the query
+        $query = $this->get($id);
+        
+        //peform the query
+        if ($query->query)
+        {
+            $query = $query->query;
+            $result = $query;
+            // $result = $this->db->query($query)->row();
+            return $result;  //Just returns the valueof $result[0]
+        }
+        
+        //output the results
+    }
+
+
+
     /**
      * Gets a stat as a query, and returns the result of the query 
      * @param  int $id Id of the search
