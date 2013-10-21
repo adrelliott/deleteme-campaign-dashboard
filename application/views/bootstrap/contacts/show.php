@@ -119,13 +119,14 @@
            <table class="table StandardDataTable" table-id="tag-table" id="tag-table">
             <? 
               //Set up the table...
-              $cols = array('id' => 'Id', 'action_type' => 'Action type', 'action_title' => 'Action titttle', 'completed' => 'Completed');
+              $cols = array('Id' => 'id', 'Action Type' => 'action_type', 'Action Title' => 'action_title', 'Completed' => 'completed');
               $attr = array('data-target' => '#contactaction-modal', 'html-source' => site_url('contact_actions/show'), 'data-toggle' => 'modal', 'class' => "edit-record-modal");
               $delete = '<a href="' . site_url('contact_actions/delete/record_id/' . $contact->id()) . '" data-toggle="tooltip" title="Delete this record"><i class="icon-trash "></i></a>';
               $completed = '<a href="' . site_url('contact_actions/toggle_completed/record_id/' . $contact->id()) . '" data-toggle="tooltip" title="Mark as Completed"><i class="icon-ok "></i></a>';
 
               //Output header...
               echo $contact->table_header($cols, array(''));
+              
               //Output body...
               echo $contact->table_body($contact->get_contact_actions('task'), $cols, '#', $attr, $delete, $completed);
             ?>

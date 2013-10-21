@@ -76,7 +76,7 @@ class Presenter
 	{
 		//Build the head part of the table
 		$html = '<thead><tr>';
-		foreach ($cols as $field => $nice_name)
+		foreach ($cols as $nice_name => $field)
 		{
 			$html .= '<th>' . $nice_name . '</th>';
 		}
@@ -106,11 +106,11 @@ class Presenter
 		foreach ($data as $row => $array)
 		{
 			$rows[$row] = '<tr>';
-			$id = $array->id;
+			$id = $array['id'];
 			
-			foreach ($cols as $field => $nice_name)
+			foreach ($cols as $nice_name => $field)
 			{
-				$cell = $array->$field;
+				$cell = $array[$field];
 
 				//Have we passed a URL..?
 				if ($url)
@@ -130,7 +130,7 @@ class Presenter
 						$cell .= implode(' ', $att);
 					}
 					//Complete the link..
-					$cell .= ' >' . $array->$field . '</a>';
+					$cell .= ' >' . $array[$field] . '</a>';
 				}
 				$rows[$row] .= '<td>' . $cell . '</td>';
 			}

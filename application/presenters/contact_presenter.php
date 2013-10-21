@@ -79,15 +79,20 @@ class Contact_presenter extends Presenter
 
 	public function get_contact_actions($action_type)
 	{
-		$this->load->model('contact_action_model', 'm');
-		$where = array(
-			 	'action_type' => $action_type,
-			 	'contact_id' => $this->id(),
-			 	);
-		$q = $this->m->get_many_by($where);
-
-		return $q;
+		return $this->contact->contact_actions[$action_type];
 	}
+	
+	// public function get_contact_actions_old($action_type)
+	// {
+	// 	$this->load->model('contact_action_model', 'm');
+	// 	$where = array(
+	// 		 	'action_type' => $action_type,
+	// 		 	'contact_id' => $this->id(),
+	// 		 	);
+	// 	$q = $this->m->get_many_by($where);
+
+	// 	return $q;
+	// }
 
 
 

@@ -1,171 +1,42 @@
   <div class="page-header">
-    <h1 id="navbar"><?= $contact->get_full_name(); ?></h1>
+    <h1 id="navbar">Your Search Results:</h1>
   </div>
 
   <div class="row">
-    <div class="col-lg-6">
+    <small><a href="<?= site_url('saved_searches') ?>"><i class="icon-long-arrow-left"></i> Back to the saved searches list...</a></small>
+    <div class="col-lg-12">
+
       <div class="well">
-
-       <div class="tabbable"><!-- Start of pills -->
-        <ul class="nav nav-pills">
-          <li class="active"><a href="#overview" data-toggle="tab">Overview</a></li>
-          <li><a href="#indepth" data-toggle="tab">In-Depth</a></li>
-          <li><a href="#optins" data-toggle="tab">Opt-ins</a></li>
-          <li><a href="#notes" data-toggle="tab">Notes</a></li>
-          <li><a href="#relationships" data-toggle="tab">Relationships</a></li>
-        </ul>
-
-        <div class="tab-content">
-
-          <div class="tab-pane active" id="overview">
-            <br/><p class="lead">More of <?= $contact->get_name_owned(); ?> data under each blue tab</p>
-            <div class="message-contact">
-              <?= $this->messages->show(); ?>
-            </div>
-            <?= form_open('contacts/edit/' . $contact->id(), 'class="form-horizontal ajax" data-section="contact" role="form"'); ?>
-            <?php include (APPPATH. 'views/partials/' . $this->config->item('layout_folder') . '/_contacts/_form_overview.php'); ?>
-            <div class="form-group">
-              <div class="col-lg-10 col-lg-offset-2">
-                <button type="submit" class="btn btn-success pull-right"><i class="icon-ok"></i> Save Changes</button> 
-              </div>
-            </div>
-            <div class="message-contact"></div>
-          </div>
-
-          <div class="tab-pane" id="indepth">
-            <br/><p class="lead">All of <?= $contact->get_name_owned(); ?> secrets...</p>
-            <?php include (APPPATH. 'views/partials/' . $this->config->item('layout_folder') . '/_contacts/_form_indepth.php'); ?>
-            <div class="form-group">
-              <div class="col-lg-10 col-lg-offset-2">
-                <button type="submit" class="btn btn-success pull-right"><i class="icon-ok"></i> Save Changes</button> 
-              </div>
-            </div>
-            <div class="message-contact clearfix"></div>
-          </div>
-
-          <div class="tab-pane" id="optins">
-            <br/><p class="lead">Manage <?= $contact->get_name_owned(); ?>
-            communication preferences...</p>
-            <?php include (APPPATH. 'views/partials/' . $this->config->item('layout_folder') . '/_contacts/_form_optin.php'); ?>
-            <div class="form-group">
-              <div class="col-lg-10 col-lg-offset-2">
-                <button type="submit" class="btn btn-success pull-right"><i class="icon-ok"></i> Save Changes</button> 
-              </div>
-            </div>
-            <?= form_close(); ?>
-            <div class="message-contact"></div>
-          </div>
-
-          <div class="tab-pane" id="notes">
-            <br/><p class="lead">All the stuff we've said about <?= $contact->get_first_name(); ?>...</p>
-            <table class="table DataTable" table-id="note-table" id="note-table" data-source="<?php echo site_url('ajax/contact_actions/get_table/id/created_at/action_description?action_type=note&contact_id=' . $contact->id()); ?>"  table-type="">
-              <thead>
-                <tr>
-                  <th>Id</th>
-                  <th>Creation Date</th>
-                  <th>Note</th>
-                </tr>
-              </thead>
-            </table>
-            <div class="form-group">
-              <div class="col-lg-10 col-lg-offset-2">
-                <button type="" class="btn btn-success pull-right"><i class="icon-ok"></i> Add New Note</button> 
-              </div>
-            </div>
-          </div>
-
-          <div class="tab-pane" id="relationships">
-            <br/><p class="lead">Who does <?= $contact->get_first_name(); ?> know?</p>
-            <table class="table DataTable" table-id="relationship-table" id="relationship-table" data-source="<?php echo site_url('ajax/contact_actions/get_table/id/action_type/action_title/contact_id?action_type=relationship&contact_id=' . $contact->id()); ?>" data-link="#" html-source="<?php echo site_url('contact_actions/show/task/'); ?>" table-type="modal">
-              <thead>
-                <tr>
-                  <th>Id</th>
-                  <th>Action type</th>
-                  <th>Action title</th>
-                  <th>Contct Id</th>
-                </tr>
-              </thead>
-            </table>
-            <div class="form-group">
-              <div class="col-lg-10 col-lg-offset-2">
-                <button type="" class="btn btn-success pull-right"><i class="icon-ok"></i> Add New Relationship</button> 
-              </div>
-            </div>
-          </div>
-
-          <a href="<?php echo site_url('contacts/delete/' . $contact->id()); ?>">
-            <button class="btn btn-danger btn-xs pull-left" onclick="return deletechecked();">Delete <?= $contact->get_first_name()?></button>
-          </a>
-        </div>
-
-      </div><!-- End of pills -->
-    </div>
-  </div>
-  <div class="col-lg-5 col-lg-offset-1">
-
-    <!-- Start of pills -->
-    <div class="tabbable">
-      <ul class="nav nav-pills">
-        <li class="active"><a href="#tasks" data-toggle="tab">Tasks</a></li>
-        <li><a href="#orders" data-toggle="tab">Orders</a></li>
-        <li><a href="#roles" data-toggle="tab">Roles</a></li>
-        <li><a href="#tags" data-toggle="tab">Tags</a></li>
-      </ul>
-
-      <div class="tab-content">
-        
-        <div class="tab-pane active" id="tasks">
-          <br><p class="lead">"Todo's for <?= $contact->get_first_name(); ?></p>
-           <table class="table StandardDataTable" table-id="tag-table" id="tag-table">
-            <? 
-              //Set up the table...
-              $cols = array('id' => 'Id', 'action_type' => 'Action type', 'action_title' => 'Action titttle', 'completed' => 'Completed');
-              $attr = array('data-target' => '#contactaction-modal', 'html-source' => site_url('contact_actions/show'), 'data-toggle' => 'modal', 'class' => "edit-record-modal");
-              $delete = '<a href="' . site_url('contact_actions/delete/record_id/' . $contact->id()) . '" data-toggle="tooltip" title="Delete this record"><i class="icon-trash "></i></a>';
-              $completed = '<a href="' . site_url('contact_actions/toggle_completed/record_id/' . $contact->id()) . '" data-toggle="tooltip" title="Mark as Completed"><i class="icon-ok "></i></a>';
-
-              //Output header...
-              echo $contact->table_header($cols, array(''));
-              //Output body...
-              echo $contact->table_body($contact->get_contact_actions('task'), $cols, '#', $attr, $delete, $completed);
-            ?>
-          </table>
-          <a class="btn btn-primary pull-right edit-record-modal" href="#" html-source="<?php echo site_url('contact_actions/create/task/' . $contact->id() ); ?>" >Create New Task &raquo;</a>
-        </div>
-
-        <div class="tab-pane" id="orders">
-          <br><p class="lead">See what <?= $contact->get_first_name(); ?> has been buying</p>        
-          <a class="btn btn-lg btn-primary pull-right " href="#contactaction-modal" data-toggle="modal">Create New Order &raquo;</a>
-        </div>
-        
-        <div class="tab-pane" id="roles">
-          <br><p class="lead">"Remember when " <?= $contact->get_first_name(); ?> did that thing..?</p>
-        </div>
-
-         <div class="tab-pane" id="tags">
-          <br><p class="lead">"Tags's for <?= $contact->get_first_name(); ?></p>
-
-          <table class="table" table-id="tag-table" id="tag-table">
-            <? 
-              //Set up the table...
-              $cols = array('id' => 'Id', 'action_type' => 'Action type', 'action_title' => 'Action titttle');
-              $attr = array('data-target' => '#contactaction-modal', 'html-source' => site_url('contact_actions/show/tag/'), 'data-toggle' => 'modal');
-              $extra_cols = array('<a href="del" data-toggle="tooltip" title="Delete this record"><i class="icon-trash "></i></a>');
-
-              //Output header...
-              echo $contact->table_header($cols, array(''));
-              //Output body...
-              echo $contact->table_body($contact->get_contact_actions('note'), $cols, '#', $attr, $extra_cols);
-            ?>
-          </table>
-          <a class="btn btn-primary pull-right" data-target="#contactaction-modal" href="" data-toggle="modal">Create New Tag &raquo;</a>
-        </div>
-
+        <?= $saved_search->get_results('description'); ?>
+        <table class="table">
+          <thead>
+            <? foreach ($saved_search->get_results('headers') as $header): ?>
+              <th><?= humanize($header); ?></th>
+            <? endforeach; ?>
+          </thead>
+          <tbody>
+            <?= $saved_search->table_body($saved_search->get_results('data'), $saved_search->get_results('headers')); ?>
+          </tbody>
+        </table>      
+        <div class="pull-right"><?= $saved_search->get_results('links'); ?></div>
+        <div class="clearfix"></div>        
       </div>
-    </div>
-    <!-- End of pills -->
+      
+          <!-- Single button -->
+      <div class="btn-group pull-right">
+        <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown">
+          So... What's next, Al? <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="<?= site_url('saved_searches/export/' . $this->uri->slash_segment(3) . $this->uri->segment(4)); ?>">Export these as CSV</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Send them all an Email</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Tag them all</a></li>
+        </ul>
+      </div>
+
   </div>
-</div>
 
 <!-- Modal -->
 <div class="modal fade" id="contactaction-modal" tabindex="-1" role="dialog" aria-labelledby="contactaction-modal-label" aria-hidden="true">
@@ -174,7 +45,7 @@
 
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Action for <?= $contact->get_first_name(); ?></h4>
+        <h4 class="modal-title">Action for ->get_first_name(); ?></h4>
       </div>
 
       <div class="modal-body">
@@ -188,4 +59,5 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal --> 
 
-<? dump($contact); ?>
+
+<? //echo "<div class="clearfix"></div>";dump($saved_search); ?>

@@ -9,6 +9,8 @@ class Saved_search_model extends MY_Model {
          'multiple_record' => array(
                           'id', 'search_name', 'search_description', 'search_type', 'query', 'owner_id')
     );
+
+    //private $_result;
 	
 	/*
 		You can set observers to call methods before create, update, get and delete
@@ -21,21 +23,9 @@ class Saved_search_model extends MY_Model {
     }
 
 
-    public function do_query($id)
+    public function num_rows_in_query($sql)
     {
-        //Get the query
-        $query = $this->get($id);
-        
-        //peform the query
-        if ($query->query)
-        {
-            $query = $query->query;
-            $result = $query;
-            // $result = $this->db->query($query)->row();
-            return $result;  //Just returns the valueof $result[0]
-        }
-        
-        //output the results
+        return  $this->do_query($sql)->num_rows();
     }
 
 

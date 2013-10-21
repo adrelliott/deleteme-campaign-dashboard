@@ -31,13 +31,20 @@ class Contact_action_model extends MY_Model {
     public function get_records($contact_id)
     {
         $retval = array('note' => array(), 'tweet' => array(), 'email' => array(), 'task'  => array(), 'appointment' => array(), 'TEST' => array());
-        $action = $this->get_many_by('contact_id', $contact_id);
+        $action = $this->as_array()->get_many_by('contact_id', $contact_id);
 
         //put them in an assoc array
-        foreach ($action as $row)
+        foreach ($action as $row => $array)
         {
-            $retval[$row->action_type][$row->id] = $row;
+            $action_type = $array['action_type'];
+            $id = $array['id'];
+            $retval[$action_type][$id] = $array;
         }
+
+//         foreach ($action as $row)
+//         {
+//             $retval[$row->action_type][$row->id] = $row;
+//         }
 
         return $retval;
     }

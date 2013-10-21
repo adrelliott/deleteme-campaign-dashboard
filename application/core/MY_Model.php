@@ -277,6 +277,38 @@ class MY_Model extends CI_Model
         return $result;
     }
 
+
+    /**
+     * Performs the passed SQL. NOTE: We can't use any of the $this->database methods that alter the query as its overidden by the $sql, so we need to append them
+     */
+    public function do_query($sql, $limit = FALSE, $offset = FALSE)
+    {        
+        //Set up the 'WHERE deleted=' clause...
+        if ($this->soft_delete && $this->_temporary_with_deleted !== TRUE)
+        {
+            $sql .= ' WHERE ' . $this->soft_delete_key . '=' . (int)$this->_temporary_only_deleted;
+        }
+
+        //Just perform for this client's records: 
+        $this->_set_owner_id();
+
+        //Set up any limits
+        if (is_int($limit) && is_int($offset))
+            $sql .= ' LIMIT ' . $offset . ', ' . $limit;
+
+        //$result = $this->_database->query($sql);
+
+        // dump($this->_database->last_query());
+
+        return $this->_database->query($sql);
+    }
+
+
+
+
+
+
+
     /**
      * Insert a new row into the table. $data should be an associative array
      * of data to be inserted. Returns newly created ID.
@@ -652,6 +684,12 @@ class MY_Model extends CI_Model
 
         //Just perform for this client's records: 
         $this->_set_owner_id();
+        
+        //Exclude deleted records
+        if ($this->soft_delete && $this->_temporary_with_deleted !== TRUE)
+        {
+            $this->_database->where($this->soft_delete_key, (bool)$this->_temporary_only_deleted);
+        }
 
         return $this->_database->count_all_results($this->_table);
     }
@@ -663,6 +701,12 @@ class MY_Model extends CI_Model
     {
         //Just perform for this client's records: 
         $this->_set_owner_id();
+
+        //Exclude deleted records
+        if ($this->soft_delete && $this->_temporary_with_deleted !== TRUE)
+        {
+            $this->_database->where($this->soft_delete_key, (bool)$this->_temporary_only_deleted);
+        }
         
         return $this->_database->count_all($this->_table);
     }
@@ -878,6 +922,7 @@ class MY_Model extends CI_Model
     public function limit($limit, $offset = 0)
     {
         $this->_database->limit($limit, $offset);
+        echo "<p>Limit is $limit and offset = $offset </p>";
         return $this;
     }
 
