@@ -11,5 +11,6 @@ application/.DS_Store
 *.DS_Store
 license.txt
 README.md
+public_html/.htaccess
 .htaccess
 .bash_history
