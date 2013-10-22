@@ -12,7 +12,8 @@
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
              <? echo nav_bar_item('dashboard', 'dashboard'); ?>
-             <? echo nav_bar_item('contacts', 'briefcase'); ?>
+             <? echo nav_bar_item('contacts', 'user'); ?>
+             <? echo nav_bar_item('leads', 'briefcase'); ?>
              <? echo nav_bar_item('orders', 'gbp'); ?>
             </ul>
 

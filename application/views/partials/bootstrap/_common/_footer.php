@@ -1,9 +1,12 @@
     </div><!-- end of container div -->
-    <div id="footer">
+    
+    <div class="navbar navbar-default navbar-fixed-bottom">
       <div class="container">
-        <p class="text-muted credit">Copyright <a href="http://DallasMatthews.co.uk" target="_blank">Dallas Matthews Ltd</a> <?php echo date('Y'); ?></p>
+        <p class="navbar-text text-muted credit">Copyright <a href="http://DallasMatthews.co.uk" target="_blank">Dallas Matthews Ltd</a> <?php echo date('Y'); ?></p>
       </div>
     </div>
+
+    
 
 
 

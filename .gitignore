@@ -6,7 +6,9 @@ __old
 .ssh
 _backups
 mysql_backups
+application/.DS_Store
 .DS_Store
+*.DS_Store
 license.txt
 README.md
 .htaccess
