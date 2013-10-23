@@ -25,8 +25,8 @@
                 <ul class="dropdown-menu">
                  <? echo nav_bar_item('campaigns', 'comments'); ?>
                  <? echo nav_bar_item('reports', 'bar-chart'); ?>
-                   <li><a href="<?= site_url('templates/layout_index'); ?>">Index</a></li>
-                   <li><a href="<?= site_url('templates/layout_show'); ?>">Show</a></li>
+                   <li><a href="<?= site_url('templates/index'); ?>">Index</a></li>
+                   <li><a href="<?= site_url('templates/show'); ?>">Show</a></li>
                    <li><a href="<?= site_url('templates/layout_index_tabs'); ?>">Index_tabs</a></li>
                    <li><a href="<?= site_url('templates/grid'); ?>">Grid</a></li>
                    <li><a href="<?= site_url('templates/layout_index_tabs'); ?>">Index_tabs</a></li>

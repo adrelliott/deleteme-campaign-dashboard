@@ -19,10 +19,28 @@ class Templates extends MY_Controller
 		
 	}
 
-	public function index()
+	public function index($view_name = 'layout_index')
 	{
-		//$this->data['contacts'] = $this->contact->get_all();
+		//Shows a blank record with the form action = create/edit
+		$this->data['template'] = new Template_Presenter();
+		$this->view = 'templates/' . $view_name;
 	}
+
+	public function show($view_name = 'layout_show')
+	{
+		//Shows a blank record with the form action = create/edit
+		$this->data['template'] = new Template_Presenter();
+		$this->view = 'templates/' . $view_name;
+	}
+
+	public function create($view_name = 'layout_show')
+	{
+		//Shows a blank record with the form action = create/edit
+		$this->data['template'] = new Template_Presenter();
+		$this->view = 'templates/' . $view_name;
+	}
+
+
 
 	public function grid()
 	{
@@ -34,18 +52,6 @@ class Templates extends MY_Controller
 		# code...
 	}
 	
-	public function show()
-	{
-		//Shows a blank record with the form action = create/edit
-		$this->data['template'] = new Template_Presenter();
-		$this->view = 'templates/layout_show';
-	}
-
-	public function create()
-	{
-		//Shows a blank record with the form action = create/edit
-		$this->data['template'] = new Template_Presenter();
-		$this->view = 'templates/layout_show';
-	}
+	
 	
 }

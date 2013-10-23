@@ -17,6 +17,7 @@
 						<form class="form" role="form">
 							<? $template->load_partial('_form_create'); ?>
 							<div class="form-group col-lg-12 col-md-12 col-sm-12">
+								<? //Need to turn this button into a submit!! ?>
 								<button type="submit" class="btn btn-success pull-right"><i class="icon-ok"></i> Save & Add More Detail</button>
 							</div>
 						</form>
@@ -194,7 +195,7 @@
 				      	<div class="row ">
 				      		<div class="col-md-3 col-md-offset-9">
 						        <a href="<?= site_url('contacts/create'); ?>">
-						        	<button type="button" class="btn btn-primary pull-right">Create New Task</button>
+						        	<a href="#" class="btn btn-primary pull-right">Create New Task</button>
 						        </a>
 				      		</div>
 				      	</div>
