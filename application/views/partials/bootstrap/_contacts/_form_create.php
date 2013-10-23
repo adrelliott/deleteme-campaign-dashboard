@@ -1,28 +1,50 @@
 
-<form class="form" role="form">
-<div class=" form-inline">
-  <div class="form-group col-lg-6 col-md-12 col-sm-12">
-    <label class="" for="last_name">First name</label>
-    <input type="text" class="form-control input-lg" id="last_name" placeholder="E.g. Lionel">
+  <div class="form-group">
+    <input class="form-control input-lg" id="focusedInput first_name" type="text" name="first_name" placeholder="First name...">
   </div>
-  <div class="form-group col-lg-6 col-md-12 col-sm-12">
-    <label class="" for="last_name">Last name</label>
-    <input type="text" class="form-control input-lg" id="last_name" placeholder="E.g. Blair">
+  <div class="form-group">
+    <input class="form-control input-lg" type="text" id="last_name" name="last_name" placeholder="Last name...">
   </div>
-  <div class="form-group col-lg-6 col-md-12 col-sm-12">
-    <label class="" for="mobile_number">Mobile Number</label>
-    <input type="text" class="form-control input-lg" id="mobile_number" placeholder="E.g. 07976234234">
+  <div class="form-group">
+    <input class="form-control input-lg" type="text" id="email" name="email" placeholder="Email address..." required>
   </div>
-  <div class="form-group col-lg-6 col-md-12 col-sm-12">
-    <label class="" for="landline_number">Landline Number</label>
-    <input type="text" class="form-control input-lg" id="landline_number" placeholder="E.g. 02082223344">
+  <div class="form-group">
+    <input class="form-control input-sm" type="text" id="nickname" name="nickname" placeholder="Known as...">
   </div>
-  <div class="form-group col-lg-12 col-md-12 col-sm-12">
-    <label for="email">Email address</label>
-    <input type="email" class="form-control input-lg" id="email" placeholder="E.g. lionel@GiveUsAclue.com">
+  <div class="form-group">
+    <label for="optionsRadios" class="col-lg-2 control-label">Gender: </label>
+    <div class="radio-inline">
+      <label>
+        <input type="radio" name="gender" id="optionsRadios1" value="male" checked="">
+        <i class="icon-male"></i> Male
+      </label>
+    </div>
+    <div class="radio-inline">
+      <label>
+        <input type="radio" name="gender" id="optionsRadios2" value="female">
+        <i class="icon-female"></i>  Female
+      </label>
+    </div>
   </div>
-  <div class="form-group col-lg-12 col-md-12 col-sm-12">
-    <button type="submit" class="btn btn-success pull-right"><i class="icon-ok"></i> Save Changes</button> 
-    <p class="help-block">Got more to say? Don't worry - there's space on the next page for all that</p>
+  <div class="form-group">
+    <label for="optionsRadio" class="col-lg-2 control-label">Type: </label>
+    <div class="radio-inline">
+      <label>
+        <input type="radio" name="contact_type" id="optionsRadio1" value="individual" checked="">
+        <i class="icon-user"></i> Indiv.
+      </label>
+    </div>
+    <div class="radio-inline">
+      <label>
+        <input type="radio" name="contact_type" id="optionsRadio2" value="organisation">
+        <i class="icon-truck"></i>  Org.
+      </label>
+    </div>
   </div>
-</div>
+  <div class="form-group">
+    <div class="input-group">
+      <span class="input-group-addon">Date of Birth</span>
+      <input type="date" class="form-control input-lg " placeholder="Date of Birth...">
+    </div>
+  </div>
+  <button type="submit" class="btn btn-success pull-right clearfix"><i class="icon-ok"></i> Save & Edit Record</button>

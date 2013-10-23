@@ -64,14 +64,6 @@ class Presenter
 	}
 
 
-	public function load_partial($partial_name)
-	{
-		return $this->load->view('partials/' . $this->config->item('layout_folder')  . '/_' . $this->router->class . '/' . $partial_name);
-		///$view = implode('/', array('partials', $this->config->item('layout_folder') , $this->router->class, $partial_name));
-		//return $this->load->view($view);
-	}
-
-
 	/*  	Table Functions */
 	
 	/**
