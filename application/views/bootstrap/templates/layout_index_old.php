@@ -1,5 +1,5 @@
 <div class="row"><!-- Page Row-->
-	<div class="col-xs-12"><!-- Containing Column -->
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><!-- Cotaining Column -->
 
 		<div class="row">
 			<div class="col-xs-12 hidden-lg hidden-md hidden-sm visible-xs">
@@ -37,17 +37,15 @@
 		</div><!-- /Top line -->
 
 		<div class="row">
-			<div>
-				<div class="alert alert-dismissable alert-danger col-lg-8 col-md-10">
+			<div class="alert alert-dismissable alert-danger col-lg-8 col-md-10 col-sm-12 col-xs-12">
 				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 				<h4>Oh Bum.</h4>
 				I've looked everywhere and just can't find what you're looking for. I'm really sorry.
-			</div>		
-			</div>
+			</div>	
 		</div>
 
 		<div class="row"><!-- Main table-->
-			<div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<table class="table DataTable" table-id="contact-table" id="contact-table" data-source="<?php echo site_url('ajax/contacts/get_table/id/first_name/last_name/owner_id'); ?>" data-link="<?php echo site_url() . 'contacts/show/'; ?>" link-class="test test2" sScrollY="400">
 				<thead>
 					<tr>
@@ -62,7 +60,7 @@
 		</div> <!-- /Main table-->
 
 		<div class="row">
-			<div>
+			<div class="col-md-3 col-md-offset-9 col-sm-12 col-xs-12">
 				<a href="<?= site_url('contacts/create'); ?>" class="btn btn-success btn-lg pull-right">Create New Contact</a>
 			</div>
 		</div>

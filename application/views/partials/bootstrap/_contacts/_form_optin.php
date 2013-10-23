@@ -1,3 +1,4 @@
+  <legend>Subscriptions</legend>
 
   <p>OK. So does <?php echo $contact->first_name(); ?> want us to send...</p>
   <div class="form-group">
