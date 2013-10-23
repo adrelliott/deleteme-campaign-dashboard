@@ -15,7 +15,7 @@
 |
 */
 //$config['base_url']	= 'http://localhost:8888/campaigndashboard.co.uk/public_html/';
-$config['base_url']	= 'http://localhost/tellenis_clients/campaign-dashboard/public_html/';
+$config['base_url']	= 'http://campaigndashboard.dev/';
 
 /*
 |--------------------------------------------------------------------------

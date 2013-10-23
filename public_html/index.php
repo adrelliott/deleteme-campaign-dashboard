@@ -22,7 +22,7 @@
 //var_dump($_SERVER);
 $http_host = strtolower($_SERVER['HTTP_HOST']);
 
-if ($http_host == 'localhost') 
+if ($http_host == 'campaigndashboard.dev') 
 	define('ENVIRONMENT', 'development');
 elseif ($http_host == 'leadfarm-staging.co.uk') 
 	define('ENVIRONMENT', 'staging');
@@ -46,7 +46,7 @@ if (defined('ENVIRONMENT'))
 	{
 		case 'development':
 		case 'staging':
-			error_reporting(1);
+			error_reporting(E_ALL);
 		break;
 	
 		case 'production':

@@ -116,22 +116,8 @@
         
         <div class="tab-pane active" id="tasks">
           <br><p class="lead">"Todo's for <?= $contact->get_first_name(); ?></p>
-		 <table class="table DataTable" table-id="dashboard-table" id="dashboard-table" data-source="<?php echo site_url('ajax/contact_actions/get_table/id/action_type/action_title/completed'); ?>" data-link="<?php echo site_url() . 'contacts/show/'; ?>" table-type="modal" link-class="test test2" sScrollY="500">
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Action Type</th>
-            <th>Action Title</th>
-            <th>Completed</th>
-			<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>         
-			
-          </tr>
-        </thead>
-      </table>
-	  <noscript>
            <table class="table StandardDataTable" table-id="tag-table" id="tag-table">
-		    <table class="table DataTable" table-id="dashboard-table" id="dashboard-table" data-source="<?php echo site_url('ajax/contact_actions/get_table/id/action_type/action_title/completed'); ?>" data-link="<?php echo site_url() . 'contacts/show/'; ?>" table-type="modal" link-class="test test2" sScrollY="500">
-            <?php
+            <? 
               //Set up the table...
               $cols = array('Id' => 'id', 'Action Type' => 'action_type', 'Action Title' => 'action_title', 'Completed' => 'completed');
               $attr = array('data-target' => '#contactaction-modal', 'html-source' => site_url('contact_actions/show'), 'data-toggle' => 'modal', 'class' => "edit-record-modal");
@@ -139,13 +125,12 @@
               $completed = '<a href="' . site_url('contact_actions/toggle_completed/record_id/' . $contact->id()) . '" data-toggle="tooltip" title="Mark as Completed"><i class="icon-ok "></i></a>';
 
               //Output header...
-              //echo $contact->table_header($cols, array(''));
+              echo $contact->table_header($cols, array(''));
               
               //Output body...
               echo $contact->table_body($contact->get_contact_actions('task'), $cols, '#', $attr, $delete, $completed);
             ?>
           </table>
-		  </noscript>
           <a class="btn btn-primary pull-right edit-record-modal" href="#" html-source="<?php echo site_url('contact_actions/create/task/' . $contact->id() ); ?>" >Create New Task &raquo;</a>
         </div>
 

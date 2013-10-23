@@ -1,15 +1,10 @@
-var editor;  
 $(document).ready(function () {
         
     /* Datepicker - http://www.eyecon.ro/bootstrap-datepicker/ */
     $('.datepicker').datepicker({
         format: "dd/mm/yyyy"
     });
-    editor = new $.fn.dataTable.Editor( {
-        "ajaxUrl": "",
-        "domTable": "#dashboard-table",
-        "display": 'lightbox'
-    } );
+    
     /* Datatable */
     $('.DataTable').each(function() {
         var dataSource = $(this).attr("data-source");
@@ -42,14 +37,11 @@ $(document).ready(function () {
                 "sScrollY": sScrollY + "px",
                 "iDisplayLength": 15,
                 "bDestroy": true,
-				 "aoColumnDefs": [
+                "aoColumnDefs": [
                     {
-                    "aTargets": ['_all'],
-                    "sDefaultContent": '<a href="" class="editor_edit"><i class="icon-ok"></i></a>  <a href="" class="editor_remove"><i class="icon-trash "></i></a>',
-					
+                    "aTargets": [ '_all' ],
                     "mRender": function (data, type, full) {
                         /* return the <a> element */
-						//if(data)
                         return '<a href="#" class="edit-record-modal" data-id="'+ full[0] + '" html-source="' + htmlSource + '">' + data + '</a>';
                         }
                     }
@@ -151,17 +143,6 @@ $(document).ready(function () {
 
         return false;
     });
-// delete confirmation
-$('.DataTable').on('click', 'a.editor_remove', function (e) {
-														
-        e.preventDefault();
- 
-        editor.message( "Are you sure you wish to delete this row?" );
-        editor.remove(
-            $(this).parents('tr')[0],
-            'Delete Row',
-            { "label": "Delete", "fn": function () { editor.submit() } }
-        );
-    } );
+
 
 });

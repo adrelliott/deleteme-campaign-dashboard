@@ -49,9 +49,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
-$db['default']['password'] = '';
-$db['default']['database'] = 'campaign2_staging';
+$db['default']['username'] = 'campdash_local';
+$db['default']['password'] = 'kZNzw)si95d2xTl3>INQE=~5-@7S6R';
+$db['default']['database'] = 'campdash_local';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

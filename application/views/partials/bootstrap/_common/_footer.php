@@ -1,9 +1,12 @@
     </div><!-- end of container div -->
-    <div id="footer">
+    
+    <div class="navbar navbar-default navbar-fixed-bottom">
       <div class="container">
-        <p class="text-muted credit">Copyright <a href="http://DallasMatthews.co.uk" target="_blank">Dallas Matthews Ltd</a> <?php echo date('Y'); ?></p>
+        <p class="navbar-text text-muted credit">Copyright <a href="http://DallasMatthews.co.uk" target="_blank">Dallas Matthews Ltd</a> <?php echo date('Y'); ?></p>
       </div>
     </div>
+
+    
 
 
 
@@ -29,7 +32,6 @@
 
   <script src="<?php echo site_url('assets/bootstrap-3/js/bootstrap/bootstrap-datepicker.js'); ?>"></script>
   <script src="<?php echo base_url('assets/bootstrap-3/js/libs/jquery.dataTables.js'); ?>"></script>
-   <script src="<?php echo base_url('assets/bootstrap-3/js/libs/dataTables.editor.min.js'); ?>"></script>
   <script src="<?php echo site_url('assets/bootstrap-3/js/libs/app.js'); ?>"></script>
 
   </body>
