@@ -15,6 +15,7 @@ class Templates extends MY_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		require_once (APPPATH . 'presenters/template_presenter.php');
 		
 	}
 
@@ -33,9 +34,18 @@ class Templates extends MY_Controller
 		# code...
 	}
 	
-	public function layout_show()
+	public function show()
 	{
-		# code...
+		//Shows a blank record with the form action = create/edit
+		$this->data['template'] = new Template_Presenter();
+		$this->view = 'templates/layout_show';
+	}
+
+	public function create()
+	{
+		//Shows a blank record with the form action = create/edit
+		$this->data['template'] = new Template_Presenter();
+		$this->view = 'templates/layout_show';
 	}
 	
 }
