@@ -20,7 +20,7 @@ class Contacts extends MY_Controller
 
 	public function index()
 	{
-		//$this->data['contacts'] = $this->contact->get_all();
+		$this->data['contacts'] = $this->contact->get_all();
 	}
 
 	public function show($id = NULL)
