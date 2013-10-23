@@ -59,7 +59,7 @@ if (!function_exists('dump_exit')) {
 
         //Set up the iconif ($nav == $html['current_url'][1])
         if ($icon)
-            $html['output'] .= '<i class="icon-' . $icon . ' "></i> ';
+            $html['output'] .= '<i class="fa fa-' . $icon . ' "></i> ';
 
         //Set the wording
         if ($display)

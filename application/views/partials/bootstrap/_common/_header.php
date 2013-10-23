@@ -17,14 +17,15 @@
       <link href="<? echo site_url('assets/bootstrap-3/css/bootstrap.min.css'); ?>" rel="stylesheet">
 
       <!-- Include Font-awesome -->
-      <link href="<? echo site_url('assets/bootstrap-3/font-awesome/css/font-awesome.css'); ?>" rel="stylesheet">
+      <!--<link href="<? //echo site_url('assets/bootstrap-3/font-awesome3.2.1/css/font-awesome.css'); ?>" rel="stylesheet">-->
+      <link href="<? echo site_url('assets/bootstrap-3/font-awesome4.0.0/css/font-awesome.css'); ?>" rel="stylesheet">
 
     <? else: ?>
       <!-- Bootstrap core CSS -->
       <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
 
-      <!-- Include Font-awesome -->
-      <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+      <!-- Include Font-awesome Upgraded from 3.2.1-->
+      <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">
 
     <? endif; ?>
 
