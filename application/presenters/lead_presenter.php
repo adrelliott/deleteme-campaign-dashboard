@@ -7,6 +7,14 @@ class Lead_presenter extends Presenter
 {
 
 
+	public function get_element($page_element)
+	{
+		return $this->data['yield']['elements'][$page_element];
+	}
+
+
+
+
 
 	//Get contact details
 	public function get_contact_details($id)

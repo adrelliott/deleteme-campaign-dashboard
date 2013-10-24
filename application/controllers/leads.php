@@ -25,6 +25,7 @@ class Leads extends MY_Controller
 
 	public function show($id = NULL)
 	{
+		$this->data['lead'] = new Lead_Presenter();
 		return;
 		//Query contacts table for a record where 'id' = $id
 		$q = $this->lead->get($id);
@@ -56,7 +57,8 @@ class Leads extends MY_Controller
 	public function create()
 	{
 		//Shows a blank record with the form action = create/edit
-		$this->data['contact'] = new Contact_Presenter();
+		$this->data['lead'] = new Lead_Presenter();
+		$this->view = 'leads/show';
 	}
 
 

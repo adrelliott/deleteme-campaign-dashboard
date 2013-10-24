@@ -76,6 +76,7 @@ class My_Controller extends CI_Controller
         define ('OWNER_ID', 22220); ///////////////////////////////////Set this on login!
         $this->config->load('client_configs/' . OWNER_ID);
         $this->load->helper('inflector');
+        //$this->load->helper('partial');
 
         //Show profiler
         $this->output->enable_profiler(ENVIRONMENT === 'development' && isset($_GET['debug']));
@@ -129,8 +130,11 @@ class My_Controller extends CI_Controller
             //pass through the contents of $this->data for debug
             if (ENVIRONMENT !== 'production') $this->data['debug'] = $this->data;
 
-            // If $this->view isn't empty, load it. If it is, try and guess based on the controller and action name
-            $view = (!empty($this->view)) ? $this->config->item('layout_folder') . '/' . $this->view : $this->config->item('layout_folder') . '/' . $this->router->directory . $this->router->class . '/' . $this->router->method;
+            // If $this->view isn't empty, load it. If it is, try and guess based on the controller and action name 
+            // (****NOTE*** view() is in helpers/partial_helper.php)
+            $view = (!empty($this->view)) ? view($this->view) : view($this->router->method);
+
+            //$view = (!empty($this->view)) ? $this->config->item('layout_folder') . '/' . $this->view : $this->config->item('layout_folder') . '/' . $this->router->directory . $this->router->class . '/' . $this->router->method;
 
             // Load the view into $yield
             $data['yield'] = $this->load->view($view, $this->data, TRUE);
