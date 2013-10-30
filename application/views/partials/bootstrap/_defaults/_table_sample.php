@@ -1,4 +1,4 @@
-<table class="table table-condensed">
+<table class="table table-condensed data-table" id="task-table" table-id="task-table" data-target="#contactaction-modal" html-source="<?= site_url('contact_actions/show'); ?>" >
 	<thead>
 		<tr>
 			<th>Id</th>

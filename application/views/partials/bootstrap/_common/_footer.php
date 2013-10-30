@@ -32,6 +32,7 @@
 
   <script src="<?php echo site_url('assets/bootstrap-3/js/bootstrap/bootstrap-datepicker.js'); ?>"></script>
   <script src="<?php echo base_url('assets/bootstrap-3/js/libs/jquery.dataTables.js'); ?>"></script>
+  <script src="<?php echo base_url('assets/bootstrap-3/js/libs/dataTables.bootstrapPagination.js'); ?>"></script>
   <script src="<?php echo site_url('assets/bootstrap-3/js/libs/app.js'); ?>"></script>
 
   <!-- Include any custom style sheets/scripts/meta etc for this client -->

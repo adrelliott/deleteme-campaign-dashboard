@@ -40,7 +40,7 @@
             <div class="tab-pane active" id="contacts">
               <br/><p class="lead">Your Contacts...</p>
               <div class="table-responsive">
-              <table class="table DataTable" table-id="dashboard-table" id="dashboard-table" data-source="<?php echo site_url('ajax/contacts/get_table/id/first_name/last_name/owner_id'); ?>" link="contacts/show/" data-link="contacts/show/">
+              <table class="table data-table server-side" table-id="contact-table" id="contact-table" data-source="<?php echo site_url('ajax/contacts/get_table/id/first_name/last_name/owner_id'); ?>" link="contacts/show/" data-link="contacts/show/">
                   <thead>
                       <tr>
                           <th>Id</th>
@@ -54,32 +54,27 @@
             </div>
             <div class="tab-pane" id="leads">
                <br/><p class="lead">Your Leads...</p>
-              <table class="table table-striped table-bordered table-hover">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Column heading</th>
-                    <th>Column heading</th>
-                    <th>Column heading</th>
-                  </tr>
-                </thead>
-                <tbody>
-                </tbody>
+              <table class="table data-table server-side" table-id="lead-table" id="lead-table" data-source="<?php echo site_url('ajax/contacts/get_table/id/first_name/last_name/owner_id'); ?>" data-link="leads/show/">
+                  <thead>
+                      <tr>
+                          <th>Id</th>
+                          <th>First Name lead</th>
+                          <th>Last Name</th>
+                          <th>Owner Id</th>
+                      </tr>
+                  </thead>
               </table>
             </div>
             <div class="tab-pane" id="orders">
                <br/><p class="lead">Your Orders...</p>
-              <table class="table table-striped table-bordered table-hover">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Column heading</th>
-                    <th>Column heading</th>
-                    <th>Column heading</th>
-                  </tr>
-                </thead>
-                <tbody>
-                </tbody>
+              <table class="table data-table server-side" table-id="order-table" id="order-table" data-source="<?php echo site_url('ajax/contacts/get_table/id/first_name/last_name'); ?>" link="contacts/show/" data-link="contacts/show/" >
+                  <thead>
+                      <tr>
+                          <th>Id</th>
+                          <th>First Nameorder</th>
+                          <th>Last Name</th>
+                      </tr>
+                  </thead>
               </table>
             </div>
           </div>
@@ -100,16 +95,7 @@
           <div class="tab-content">
             <div class="tab-pane active" id="tasks">
               <br/><p class="lead">Your To-Do list...</p>
-              <table class="table table-striped table-bordered table-hover">
-                <thead>
-                  <tr>
-                    <th><p class="text-center">Task</p></th>
-                    <th><p class="text-center"><i class="icon-check"></i></p></th>
-                  </tr>
-                </thead>
-                <tbody>
-                </tbody>
-              </table>
+              <?= partial('_table_sample'); ?>
             </div>
             <div class="tab-pane" id="stats">
                <br/><p class="lead">Your Latest Stats...</p>
