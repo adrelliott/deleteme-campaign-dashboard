@@ -35,6 +35,9 @@
     <!-- Custom styles for this template -->
     <link href="<? echo site_url('assets/bootstrap-3/css/custom.css'); ?>" rel="stylesheet">
 
+    <!-- Include any custom style sheets/scripts/meta etc for this client -->
+    <?= partial('_header_includecustom'); ?>
+
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="<? echo site_url('assets/bootstrap-3/js/bootstrap/html5shiv.js'); ?>"></script>

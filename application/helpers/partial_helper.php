@@ -28,20 +28,55 @@ if (!function_exists('view')) {
     }
 }
 
-if (!function_exists('controller')) {
-    
-    function controller($singular = FALSE)
-    {
-    	$r = get_instance()->router->class;
-    	if ($singular)
-    		$r = ucfirst(singular($r));
 
-    	//Return the controller name
-    	return $r;
+
+if (!function_exists('config')) {
+    
+    function config($element, $config_item, $custom_index = FALSE)
+    {
+        $c = get_instance()->router->class;
+        $m = get_instance()->router->method;
+        $config = get_instance()->config->item($config_item);
+
+        //Find the element in the config...
+        
+        //... is it in $config[config_item][class][method]...?
+        if (element($c, $config) && element($m, $config[$c]))
+            $retval = element($element, $config[$c][$m]);
+
+        //... is it in $config[config_item][class]...?
+        elseif (element($c, $config) && element($config_item, $config[$c]))
+            $retval = element($element, $config[$c]);
+
+        //... is it in $config[config_item][class][custom_index]...?
+        elseif ($custom_index && element($c, $config) && $config[$c][$custom_index][$element])
+            $retval = element($element, $config[$c][$custom_index]);
+
+        //... is it in $config[config_item][custom_index]...?
+        elseif ($custom_index && element($custom_index, $config))
+           $retval = element($element, $config[$custom_index]);
+
+        //... it must be $config[config_item][element]...?
+        else $retval = element($element, $config);
+
+        //Returns either the value or FALSE
+        return $retval;
     }
 }
 
 
+if (!function_exists('controller')) {
+    
+    function controller($singular = FALSE)
+    {
+        $c = get_instance()->router->class;
+        if ($singular)
+            $c = ucfirst(singular($c));
+
+        //Return the controller name
+        return $c;
+    }
+}
 
 
 

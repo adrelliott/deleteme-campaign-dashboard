@@ -43,7 +43,20 @@ legend {
 	text-align: center;
 }
 
-.btn.btn-fullwidth {
+/*.btn.btn-fullwidth {
   width: 100%; 
   display: block;
+}*/
+
+div.list .pre-scrollable {
+  max-height: 550px;
 }
+
+div.list {
+	height:650px;
+}
+
+div.card a {
+	text-decoration:none;
+}
+

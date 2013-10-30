@@ -10,7 +10,7 @@ class Dashboard extends MY_Controller
 	public $models = array('contact', 'contact_action', 'saved_search');
 
 	// What view are we using?
-	protected $view = 'dashboard/index';
+	protected $view = 'dashboard';
 
 	public function index()
 	{

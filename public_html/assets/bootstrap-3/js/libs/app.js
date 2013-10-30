@@ -145,4 +145,21 @@ $(document).ready(function () {
     });
 
 
+
+
+    /* Make sure the first pill in each pills nav & tab-pane is active */
+    $("ul.nav.nav-pills").each(function() {
+        $(this).find('li').first().addClass('active');
+    });
+    $("div.tab-content").each(function() {
+        $(this).find('div.tab-pane').first().addClass('active');
+    });
+
+    /* Turn cards into clickable divs */
+    $("card").click(function(){
+        window.location=$(this).find("a").attr("href");
+        return false;
+    });
+
+
 });

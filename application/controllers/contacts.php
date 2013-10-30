@@ -54,7 +54,7 @@ class Contacts extends MY_Controller
 
 	public function create()
 	{
-		//Shows a blank record with the form action = create/edit
+		$this->view = 'show';
 		$this->data['contact'] = new Contact_Presenter();
 	}
 

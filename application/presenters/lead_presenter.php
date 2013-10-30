@@ -12,7 +12,13 @@ class Lead_presenter extends Presenter
 		return $this->data['yield']['elements'][$page_element];
 	}
 
+	public function user_config($element)
+	{
+		# prestedn this si the config file returned form the model (the model actually queries the $_SESSION)
+		$q[$element] = array('overview' => 'Overview', 'indepth' => 'In Depth');
 
+		return $q;
+	}
 
 
 

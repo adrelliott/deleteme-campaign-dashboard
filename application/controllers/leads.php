@@ -20,7 +20,8 @@ class Leads extends MY_Controller
 
 	public function index()
 	{
-		//$this->data['contacts'] = $this->contact->get_all();
+		//die('the view = ' . $this->view);
+		$this->data['lead'] = new Lead_Presenter();
 	}
 
 	public function show($id = NULL)
@@ -106,6 +107,11 @@ class Leads extends MY_Controller
 		redirect(site_url('contacts'));
 	}
 
-	
+
+	public function show_board()
+	{
+		$this->view = 'show_board';
+		$this->index();
+	}
 	
 }

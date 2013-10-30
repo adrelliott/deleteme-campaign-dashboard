@@ -11,8 +11,8 @@
 			</label>  
 		</div>
 	</div>
-<br><br>
-<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	<br><br>
+	<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		<label for="email">1. Opt into SMS texts?</label>
 		<div>
 			<label class="radio-inline">
@@ -23,8 +23,8 @@
 			</label>  
 		</div>
 	</div>
-<br><br>
-<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	<br><br>
+	<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		<label for="email">1. Opt into post?</label>
 		<div>
 			<label class="radio-inline">
@@ -35,8 +35,8 @@
 			</label>  
 		</div>
 	</div>
-<br><br>
-<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	<br><br>
+	<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		<label for="email">1. Opt into merchandise emails?</label>
 		<div>
 			<label class="radio-inline">
@@ -48,8 +48,8 @@
 		</div>
 	</div>
 
-<br><br>
-<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	<br><br>
+	<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		<label for="email">1. Opt into Away match details?</label>
 		<div>
 			<label class="radio-inline">
@@ -60,8 +60,6 @@
 			</label>  
 		</div>
 	</div>
-
-
 
 
 </div><!-- /.form-inline-->

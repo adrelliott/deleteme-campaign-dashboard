@@ -33,6 +33,8 @@
           <li><a href="#">Send them all an Email</a></li>
           <li class="divider"></li>
           <li><a href="#">Tag them all</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Save this Search (if the search has not been saved)</a></li>
         </ul>
       </div>
 
