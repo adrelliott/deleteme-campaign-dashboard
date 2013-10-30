@@ -14,5 +14,5 @@ ID = <?= $contact_action->contact_id(); ?>..
   	<div class="message-task"></div>
 <?= form_close(); ?>
 <?php //dump($contact_action); ?>
-<script src="http://localhost/campaign-dashboard/public_html/assets/bootstrap-3/js/libs/ajax.js"></script>
+<script src="<?= site_url('assets/bootstrap-3/js/libs/ajax.js'); ?>"></script>
 

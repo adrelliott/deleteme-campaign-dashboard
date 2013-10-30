@@ -16,10 +16,10 @@
             data[name] = value;
         });
 
-        /*console.log(url);
+        console.log(url);
         console.log(type);
         console.log(sectionId);
-        console.log(data);*/
+        console.log(data);
         
         $.ajax({
             url: url,
