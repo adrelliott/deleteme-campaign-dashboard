@@ -19,15 +19,25 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
-//var_dump($_SERVER);
+//die(var_dump($_SERVER));
 $http_host = strtolower($_SERVER['HTTP_HOST']);
+//die($http_host);
 
-if ($http_host == 'campaigndashboard.dev') 
+if ($http_host == 'localhost') 
+	define('ENVIRONMENT', 'tellenis_development');
+	
+elseif ($http_host == 'dallasmatthews.dev') 
+	define('ENVIRONMENT', 'tellenis_changes_development');
+	
+elseif ($http_host == 'campaigndashboard.dev') 
 	define('ENVIRONMENT', 'development');
+	
 elseif ($http_host == 'leadfarm-staging.co.uk') 
 	define('ENVIRONMENT', 'staging');
+	
 elseif ($http_host == '54.229.160.165') 
 	define('ENVIRONMENT', 'staging1');//for EC2
+	
 else define('ENVIRONMENT', 'production');
 
 //die('env = ' . ENVIRONMENT);
@@ -46,7 +56,7 @@ if (defined('ENVIRONMENT'))
 	{
 		case 'development':
 		case 'staging':
-			error_reporting(E_ALL);
+			error_reporting(1);
 		break;
 	
 		case 'production':
@@ -54,7 +64,7 @@ if (defined('ENVIRONMENT'))
 		break;
 
 		default:
-			exit('The application environment is not set correctly.');
+			error_reporting(1);
 	}
 }
 

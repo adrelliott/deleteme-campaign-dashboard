@@ -31,7 +31,6 @@ class Contact_actions extends MY_Controller
 		if (!$id) $id = $this->input->post('id');
 		$q = $this->contact_action->get($id);
 		
-  
 
 		//If we return a record, then set up the record...
 		if (isset($q->id))

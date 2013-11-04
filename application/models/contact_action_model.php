@@ -25,25 +25,26 @@ class Contact_action_model extends MY_Model {
     /**
      * Gets all of this contact's actions and sorts them into types
      * @param  int $contact_id the id of the current contacts
-     * @param  string $col What is the column we're searching for here?
      * @return array             an array of objects, sorted into action type
      * e.g. retval['tasks'] = array([0] -> OBJECT)
      */
-    public function get_records($id, $col = 'contact_id')
+    public function get_records($contact_id)
     {
-        //Intp what do we want these actions grouped? (I.e. what are all the contact_action types?)
         $retval = array('note' => array(), 'tweet' => array(), 'email' => array(), 'task'  => array(), 'appointment' => array(), 'TEST' => array());
+        $action = $this->as_array()->get_many_by('contact_id', $contact_id);
 
-        //Get the actions...
-        $actions = $this->as_array()->get_many_by($col, $id);
-
-        //put them in an assoc array by action type
-        foreach ($actions as $row => $array)
+        //put them in an assoc array
+        foreach ($action as $row => $array)
         {
             $action_type = $array['action_type'];
             $id = $array['id'];
             $retval[$action_type][$id] = $array;
         }
+
+//         foreach ($action as $row)
+//         {
+//             $retval[$row->action_type][$row->id] = $row;
+//         }
 
         return $retval;
     }
