@@ -1,10 +1,20 @@
+
   <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <?= partial('_table_tasks'); ?>
+      <?//= partial('_table_sample', array('table_name' => 'sample_table')); ?>
+      <? 
+
+echo $this->table->table_standard('tasks_table', $contact->get_contact_actions('task'));
+
+
+
+
+      //dump($contact->get_contact_actions('task')); ?>
     </div>
   </div>
   <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-     <a class="btn btn-primary pull-right edit-record-modal" href="#" html-source="<?php echo site_url('contact_actions/create/task/' . $contact->id() ); ?>" >Create New Task &raquo;</a>
+      <a href="<?= site_url('contacts/create'); ?>" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Create New Task</a>
     </div>
   </div>
+  

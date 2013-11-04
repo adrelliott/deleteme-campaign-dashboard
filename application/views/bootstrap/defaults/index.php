@@ -4,7 +4,7 @@
 
     <div class="row">
       <div class="col-xs-12 hidden-lg hidden-md hidden-sm visible-xs">
-        <?= partial('_button_create'); ?>
+        <a href="<?= site_url(controller() . '/create'); ?>" class="btn btn-primary btn-lg pull-right">Create New Contact</a>
       </div>
     </div>
 
@@ -18,7 +18,9 @@
         <div class="page-header border-none">
           <div class="btn-group pull-right">
             <div class="btn-group btn-block">
-              <?= partial('_button_extraactions'); ?>
+              <button type="button" class="btn btn-lg btn-default btn-block2 btn-justified dropdown-toggle " data-toggle="dropdown">
+                Extra Actions... <span class="caret"></span>
+              </button>
               <ul class="dropdown-menu" role="menu">
                 <?= partial('_button_extraactions_dropdown'); ?>
               </ul>
@@ -34,17 +36,10 @@
       </div>
     </div>
 
-    <div class="row"><!-- Main table-->
-      <div>
-        <?= partial('_table_ajax', array('table_name' => controller() . '_table')); ?>
-      </div>
-    </div> <!-- /Main table-->
+    <!-- Main table-->
+    <?= partial('_row_' . controller()); ?>
+    <!-- /Main table-->
 
-    <div class="row">
-      <div>
-        <?= partial('_button_create'); ?>
-      </div>
-    </div>
 
   </div><!-- /Containing column-->
 </div><!-- /Page Row-->

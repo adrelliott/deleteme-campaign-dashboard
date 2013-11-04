@@ -1,4 +1,4 @@
-<table class="table table-condensed data-table" id="task-table" table-id="task-table" data-target="#contactaction-modal" html-source="<?= site_url('contact_actions/show'); ?>" >
+<table class="table data-table " table-id="<?= $table_name; ?>-table" data-source="<?= site_url(config('data_source', 'tables', $table_name)); ?>" html-source="<?= site_url(config('html_source', 'tables', $table_name)); ?>" data-target="<?= config('data_target', 'tables', $table_name)?>" data-link="<?= config('data_link', 'tables', $table_name)?>" table-dropdown="<?= config('dropdown', 'tables', $table_name)?>" >
 	<thead>
 		<tr>
 			<th>Id</th>

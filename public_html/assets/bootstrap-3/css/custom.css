@@ -12,6 +12,10 @@ body {
 	float: right;
 }
 
+.dataTables_wrapper {
+	padding: 20px 0;
+}
+
 .border-none {
 	border:none;
 }

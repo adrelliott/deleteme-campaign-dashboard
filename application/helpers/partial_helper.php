@@ -39,17 +39,18 @@ if (!function_exists('config')) {
         $config = get_instance()->config->item($config_item);
 
         //Find the element in the config...
+        //echo 'here it is';dump(element($config_item, $config[$c]));
         
         //... is it in $config[config_item][class][method]...?
-        if (element($c, $config) && element($m, $config[$c]))
+        if ( !$custom_index && element($c, $config) && element($m, $config[$c]))
             $retval = element($element, $config[$c][$m]);
 
         //... is it in $config[config_item][class]...?
-        elseif (element($c, $config) && element($config_item, $config[$c]))
+        elseif ( !$custom_index && element($c, $config) && element($element, $config[$c]))
             $retval = element($element, $config[$c]);
 
         //... is it in $config[config_item][class][custom_index]...?
-        elseif ($custom_index && element($c, $config) && $config[$c][$custom_index][$element])
+        elseif ($custom_index && element($c, $config) && element($custom_index, $config[$c]))
             $retval = element($element, $config[$c][$custom_index]);
 
         //... is it in $config[config_item][custom_index]...?
@@ -94,7 +95,8 @@ if (!function_exists('get_path')) {
 			'partial' => 'partials/',
 			'view' => '',
 			'folder' => get_instance()->config->item('layout_folder'),
-			'client' => '22222',
+            'client' => config('owner', 'owner_id'),
+			//'client' => 22222,
 			'class' => array(
 						'partial' => '_' . get_instance()->router->class,
 						'view' => get_instance()->router->class),

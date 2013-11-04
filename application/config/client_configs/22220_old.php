@@ -8,7 +8,7 @@
 */
 
 // What layout folder are we using? (Either bootstrap or Sangam)
-$config['owner']['owner_id']	= '22220';
+$config['owner_id']	= '22220';
 
 // What layout folder are we using? (Either bootstrap or Sangam)
 $config['layout_folder']	= 'bootstrap';
@@ -61,10 +61,8 @@ $config['tables']	= array(
 	'contacts_table' => array(
 		'table_id' => 'contacts_dashboard',
 		'data_source' => 'ajax/contacts/get_table/id/first_name/last_name', 
-		'html_source' => 'contacts/show/',
 		'data_link' => 'contacts/show/',
-		'data_target' => '#contacts/show/',
-		'dropdown' => 0,
+		'scrolly' => 100,
 		'columns' => array(
 			'id' => '#',
 			'first_name' => 'First Name',
@@ -72,31 +70,11 @@ $config['tables']	= array(
 			//'owner_id' => 'Owner Id',
 			),
 		),
-	'tasks_table' => array(
-		'attributes' => array(
-			'class' => 'table data-table',
-			'id' => 'contacts_dashboard',
-			'data_source' => 'ajax/contacts/get_table/id/first_name/last_name', 
-			'html_source' => 'contacts/show/',
-			'data_link' => 'contacts/show/',
-			'data_target' => '#contacts/show/',
-			'dropdown' => 0,
-			),
-		'columns' => array(
-			'id' => '#',
-			'action_title' => 'Title',
-			'action_description' => 'Desc',
-			//'owner_id' => 'Owner Id',
-			),
-		),
 	'leads_table' => array(
 		'table_id' => 'leads_dashboard',
 		'data_source' => 'ajax/contacts/get_table/id/first_name/last_name', 
-		'html_source' => 'contacts/show/',
 		'data_link' => 'contacts/show/',
-		'data_target' => '#contacts/show/',
-		'link_class' => 'class',
-		'dropdown' => 0,
+		'scrolly' => 100,
 		'columns' => array(
 			'id' => '#',
 			'first_name' => 'First Namelead',
@@ -107,26 +85,8 @@ $config['tables']	= array(
 	'orders_table' => array(
 		'table_id' => 'orders_dashboard',
 		'data_source' => 'ajax/contacts/get_table/id/first_name/last_name', 
-		'html_source' => 'contacts/show/',
 		'data_link' => 'contacts/show/',
-		'data_target' => '#contacts/show/',
-		'link_class' => 'class',
-		'dropdown' => 0,
-		'columns' => array(
-			'id' => '#',
-			'first_name' => 'First Nameorder',
-			'last_name' => 'Last Name',
-			//'owner_id' => 'Owner Id',
-			),
-		),
-	'sample_table' => array(
-		'table_id' => 'sample_dashboard',
-		'data_source' => '', 
-		'html_source' => 'contact_actions/show/tag/',
-		'data_link' => 'contacts/show/',
-		'data_target' => '#contactaction-modal',
-		'link_class' => 'class',
-		'dropdown' => 0,
+		'scrolly' => 100,
 		'columns' => array(
 			'id' => '#',
 			'first_name' => 'First Nameorder',
@@ -136,177 +96,15 @@ $config['tables']	= array(
 		),
 	'dashboard' => array(
 		//Overwrite the default tables above for each page by re-declaring it here...
-		
 		),
 	'contacts' => array(
 		//Overwrite the default tables above for each page by re-declaring it here...
-		'contacts_table' => array(
-			'table_id' => 'contacts_dashboard',
-			'data_source' => 'ajax/contacts/get_table/id/first_name/last_name', 
-			'html_source' => 'contacts/show/',
-			'data_link' => 'contacts/show/',
-			'data_target' => '#contacts/show/',
-			'link_class' => 'class',
-			'dropdown' => 1,
-			'columns' => array(
-				'id' => '#',
-				'first_name' => 'First Name',
-				'last_name' => 'Last Name',
-				//'owner_id' => 'Owner Id',
-				),
-			),
 		),
 	'leads' => array(
 		//Overwrite the default tables above for each page by re-declaring it here...
-		'leads_table' => array(
-			'table_id' => 'leads_dashboard',
-			'data_source' => 'ajax/contacts/get_table/id/first_name/last_name',
-			'html_source' => 'contacts/show/', 
-			'data_link' => 'contacts/show/',
-			'data_target' => '#contacts/show/',
-			'link_class' => 'class',
-			'dropdown' => 1,
-			'columns' => array(
-				'id' => '#',
-				'first_name' => 'First Namelead',
-				'last_name' => 'Last Name',
-				//'owner_id' => 'Owner Id',
-				),
-			),
 		),
 	
 	);
-
-/* pills */
-$config['pills'] = array(
-	'dashboard' => array(
-		'column_1' => array(
-			//'id' => 'Name' - note, the id is also the partial name,
-			//e.g 'overview' => 'Overview' pulls in _row_overview.php partial
-			'contacts' => 'Contacts',
-			'leads' => 'Leads',
-			'orders' => 'Orders',
-			),	
-		'column_2' => array(
-			//'id' => 'Name' - note, the id is also the partial name,
-			//e.g 'overview' => 'Overview' pulls in _row_overview.php partial
-			//<list>'tasks' => 'Tasks',
-			'stats' => 'Statistics',
-			),
-		),
-	'contacts' => array(
-		'column_1' => array(
-			'overview' => 'Overview',
-			'indepth' => 'In-Depth',
-			'optins' => 'Opt-Ins',
-			'notes' => 'Notes',
-			'links' => 'Links',
-			),	
-		'column_2' => array(
-			//'id' => 'Name' - note, the id is also the partial name,
-			//e.g 'overview' => 'Overview' pulls in _row_overview.php partial
-			'tasks' => 'Tasks1',
-			'orders' => 'Orders2',
-			'roles' => 'Roles3',
-			'tags' => 'Tags',
-			'leads' => 'Leads',
-			),
-		),
-		
-	);
-
-
-// Extra config itesm
-$config['extras']	= array(
-	'include_in_header' => array(
-		//E.g. 'script' => 'Path_to_script' (from site_url())
-		'stylesheet' => 'assets/clients/' . $config['owner']['owner_id'] . '/extra_css.css',
-		),
-	'include_in_footer' => array(
-		//E.g. 'script' => 'Path_to_script' (from site_url())
-		),
-	);
-
-
-// Set up the extra actions (these are the dropdowns on the top right of each page)
-$config['extraactions']	= array(
-	'dashboard' => array(
-		'index' => array(
-			'dropdown' => array(
-				'contacts/create' => '..create a new contact',
-				'xx'	=> '..create a new lead',
-				'' => '...send some emaisl to contacts'				),
-			),
-		),
-	'contacts' => array(
-		'index' => array(
-			'dropdown' => array(
-				'contacts/create1' => 'Create a new Contact',
-				'contacts/create2' => 'Create a new Contact22',
-				'contacts/create3' => 'Create a new Contact33',
-				),
-			),
-		'show' => array(
-			'dropdown' => array(
-				'contacts/create' => 'Create a new Contact',
-				),
-			),
-		),
-	'leads' => array(
-		'index' => array(
-			/*'dropdown' => array(
-				'contacts/create' => 'Create a new Contact',
-				'contacts/delete' => 'Delete a new Contact',
-				),*/
-			),
-		'show' => array(
-			'dropdown' => array(
-				'contacts/create' => 'Create a new Contact lead/show',
-				),
-			),
-		),
-	);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ///maybe delete these...?
 $config['nav_sets'] = array(
@@ -335,6 +133,43 @@ $config['nav_sets'] = array(
 		),
 	);
 
+
+// Set up the extra actions (these are the dropdowns on the top right of each page)
+$config['extraactions']	= array(
+	'dashboard' => array(
+		'index' => array(
+			'dropdown' => array(
+				'contacts/create' => '..create a new contact',
+				'xx'	=> '..create a new lead',
+				'' => '...send some emaisl to contacts'				),
+			),
+		),
+	'contacts' => array(
+		'index' => array(
+			'dropdown' => array(
+				'contacts/create' => 'Create a new Contact',
+				),
+			),
+		'show' => array(
+			'dropdown' => array(
+				'contacts/create' => 'Create a new Contact',
+				),
+			),
+		),
+	'leads' => array(
+		'index' => array(
+			/*'dropdown' => array(
+				'contacts/create' => 'Create a new Contact',
+				'contacts/delete' => 'Delete a new Contact',
+				),*/
+			),
+		'show' => array(
+			'dropdown' => array(
+				'contacts/create' => 'Create a new Contact lead/show',
+				),
+			),
+		),
+	);
 
 
 // Set up the column 1 on a show page
@@ -419,6 +254,16 @@ $config['column2']	= array(
 		),
 	);
 
+// Extra config itesm
+$config['extras']	= array(
+	'include_in_header' => array(
+		//E.g. 'script' => 'Path_to_script' (from site_url())
+		'stylesheet' => 'assets/clients/' . $config['owner_id'] . '/extra_css.css',
+		),
+	'include_in_footer' => array(
+		//E.g. 'script' => 'Path_to_script' (from site_url())
+		),
+	);
 
 
 // What layout folder are we using? (Either bootstrap or Sangam)

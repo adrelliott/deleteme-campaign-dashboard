@@ -29,7 +29,7 @@
 
                         <!-- Pill Navigation -->
                         <ul class="nav nav-pills">
-                            <?= partial('_pills_nav', array('position'=>'column_2', 'mobile' => 0)); ?>
+                            <?= partial('_pills_nav_col2_desktop'); ?>
                         </ul>
                         <!-- /Pill Navigation -->
 
@@ -37,13 +37,13 @@
                             <li class="dropdown active hidden-lg hidden-md visible-sm visible-xs">
                                 <a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown"><h4><i class="fa fa-toggle-down"></i> See other tables... <b class="caret"></b></h4></a>
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
-                                    <?= partial('_pills_nav', array('position'=>'column_2', 'mobile' => 1)); ?>
+                                    <?= partial('_pills_nav_col2_mobile'); ?>
                                 </ul>
                             </li>
                         </ul><!-- /nav for Phones and small tablets -->
 
-                        <div class="tab-content"><!-- Tab Content -->
-                            <?= partial('_pills_body', array('position'=>'column_2')); ?>
+                        <div class="tab-content"><!-- Tab Content -->  
+                            <?= partial('_pills_body_col2'); ?>
                         </div><!-- /Tab Content -->
 
                     <!-- /Pills -->
@@ -58,7 +58,7 @@
 
                 <!-- Pill Navigation -->
                 <ul class="nav nav-pills">
-                    <?= partial('_pills_nav', array('position'=>'column_1', 'mobile' => 0)); ?>
+                    <?= partial('_pills_nav_col1_desktop'); ?>
                 </ul>
                 <!-- /Pill Navigation -->
 
@@ -66,14 +66,13 @@
                     <li class="dropdown active hidden-lg hidden-md visible-sm visible-xs">
                         <a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown"><h4><i class="fa fa-toggle-down"></i> See other tables... <b class="caret"></b></h4></a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
-                            <?= partial('_pills_nav', array('position'=>'column_1', 'mobile' => 1)); ?>
+                            <?= partial('_pills_nav_col1_mobile'); ?>
                         </ul>
                     </li>
                 </ul><!-- /nav for Phones and small tablets -->
 
-
                 <div class="tab-content"><!-- Tab Content -->
-                    <?= partial('_pills_body', array('position'=>'column_1')); ?>
+                    <?= partial('_pills_body_col1'); ?>
                 </div><!-- /Tab Content -->
 
             <!-- /Pills -->

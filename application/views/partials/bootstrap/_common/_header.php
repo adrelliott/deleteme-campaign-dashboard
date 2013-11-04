@@ -36,7 +36,23 @@
     <link href="<? echo site_url('assets/bootstrap-3/css/custom.css'); ?>" rel="stylesheet">
 
     <!-- Include any custom style sheets/scripts/meta etc for this client -->
-    <?= partial('_header_includecustom'); ?>
+    <?
+      if ($element = config('include_in_header', 'extras'))
+      {
+        foreach ($element as $type => $path)
+        {
+          if($type == 'script')
+          {
+            echo '<script src="' . site_url($path) . '"></script>';
+          }
+          elseif($type == 'stylesheet')
+          {
+            echo '<link href="' . site_url($path) . '" rel="stylesheet">';    
+          }
+        }
+      }; 
+    ?>
+
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

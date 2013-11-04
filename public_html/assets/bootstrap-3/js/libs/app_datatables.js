@@ -8,7 +8,7 @@ $(document).ready(function () {
     
     /* Datatables */
     $('.data-table').each(function() {
-        var tableId = $(this).attr("id");
+        var tableId = $(this).attr("table-id");
 
         if ($(this).attr("table-dropdown")) {
             var dropdown = true;
@@ -80,8 +80,91 @@ $(document).ready(function () {
 
         /* Now apply the datatable */
         $('#' + tableId).dataTable( options );
+        
 
     });
+
+
+    /* Datatable */
+    $('.DataTable').each(function() {
+        var dataSource = $(this).attr("data-source");
+        var tableId = $(this).attr("table-id");
+        var linkClass = $(this).attr("link-class");
+
+        /* Test to see if we've passed $(this).attr("number-rows") */
+        if ($(this).attr('sScrollY')) {
+            var sScrollY = $(this).attr("sScrollY");
+        } else {
+            var sScrollY = 200;
+        }
+
+        /* If its modal, then set the link to just # and set the html-source attr */
+        if ($(this).attr('table-type') === 'modal') {
+            var htmlSource = $(this).attr('html-source');
+            var datatableoptions = {
+                "bProcessing": true,
+                "bServerSide": true,
+                "sPaginationType": "bootstrap",
+                "sAjaxSource": dataSource,
+                "sServerMethod": "POST",
+                "bProcessing": true,
+                "bServerSide": true,
+                "sPaginationType": "bootstrap",
+                "sAjaxSource": dataSource,
+                "sServerMethod": "POST",
+                "bScrollInfinite": true,
+                "bScrollCollapse": true,
+                "sScrollY": sScrollY + "px",
+                "iDisplayLength": 15,
+                "bDestroy": true,
+                "aoColumnDefs": [
+                    {
+                    "aTargets": [ '_all' ],
+                    "mRender": function (data, type, full) {
+                        /* return the <a> element */
+                        return '<a href="#" class="edit-record-modal" data-id="'+ full[0] + '" html-source="' + htmlSource + '">' + data + '</a>';
+                        }
+                    }
+                ]
+            };
+        }
+        else {  /* Otherwise write the full link out and exclude html-source */
+            var link = $(this).attr('data-link');
+            var datatableoptions = {
+                "bProcessing": true,
+                "bServerSide": true,
+                "sPaginationType": "bootstrap",
+                "sAjaxSource": dataSource,
+                "sServerMethod": "POST",
+                "bProcessing": true,
+                "bServerSide": true,
+                "sPaginationType": "bootstrap",
+                "sAjaxSource": dataSource,
+                "sServerMethod": "POST",
+                "bScrollInfinite": true,
+                "bScrollCollapse": true,
+                "sScrollY": sScrollY + "px",
+                "iDisplayLength": 15,
+                "bDestroy": true,
+                "aoColumnDefs": [
+                    {
+                    "aTargets": [ '_all' ],
+                    "mRender": function (data, type, full) {
+                            if (!link) {
+                                return data;
+                            } else {
+                                return '<a href="' + link + full[0] + '" class="' + linkClass + '" data-id="'+ full[0] + '">' + data + '</a>';
+                            }
+                        }
+                    }
+                ]
+            }
+        };
+        var dTable = $("#" + tableId ).dataTable(datatableoptions);
+        $.extend( $.fn.dataTableExt.oStdClasses, {
+              "sWrapper": "dataTables_wrapper form-inline" /* This is Bootstrap styling? */
+        } );
+      });
 
     /* Modal for tasks */
     $(document).on('click', '.edit-record-modal', function(e) {

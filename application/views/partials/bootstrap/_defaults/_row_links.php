@@ -1,6 +1,6 @@
 <div class="row">
 	<legend>Relationships</legend>
-	<?= partial('_table_sample'); ?>
+	<?= partial('_table_sample', array('table_name' => 'sample_table')); ?> 
 </div>
 <div class="row">
 	<div>

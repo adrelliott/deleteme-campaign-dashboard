@@ -1,3 +1,4 @@
+
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class MY_Table extends CI_Table {
@@ -7,6 +8,64 @@ class MY_Table extends CI_Table {
         parent::__construct();
     }
 
+
+	public function table_standard($table_name, $data)
+	{
+	  //set columns
+		$cols = config('columns', 'tables', $table_name);
+		$attr = '';
+		$row = array();
+		$template = array();
+
+		//Set heading
+		$this->set_heading(array_values($cols));
+
+		//Set rows
+		foreach ($data as $r => $a) 
+		{
+		  foreach (array_keys($cols) as $col)
+		  {
+		      $row[$r][] = $data[$r][$col];
+		  }
+		  $this->add_row(array_values($row[$r]));
+		}
+
+		//set up table attributes
+		foreach (config('attributes', 'tables', $table_name) as $k => $v)
+		{
+			$attr .= $k . '="' . $v . '" ';
+		}
+
+		$template['table_open'] = '<table ' . $attr . '>';
+		$this->set_template($template);
+
+		//return table
+		return $this->generate();
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * 
      * @param  [array] $header_array [A list of columns ot show as an assoc array, e.g. array('id' => 'Record Id', 'col_name' => 'Label')]
@@ -15,7 +74,7 @@ class MY_Table extends CI_Table {
      * @param  string $attr         the classes
      * @return string               HTML output of the table
      */
-	public function generate_custom($header_array, $data, $url, $attr = '')
+	/*public function generate_custom($header_array, $data, $url, $attr = '')
 	{
 		$table = array();
 
@@ -37,5 +96,12 @@ class MY_Table extends CI_Table {
 		}
 
 		return $this->generate($table);
-	}
+	}*/
+
+
+
+
+
+
+
 }
