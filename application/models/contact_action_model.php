@@ -11,6 +11,7 @@ class Contact_action_model extends MY_Model {
     );
 
     public $belongs_to = array('contact');
+
 	
 	/*
 		You can set observers to call methods before create, update, get and delete
@@ -35,7 +36,7 @@ class Contact_action_model extends MY_Model {
         $retval = array('note' => array(), 'tweet' => array(), 'email' => array(), 'task'  => array(), 'appointment' => array(), 'TEST' => array());
 
         //Get the actions...
-        $actions = $this->as_array()->get_many_by($col, $id);
+        $actions = $this->as_array()->order_by('id', 'DESC')->get_many_by($col, $id);
 
         //put them in an assoc array by action type
         foreach ($actions as $row => $array)
@@ -44,10 +45,16 @@ class Contact_action_model extends MY_Model {
             $id = $array['id'];
             $retval[$action_type][$id] = $array;
         }
-
         return $retval;
     }
     
+     public function get_records_by_action($contact_id, $action_type)
+    {
+       $conditions = array('contact_id' => $contact_id, 'action_type' => $action_type);
+        //Get the actions...
+        return $this->as_array()->order_by('id', 'DESC')->get_many_by($conditions);
+    }
+
 
     public function toggle_value($id, $field_name)
     {

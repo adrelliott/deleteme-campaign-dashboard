@@ -56,15 +56,18 @@ $config['pageheaders']	= array(
 //Set up dashboard tables
 
 
-// Set up the tables
-$config['tables']	= array(
+// Set up the tables for each index page
+$config['index_tables']	= array(
 	'contacts_table' => array(
-		'table_id' => 'contacts_dashboard',
-		'data_source' => 'ajax/contacts/get_table/id/first_name/last_name', 
-		'html_source' => 'contacts/show/',
-		'data_link' => 'contacts/show/',
-		'data_target' => '#contacts/show/',
-		'dropdown' => 0,
+		'attributes' => array(
+			'class' => 'table data-table server-side',
+			'id' => 'contacts_index',
+			'data-source' => site_url('ajax/contacts/get_table/id/first_name/last_name'), 
+			//'html-source' => site_url('contacts/show'),
+			'data-link' => 'contacts/show/',
+			//'data-target' => '#contacts/show/',
+			'dropdown' => 0,
+			),
 		'columns' => array(
 			'id' => '#',
 			'first_name' => 'First Name',
@@ -72,82 +75,76 @@ $config['tables']	= array(
 			//'owner_id' => 'Owner Id',
 			),
 		),
-	'tasks_table' => array(
+	'leads_table' => array(
 		'attributes' => array(
-			'class' => 'table data-table',
-			'id' => 'contacts_dashboard',
-			'data_source' => 'ajax/contacts/get_table/id/first_name/last_name', 
-			'html_source' => 'contacts/show/',
-			'data_link' => 'contacts/show/',
-			'data_target' => '#contacts/show/',
+			'class' => 'table data-table server-side',
+			'id' => 'leads_index',
+			'data-source' => site_url('ajax/contacts/get_table/id/first_name/last_name'), 
+			//'html-source' => site_url('contacts/show'),
+			'data-link' => 'leads/show/',
+			//'data-target' => '#contacts/show/',
 			'dropdown' => 0,
 			),
 		'columns' => array(
 			'id' => '#',
-			'action_title' => 'Title',
-			'action_description' => 'Desc',
-			//'owner_id' => 'Owner Id',
-			),
-		),
-	'leads_table' => array(
-		'table_id' => 'leads_dashboard',
-		'data_source' => 'ajax/contacts/get_table/id/first_name/last_name', 
-		'html_source' => 'contacts/show/',
-		'data_link' => 'contacts/show/',
-		'data_target' => '#contacts/show/',
-		'link_class' => 'class',
-		'dropdown' => 0,
-		'columns' => array(
-			'id' => '#',
-			'first_name' => 'First Namelead',
-			'last_name' => 'Last Name',
+			'first_name' => 'First Name lead',
+			'last_name' => 'Last Name lead',
 			//'owner_id' => 'Owner Id',
 			),
 		),
 	'orders_table' => array(
-		'table_id' => 'orders_dashboard',
-		'data_source' => 'ajax/contacts/get_table/id/first_name/last_name', 
-		'html_source' => 'contacts/show/',
-		'data_link' => 'contacts/show/',
-		'data_target' => '#contacts/show/',
-		'link_class' => 'class',
-		'dropdown' => 0,
+		'attributes' => array(
+			'class' => 'table data-table server-side',
+			'id' => 'orders_index',
+			'data-source' => site_url('ajax/contacts/get_table/id/first_name/last_name'), 
+			//'html-source' => site_url('contacts/show'),
+			'data-link' => 'orders/show/',
+			//'data-target' => '#contacts/show/',
+			'dropdown' => 0,
+			),
 		'columns' => array(
 			'id' => '#',
-			'first_name' => 'First Nameorder',
-			'last_name' => 'Last Name',
+			'first_name' => 'First Name order',
+			'last_name' => 'Last Name order',
 			//'owner_id' => 'Owner Id',
 			),
 		),
-	'sample_table' => array(
-		'table_id' => 'sample_dashboard',
-		'data_source' => '', 
-		'html_source' => 'contact_actions/show/tag/',
-		'data_link' => 'contacts/show/',
-		'data_target' => '#contactaction-modal',
-		'link_class' => 'class',
-		'dropdown' => 0,
+	'tasks_table' => array(
+		'attributes' => array(
+			'class' => 'table data-table server-side',
+			'id' => 'tasks_index',
+			'data-source' => site_url('ajax/contact_actions/get_table/id/action_title/action_type/completed?action_type=task'), 
+			//'html-source' => site_url('contacts/show'),
+			'data-link' => 'tasks/show/',
+			//'data-target' => '#contacts/show/',
+			'dropdown' => 0,
+			),
 		'columns' => array(
 			'id' => '#',
-			'first_name' => 'First Nameorder',
-			'last_name' => 'Last Name',
-			//'owner_id' => 'Owner Id',
+			'action_type' => 'Type',
+			'action_title' => 'Task title',
+			'completed' => 'completed?'
 			),
 		),
+	
+	
 	'dashboard' => array(
 		//Overwrite the default tables above for each page by re-declaring it here...
 		
 		),
 	'contacts' => array(
 		//Overwrite the default tables above for each page by re-declaring it here...
-		'contacts_table' => array(
-			'table_id' => 'contacts_dashboard',
-			'data_source' => 'ajax/contacts/get_table/id/first_name/last_name', 
-			'html_source' => 'contacts/show/',
-			'data_link' => 'contacts/show/',
-			'data_target' => '#contacts/show/',
-			'link_class' => 'class',
-			'dropdown' => 1,
+		'contacts_table1' => array(
+			'attributes' => array(
+				'class' => 'table data-table server-side ',
+				'id' => 'contacts_index',
+
+				'data-source' => site_url('ajax/contacts/get_table/id/first_name/last_name'), 
+				//'html-source' => site_url('contacts/show'),
+				'data-link' => 'contacts/show/',
+				//'data-target' => '#contacts/show/',
+				'dropdown' => 0,
+			),
 			'columns' => array(
 				'id' => '#',
 				'first_name' => 'First Name',
@@ -158,24 +155,118 @@ $config['tables']	= array(
 		),
 	'leads' => array(
 		//Overwrite the default tables above for each page by re-declaring it here...
-		'leads_table' => array(
-			'table_id' => 'leads_dashboard',
-			'data_source' => 'ajax/contacts/get_table/id/first_name/last_name',
-			'html_source' => 'contacts/show/', 
-			'data_link' => 'contacts/show/',
-			'data_target' => '#contacts/show/',
-			'link_class' => 'class',
-			'dropdown' => 1,
+		),
+	);
+
+
+
+// Set up the tables for each index page
+$config['other_tables']	= array(
+	'contacts_table' => array(
+		'attributes' => array(
+			'class' => 'table data-table', //often open-modal
+			'id' => 'contacts_index',
+			//'data-source' => site_url('ajax/contacts/get_table/id/first_name/last_name'), 
+			//'html-source' => site_url('contacts/show'),
+			'data-link' => 'contacts/show/',
+			//'data-target' => '#contacts/show/',
+			'dropdown' => 0,
+			),
+		'columns' => array(
+			'id' => '#',
+			'first_name' => 'First Name',
+			'last_name' => 'Last Name',
+			//'owner_id' => 'Owner Id',
+			),
+		),
+	'leads_table' => array(
+		'attributes' => array(
+			'class' => 'table data-table',
+			'id' => 'leads_index',
+			'data-source' => site_url('ajax/contacts/get_table/id/first_name/last_name'), 
+			//'html-source' => site_url('contacts/show'),
+			'data-link' => 'leads/show/',
+			//'data-target' => '#contacts/show/',
+			'dropdown' => 0,
+			),
+		'columns' => array(
+			'id' => '#',
+			'first_name' => 'First Name lead',
+			'last_name' => 'Last Name lead',
+			//'owner_id' => 'Owner Id',
+			),
+		),
+	'orders_table' => array(
+		'attributes' => array(
+			'class' => 'table data-table ',
+			'id' => 'orders_index',
+			//'data-source' => site_url('ajax/contacts/get_table/id/first_name/last_name'), 
+			'html-source' => site_url('contacts/show'),
+			//'data-link' => 'orders/show/',
+			//'data-target' => '#contacts/show/',
+			'dropdown' => 0,
+			),
+		'columns' => array(
+			'id' => '#',
+			'first_name' => 'First Name order',
+			'last_name' => 'Last Name order',
+			//'owner_id' => 'Owner Id',
+			),
+		),
+	'tasks_table' => array(
+		'attributes' => array(
+			'class' => 'table data-table open-modal',
+			'id' => 'task-table',
+			//'table-id' => 'tasks-table',
+			//'data-source' => site_url('ajax/contact_actions/get_table/id/action_title/action_type/completed?action_type=task'), 
+			'html-source' => site_url('contact_actions/show'),
+			'data-link' => 'tasks/show/',
+			'data-target' => '#contacts/show/',
+			'dropdown' => 0,
+			),
+		'columns' => array(
+			'id' => '#',
+			'action_type' => 'Typerr',
+			'action_title' => 'Task title',
+			'completed' => 'completed?'
+			),
+		),
+	
+	
+	'dashboard' => array(
+		//Overwrite the default tables above for each page by re-declaring it here...
+		
+		),
+	'contacts' => array(
+		//Overwrite the default tables above for each page by re-declaring it here...
+		'contacts_table1' => array(
+			'attributes' => array(
+				'class' => 'table data-table server-side ',
+				'id' => 'contacts_index',
+				'table-id' => 'contacts_index',
+				'data-source' => site_url('ajax/contacts/get_table/id/first_name/last_name'), 
+				//'html-source' => site_url('contacts/show'),
+				'data-link' => 'contacts/show/',
+				//'data-target' => '#contacts/show/',
+				'dropdown' => 0,
+			),
 			'columns' => array(
 				'id' => '#',
-				'first_name' => 'First Namelead',
+				'first_name' => 'First Name',
 				'last_name' => 'Last Name',
 				//'owner_id' => 'Owner Id',
 				),
 			),
 		),
-	
+	'leads' => array(
+		//Overwrite the default tables above for each page by re-declaring it here...
+		),
 	);
+
+
+
+
+
 
 /* pills */
 $config['pills'] = array(
@@ -190,7 +281,7 @@ $config['pills'] = array(
 		'column_2' => array(
 			//'id' => 'Name' - note, the id is also the partial name,
 			//e.g 'overview' => 'Overview' pulls in _row_overview.php partial
-			//<list>'tasks' => 'Tasks',
+			'tasks' => 'Tasks',
 			'stats' => 'Statistics',
 			),
 		),

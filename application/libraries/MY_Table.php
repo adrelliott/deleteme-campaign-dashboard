@@ -8,39 +8,47 @@ class MY_Table extends CI_Table {
     }
 
 
-	public function table_standard($table_name, $data)
+	public function gen_table($table_name, $data = NULL, $type = 'index_tables')
 	{
 	  //set columns
-		$cols = config('columns', 'tables', $table_name);
+	  	if (is_array($data)) $type = 'other_tables';
+		$cols = config('columns', $type, $table_name);
 		$attr = '';
-		$row = array();
+		//$row = array();
 		$template = array();
 
 		//Set heading
 		$this->set_heading(array_values($cols));
 
 		//Set rows
-		foreach ($data as $r => $a) 
+		if (is_array($data))
 		{
-		  foreach (array_keys($cols) as $col)
-		  {
-		      $row[$r][] = $data[$r][$col];
-		  }
-		  $this->add_row(array_values($row[$r]));
+			foreach ($data as $r => $a) 
+			{
+			  $row = array();
+			  foreach (array_keys($cols) as $col)
+			  {
+			      $row[] = $a[$col];
+			  }
+			  $this->add_row(array_values($row));
+			}
 		}
 
 		//set up table attributes
-		foreach (config('attributes', 'tables', $table_name) as $k => $v)
+		foreach (config('attributes', $type, $table_name) as $k => $v)
 		{
 			$attr .= $k . '="' . $v . '" ';
 		}
 
+		//Set up the template
 		$template['table_open'] = '<table ' . $attr . '>';
 		$this->set_template($template);
 
 		//return table
 		return $this->generate();
 	}
+
+
 
 
 

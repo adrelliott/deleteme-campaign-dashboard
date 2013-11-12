@@ -34,6 +34,9 @@
 
     <!-- Custom styles for this template -->
     <link href="<? echo site_url('assets/bootstrap-3/css/custom.css'); ?>" rel="stylesheet">
+    
+    <!-- Styles for Datatables -->
+    <link href="<? echo site_url('assets/bootstrap-3/css/dataTables.editor.css'); ?>" rel="stylesheet">
 
     <!-- Include any custom style sheets/scripts/meta etc for this client -->
     <?

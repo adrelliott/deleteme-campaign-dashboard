@@ -1,5 +1,5 @@
 <div class="row">
-  <?= partial('_table_ajax', array('table_name' => 'orders_table')); ?>
+  <?//= partial('_table_ajax', array('table_name' => 'orders_table')); ?>
 </div>
 <div class="row">
   <div>

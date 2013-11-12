@@ -5,7 +5,8 @@ class Contact_model extends MY_Model {
 	//define what columns to return in a search
 	protected $_cols = array(
 	     'single_record' => array(
-	                      'id', 'first_name', 'last_name', 'email', 'deleted', 'owner_id', 'created_at', 'updated_at'),
+	     	//Leave balnk to get all fields
+	                      ),
 	     'multiple_record' => array(
 	                      'id', 'first_name', 'last_name', 'email', 'owner_id')
 	);

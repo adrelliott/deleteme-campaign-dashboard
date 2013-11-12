@@ -1,8 +1,3 @@
-<? 
-/* The partial to create/edit a task */
-?>
-
-
 <div class="form-group">
 	<label for="action_title">Task Title1</label>
 	<input type="text" class="form-control" id="action_title" name="action_title" placeholder="Enter Task Title" value="<?= $contact_action->action_title(); ?>">

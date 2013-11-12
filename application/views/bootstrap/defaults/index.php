@@ -37,7 +37,7 @@
     </div>
 
     <!-- Main table-->
-    <?= partial('_row_' . controller()); ?>
+    <?= partial('_indextable'); ?>
     <!-- /Main table-->
 
 

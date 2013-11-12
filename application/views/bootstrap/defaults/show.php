@@ -11,11 +11,9 @@
     </div>
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><!-- Column 1-->
       <div class="well">
-        <h3>Give me the basic details...</h3>
-        <form class="form" role="form">
+        <div class="row">
           <?= partial('_form_create'); ?>
-        </form>
-        <div class="row"></div>
+        </div>
       </div>
     </div><!-- /Column 1-->
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><!-- Column 2-->

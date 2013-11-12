@@ -1,0 +1,1 @@
+<?= $this->table->gen_table($action_type . 's_table', $q);

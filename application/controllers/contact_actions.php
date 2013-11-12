@@ -20,9 +20,17 @@ class Contact_actions extends MY_Controller
 		require_once (APPPATH . 'presenters/contact_action_presenter.php');
 	}
 
-	public function index()
+	// Just returns a list of contact_actions, used for when refreshing a datatable
+	public function index($contact, $action_type)
 	{
-		//Never call this, do we?
+		
+		$this->layout = FALSE;
+		$this->data['q'] = $this->contact_action->get_records_by_action($contact, $action_type);
+		$this->data['action_type'] = $action_type;
+		return $this->load->view('bootstrap/contact_actions/index.php', $this->data, TRUE);
+		//echo $this->load->view($this->view, $this->data, TRUE);
+	
+		
 	}
 
 	public function show($id = FALSE)
@@ -30,8 +38,6 @@ class Contact_actions extends MY_Controller
 		//Get the Id, if passed, and load the record
 		if (!$id) $id = $this->input->post('id');
 		$q = $this->contact_action->get($id);
-		
-  
 
 		//If we return a record, then set up the record...
 		if (isset($q->id))
@@ -53,7 +59,7 @@ class Contact_actions extends MY_Controller
 		$a->action_type = $action_type;
 		$a->contact_id = $contact_id;
 		$this->data['contact_action'] = new Contact_action_Presenter($a);
-
+//die(dump($this->data));
 		//Autoloads the view 'contact_actions/create'
 	}
 
@@ -82,23 +88,25 @@ class Contact_actions extends MY_Controller
 		//if its ajax then do this:
 		if ($this->input->is_ajax_request())
 		{
-			echo $this->messages->show();
+			//return the table of contact_actions
+			echo  $this->index($this->input->post('contact_id'), $this->input->post('action_type'));
 		}
 		else redirect(site_url('contacts/show/' . $this->input->post('contact_id')));
 
 	}
 
 
-	public function delete($id, $contact_id)
+	public function delete($id, $contact_id = NULL)
 	{
 		// Destroy a record (not really - 'softdelete' it!)
 		$this->contact_action->delete($id);
 		$this->session->set_userdata('message', '[deleted]');
 
-		redirect(site_url('contacts/show/' . $contact_id));
+		if ($this->input->is_ajax_request()) echo $this->messages->show();
+		else redirect(site_url('contacts/show/' . $contact_id));
 	}
 
-	public function toggle_completed($id, $contact_id)
+	public function toggle_completed($id, $contact_id = NULL)
 	{
 		$this->view = FALSE;
 

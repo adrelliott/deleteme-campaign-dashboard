@@ -68,3 +68,6 @@ div.card a {
 	text-decoration:none;
 }
 
+tr.completed {
+	background-color:red;
+}
