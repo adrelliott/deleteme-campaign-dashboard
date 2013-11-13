@@ -129,7 +129,7 @@ console.log('o after links=', o);
 
 <h1>Live example</h1>
 <div>
-    <table class="table data-table-init " id="simple" data-source="http://campaigndashboard.dev/ajax/contacts/get_table/id/first_name/last_name" data-link="tasks/show/"  data-iDisplayLength=10 data-bLengthChange="no" data-linkurl="<?= site_url('contacts/show'); ?>">
+    <table class="table data-table-init " id="simple" data-source="<?= site_url('ajax/contacts/get_table/id/first_name/last_name'); ?>" data-link="tasks/show/"  data-iDisplayLength=10 data-bLengthChange="no" data-linkurl="<?= site_url('contacts/show'); ?>">
         <thead>
             <tr>
                 <th>#</th>
