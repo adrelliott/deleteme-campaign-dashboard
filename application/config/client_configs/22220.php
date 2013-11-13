@@ -54,11 +54,69 @@ $config['pageheaders']	= array(
 	);
 
 //Set up dashboard tables
+$sample_table_setup = array (
+	'attributes' => array (
+		'class' => 'table data-table1',
+		'id' => 'xxx_table',
+		'data-tableid' => 'xxx_table',	//Must the the same as id above
+		'data-linkurl' => site_url('contacts/show'),	//Leave blank if you don't want the rows to be clickable
+		'data-linkclass' => 'modal',	//Set the class of the <a> tag
+		'data-deleteurl' => site_url('contacts/delete'),	//Leave blank to have no delete button - only works on non-ajax tables!
+		'data-toggleurl' => site_url('contacts/toggle'),	//Leave blank to have no toggle button - only works on non-ajax tables!
+		'data-htmlsource' => site_url('modal'),	//Sets a html-source attr in the <a> tag
+
+		//Below these can be used ot overide certain default vals of the dataTable options
+		// "data-DisplayLength" => 5,
+		// "data-bDestroy" => true,
+		// "data-sPaginationType" => "bootstrap",
+		// "data-bLengthChange" => true,
+		// "data-aLengthMenu" => [[5, 10, 25, 50], [5, 10, 25, 50]],
+		// "data-aaSorting" => [],
+		// "data-bProcessing" => true,
+		// "data-bServerSide" => true,
+		// "data-sAjaxSource" => site_url('path/to/ajax/json/output'),
+		// "data-sServerMethod" => "POST",
+		// "data-aoColumnDefs" => [],
+		// "data-fnRowCallback" => false,
+		),
+	'columns' => array(
+		'id' => '#',
+		'first_name' => 'First Name',
+		'last_name' => 'Last Name5',
+		//'owner_id' => 'Owner Id',
+	),
+);
 
 
 // Set up the tables for each index page
 $config['index_tables']	= array(
 	'contacts_table' => array(
+		'attributes' => array(
+			'class' => 'table data-table1',
+			'id' => 'contacts_index',
+			'data-tableid' => 'contacts_index',
+			'data-linkurl' => site_url('contacts/show'),
+			//'data-linkclass' => 'new-class class2',
+			//'data-deleteurl' => site_url('url/to/delete'), //CANNOT use in ajax tables
+			'data-htmlsource' => site_url('url/'),
+			
+			//'data-sAjaxSource' => 
+			'data-bLengthChange' => '',
+			"data-bProcessing" => true,
+			"data-bServerSide" => true,
+			"data-sAjaxSource" => site_url('ajax/contacts/get_table/id/first_name/last_name'),
+			"data-sServerMethod" => "POST",
+			//'data-target' => '#contacts/show/',
+			//'dropdown' => 0,
+			),
+		'columns' => array(
+			'id' => '#',
+			'first_name' => 'First Name',
+			'last_name' => 'Last Name5',
+			//'owner_id' => 'Owner Id',
+			),
+		),
+	'contacts_table_backup' => array(
 		'attributes' => array(
 			'class' => 'table data-table server-side',
 			'id' => 'contacts_index',
@@ -71,7 +129,7 @@ $config['index_tables']	= array(
 		'columns' => array(
 			'id' => '#',
 			'first_name' => 'First Name',
-			'last_name' => 'Last Name',
+			'last_name' => 'Last Name5',
 			//'owner_id' => 'Owner Id',
 			),
 		),
@@ -122,7 +180,7 @@ $config['index_tables']	= array(
 		'columns' => array(
 			'id' => '#',
 			'action_type' => 'Type',
-			'action_title' => 'Task title',
+			'action_title' => 'Task title index',
 			'completed' => 'completed?'
 			),
 		),
@@ -175,7 +233,7 @@ $config['other_tables']	= array(
 		'columns' => array(
 			'id' => '#',
 			'first_name' => 'First Name',
-			'last_name' => 'Last Name',
+			'last_name' => 'Last Name1',
 			//'owner_id' => 'Owner Id',
 			),
 		),
@@ -226,12 +284,45 @@ $config['other_tables']	= array(
 			),
 		'columns' => array(
 			'id' => '#',
-			'action_type' => 'Typerr',
+			'action_type' => 'Typerr4',
 			'action_title' => 'Task title',
 			'completed' => 'completed?'
 			),
 		),
-	
+	'notes_table' => array(
+		'attributes' => array(
+			'class' => 'table data-table1',
+			'id' => 'notes_table',
+			'data-tableid' => 'notes_table',	//Must the the same as id above
+			'data-linkurl' => site_url('contact_actions/show'),	//Leave blank if you don't want the rows to be clickable
+			'data-linkclass' => 'modal',	//Set the class of the <a> tag
+			//'data-deleteurl' => site_url('contact_actions/delete'),	//Leave blank to have no delete button - only works on non-ajax tables!
+			//'data-toggleurl' => site_url('contact_actions/toggle'),	//Leave blank to have no toggle button - only works on non-ajax tables!
+			//'data-htmlsource' => site_url('modal'),	//Sets a html-source attr in the <a> tag
+
+			//Below these can be used ot overide certain default vals of the dataTable options
+			// "data-DisplayLength" => 5,
+			// "data-bDestroy" => true,
+			// "data-sPaginationType" => "bootstrap",
+			// "data-bLengthChange" => true,
+			// "data-aLengthMenu" => [[5, 10, 25, 50], [5, 10, 25, 50]],
+			// "data-aaSorting" => [],
+			// "data-bProcessing" => true,
+			// "data-bServerSide" => true,
+			// "data-sAjaxSource" => site_url('path/to/ajax/json/output'),
+			// "data-sServerMethod" => "POST",
+			// "data-aoColumnDefs" => [],
+			// "data-fnRowCallback" => false,
+			),
+		'columns' => array(
+			'id' => '#',
+			//'action_type' => 'First Name',
+			'action_description' => 'Last Name5',
+			//'owner_id' => 'Owner Id',
+		),
+	),
+
+		
 	
 	'dashboard' => array(
 		//Overwrite the default tables above for each page by re-declaring it here...
@@ -286,6 +377,24 @@ $config['pills'] = array(
 			),
 		),
 	'contacts' => array(
+		'column_1' => array(
+			'overview' => 'Overview',
+			'indepth' => 'In-Depth',
+			'optins' => 'Opt-Ins',
+			'notes' => 'Notes',
+			'links' => 'Links',
+			),	
+		'column_2' => array(
+			//'id' => 'Name' - note, the id is also the partial name,
+			//e.g 'overview' => 'Overview' pulls in _row_overview.php partial
+			'tasks' => 'Tasks1',
+			'orders' => 'Orders2',
+			'roles' => 'Roles3',
+			'tags' => 'Tags',
+			'leads' => 'Leads',
+			),
+		),
+	'leads' => array(
 		'column_1' => array(
 			'overview' => 'Overview',
 			'indepth' => 'In-Depth',

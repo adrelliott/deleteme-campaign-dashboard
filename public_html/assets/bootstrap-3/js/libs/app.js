@@ -6,11 +6,11 @@ var editor;
         format: "dd/mm/yyyy"
     });
 
- editor = new $.fn.dataTable.Editor( {
-        "ajaxUrl": "/tellenis_clients/campaign-dashboard/public_html/contact_actions/",
-        "domTable": "#dashboard-table",
-        "display": 'lightbox'
-    } );
+ // editor = new $.fn.dataTable.Editor( {
+ //        "ajaxUrl": "/tellenis_clients/campaign-dashboard/public_html/contact_actions/",
+ //        "domTable": "#dashboard-table",
+ //        "display": 'lightbox'
+ //    } );
 
 
     /*---------------------- datatables old code ------------------------*/
@@ -164,7 +164,7 @@ var editor;
                 // "sDefaultContent": '<a href="" class="editor_markcomplete"><i class="fa fa--ok"></i></a>   <a href="" class="editor_remove"><i class="fa fa--trash "></i></a>',
                 "mRender": function (data, type, full) {
                     /* return the <a> element */
-                    return '<a href="#" class="edit-record-modal" data-id="'+ full[0] + '" html-source="' + htmlSource + '">' + data + '</a>';
+                    return '<a href="http://google.com" class="edit-record-modal" data-id="'+ full[0] + '" html-source="' + htmlSource + '">' + data + '</a>';
                     }
                 }
             ];
@@ -202,7 +202,7 @@ var editor;
         
         /* Now combine the 2 arrays of options */
         $.extend(true, options, optionsExtra );
-
+console.log(options);
         /* Now apply the datatable */
         $('#' + Id).dataTable( options );
 
@@ -210,6 +210,143 @@ var editor;
         // table.fnSetColumnVis( 0, false );
 
     });
+
+
+////////////////////////////////////////////////////////
+
+    /* Datatables */
+    //$('.data-table').each(
+    // function createDataTable( selector )
+    // {
+        
+    //     var o = {
+    //         aoColumnDefs: []
+    //     };
+    //     var t = $( selector );
+
+    //     if ( t.attr('data-source') ) {
+    //         o.sAjaxSource = t.attr('data-source');
+    //     }
+
+    //     if ( t.attr('data-render') && t.attr('data-render') === 'complete' ) {
+    //         // Could inject a cloned node here if needed?
+            
+    //         o.aoColumnDefs.push( {
+    //             aTargets: -1,
+    //             mRender: function ( data, type, row ) {
+    //                 return '<a href="#" data-id="'+ row[0] + '" class="edit-record-modal">icons...</a>';
+    //             }
+    //         } );
+
+    //         // Add class to the row's if completed
+    //         o.fnCreatedRow = function ( row, data, idx ) {
+    //             if ( data[ data.length - 1 ] == '1' ) {
+    //                 $(row).addClass( 'completed' );
+    //             }
+    //         }
+    //     }
+
+    //     return t.dataTable( $.extend( true, o, {
+    //         "bProcessing": true,
+    //         "sServerMethod": "POST"
+    //     } ) );
+    // }
+
+// $(document).ready( function () {
+//     createDataTable( '#simple' );
+//     createDataTable( '#ajax' );
+// } );
+
+    $('.data-table1').each(function() {
+        var that = $(this);
+
+        //Set up default options
+        var dataTableOptions = {
+            "iDisplayLength":5,
+            "bDestroy":true,
+            "sPaginationType":"bootstrap",
+            "bLengthChange":true,
+            "aLengthMenu":[[5, 10, 25, 50], [5, 10, 25, 50]],
+            "aaSorting":[],
+            "bProcessing":false,
+            "bServerSide":false,
+            "sAjaxSource":"",
+            "sServerMethod":"",
+            "aoColumnDefs":[],
+            "fnRowCallback":false
+        };
+
+        //Set up the vars for this table
+        var attributes = {
+            "tableid" : "",
+            "linkurl": false,
+            "linkclass": "",
+            "deleteurl": false,
+            "toggleurl": false,
+            "htmlsource": "",
+            // "serverside": false
+        };
+
+        //Iterate over the attributes object and test to see if we've passed a new attribute
+        $.each(attributes, function(key, value) {
+                if (that.data(key)){
+                attributes[key] = that.data(key); //Overwrite with the new value
+            }
+        });
+
+        // //is it a server-side table?
+        // if (attributes[serverside] !== false) {
+        //     dataTableOptions.bProcessing = true,
+        //     dataTableOptions.bServerSide = true,
+        //     dataTableOptions.sAjaxSource = true,
+        //     dataTableOptions.sServerMethod = "POST",
+        // }
+
+        //Now Iterate over the dataTablesOptions object and test to see if we've passed a new attribute
+         $.each(dataTableOptions, function(key, value) {
+                var newkey = key.toLowerCase(); //we cannot pass camelCase
+                if ( that.data(newkey) ){
+                    console.log('found one!', key);
+                dataTableOptions[key] = that.data(newkey); //Overwrite with the new value
+            }
+        });
+
+        //Now set up the aoColumnDefs
+        if ( attributes.linkurl ) { //Have we passed attr data-linkurl?
+            dataTableOptions.aoColumnDefs = [
+                //Do the <a> tag first....
+                {
+                    "aTargets": ["_all"],
+                    "mRender": function (data, type, full) {
+                        return '<a href="'+attributes.linkurl+'/'+full[0]+'" class="'+attributes.linkclass+'" data-id="'+full[0]+'" html-source="'+attributes.htmlsource+'">'+data+'</a>';
+                    }
+                }
+            ];
+
+            //Now add the delete icon if passed
+            if ( attributes.deleteurl ) {
+                //add a new col
+                that('tr').each( function () {
+                    that.append('<td />');
+                });
+                //now add the delete
+                //Do we need ot add a toggle icon too?
+            }
+        }
+        console.log('datatablesoptins after linkurl= ', dataTableOptions);
+        
+        //Now apply it all
+        $('#' + attributes.tableid).dataTable( dataTableOptions );
+
+    });
+
+
+
+////////////////////////////////////////////////////////
+
+
+
+
 
     /* Modal for tasks */
     $(document).on('click', '.edit-record-modal', function(e) {
@@ -319,7 +456,8 @@ var editor;
     $('.data-table').on('click', 'a.editor_markcomplete', function (e) {                                                     
             e.preventDefault();
             var dataId = $(this).closest('td').find('a:first').attr('data-id'); 
-            // var contactId =  $(this).closest('td').find('a:first').attr('contact-id');      
+            // var contactId =  $(this).closest('td').find('a:first').attr('contact-id');
+            var tableId = $(this).closest('table').attr("id"); 
             var contactId = 'rubbish';
 
             var url = '/contact_actions/toggle_completed/'+dataId;
@@ -330,14 +468,19 @@ var editor;
                 type: type,
                 data: contactId,
                 success: function(response) {
-                    console.log(dataId, url);
+                    console.log(dataId, url, tableId);
                     window.setTimeout(function() {
                         $(".alert").fadeTo(500, 0).slideUp(500, function(){
                             $(this).remove();
                         });
                     }, 1500);
+                    //redraw the table
+            // var oTable = $('.data-table #'+tableId).dataTable();
+            // cosole.log('otable = '+oTable);
                 }
             });
+
+            
 
         // var status = $(this).closest('tr').children('td:nth-child(4)').text();
         // document.getElementById('message-task').style.visibility="visible";
@@ -353,9 +496,9 @@ var editor;
 
         } );
 
-     $('#contactaction-modal').bind('dialogclose', function(event) {
-         alert('closed');
-     });
+     // $('#contactaction-modal').bind('dialogclose', function(event) {
+     //     alert('closed');
+     // });
 
 
 
