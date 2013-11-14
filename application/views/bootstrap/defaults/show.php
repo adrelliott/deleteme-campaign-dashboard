@@ -130,5 +130,5 @@
   </div><!-- /12 columns -->
 </div><!-- /Enclosing row -->
 
-<?= partial('_modal_contactaction'); ?>
+<?= partial('_modal_small'); ?>
 <?= partial('_debug_footer'); ?>

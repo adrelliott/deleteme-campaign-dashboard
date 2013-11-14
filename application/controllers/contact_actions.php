@@ -24,10 +24,10 @@ class Contact_actions extends MY_Controller
 	public function index($contact, $action_type)
 	{
 		
-		$this->layout = FALSE;
-		$this->data['q'] = $this->contact_action->get_records_by_action($contact, $action_type);
-		$this->data['action_type'] = $action_type;
-		return $this->load->view('bootstrap/contact_actions/index.php', $this->data, TRUE);
+		// $this->layout = FALSE;
+		// $this->data['q'] = $this->contact_action->get_records_by_action($contact, $action_type);
+		// $this->data['action_type'] = $action_type;
+		// return $this->load->view('bootstrap/contact_actions/index.php', $this->data, TRUE);
 		//echo $this->load->view($this->view, $this->data, TRUE);
 	
 		
@@ -50,6 +50,8 @@ class Contact_actions extends MY_Controller
 		{
 			$this->session->set_flashdata(array('message' => '[not_found]'));
 		}
+
+		$this->layout = 'modal';
 		//Autoloads the view 'contact_actions/show' which includes the right partial for $action_type
 	}
 
@@ -59,6 +61,8 @@ class Contact_actions extends MY_Controller
 		$a->action_type = $action_type;
 		$a->contact_id = $contact_id;
 		$this->data['contact_action'] = new Contact_action_Presenter($a);
+
+		$this->layout = 'modal';
 //die(dump($this->data));
 		//Autoloads the view 'contact_actions/create'
 	}
@@ -88,11 +92,22 @@ class Contact_actions extends MY_Controller
 		//if its ajax then do this:
 		if ($this->input->is_ajax_request())
 		{
-			//return the table of contact_actions
-			echo  $this->index($this->input->post('contact_id'), $this->input->post('action_type'));
+			//return a JSON array of the row just edited/inserted
+			echo $this->get_row($id);
 		}
 		else redirect(site_url('contacts/show/' . $this->input->post('contact_id')));
 
+	}
+
+	public function get_row($id, $col_names = FALSE)
+	{
+		$this->view = FALSE;
+		//Get the row from this table with the id of $id
+		// $id=75757575;
+		$q = $this->contact_action->get($id);
+		//if ( ! isset($q->id)) $q;
+		return json_encode($q);
+		 
 	}
 
 

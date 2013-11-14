@@ -18,7 +18,7 @@ function createDataTable( selector )
         iDisplayLength: 5,
         bDestroy: true,
         sPaginationType: "bootstrap",
-        bLengthChange: true,
+        bLengthChange: false,
         aLengthMenu: [[5, 10, 25, 50], [5, 10, 25, 50]],
         aaSorting: [],
         aoColumnDefs: [],

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="All your markeitng in one place!">
+    <meta name="description" content="All your marketing in one place!">
     <meta name="author" content="Dallas Matthews Ltd">
     <link rel="shortcut icon" href="<? echo site_url('assets/bootstrap-3/ico/favicon.png'); ?>">
 
