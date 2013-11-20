@@ -53,19 +53,22 @@ $config['pageheaders']	= array(
 	
 	);
 
-//Set up dashboard tables
-$sample_table_setup = array (
-	'attributes' => array (
-		'class' => 'table data-table1',
-		'id' => 'xxx_table',
-		'data-tableid' => 'xxx_table',	//Must the the same as id above
-		'data-linkurl' => site_url('contacts/show'),	//Leave blank if you don't want the rows to be clickable
-		'data-linkclass' => 'modal',	//Set the class of the <a> tag
-		'data-deleteurl' => site_url('contacts/delete'),	//Leave blank to have no delete button - only works on non-ajax tables!
-		'data-toggleurl' => site_url('contacts/toggle'),	//Leave blank to have no toggle button - only works on non-ajax tables!
-		'data-htmlsource' => site_url('modal'),	//Sets a html-source attr in the <a> tag
 
-		//Below these can be used ot overide certain default vals of the dataTable options
+$config['tables'] = array(
+	// 'xx_table' => array(
+	// 	'attributes' => array(
+	// 		'class' => 'table data-table',
+	// 		'id' => 'xx_table',
+	// 		'data-linkurl' => site_url('contacts/show'),
+	// 		'data-deleteurl' => site_url('contacts/delete'),
+	// 		'data-toggleurl' => site_url('contacts/toggle/{COL_NAME}'),
+	// 		'data-toggleclass' => 'completed',	//The class to apply if the data-toggleurl is passed and is 1 
+	// 		'data-linkclass' => 'open-modal', //'open-modal, or blank for _target'
+	// 		'data-modalsource' => site_url('path/to/view'), //to load a view inside modal
+	// 		'data-ajaxsource' => site_url('path/to/JSON'), //Ajax output of JSON array
+			// 'data-column' => '1',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
+			'data-showid' => true,	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
+			//Below these can be used ot overide certain default vals of the dataTable options
 		// "data-DisplayLength" => 5,
 		// "data-bDestroy" => true,
 		// "data-sPaginationType" => "bootstrap",
@@ -78,281 +81,167 @@ $sample_table_setup = array (
 		// "data-sServerMethod" => "POST",
 		// "data-aoColumnDefs" => [],
 		// "data-fnRowCallback" => false,
-		),
-	'columns' => array(
-		'id' => '#',
-		'first_name' => 'First Name',
-		'last_name' => 'Last Name5',
-		//'owner_id' => 'Owner Id',
-	),
-);
+	// 		),
+	// 	'columns' => array(
+	// 		'id' => '#',//Mandatory
+	// 		// 'col_name' => 'My Label',
+	// 		),
+	// 	),
 
-
-// Set up the tables for each index page
-$config['index_tables']	= array(
-	'contacts_table' => array(
-		'attributes' => array(
-			'class' => 'table data-table1',
-			'id' => 'contacts_index',
-			'data-tableid' => 'contacts_index',
-			'data-linkurl' => site_url('contacts/show'),
-			//'data-linkclass' => 'new-class class2',
-			//'data-deleteurl' => site_url('url/to/delete'), //CANNOT use in ajax tables
-			'data-htmlsource' => site_url('url/'),
-			
-			//'data-sAjaxSource' => 
-			'data-bLengthChange' => '',
-			"data-bProcessing" => true,
-			"data-bServerSide" => true,
-			"data-sAjaxSource" => site_url('ajax/contacts/get_table/id/first_name/last_name'),
-			"data-sServerMethod" => "POST",
-			//'data-target' => '#contacts/show/',
-			//'dropdown' => 0,
-			),
-		'columns' => array(
-			'id' => '#',
-			'first_name' => 'First Name',
-			'last_name' => 'Last Name5',
-			//'owner_id' => 'Owner Id',
-			),
-		),
-	'contacts_table_backup' => array(
-		'attributes' => array(
-			'class' => 'table data-table server-side',
-			'id' => 'contacts_index',
-			'data-source' => site_url('ajax/contacts/get_table/id/first_name/last_name'), 
-			//'html-source' => site_url('contacts/show'),
-			'data-link' => 'contacts/show/',
-			//'data-target' => '#contacts/show/',
-			'dropdown' => 0,
-			),
-		'columns' => array(
-			'id' => '#',
-			'first_name' => 'First Name',
-			'last_name' => 'Last Name5',
-			//'owner_id' => 'Owner Id',
-			),
-		),
-	'leads_table' => array(
-		'attributes' => array(
-			'class' => 'table data-table server-side',
-			'id' => 'leads_index',
-			'data-source' => site_url('ajax/contacts/get_table/id/first_name/last_name'), 
-			//'html-source' => site_url('contacts/show'),
-			'data-link' => 'leads/show/',
-			//'data-target' => '#contacts/show/',
-			'dropdown' => 0,
-			),
-		'columns' => array(
-			'id' => '#',
-			'first_name' => 'First Name lead',
-			'last_name' => 'Last Name lead',
-			//'owner_id' => 'Owner Id',
-			),
-		),
-	'orders_table' => array(
-		'attributes' => array(
-			'class' => 'table data-table server-side',
-			'id' => 'orders_index',
-			'data-source' => site_url('ajax/contacts/get_table/id/first_name/last_name'), 
-			//'html-source' => site_url('contacts/show'),
-			'data-link' => 'orders/show/',
-			//'data-target' => '#contacts/show/',
-			'dropdown' => 0,
-			),
-		'columns' => array(
-			'id' => '#',
-			'first_name' => 'First Name order',
-			'last_name' => 'Last Name order',
-			//'owner_id' => 'Owner Id',
-			),
-		),
-	'tasks_table' => array(
-		'attributes' => array(
-			'class' => 'table data-table server-side',
-			'id' => 'tasks_index',
-			'data-source' => site_url('ajax/contact_actions/get_table/id/action_title/action_type/completed?action_type=task'), 
-			//'html-source' => site_url('contacts/show'),
-			'data-link' => 'tasks/show/',
-			//'data-target' => '#contacts/show/',
-			'dropdown' => 0,
-			),
-		'columns' => array(
-			'id' => '#',
-			'action_type' => 'Type',
-			'action_title' => 'Task title index',
-			'completed' => 'completed?'
-			),
-		),
-	
-	
-	'dashboard' => array(
-		//Overwrite the default tables above for each page by re-declaring it here...
-		
-		),
-	'contacts' => array(
-		//Overwrite the default tables above for each page by re-declaring it here...
-		'contacts_table1' => array(
-			'attributes' => array(
-				'class' => 'table data-table server-side ',
-				'id' => 'contacts_index',
-
-				'data-source' => site_url('ajax/contacts/get_table/id/first_name/last_name'), 
-				//'html-source' => site_url('contacts/show'),
-				'data-link' => 'contacts/show/',
-				//'data-target' => '#contacts/show/',
-				'dropdown' => 0,
-			),
-			'columns' => array(
-				'id' => '#',
-				'first_name' => 'First Name',
-				'last_name' => 'Last Name',
-				//'owner_id' => 'Owner Id',
-				),
-			),
-		),
-	'leads' => array(
-		//Overwrite the default tables above for each page by re-declaring it here...
-		),
-	);
-
-
-
-// Set up the tables for each index page
-$config['other_tables']	= array(
-	'contacts_table' => array(
-		'attributes' => array(
-			'class' => 'table data-table', //often open-modal
-			'id' => 'contacts_index',
-			//'data-source' => site_url('ajax/contacts/get_table/id/first_name/last_name'), 
-			//'html-source' => site_url('contacts/show'),
-			'data-link' => 'contacts/show/',
-			//'data-target' => '#contacts/show/',
-			'dropdown' => 0,
-			),
-		'columns' => array(
-			'id' => '#',
-			'first_name' => 'First Name',
-			'last_name' => 'Last Name1',
-			//'owner_id' => 'Owner Id',
-			),
-		),
-	'leads_table' => array(
+	//List tables (used on index pages)
+	'contact_table' => array(
 		'attributes' => array(
 			'class' => 'table data-table',
-			'id' => 'leads_index',
-			'data-source' => site_url('ajax/contacts/get_table/id/first_name/last_name'), 
-			//'html-source' => site_url('contacts/show'),
-			'data-link' => 'leads/show/',
-			//'data-target' => '#contacts/show/',
-			'dropdown' => 0,
+			'id' => 'contact_table',
+			'data-linkurl' => site_url('contacts/show'),
+			// 'data-deleteurl' => site_url('contacts/delete'),
+			// 'data-toggleurl' => site_url('contacts/toggle/COL_NAME'),
+			//'data-toggleclass' => 'completed',	//The class to apply if the data-toggleurl is passed and is 1
+			'data-linkclass' => 'open-modal', //'open-modal, or blank for _target'
+			//'data-modalsource' => site_url('contacts/show'), //to load a view inside modal
+			'data-ajaxsource' => site_url('ajax/contacts/get_table/id/first_name/last_name'), //Ajax output of JSON array
+			// 'data-column' => '1',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
+			'data-showid' => 'true',	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
 			),
 		'columns' => array(
-			'id' => '#',
-			'first_name' => 'First Name lead',
-			'last_name' => 'Last Name lead',
-			//'owner_id' => 'Owner Id',
+			'id' => '#',//Mandatory
+			'first_name' => 'First name',
+			'last_name' => 'Last name'
 			),
 		),
-	'orders_table' => array(
+	'lead_table' => array(
 		'attributes' => array(
-			'class' => 'table data-table ',
-			'id' => 'orders_index',
-			//'data-source' => site_url('ajax/contacts/get_table/id/first_name/last_name'), 
-			'html-source' => site_url('contacts/show'),
-			//'data-link' => 'orders/show/',
-			//'data-target' => '#contacts/show/',
-			'dropdown' => 0,
+			'class' => 'table data-table',
+			'id' => 'lead_table',
+			'data-linkurl' => site_url('leads/show'),
+			// 'data-deleteurl' => site_url('leads/delete'),
+			// 'data-toggleurl' => site_url('leads/toggle/COL_NAME'),
+			//'data-toggleclass' => 'completed',	//The class to apply if the data-toggleurl is passed and is 1
+			'data-linkclass' => 'open-modal', //'open-modal, or blank for _target'
+			//'data-modalsource' => site_url('leads/show'), //to load a view inside modal
+			'data-ajaxsource' => site_url('ajax/contacts/get_table/id/first_name/last_name'), //Ajax output of JSON array
+			// 'data-column' => '1',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
+			'data-showid' => 'true',	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
 			),
 		'columns' => array(
-			'id' => '#',
-			'first_name' => 'First Name order',
-			'last_name' => 'Last Name order',
-			//'owner_id' => 'Owner Id',
+			'id' => '#',//Mandatory
+			'first_name' => 'First name',
+			'last_name' => 'Last name'
 			),
 		),
-	'tasks_table' => array(
+	'order_table' => array(
 		'attributes' => array(
-			'class' => 'table data-table open-modal',
+			'class' => 'table data-table',
+			'id' => 'order_table',
+			'data-linkurl' => site_url('orders/show'),
+			// 'data-deleteurl' => site_url('orders/delete'),
+			// 'data-toggleurl' => site_url('orders/toggle/COL_NAME'),
+			//'data-toggleclass' => 'completed',	//The class to apply if the data-toggleurl is passed and is 1
+			'data-linkclass' => 'open-modal', //'open-modal, or blank for _target'
+			//'data-modalsource' => site_url('orders/show'), //to load a view inside modal
+			'data-ajaxsource' => site_url('ajax/orders/get_table/id/order_title/contact_id'), //Ajax output of JSON array
+			// 'data-column' => '1',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
+			'data-showid' => 'true',	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
+			),
+		'columns' => array(
+			'id' => '#',//Mandatory
+			'order_title' => 'Order Title',
+			'contact_id' => 'Contact Id'
+			),
+		),
+
+
+
+	//Contact Action tables
+	'task_table' => array(
+		'attributes' => array(
+			'class' => 'table data-table',
 			'id' => 'task-table',
-			//'table-id' => 'tasks-table',
-			//'data-source' => site_url('ajax/contact_actions/get_table/id/action_title/action_type/completed?action_type=task'), 
-			'html-source' => site_url('contact_actions/show'),
-			'data-link' => 'tasks/show/',
-			'data-target' => '#contacts/show/',
-			'dropdown' => 0,
+			'data-linkurl' => '#',
+			'data-deleteurl' => site_url('contact_actions/delete'),
+			// 'data-toggleurl' => site_url('contact_actions/toggle/COL_NAME'),
+			// 'data-toggleclass' => 'completed',	//The class to apply if the data-toggleurl is passed and is 1
+			'data-linkclass' => 'open-modal', //'open-modal, or blank for _target'
+			// 'data-modalsource' => site_url('contact_actions/show'), //to load a view inside modal
+			// 'data-ajaxsource' => site_url('path/to/JSON'), //Ajax output of JSON array
+			'data-column' => '1',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
+			'data-showid' => true,	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
 			),
 		'columns' => array(
-			'id' => '#',
-			'action_type' => 'Typerr4',
-			'action_title' => 'Task title',
-			'completed' => 'completed?'
+			'id' => '#',//Mandatory
+			'action_title' => 'Task',
+			'completed' => 'Complete?'
 			),
 		),
-	'notes_table' => array(
+	'role_table' => array(
 		'attributes' => array(
-			'class' => 'table data-table1',
-			'id' => 'notes_table',
-			'data-tableid' => 'notes_table',	//Must the the same as id above
-			'data-linkurl' => site_url('contact_actions/show'),	//Leave blank if you don't want the rows to be clickable
-			'data-linkclass' => 'modal',	//Set the class of the <a> tag
-			//'data-deleteurl' => site_url('contact_actions/delete'),	//Leave blank to have no delete button - only works on non-ajax tables!
-			//'data-toggleurl' => site_url('contact_actions/toggle'),	//Leave blank to have no toggle button - only works on non-ajax tables!
-			//'data-htmlsource' => site_url('modal'),	//Sets a html-source attr in the <a> tag
-
-			//Below these can be used ot overide certain default vals of the dataTable options
-			// "data-DisplayLength" => 5,
-			// "data-bDestroy" => true,
-			// "data-sPaginationType" => "bootstrap",
-			// "data-bLengthChange" => true,
-			// "data-aLengthMenu" => [[5, 10, 25, 50], [5, 10, 25, 50]],
-			// "data-aaSorting" => [],
-			// "data-bProcessing" => true,
-			// "data-bServerSide" => true,
-			// "data-sAjaxSource" => site_url('path/to/ajax/json/output'),
-			// "data-sServerMethod" => "POST",
-			// "data-aoColumnDefs" => [],
-			// "data-fnRowCallback" => false,
+			'class' => 'table data-table',
+			'id' => 'role_table',
+			'data-linkurl' => '#',
+			//'data-deleteurl' => site_url('contact_actions/delete'),
+			// 'data-toggleurl' => site_url('contact_actions/toggle/COL_NAME'),
+			//'data-toggleclass' => 'completed',	//The class to apply if the data-toggleurl is passed and is 1
+			'data-linkclass' => 'open-modal', //'open-modal, or blank for _target'
+			'data-modalsource' => site_url('contact_actions/show'), //to load a view inside modal
+			// 'data-ajaxsource' => site_url('path/to/JSON'), //Ajax output of JSON array
+			'data-column' => '2',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
+			'data-showid' => true,	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
 			),
 		'columns' => array(
-			'id' => '#',
-			//'action_type' => 'First Name',
-			'action_description' => 'Last Name5',
-			//'owner_id' => 'Owner Id',
+			'id' => '#',//Mandatory
+			'action_title' => 'Role',
+			// 'completed' => 'Complete?'
+			),
 		),
-	),
-
-		
+	'note_table' => array(
+		'attributes' => array(
+			'class' => 'table data-table',
+			'id' => 'note_table',
+			// 'data-linkurl' => '#',
+			//'data-deleteurl' => site_url('contact_actions/delete'),
+			// 'data-toggleurl' => site_url('contact_actions/toggle/COL_NAME'),
+			// 'data-toggleclass' => 'completed',	//The class to apply if the data-toggleurl is passed and is 1
+			// 'data-linkclass' => 'open-modal', //'open-modal, or blank for _target'
+			// 'data-modalsource' => site_url('contact_actions/show'), //to load a view inside modal
+			// 'data-ajaxsource' => site_url('path/to/JSON'), //Ajax output of JSON array
+			'data-column' => '1',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
+			// 'data-showid' => true,	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
+			"data-DisplayLength" => '2',
+			),
+		'columns' => array(
+			'id' => '#',//Mandatory
+			'created_at' => 'Date',
+			'action_description' => 'Note',
+			// 'completed' => 'Complete?'
+			),
+		),
+	'relationship_table' => array(
+		'attributes' => array(
+			'class' => 'table data-table',
+			'id' => 'relationship_table',
+			// 'data-linkurl' => '#',
+			'data-deleteurl' => site_url('contact_actions/delete'),
+			// 'data-toggleurl' => site_url('contact_actions/toggle/COL_NAME'),
+			// 'data-toggleclass' => 'completed',	//The class to apply if the data-toggleurl is passed and is 1
+			//'data-linkclass' => 'open-modal', //'open-modal, or blank for _target'
+			//'data-modalsource' => site_url('contact_actions/show'), //to load a view inside modal
+			// 'data-ajaxsource' => site_url('path/to/JSON'), //Ajax output of JSON array
+			'data-column' => '1',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
+			'data-showid' => true,	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
+			),
+		'columns' => array(
+			'id' => '#',//Mandatory
+			'created_at' => 'Date',
+			'relationship_type' => 'Note',
+			// 'completed' => 'Complete?'
+			),
+		),
 	
-	'dashboard' => array(
-		//Overwrite the default tables above for each page by re-declaring it here...
-		
-		),
-	'contacts' => array(
-		//Overwrite the default tables above for each page by re-declaring it here...
-		'contacts_table1' => array(
-			'attributes' => array(
-				'class' => 'table data-table server-side ',
-				'id' => 'contacts_index',
-				'table-id' => 'contacts_index',
-				'data-source' => site_url('ajax/contacts/get_table/id/first_name/last_name'), 
-				//'html-source' => site_url('contacts/show'),
-				'data-link' => 'contacts/show/',
-				//'data-target' => '#contacts/show/',
-				'dropdown' => 0,
-			),
-			'columns' => array(
-				'id' => '#',
-				'first_name' => 'First Name',
-				'last_name' => 'Last Name',
-				//'owner_id' => 'Owner Id',
-				),
-			),
-		),
-	'leads' => array(
-		//Overwrite the default tables above for each page by re-declaring it here...
-		),
+
+	
+
 	);
+
 
 
 
@@ -626,3 +515,296 @@ $config['column2']	= array(
 
 // What layout folder are we using? (Either bootstrap or Sangam)
 //$config['layout_folder']	= 'bootstrap';
+
+
+// Set up the tables for each index page
+$config['index_tables']	= array(
+	'contacts_table' => array(
+		'attributes' => array(
+			'class' => 'table data-table1',
+			'id' => 'contacts_index',
+			'data-tableid' => 'contacts_index',
+			'data-linkurl' => site_url('contacts/show'),
+			//'data-linkclass' => 'new-class class2',
+			//'data-deleteurl' => site_url('url/to/delete'), //CANNOT use in ajax tables
+			'data-htmlsource' => site_url('url/'),
+			
+			//'data-sAjaxSource' => 
+			'data-bLengthChange' => '',
+			"data-bProcessing" => true,
+			"data-bServerSide" => true,
+			"data-sAjaxSource" => site_url('ajax/contacts/get_table/id/first_name/last_name'),
+			"data-sServerMethod" => "POST",
+			//'data-target' => '#contacts/show/',
+			//'dropdown' => 0,
+			),
+		'columns' => array(
+			'id' => '#',
+			'first_name' => 'First Name',
+			'last_name' => 'Last Name5',
+			//'owner_id' => 'Owner Id',
+			),
+		),
+	'contacts_table_backup' => array(
+		'attributes' => array(
+			'class' => 'table data-table server-side',
+			'id' => 'contacts_index',
+			'data-source' => site_url('ajax/contacts/get_table/id/first_name/last_name'), 
+			//'html-source' => site_url('contacts/show'),
+			'data-link' => 'contacts/show/',
+			//'data-target' => '#contacts/show/',
+			'dropdown' => 0,
+			),
+		'columns' => array(
+			'id' => '#',
+			'first_name' => 'First Name',
+			'last_name' => 'Last Name5',
+			//'owner_id' => 'Owner Id',
+			),
+		),
+	'leads_table' => array(
+		'attributes' => array(
+			'class' => 'table data-table server-side',
+			'id' => 'leads_index',
+			'data-source' => site_url('ajax/contacts/get_table/id/first_name/last_name'), 
+			//'html-source' => site_url('contacts/show'),
+			'data-link' => 'leads/show/',
+			//'data-target' => '#contacts/show/',
+			'dropdown' => 0,
+			),
+		'columns' => array(
+			'id' => '#',
+			'first_name' => 'First Name lead',
+			'last_name' => 'Last Name lead',
+			//'owner_id' => 'Owner Id',
+			),
+		),
+	'orders_table' => array(
+		'attributes' => array(
+			'class' => 'table data-table server-side',
+			'id' => 'orders_index',
+			'data-source' => site_url('ajax/contacts/get_table/id/first_name/last_name'), 
+			//'html-source' => site_url('contacts/show'),
+			'data-link' => 'orders/show/',
+			//'data-target' => '#contacts/show/',
+			'dropdown' => 0,
+			),
+		'columns' => array(
+			'id' => '#',
+			'first_name' => 'First Name order',
+			'last_name' => 'Last Name order',
+			//'owner_id' => 'Owner Id',
+			),
+		),
+	'tasks_table' => array(
+		'attributes' => array(
+			'class' => 'table data-table server-side',
+			'id' => 'tasks_index',
+			'data-source' => site_url('ajax/contact_actions/get_table/id/action_title/action_type/completed?action_type=task'), 
+			//'html-source' => site_url('contacts/show'),
+			'data-link' => 'tasks/show/',
+			//'data-target' => '#contacts/show/',
+			'dropdown' => 0,
+			),
+		'columns' => array(
+			'id' => '#',
+			'action_type' => 'Type',
+			'action_title' => 'Task title index',
+			'completed' => 'completed?'
+			),
+		),
+	
+	
+	'dashboard' => array(
+		//Overwrite the default tables above for each page by re-declaring it here...
+		
+		),
+	'contacts' => array(
+		//Overwrite the default tables above for each page by re-declaring it here...
+		'contacts_table1' => array(
+			'attributes' => array(
+				'class' => 'table data-table server-side ',
+				'id' => 'contacts_index',
+
+				'data-source' => site_url('ajax/contacts/get_table/id/first_name/last_name'), 
+				//'html-source' => site_url('contacts/show'),
+				'data-link' => 'contacts/show/',
+				//'data-target' => '#contacts/show/',
+				'dropdown' => 0,
+			),
+			'columns' => array(
+				'id' => '#',
+				'first_name' => 'First Name',
+				'last_name' => 'Last Name',
+				//'owner_id' => 'Owner Id',
+				),
+			),
+		),
+	'leads' => array(
+		//Overwrite the default tables above for each page by re-declaring it here...
+		),
+	);
+
+
+
+// Set up the tables for each index page
+$config['other_tables']	= array(
+	'contacts_table' => array(
+		'attributes' => array(
+			'class' => 'table data-table', //often open-modal
+			'id' => 'contacts_index',
+			//'data-source' => site_url('ajax/contacts/get_table/id/first_name/last_name'), 
+			//'html-source' => site_url('contacts/show'),
+			'data-link' => 'contacts/show/',
+			//'data-target' => '#contacts/show/',
+			'dropdown' => 0,
+			),
+		'columns' => array(
+			'id' => '#',
+			'first_name' => 'First Name',
+			'last_name' => 'Last Name1',
+			//'owner_id' => 'Owner Id',
+			),
+		),
+	'leads_table' => array(
+		'attributes' => array(
+			'class' => 'table data-table',
+			'id' => 'leads_index',
+			'data-source' => site_url('ajax/contacts/get_table/id/first_name/last_name'), 
+			//'html-source' => site_url('contacts/show'),
+			'data-link' => 'leads/show/',
+			//'data-target' => '#contacts/show/',
+			'dropdown' => 0,
+			),
+		'columns' => array(
+			'id' => '#',
+			'first_name' => 'First Name lead',
+			'last_name' => 'Last Name lead',
+			//'owner_id' => 'Owner Id',
+			),
+		),
+	'orders_table9' => array(
+		'attributes' => array(
+			'class' => 'table data-table ',
+			'id' => 'orders_index',
+			//'data-source' => site_url('ajax/contacts/get_table/id/first_name/last_name'), 
+			'html-source' => site_url('contacts/show'),
+			//'data-link' => 'orders/show/',
+			//'data-target' => '#contacts/show/',
+			'dropdown' => 0,
+			),
+		'columns' => array(
+			'id' => '#',
+			'first_name' => 'First Name order',
+			'last_name' => 'Last Name order',
+			//'owner_id' => 'Owner Id',
+			),
+		),
+	'tasks_table' => array(
+		'attributes' => array(
+			'class' => 'table data-table modal-window',
+			'id' => 'task-table',
+			//'table-id' => 'tasks-table',
+			//'data-source' => site_url('ajax/contact_actions/get_table/id/action_title/action_type/completed?action_type=task'), 
+			'html-source' => site_url('contact_actions/show'),
+			'data-linkurl' => site_url('tasks/show'),
+			'data-target' => '#contacts/show/',
+			'dropdown' => 0,
+			'data-deleteurl' => site_url('contact_actions/delete'),
+			// 'data-toggleurl' => site_url('contact_actions/toggle_completed'),
+			'data-linkclass' => 'open-modal',
+			),
+		'columns' => array(
+			'id' => '#',
+			'action_type' => 'Typerr4',
+			'action_title' => 'Task title',
+			'completed' => 'completed?'
+			),
+		),
+	'orders_table' => array(
+		'attributes' => array(
+			'class' => 'table data-table modal-window',
+			'id' => 'task-table',
+			//'table-id' => 'tasks-table',
+			//'data-source' => site_url('ajax/contact_actions/get_table/id/action_title/action_type/completed?action_type=task'), 
+			'html-source' => site_url('contact_actions/show'),
+			'data-linkurl' => site_url('tasks/show'),
+			'data-target' => '#contacts/show/',
+			'dropdown' => 0,
+			'data-deleteurl' => site_url('contact_actions/delete'),
+			'data-toggleurl' => site_url('contact_actions/toggle_completed'),
+			'data-linkclass' => 'open-modal',
+			),
+		'columns' => array(
+			'id' => '#',
+			'action_type' => 'Typerr4',
+			'action_title' => 'Task title',
+			'completed' => 'completed?'
+			),
+		),
+	'notes_table' => array(
+		'attributes' => array(
+			'class' => 'table data-table¢',
+			'id' => 'notes_table',
+			'data-tableid' => 'notes_table',	//Must the the same as id above
+			'data-linkurl' => site_url('contact_actions/show'),	//Leave blank if you don't want the rows to be clickable
+			'data-linkclass' => 'modal',	//Set the class of the <a> tag
+			//
+			//'data-deleteurl' => site_url('contact_actions/delete'),	//Leave blank to have no delete button - only works on non-ajax tables!
+			//'data-toggleurl' => site_url('contact_actions/toggle'),	//Leave blank to have no toggle button - only works on non-ajax tables!
+			//'data-htmlsource' => site_url('modal'),	//Sets a html-source attr in the <a> tag
+
+			//Below these can be used ot overide certain default vals of the dataTable options
+			// "data-DisplayLength" => 5,
+			// "data-bDestroy" => true,
+			// "data-sPaginationType" => "bootstrap",
+			// "data-bLengthChange" => true,
+			// "data-aLengthMenu" => [[5, 10, 25, 50], [5, 10, 25, 50]],
+			// "data-aaSorting" => [],
+			// "data-bProcessing" => true,
+			// "data-bServerSide" => true,
+			// "data-sAjaxSource" => site_url('path/to/ajax/json/output'),
+			// "data-sServerMethod" => "POST",
+			// "data-aoColumnDefs" => [],
+			// "data-fnRowCallback" => false,
+			),
+		'columns' => array(
+			'id' => '#',
+			//'action_type' => 'First Name',
+			'action_description' => 'Last Name5',
+			//'owner_id' => 'Owner Id',
+		),
+	),
+
+		
+	
+	'dashboard' => array(
+		//Overwrite the default tables above for each page by re-declaring it here...
+		
+		),
+	'contacts' => array(
+		//Overwrite the default tables above for each page by re-declaring it here...
+		'contacts_table1' => array(
+			'attributes' => array(
+				'class' => 'table data-table server-side ',
+				'id' => 'contacts_index',
+				'table-id' => 'contacts_index',
+				'data-source' => site_url('ajax/contacts/get_table/id/first_name/last_name'), 
+				//'html-source' => site_url('contacts/show'),
+				'data-link' => 'contacts/show/',
+				//'data-target' => '#contacts/show/',
+				'dropdown' => 0,
+			),
+			'columns' => array(
+				'id' => '#',
+				'first_name' => 'First Name',
+				'last_name' => 'Last Name',
+				//'owner_id' => 'Owner Id',
+				),
+			),
+		),
+	'leads' => array(
+		//Overwrite the default tables above for each page by re-declaring it here...
+		),
+	);
+

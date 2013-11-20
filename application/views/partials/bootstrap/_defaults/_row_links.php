@@ -1,15 +1,22 @@
 <div class="row">
-	<legend>Relationships</legend>
-	<div id="alert-relationship"></div>
-    <div id="container-relationship">
-    	<code>Realtionship table</code>
-      <?//= $this->table->gen_table('notes_table', $contact->get_contact_actions('note')); ?>
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="row">
+      <div id="alert-relationship" class=" hide">
+        <div class="alert alert-success">Woo hoo! Changes Saved!</div>
+      </div>
     </div>
+    <div id="container-relationship-table">
+      <?= $this->table->gen_table('relationship_table', $contact->get_contacts_records('relationship')); ?>
+    </div>
+  </div>
 </div>
 <div class="row">
-	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <a class="btn btn-primary pull-right edit-record-modal" href="#" html-source="<?php echo site_url('relationships/create/contact/' . $contact->id() ); ?>" table-id="note-table"><i class="fa fa-plus"></i> Create New Relationship</a>
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <a class="btn btn-primary pull-right open-modal" href="#" data-source="<?= site_url('contact_actions/create/relationship/' . $contact->id() ); ?>"  ><i class="fa fa-plus"></i> Create New Relationship</a>
   </div>
-	
 </div>
+<code>To do:
+<br>1. Set up relationships table
+<br>2. Create a relationships modal that has typeahead for contacts and reason dropdown
 
+</code>

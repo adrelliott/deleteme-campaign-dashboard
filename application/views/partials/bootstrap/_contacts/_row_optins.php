@@ -2,7 +2,7 @@
   	<legend>Subscriptions</legend>
   	
   <div class="form-inline"><!-- .form-inline-->
-    <?= form_open(site_url('contacts/edit/' . $contact->id()), 'role="form" class="ajax_form" data-section="overview"'); ?>
+    <?= form_open(site_url('contacts/edit/' . $contact->id()), 'role="form" class="ajax_form" data-column="1"'); ?>
     <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <label for="optin_email">1. Opt into emails?</label>
       <div>
@@ -47,4 +47,3 @@
   
   <?= form_close(); ?><!-- Ending form tag opened in tab-pane 1-->
 </div>
-<div class="message-overview"></div>

@@ -8,10 +8,13 @@
         <h4 class="modal-title"><?= $contact->get_full_name(); ?></h4>
       </div>
 
-      <div class="modal-body" modal-type="">
-        <div class="modal-alert hide">
-          <div class="alert alert-danger">Uh oh. Something went wrong. Please try again.</div>
+      <div id="modal-alert" class="alert-error hide">
+        <div class="alert alert-danger">
+          Uh oh. Something went wrong. Please try again.
         </div>
+      </div>
+
+      <div class="modal-body">
         <!-- The rest of the form is added in modal window -->
       </div>
 

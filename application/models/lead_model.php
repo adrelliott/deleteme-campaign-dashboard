@@ -4,24 +4,27 @@ class Lead_model extends MY_Model {
 
 	//define what columns to return in a search
 	protected $_cols = array(
-	     'single_record' => array(
-	                      'id', 'deleted', 'owner_id', 'created_at', 'updated_at'),
-	     'multiple_record' => array(
-	                      'id','owner_id')
-	);
+		'single_record' => array(
+			'id','contact_id', 'lead_title', 'deleted', 'owner_id', 'created_at', 'updated_at'),
+		'multiple_record' => array(
+			'id','contact_id', 'lead_title', 'deleted', 'owner_id', 'created_at', 'updated_at'),
+		);
 	
 	/*
 		You can set observers to call methods before create, update, get and delete
 		See here: https://github.com/jamierumbelow/codeigniter-base-model
 	 */
 
-	public function __construct() 
-	{ 
-        parent::__construct();
-    }
+		public function __construct() 
+		{ 
+			parent::__construct();
+		}
 
-    
-}
+		
 
-/* End of file xxxxxx.php */
+		
+
+	}
+
+	/* End of file xxxxxx.php */
 /* Location: ./application/controllers/welcome.php */

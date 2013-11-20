@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Order_action_model extends MY_Model {
+class Order_model extends MY_Model {
 
 	//define what columns to return in a search
 	protected $_cols = array(

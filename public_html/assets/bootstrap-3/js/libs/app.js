@@ -1,10 +1,11 @@
-var editor;  
+// var editor;  
 (function($) {
 
-    /* Datepicker - http://www.eyecon.ro/bootstrap-datepicker/ */
-    // $('.datepicker').datepicker({
-    //     format: "dd/mm/yyyy"
-    // });
+    
+    /* DataTables */
+    $('table.data-table').each( function() {
+        createDataTable( this );
+    } );
 
     function createDataTable( selector )
     {
@@ -34,13 +35,16 @@ var editor;
 //console.log('o=', o);
 
         var a = {
-            tableid : "",
+            // tableid : "",
             linkurl: false,
             linkclass: "",
             deleteurl: false,
             toggleurl: false,
-            htmlsource: "",
-            completedclass: false
+            modalsource: "",
+            ajaxsource: false,
+            toggleclass: false,
+            showid: false,
+            unavailablecols: [] //Used to determine which colmsn have not got links
         };
 
         //Iterate over the attributes object and test to see if we've passed a new attributes
@@ -53,62 +57,63 @@ var editor;
 //console.log('a=', a);
 
         //Is it an ajax table?
-        if ( t.attr('data-source') ) {
-            o.sAjaxSource = t.attr('data-source');
-        }
-
-        //Set up the links
-        if ( a.linkurl ) {
-            o.aoColumnDefs.push( {
-                aTargets: ['_all'],
-                mRender: function ( data, type, row ) {
-                    return '<a href="'+a.linkurl+'/'+row[0]+'" class="'+a.linkclass+'" data-id="'+row[0]+'" html-source="'+a.htmlsource+'">'+data+'</a>';
-                }
-            } );
+        if ( a.ajaxsource ) {
+            o.sAjaxSource = a.ajaxsource;
         }
 
         //Set up a delete link
-        //
-        //
+        if ( a.deleteurl ) {
+        // Use the ID column as a button
+            o.aoColumnDefs.push( {
+                aTargets: [0],
+                bSortable: false,
+                mRender: function ( data, type, row ) {
+                    return type === 'display' ?
+                    '<a href="'+a.deleteurl+'/'+data+'" data-id="'+data+'" class="text-danger delete_record"><i class="fa fa-trash-o" /></a>' : data;
+                }
+            } );
+        }
+        else {
+            if( ! a.showid )
+            // Hide ID column
+            o.aoColumnDefs.push( {
+                aTargets: [0],
+                bVisible: false
+            } );
+        }
 
         //set up a toggle link 
         if ( a.toggleurl ) {
            o.aoColumnDefs.push( {
             aTargets: [-1],
+            bSortable: true,
             mRender: function ( data, type, row ) {
-                return '<a href="'+a.toggleurl+'/'+row[0]+'" data-id="'+ row[0] + '"><i class="fa fa-check"></i></a>';
+                return type === 'display' ? '<a href="'+a.toggleurl+'/'+row[0]+'" data-id="'+ row[0] + '" class="toggle_record"><i class="fa fa-check"></i></a>' : data ;
             }
         } );
        }
 
-        //Apply a 'completed' class if last is 1 & data-completedclass is passed
-        if ( a.completedclass ) {
+       //Set up the links
+        if ( a.linkurl ) {
+            o.aoColumnDefs.push( {
+                aTargets: ['_all'],
+                // aTargets: [1],
+                mRender: function ( data, type, row ) {
+                    return '<a href="'+a.linkurl+'/'+row[0]+'" class="'+a.linkclass+'" data-id="'+row[0]+'" data-source="'+a.modalsource+'"><i class=" fa fa-edit1"></i>'+data+'</a>';
+                }
+            } );
+        }
+
+        //Apply a 'completed' class if last is 1 & data-toggleclass is passed
+        if ( a.toggleclass) {
             o.fnCreatedRow = function ( row, data, idx ) {
-                if ( data[ data.length - 1 ] == '1' ) { //col count starts at 0
-                    $(row).addClass( 'completed' );
+                var column = data.length - 1;
+                if ( data[ column ] == '1' ) { //col count starts at 0
+                    $(row).addClass( a.toggleclass );
+                    //$(row 'td').eq(column).removeClass( 'fa' );
                 }
             }
         }
-
-        // if ( t.attr('data-render') && t.attr('data-render') === 'complete3' ) {
-        //     // Could inject a cloned node here if needed?
-
-        //     o.aoColumnDefs.push( {
-        //         aTargets: [-1],
-        //         mRender: function ( data, type, row ) {
-        //             return '<a href="#" data-id="'+ row[0] + '" class="edit-record-modal">icons...</a>';
-        //         }
-        //     } );
-
-        //     // Add class to the row's if completed
-        //     o.fnCreatedRow = function ( row, data, idx ) {
-        //         if ( data[ data.length - 1 ] == '1' ) {
-        //             $(row).addClass( 'completed' );
-        //         }
-        //     }
-        // }
-
-        console.log('o after links=', o);
 
         return t.dataTable( $.extend( true, o, {
             "bProcessing": true,
@@ -121,12 +126,15 @@ var editor;
 
 /* Open modal */
     $('.open-modal').click(function(e) {
+        console.log('modal triggered');
         e.preventDefault();
         var modalType = $(this).attr('modal-type');
         var dataSource = $(this).attr('data-source');
         var dataId = $(this).attr('data-id');
+        var columnNo = $(this).attr('data-column');
+        console.log('col ni passed otmodal is ', columnNo);
 
-        //Make it bigger...?
+        //Make it bigger...?   ########################## TO FINISH #######
         if ( modalType === 'large' ) {
             console.log('make it larger');
             $('#'+modalType).addClass('modalLarge');
@@ -148,6 +156,7 @@ var editor;
             }
 
             $.post( dataSource,
+                {'column': columnNo},
                 function(html) {
                     console.log('html', html);
                     $('.modal-body').html(html);
@@ -157,38 +166,53 @@ var editor;
 
     });
 
-/* Submit a form MODAL */
-    // $('form.ajax_form').on('submit', function(e) {
-    //     e.preventDefault();
-    //     var that = $(this),
-    //     url = that.attr('action'),
-    //     type = that.attr('method'),
-    //     //modalType = that.parent().attr('modal-type'),
-    //     sectionId = that.data('section');
-    //     //Serialise the data to allow for radio/checkboxes
-    //     data = that.serialize();
+    /* Ensure the delete record icon deletes the record */
+    $('.delete_record').click(function(e) {
+        e.preventDefault();
+        //delete the record
+        //If the result is true then remove the row
+        //else display error div explainign that we canot delete at this time
+    });
 
-    //     $.ajax({
-    //         url: url,
-    //         type: type,
-    //         data: data,
-    //         success: function(response) {
-    //             console.log(response);
-    //             if ( response.length < 3 ){//I know - this is horrible. Just want to see if the response is null
-    //                 $('.modal-alert').removeClass('hide');
-    //             }
-    //             else {
-    //                 $('#modal').modal('hide');
-    //                 $('#alert-'+sectionId).removeClass('hide');
-    //                 window.setTimeout(function() {
-    //                     $('#alert-'+sectionId).addClass('hide');
-    //                 }, 1500);
-    //             }
-    //         }
-    //     });
+    /* Ensure the toggle record icon toggles the record */
+    $('.toggle_record').click(function(e) {
+        e.preventDefault();
+        //delete the record
+        //If the result is true then remove the row
+        //else display error div explainign that we canot delete at this time
+    });
 
-    //     return false;
-    // });
+/* Submit a form Non-modal */
+    $('form.ajax_form').on('submit', function(e) {
+        e.preventDefault();
+        console.log('ajax_form triggered');
+        var that = $(this),
+        url = that.attr('action'),
+        type = that.attr('method'),
+        columnNo = that.data('column');
+        //Serialise the data to allow for radio/checkboxes
+        data = that.serialize();
+
+        $.ajax({
+            url: url,
+            type: type,
+            data: data,
+            success: function(response) {
+                console.log(response);
+                if ( response.length < 3 ){//I know - this is horrible. Just want to see if the response is null
+                    $('.form-fail.column'+columnNo).removeClass('hide');
+                }
+                else {
+                    $('.form-success.column'+columnNo).removeClass('hide');
+                    window.setTimeout(function() {
+                        $('.form-success.column'+columnNo).addClass('hide');
+                    }, 1500);
+                }
+            }
+        });
+
+        return false;
+    });
 
 
     /* Make sure the first pill in each pills nav & tab-pane is active */

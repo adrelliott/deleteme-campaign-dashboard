@@ -213,6 +213,19 @@ class MY_Model extends CI_Model
     }
 
     /**
+     * [get_contacts_records description]
+     * @param  int $id         This is the id of the currentcontact 
+     * @param  array  $sort_array The sort array - by default sorts by id
+     * @param  string $col        column name to match with id (defaults to 'contact_id')
+     * @return object             Object of results
+     */
+    public function get_contacts_records($id, $sort_array = array('id' => 'DESC'), $col = 'contact_id')
+    {
+        return $this->as_object()->order_by($sort_array)->get_many_by($col, $id);
+    }
+
+
+    /**
      * Fetch an array of records based on an array of primary values.
      */
     public function get_many($values)

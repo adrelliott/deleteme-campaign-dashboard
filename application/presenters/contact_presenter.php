@@ -82,6 +82,13 @@ class Contact_presenter extends Presenter
 		return $this->contact->contact_actions[$action_type];
 	}
 	
+	public function get_contacts_records($type)
+	{
+		return $this->contact->{$type};
+	}
+
+
+	
 	// public function get_contact_actions_old($action_type)
 	// {
 	// 	$this->load->model('contact_action_model', 'm');

@@ -8,10 +8,10 @@ class MY_Table extends CI_Table {
     }
 
 
-	public function gen_table($table_name, $data = NULL, $type = 'index_tables')
+	public function gen_table($table_name, $data = NULL, $type = 'tables')
 	{
 	  //set columns
-	  	if (is_array($data)) $type = 'other_tables';
+	  	//if (is_array($data)) $type = 'other_tables';
 		$cols = config('columns', $type, $table_name);
 		$attr = '';
 		//$row = array();

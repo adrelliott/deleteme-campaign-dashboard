@@ -2,7 +2,7 @@
 	<legend>Other Details</legend>
 	<div class="form-inline"><!-- .form-inline-->
 	<div class="message-overview"></div>
-	<?= form_open(site_url('contacts/edit/' . $contact->id()), 'role="form" class="ajax_form" data-section="overview"'); ?>
+	<?= form_open(site_url('contacts/edit/' . $contact->id()), 'role="form" class="ajax_form" data-column="1"'); ?>
 
 		<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<label for="gender">Gender</label><br>
@@ -118,5 +118,4 @@
 	<?= form_close(); ?>
 	</div><!-- /.form-inline-->
 </div>
-<div class="message-overview"></div>
 

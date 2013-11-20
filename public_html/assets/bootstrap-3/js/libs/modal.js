@@ -2,13 +2,13 @@
 
 
 /* Turns all forms in a modal with class 'ajax' into ajax powered forms */
-$('form.ajax_form').on('submit', function(e) {
+$('form.ajax_form.modal_form').on('submit', function(e) {
         e.preventDefault();
         var that = $(this),
         url = that.attr('action'),
         type = that.attr('method'),
-        //modalType = that.parent().attr('modal-type'),
-        sectionId = that.data('section');
+        columnNo = that.data('column');
+        console.log('columnNo=', columnNo);
         //Serialise the data to allow for radio/checkboxes
         data = that.serialize();
 
@@ -19,13 +19,15 @@ $('form.ajax_form').on('submit', function(e) {
             success: function(response) {
                 console.log(response);
                 if ( response.length < 3 ){//I know - this is horrible. Just want to see if the response is null
-                    $('.modal-alert').removeClass('hide');
+                    console.log('unhide the error');
+                    $('#modal-alert').removeClass('hide');
                 }
                 else {
                     $('#modal').modal('hide');
-                    $('#alert-'+sectionId).removeClass('hide');
+                    console.log('attempting to show ', '.form-success.column'+columnNo);
+                    $('.form-success.column'+columnNo).removeClass('hide');
                     window.setTimeout(function() {
-                        $('#alert-'+sectionId).addClass('hide');
+                        $('.form-success.column'+columnNo).addClass('hide');
                     }, 1500);
                 }
             }

@@ -5,9 +5,9 @@ class Contact_action_model extends MY_Model {
 	//define what columns to return in a search
 	protected $_cols = array(
          'single_record' => array(
-                          'id', 'contact_id', 'action_type', 'action_subtype', 'action_title', 'action_description', 'action_status', 'completed', 'owner_id'),
+                          'id', 'contact_id', 'action_type', 'action_subtype', 'action_title', 'action_description', 'action_status', 'user_id', 'action_enddate', 'completed', 'owner_id'),
          'multiple_record' => array(
-                          'id', 'contact_id', 'action_type', 'action_subtype', 'action_title', 'action_description',  'action_status', 'completed', 'created_at', 'owner_id')
+                          'id', 'contact_id', 'action_type', 'action_subtype', 'action_title', 'action_description',  'action_status', 'user_id', 'action_enddate', 'completed', 'created_at', 'owner_id')
     );
 
     public $belongs_to = array('contact');
@@ -36,7 +36,7 @@ class Contact_action_model extends MY_Model {
         $retval = array('note' => array(), 'tweet' => array(), 'email' => array(), 'task'  => array(), 'appointment' => array(), 'TEST' => array());
 
         //Get the actions...
-        $actions = $this->as_array()->order_by('id', 'DESC')->get_many_by($col, $id);
+        $actions = $this->as_array()->order_by(array('id' => 'DESC', 'completed' => 'ASC'))->get_many_by($col, $id);
 
         //put them in an assoc array by action type
         foreach ($actions as $row => $array)
