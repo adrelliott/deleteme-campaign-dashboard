@@ -151,6 +151,8 @@
         //if we have a dataSource, the load the view from that url
         if ( dataSource ) {
             $('.modal-body').html('');
+            $('.modal-body').addClass('loader');
+
 
             //if we have passed a data id, append it to the end of the url
             if ( dataId ) {
@@ -164,6 +166,8 @@
                     $('.modal-body').html(html);
                 }
             );
+
+            $('.modal-body').removeClass('loader');
         }
 
     });

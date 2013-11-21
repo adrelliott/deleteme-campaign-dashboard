@@ -71,3 +71,10 @@ div.card a {
 tr.completed {
 	background-color:red;
 }
+
+.loader {
+	background-image: url('../images/ajax-loader.gif');
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 50px; 
+}
