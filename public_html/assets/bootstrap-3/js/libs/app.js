@@ -1,7 +1,7 @@
 // var editor;  
 (function($) {
 
-    
+    console.log('here we go');
     /* DataTables */
     $('table.data-table').each( function() {
         createDataTable( this );
@@ -69,7 +69,7 @@
                 bSortable: false,
                 mRender: function ( data, type, row ) {
                     return type === 'display' ?
-                    '<a href="'+a.deleteurl+'/'+data+'" data-id="'+data+'" class="text-danger delete_record"><i class="fa fa-trash-o" /></a>' : data;
+                    '<a href="#" data-url="'+a.deleteurl+'" data-id="'+data+'" class="text-danger delete-record"><i class="fa fa-trash-o" /></a>' : data;
                 }
             } );
         }
@@ -88,7 +88,7 @@
             aTargets: [-1],
             bSortable: true,
             mRender: function ( data, type, row ) {
-                return type === 'display' ? '<a href="'+a.toggleurl+'/'+row[0]+'" data-id="'+ row[0] + '" class="toggle_record"><i class="fa fa-check"></i></a>' : data ;
+                return type === 'display' ? '<a href="'+a.toggleurl+'/'+row[0]+'" data-id="'+ row[0] + '" class="toggle-record"><i class="fa fa-check"></i></a>' : data ;
             }
         } );
        }
@@ -99,12 +99,16 @@
                 aTargets: ['_all'],
                 // aTargets: [1],
                 mRender: function ( data, type, row ) {
-                    return '<a href="'+a.linkurl+'/'+row[0]+'" class="'+a.linkclass+'" data-id="'+row[0]+'" data-source="'+a.modalsource+'"><i class=" fa fa-edit1"></i>'+data+'</a>';
+                    var url = '#';
+                    if ( a.linkurl !== '#') {
+                        url = a.linkurl+'/'+row[0];
+                    }
+                    return '<a href="'+url+'" data-id="'+row[0]+'" data-source="'+a.modalsource+'" class="'+a.linkclass+'" >'+data+'</a>';
                 }
             } );
         }
 
-        //Apply a 'completed' class if last is 1 & data-toggleclass is passed
+        // Apply a 'completed' class if last is 1 & data-toggleclass is passed
         if ( a.toggleclass) {
             o.fnCreatedRow = function ( row, data, idx ) {
                 var column = data.length - 1;
@@ -112,7 +116,7 @@
                     $(row).addClass( a.toggleclass );
                     //$(row 'td').eq(column).removeClass( 'fa' );
                 }
-            }
+            };
         }
 
         return t.dataTable( $.extend( true, o, {
@@ -122,17 +126,15 @@
     }
 
 
-////////////////////////////////////////////////////////
-
 /* Open modal */
-    $('.open-modal').click(function(e) {
-        console.log('modal triggered');
+    $('a.open-modal').click(function(e) {
         e.preventDefault();
+        console.log('modal triggered');
         var modalType = $(this).attr('modal-type');
         var dataSource = $(this).attr('data-source');
         var dataId = $(this).attr('data-id');
         var columnNo = $(this).attr('data-column');
-        console.log('col ni passed otmodal is ', columnNo);
+        // console.log('col no passed is: ', columnNo);
 
         //Make it bigger...?   ########################## TO FINISH #######
         if ( modalType === 'large' ) {
@@ -167,16 +169,36 @@
     });
 
     /* Ensure the delete record icon deletes the record */
-    $('.delete_record').click(function(e) {
+    $('.delete-record').click(function(e) {
         e.preventDefault();
+        console.log('about to delete a record');
+        //set up the vars
+        
         //delete the record
+        
+
+        //If the result is true then remove the row
+        //else display error div explainign that we canot delete at this time
+    });
+
+    /* Ensure the delete record icon deletes the record */
+    $('.test-record').click(function(e) {
+        e.preventDefault();
+        console.log('about to TEST a record');
+        //set up the vars
+        
+        //delete the record
+        
+
         //If the result is true then remove the row
         //else display error div explainign that we canot delete at this time
     });
 
     /* Ensure the toggle record icon toggles the record */
-    $('.toggle_record').click(function(e) {
+    $('.toggle-record').click(function(e) {
         e.preventDefault();
+
+        console.log('about to toggle a record');
         //delete the record
         //If the result is true then remove the row
         //else display error div explainign that we canot delete at this time
@@ -228,6 +250,6 @@
         window.location=$(this).find("a").attr("href");
         return false;
     });
-
+console.log('all done');
 
 })(jQuery);

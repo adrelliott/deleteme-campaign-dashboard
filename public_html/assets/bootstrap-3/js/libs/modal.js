@@ -8,9 +8,10 @@ $('form.ajax_form.modal_form').on('submit', function(e) {
         url = that.attr('action'),
         type = that.attr('method'),
         columnNo = that.data('column');
-        console.log('columnNo=', columnNo);
+        // console.log('columnNo .=', columnNo);
         //Serialise the data to allow for radio/checkboxes
         data = that.serialize();
+        // console.log('data:', data);
 
         $.ajax({
             url: url,
@@ -18,6 +19,7 @@ $('form.ajax_form.modal_form').on('submit', function(e) {
             data: data,
             success: function(response) {
                 console.log(response);
+                // console.log('line 21');
                 if ( response.length < 3 ){//I know - this is horrible. Just want to see if the response is null
                     console.log('unhide the error');
                     $('#modal-alert').removeClass('hide');

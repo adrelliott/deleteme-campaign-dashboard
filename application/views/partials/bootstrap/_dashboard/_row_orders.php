@@ -1,5 +1,5 @@
 <div class="row">
-	<?= $this->table->gen_table('orders_table'); ?>
+	<?= $this->table->gen_table('order_table'); ?>
 </div>
 <div class="row">
 	<div>

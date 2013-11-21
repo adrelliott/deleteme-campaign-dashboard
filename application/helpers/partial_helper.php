@@ -72,7 +72,8 @@ if (!function_exists('controller')) {
     {
         $c = get_instance()->router->class;
         if ($singular)
-            $c = ucfirst(singular($c));
+            $c = singular($c);
+            // $c = ucfirst(singular($c));
 
         //Return the controller name
         return $c;

@@ -6,7 +6,8 @@
       </div>
     </div>
     <div id="container-relationship-table">
-      <?= $this->table->gen_table('relationship_table', $contact->get_contacts_records('relationship')); ?>
+      <? //die(dump($contact->get_contacts_records('relationships'))); ?>
+      <?= $this->table->gen_table('relationship_table', $contact->get_contacts_records('relationships')); ?>
     </div>
   </div>
 </div>

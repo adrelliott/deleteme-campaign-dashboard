@@ -1,57 +1,26 @@
-<? 
-/* The partial to create/edit a task */
-?>
-
-
-<div class="form-group">
-	<label for="action_title">Task Title</label>
-	<input type="text" class="form-control" id="action_title" name="action_title" placeholder="Enter Task Title" value="<?= $contact_action->action_title(); ?>">
-</div>
-
-<div class="form-group">
-	<label for="action_description">Task Description</label>
-	<textarea class="form-control" id="action_description" name="action_description" placeholder="Enter a description (optional)" rows="3"><?= $contact_action->action_description(); ?></textarea>
-</div>
-
-<div class="form-group">
-	<label for="exampleInputEmail1">Who is this task assigned to?</label>
-	<select class="form-control" id="exampleInputEmail1">
-	  <option>Al</option>
-	  <option>Sam</option>
-	  <option>Nicole</option>
-	  <option>Leanne</option>
-	  <option>Chris</option>
-	</select>
-</div>
-
 
 <div class="form-group col-lg-12 col-md-12 col-sm-12  col-xs-12">
-	<label class="" for="action_description">Write your note</label>
-	<textarea class="form-control" id="action_description" name="action_description" placeholder="Write your note here" rows="6"><?//= $contact_action->action_description(); ?></textarea>
-</div>
-
-<div class="form-group col-lg-6 col-md-12 col-sm-12  col-xs-12">
-	<label class="" for="last_name">Last name</label>
-	<input type="text" class="form-control input-lg" name="last_name" id="last_name" placeholder="E.g. Blair"  value="<?//= $contact->last_name(); ?>">
-</div>
-
-<div class="form-group col-lg-6 col-md-12 col-sm-12  col-xs-12">
-	<label class="" for="telephone_1">Mobile Number</label>
-	<input type="text" class="form-control input-lg" name="telephone_1" id="telephone_1" placeholder="E.g. 07976234234"  value="<?//= $contact->telephone_1(); ?>">
-</div>
-
-<div class="form-group col-lg-6 col-md-12 col-sm-12  col-xs-12">
-	<label class="" for="telephone_2">Landline Number</label>
-	<input type="text" class="form-control input-lg" name="telephone_2" id="telephone_2" placeholder="E.g. 02082223344"  value="<?//= $contact->telephone_2(); ?>">
+	<label class="" for="action_title">Who is related?</label>
+	<input type="text" class="form-control input-lg" name="action_title" id="action_title" placeholder="E.g. Follow up on last phone call"  value="<?= $contact_action->action_title(); ?>">
 </div>
 
 <div class="form-group col-lg-12 col-md-12 col-sm-12  col-xs-12">
-	<label for="email">Email address</label>
-	<input type="email" class="form-control input-lg" name="email" id="email" placeholder="E.g. lionel@GiveUsAclue.com"  value="<?//= $contact->email(); ?>">
+	<label class="" for="action_enddate">Completion date:</label>
+	<input type="date" class="form-control input-lg" name="action_enddate" id="action_enddate"  value="<?= $contact_action->action_enddate(); ?>">
+</div>
+
+<div class="form-group col-lg-12 col-md-12 col-sm-12  col-xs-12">
+	<label class="" for="action_description">Any notes?</label>
+	<textarea class="form-control" id="action_description" name="action_description" placeholder="E.g. We discussed another repeat order last time we spoke." rows="6"><?= $contact_action->action_description(); ?></textarea>
+</div>
+
+<div class="form-group col-lg-6 col-md-6 col-sm-12  col-xs-12">
+	<label class="" for="action_enddate">Completion date:</label>
+	<input type="date" class="form-control input-lg" name="action_enddate" id="action_enddate"  value="<?= $contact_action->action_enddate(); ?>">
 </div>
 
 
-<div class="form-group">
-	<label for="action_description">Note</label>
-	<textarea class="form-control" id="action_description" name="action_description" placeholder="Write your note here" rows="6"><?//= $contact_action->action_description(); ?></textarea>
+<div class="form-group col-lg-6 col-md-6 col-sm-12  col-xs-12">
+	<label class="" for="user_id">Assigned to:</label>
+	<input type="text" class="form-control input-lg" name="user_id" id="user_id" placeholder="E..g Susan"  value="<?= $contact_action->user_id(); ?>">
 </div>

@@ -1,5 +1,5 @@
 <div class="row">
-	<?= $this->table->gen_table(controller() . '_table'); ?>
+	<?= $this->table->gen_table(controller('singular') . '_table'); ?>
 </div>
 <div class="row">
 	<div>

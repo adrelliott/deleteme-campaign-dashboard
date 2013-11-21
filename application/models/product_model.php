@@ -1,17 +1,16 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Contact_model extends MY_Model {
+class Product_model extends MY_Model {
 
 	//define what columns to return in a search
 	protected $_cols = array(
-	     'single_record' => array(
-	     	//Leave balnk to get all fields
-	                      ),
-	     'multiple_record' => array(
-	                      'id', 'first_name', 'last_name', 'email', 'owner_id')
-	);
+                 'single_record' => array(
+                                  'id', 'owner_id'),
+                 'multiple_record' => array(
+                                 'id', 'owner_id')
+                 );
 
-	// protected $_sort = array('id' => 'DESC');
+// protected $_sort = array('id' => 'DESC');
 
   //What are the foreign keys for each table?
   protected $_foreign_key = array(
@@ -40,7 +39,6 @@ class Contact_model extends MY_Model {
         parent::__construct();
     }
 
-    
 }
 
 /* End of file xxxxxx.php */

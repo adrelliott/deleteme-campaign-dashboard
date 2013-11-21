@@ -97,7 +97,7 @@ $config['tables'] = array(
 			// 'data-deleteurl' => site_url('contacts/delete'),
 			// 'data-toggleurl' => site_url('contacts/toggle/COL_NAME'),
 			//'data-toggleclass' => 'completed',	//The class to apply if the data-toggleurl is passed and is 1
-			'data-linkclass' => 'open-modal', //'open-modal, or blank for _target'
+			// 'data-linkclass' => 'open-modal', //'open-modal, or blank for _target'
 			//'data-modalsource' => site_url('contacts/show'), //to load a view inside modal
 			'data-ajaxsource' => site_url('ajax/contacts/get_table/id/first_name/last_name'), //Ajax output of JSON array
 			// 'data-column' => '1',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
@@ -155,21 +155,21 @@ $config['tables'] = array(
 	//Contact Action tables
 	'task_table' => array(
 		'attributes' => array(
-			'class' => 'table data-table',
+			'class' => 'table data-table new',
 			'id' => 'task-table',
 			'data-linkurl' => '#',
 			'data-deleteurl' => site_url('contact_actions/delete'),
-			// 'data-toggleurl' => site_url('contact_actions/toggle/COL_NAME'),
-			// 'data-toggleclass' => 'completed',	//The class to apply if the data-toggleurl is passed and is 1
+			'data-toggleurl' => site_url('contact_actions/toggle/COL_NAME'),
+			'data-toggleclass' => 'completed',	//The class to apply if the data-toggleurl is passed and is 1
 			'data-linkclass' => 'open-modal', //'open-modal, or blank for _target'
-			// 'data-modalsource' => site_url('contact_actions/show'), //to load a view inside modal
+			'data-modalsource' => site_url('contact_actions/show'), //to load a view inside modal
 			// 'data-ajaxsource' => site_url('path/to/JSON'), //Ajax output of JSON array
 			'data-column' => '1',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
-			'data-showid' => true,	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
+			// 'data-showid' => true,	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
 			),
 		'columns' => array(
 			'id' => '#',//Mandatory
-			'action_title' => 'Task',
+			'action_title' => 'Task6',
 			'completed' => 'Complete?'
 			),
 		),
@@ -232,7 +232,7 @@ $config['tables'] = array(
 		'columns' => array(
 			'id' => '#',//Mandatory
 			'created_at' => 'Date',
-			'relationship_type' => 'Note',
+			'type' => 'Note',
 			// 'completed' => 'Complete?'
 			),
 		),

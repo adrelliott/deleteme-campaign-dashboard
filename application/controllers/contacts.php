@@ -7,7 +7,7 @@
 class Contacts extends MY_Controller
 {
 	//What models should we load?
-	public $models = array('contact', 'contact_action', 'order', 'lead' );
+	public $models = array('contact', 'contact_action', 'order', 'lead', 'relationship' );
 
 	//What views are we using? Defaults to views/__CLASS__/__METHOD__
 	//public $view ; //FALSE = load no view, 'view_name' = load view_name.php instead
@@ -34,11 +34,11 @@ class Contacts extends MY_Controller
 			$id = $q->id;
 
 			//Get the other associated records
-			$q->contact_actions = $this->contact_action->get_records($id);
+			$q->contact_actions = $this->contact_action->get_contacts_records($id);
+			$q->leads = $this->lead->get_contacts_records($id);
 			$q->orders = array();
-			$q->leads = $this->lead->get_contacts_records($q->id);
 			$q->tags = array();
-			$q->relationships = array();
+			$q->relationships = $this->relationship->get_contacts_records($q->id);
 
 			//Create a Presenter object to handle this data
 			$this->data['contact'] = new Contact_Presenter($q);

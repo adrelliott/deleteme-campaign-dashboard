@@ -38,7 +38,7 @@ class Contact_actions extends MY_Controller
 		//Get the Id, if passed, and load the record
 		if (!$id) $id = $this->input->post('id');
 		$q = $this->contact_action->get($id);
-
+		
 		//If we return a record, then set up the record...
 		if (isset($q->id))
 		{
@@ -88,12 +88,13 @@ class Contact_actions extends MY_Controller
 			$message = array('message' => '[uhoh]');
 		}
 		$this->session->set_userdata($message);
-
+die(dump($this->input->post()));
 		//if its ajax then do this:
 		if ($this->input->is_ajax_request())
 		{
 			//return a JSON array of the row just edited/inserted
 			echo $this->get_row($id);
+			// $this->session->set_userdata(array('message' =>''));
 		}
 		else redirect(site_url('contacts/show/' . $this->input->post('contact_id')));
 

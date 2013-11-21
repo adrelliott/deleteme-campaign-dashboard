@@ -65,20 +65,14 @@ class MY_Model extends CI_Model
      */
     protected $protected_attributes = array('id', 'owner_id');
 
-
-
-####### deleteme ############################################################
     /**
      * Relationship arrays. Use flat strings for defaults or string
      * => array to customise the class name and primary key
      */
-    // protected $belongs_to = array();
-    // protected $has_many = array();
+    protected $belongs_to = array();
+    protected $has_many = array();
 
-    // protected $_with = array();
-
-
-
+    protected $_with = array();
 
     /**
      * An array of validation rules. This needs to be the same format
@@ -100,17 +94,12 @@ class MY_Model extends CI_Model
     protected $_temporary_return_type = NULL;
 
 
-
-####### deleteme ############################################################
     /*protected function _set_owner_id()
     {
         //get owner_id from the PHP session & set it as condition
         $owner_id = $_SESSION['owner_id'] = 11110;  //******************** fix this!!***
         $this->_database->where('owner_id', $owner_id);
     }*/
-
-
-
   /* --------------------------------------------------------------
      * GENERIC METHODS
      * ------------------------------------------------------------ */
@@ -177,8 +166,7 @@ class MY_Model extends CI_Model
 
          //Decide what fields to retrieve (set up in each model)
         if ( !$where && is_array($this->_cols['single_record']))
-            $this->set_select();
-            
+            $this->_database->select(array_values($this->_cols['single_record']));
         elseif (is_array($where))
             $this->_database->select($where);
 
@@ -288,8 +276,8 @@ class MY_Model extends CI_Model
 
 
          //Decide what fields to retrieve (set up in each model)
-        if (is_array($this->_cols['multiple_record'])) $this->set_select('multiple_record');
-            // $this->_database->select(array_values($this->_cols['multiple_record']));
+        if (is_array($this->_cols['multiple_record']))
+            $this->_database->select(array_values($this->_cols['multiple_record']));
 
         //Just perform for this client's records: 
         $this->_set_owner_id();
@@ -1112,36 +1100,12 @@ class MY_Model extends CI_Model
      * @param string $type either multiple_record or single_record (this determines the fields to get in either get_all(), or get($id) respectively)    
      * @param array $cols a comma separated list of columns to return
      */
-    public function set_select($type = 'single_record', $cols = FALSE)
+    public function set_select($type, $cols)
     {
-       // Allow us to overwrite the default cols
-       if ( ! $cols ) $cols = $this->_cols;
+        $this->_cols[$type] = $cols;
+        //die(dump($this->_cols));
+    }
 
-       //If no columns are set, then we're getting them all
-       if ( ! count($cols[$type]))
-       {
-            $cols[$type] = $this->_database->list_fields($this->_table);
-       }
-
-       //Now add in the table name
-       $proper_cols = array();
-       foreach ( $cols[$type] as $k => $col )
-       {
-            $proper_cols[] = $this->_table . '.' . $col;
-       }
-
-       //Do we have any join cols?
-       if ( isset($this->_cols['join_fields']) && isset($this->_join['join_table']) )
-       {
-            foreach ($this->_cols['join_fields'] as $k => $col)
-            {
-                $proper_cols[] = $col;
-            }
-       }
-
-       $this->_database->select(array_values($proper_cols));
-   }
-   
     /**
      * Wrapper for the group_by() active record method
      * @param  mixed $params Can be an array of col names or a single col 
