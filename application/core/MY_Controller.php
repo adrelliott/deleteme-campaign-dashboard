@@ -20,6 +20,21 @@ class My_Controller extends CI_Controller
      */
     protected $main_model = '';
 
+    /**
+     * The associated model for this class. E.g. if this record is linked to other tables, then this list contains these other tables
+     */
+    protected $_assoc_models = array();
+
+    /**
+     * A list of any other models to be autoloaded
+     */
+    protected $models = array();
+
+     /**
+     * A formatting string for the model autoloading feature.
+     * The percent symbol (%) will be replaced with the model name.
+     */
+    protected $model_string = '%_model';
 
     /**
      * The current request's view. Automatically guessed
@@ -45,20 +60,17 @@ class My_Controller extends CI_Controller
     protected $asides = array();
 
     /**
-     * A list of models to be autoloaded
-     */
-    protected $models = array();
-
-    /**
-     * A formatting string for the model autoloading feature.
-     * The percent symbol (%) will be replaced with the model name.
-     */
-    protected $model_string = '%_model';
-
-    /**
      * A list of helpers to be autoloaded
      */
     protected $helpers = array();
+
+    //Vars used in the base methods defined below - see end of class
+    protected $_q;  //used to hold the data returned
+    protected $_presenter = '';  //The presenter for this class
+    // protected $_class_name; //The name of this class
+
+
+
 
     /* --------------------------------------------------------------
      * GENERIC METHODS
@@ -78,14 +90,18 @@ class My_Controller extends CI_Controller
         $this->load->helper('inflector');
         //$this->load->helper('partial');
 
-        //Show profiler
+        //Show profiler if requested (in dev env only)
         $this->output->enable_profiler(ENVIRONMENT === 'development' && isset($_GET['debug']));
 
-        //Set the layout file. (overide with $layout = FALSE in a controller/method)
-        //$this->layout = 'layouts/' . $this->config->item('layout_folder') . '/' . $this->router->class;
+        //Set up the main vars
+        $this->_main_model_name();
 
+        //Load required classes
         $this->_load_models();
         $this->_load_helpers();
+        $this->_load_presenter();
+
+
     }
 
     /* --------------------------------------------------------------
@@ -194,6 +210,12 @@ class My_Controller extends CI_Controller
      */
     private function _load_models()
     {
+        //We load the models in the $this->models array, so...
+
+        //Add the assoc models to this list and remove dups
+        $this->models = array_unique(array_merge($this->_assoc_models, $this->models));
+
+        //Load each model in this array
         foreach ($this->models as $model)
         {
             $this->load->model($this->_model_name($model), $model);
@@ -235,6 +257,27 @@ class My_Controller extends CI_Controller
     }
 
     /* --------------------------------------------------------------
+     * PRESENTER LOADING
+     * ------------------------------------------------------------ */
+
+    /**
+     * Load presenter based on the $this->_presenter var
+     */
+    private function _load_presenter()
+    {
+        if ($this->_presenter === FALSE) return;
+
+        if ($this->_presenter === '')
+        {
+            $this->_presenter = $this->main_model;
+        }
+        $this->_presenter = $this->main_model . '_Presenter';
+
+        require_once (APPPATH . 'presenters/' . $this->_presenter . '.php');
+
+    }
+
+    /* --------------------------------------------------------------
      * Tables & pagination
      * ------------------------------------------------------------ */
 
@@ -255,33 +298,148 @@ class My_Controller extends CI_Controller
     }
 
 
-    public function generate_datatable()
-    {
-        //$this->load->library('datatables');
-        //return $this->datatables->generate_table(array('id', 'first_name'));
-    }
+    /* --------------------------------------------------------------
+     * BASE METHODS
+     * ------------------------------------------------------------ */
 
     /**
-     * Sets up an ajax call for datatables
-     * @return [json] [a JSON array for the datatables plugin to display]
+     * These methods are the base methods for all controllers
      */
-    /*public function get_by_ajax()
+    
+    public function set_view($method = 'index')
     {
-        $this->layout = FALSE;
-        $this->view = FALSE;
-        $class_name = singular($this->router->class);
+        $view = element($method, $this->view_settings, 'none-returned');
+
+        if ($view == 'no-view')
+            $this->view = FALSE;
         
-        //Get the segments as an array and unset the first 3 (the class & method)
-        $cols = $this->uri->segment_array();
-        unset($cols[0]);    
-        unset($cols[1]);    //I know - there must be a better way to do this?
-        unset($cols[2]);
-
-        $cols = implode(',', $cols);
-
-        //Echo out the JSON array
-        echo $this->$class_name->get_datatables_ajax($cols);
+        elseif ($view !== 'none-returned')
+            $this->view = $view;
     }
-    */
+
+    public function index()
+    {
+        $this->set_view('index');
+    }
+
+
+    // public function index()
+    // {
+    //     //No need for index() as this is done via an ajax table 
+    // }
+
+    // public function show($id = NULL)
+    // {
+    //     //Query contacts table for a record where 'id' = $id
+    //     if (!$id) $id = $this->input->post('id');
+    //     $this->_q = $this->{$this->main_model}->get($id);
+        
+    //     //If we return a record, then set up the record...
+    //     if (isset($this->_q->id))
+    //     {
+    //         $id = $this->_q->id;
+
+    //         //Get associated records
+    //         foreach ($this->_assoc_models as $m)
+    //         {
+    //             //$this->load->model($m);
+    //             $this->_q->{plural($m)} = $this->{$m}->get_associated_records($id); 
+    //         }
+
+    //         //Create a Presenter object to handle this data
+    //         $this->data[$this->main_model] = new $this->_presenter($this->_q);
+    //     }
+
+    //     //...otherwise, set a message and go to index
+    //     else
+    //     {
+    //         $this->session->set_userdata(array('message' => '[not_found]'));
+    //         redirect(site_url($this->router->class));
+    //     }
+    // }
+        
+        
+
+    // public function create($view = 'show')
+    // {
+    //     //Set the view and create an empty presenter object
+    //     $this->view = $view;
+    //     $this->data[$this->main_model] = new $this->_presenter();
+    // }
+
+
+    // public function edit($id = FALSE)
+    // {
+    //     //Don't autoload a view - we're going to redirect to $this->show()
+    //     $this->view = FALSE;
+    //     $this->session->unset_userdata('message');
+
+    //     if ($id && $this->input->post())
+    //     {
+    //         //If we have passed an id and we have POST data, then its an update
+    //         $this->{$this->main_model}->update($id, $this->input->post());
+    //         $message = array('message' => '[updated]');
+    //     }
+    //     elseif (!$id && $this->input->post())
+    //     {
+    //         //Otherwise, if we only have POST data its an insert
+    //         $id = $this->{$this->main_model}->insert($this->input->post());
+    //         $message = array('message' => '[created]');
+    //     }
+    //     else 
+    //     {
+    //         //Otherwise, something bad has gine wrong
+    //         $message = array('message' => '[uhoh]');
+    //     }
+
+    //     //is it an ajax call?
+    //     if ($this->input->is_ajax_request())
+    //     {
+    //         echo json_encode(array('message' => $message['message']));
+    //     }
+
+    //     else
+    //     {
+    //         //Set the message to show the user
+    //         $this->session->set_userdata($message);
+    //         redirect(site_url($this->router->class . '/show/' . $id));
+    //     }
+    // }
+
+    // public function delete($id)
+    // {
+    //     $this->view = FALSE;
+    //     $this->session->unset_userdata('message');
+
+    //     // Destroy a record (not really - 'softdelete' it!)
+    //     if ($this->{$this->main_model}->delete($id))
+    //     {
+    //         $message = array('message' => '[deleted]'); 
+    //     }
+    //     else 
+    //     {
+    //         //Otherwise, something bad has gine wrong
+    //         $message = array('message' => '[uhoh]');
+    //     }
+        
+
+    //     if ($this->input->is_ajax_request())
+    //     {
+    //         echo json_encode(array('message' => $message['message']));
+    //     }
+
+    //     else
+    //     {
+    //         //Set the message to show the user
+    //         $this->session->set_userdata($message);
+    //         redirect(site_url($this->router->class));
+    //     }
+    // }
+
+
+    
+
+
+    
 
 }

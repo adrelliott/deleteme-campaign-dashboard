@@ -9,13 +9,17 @@ class Orders extends MY_Controller
 	//What models should we load?
 	public $models = array('lead', 'contact_action');
 
+	//What other tables are assoc with these records?
+	protected $_assoc_models = array('contact_action');
+
+	// protected $_presenter = ''; //Define a new name or pass FALSE
+
 	//What views are we using? Defaults to views/__CLASS__/__METHOD__
 	//public $view ; //FALSE = load no view, 'view_name' = load view_name.php instead
 
 	public function __construct()
 	{
 		parent::__construct();
-		require_once (APPPATH . 'presenters/lead_presenter.php');
 	}
 
 	public function index()

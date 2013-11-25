@@ -12,6 +12,10 @@ class Dashboard extends MY_Controller
 	// What view are we using?
 	protected $view = 'dashboard';
 
+	//We don't use a presenter here
+	protected $_presenter = FALSE;
+
+	
 	public function index()
 	{
 		//Autoloads the view defined above

@@ -37,7 +37,7 @@
     </div>
 
     <!-- Main table-->
-    <?= partial('_indextable'); ?>
+    <?= partial('_table_index'); ?>
     <!-- /Main table-->
 
 

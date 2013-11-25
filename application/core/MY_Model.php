@@ -176,16 +176,20 @@ class MY_Model extends CI_Model
         }
 
          //Decide what fields to retrieve (set up in each model)
-        if ( !$where && is_array($this->_cols['single_record']))
-            $this->set_select();
-            
-        elseif (is_array($where))
+        // if ( !$where && is_array($this->_cols['single_record']) && count($this->_database->ar_select) == 0)
+        //     $this->set_select();
+        
+        //Set the columns
+        $this->set_select('single');
+
+        //Set the where portion    
+        if (is_array($where))
             $this->_database->select($where);
 
         //Just perform for this client's records: 
         $this->_set_owner_id();
 
-        $row = $this->_database->where($this->primary_key, $primary_value)
+        $row = $this->_database->where($this->_table .'.'.$this->primary_key, $primary_value)
                         ->get($this->_table)
                         ->{$this->_return_type()}();
         $this->_temporary_return_type = $this->return_type;
@@ -238,7 +242,7 @@ class MY_Model extends CI_Model
      */
     public function get_contacts_records($id, $sort_array = array('id' => 'DESC'), $col = 'contact_id')
     {
-        return $this->as_array()->order_by($sort_array)->get_many_by($col, $id);
+        return $this->as_array()->order_by($sort_array)->get_many_by($this->_table .'.'.$col, $id);
     }
 
 
@@ -252,7 +256,7 @@ class MY_Model extends CI_Model
             $this->_database->where($this->_table . '.' . $this->soft_delete_key, (bool)$this->_temporary_only_deleted);
         }*/
 
-        $this->_database->where_in($this->primary_key, $values);
+        $this->_database->where_in($this->_table .'.'.$this->primary_key, $values);
 
         return $this->get_all();
     }
@@ -272,6 +276,21 @@ class MY_Model extends CI_Model
 
         return $this->get_all();
     }
+ /**
+     * Fetch an array of records based on an arbitrary LIKE call.
+     */
+    // public function get_many_like()
+    // {
+    //     $where = func_get_args();
+    //     $this->_set_where($where);
+
+    //     if ($this->soft_delete && $this->_temporary_with_deleted !== TRUE)
+    //     {
+    //         $this->_database->where($this->_table . '.' . $this->soft_delete_key, (bool)$this->_temporary_only_deleted);
+    //     }
+
+    //     return $this->get_all();
+    // }
 
     /**
      * Fetch all the records in the table. Can be used as a generic call
@@ -286,10 +305,14 @@ class MY_Model extends CI_Model
             $this->_database->where($this->_table . '.' . $this->soft_delete_key, (bool)$this->_temporary_only_deleted);
         }
 
+        //Set the columns
+        $this->set_select('multiple');
 
          //Decide what fields to retrieve (set up in each model)
-        if (is_array($this->_cols['multiple_record'])) $this->set_select('multiple_record');
+         //(Check to see if they have been set first)
+        // if (is_array($this->_cols['multiple_record']) && count($this->_database->ar_select) == 0) $this->set_select('multiple_record');
             // $this->_database->select(array_values($this->_cols['multiple_record']));
+
 
         //Just perform for this client's records: 
         $this->_set_owner_id();
@@ -579,84 +602,7 @@ class MY_Model extends CI_Model
      * RELATIONSHIPS
      * ------------------------------------------------------------ */
 
-    public function with($relationship)
-    {
-        $this->_with[] = $relationship;
-
-        if (!in_array('relate', $this->after_get))
-        {
-            $this->after_get[] = 'relate';
-        }
-
-        return $this;
-    }
-
-    public function relate($row)
-    {
-        if (empty($row))
-        {
-            return $row;
-        }
-        
-        foreach ($this->belongs_to as $key => $value)
-        {
-            if (is_string($value))
-            {
-                $relationship = $value;
-                $options = array( 'primary_key' => $value . '_id', 'model' => $value . '_model' );
-            }
-            else
-            {
-                $relationship = $key;
-                $options = $value;
-            }
-
-            if (in_array($relationship, $this->_with))
-            {
-                $this->load->model($options['model'], $relationship . '_model');
-
-                if (is_object($row))
-                {
-                    $row->{$relationship} = $this->{$relationship . '_model'}->get($row->{$options['primary_key']});
-                }
-                else
-                {
-                    $row[$relationship] = $this->{$relationship . '_model'}->get($row[$options['primary_key']]);
-                }
-            }
-        }
-
-        foreach ($this->has_many as $key => $value)
-        {
-            if (is_string($value))
-            {
-                $relationship = $value;
-                $options = array( 'primary_key' => singular($this->_table) . '_id', 'model' => singular($value) . '_model' );
-            }
-            else
-            {
-                $relationship = $key;
-                $options = $value;
-            }
-
-            if (in_array($relationship, $this->_with))
-            {
-                $this->load->model($options['model'], $relationship . '_model');
-
-                if (is_object($row))
-                {
-                    $row->{$relationship} = $this->{$relationship . '_model'}->get_many_by($options['primary_key'], $row->{$this->primary_key});
-                }
-                else
-                {
-                    $row[$relationship] = $this->{$relationship . '_model'}->get_many_by($options['primary_key'], $row[$this->primary_key]);
-                }
-            }
-        }
-
-        return $row;
-    }
-
+   
     /* --------------------------------------------------------------
      * UTILITY METHODS
      * ------------------------------------------------------------ */
@@ -664,46 +610,7 @@ class MY_Model extends CI_Model
     /**
      * Retrieve and generate a form_dropdown friendly array
      */
-    function dropdown()
-    {
-        $args = func_get_args();
-
-        if(count($args) == 2)
-        {
-            list($key, $value) = $args;
-        }
-        else
-        {
-            $key = $this->primary_key;
-            $value = $args[0];
-        }
-
-        $this->trigger('before_dropdown', array( $key, $value ));
-
-        if ($this->soft_delete && $this->_temporary_with_deleted !== TRUE)
-        {
-            $this->_database->where($this->soft_delete_key, FALSE);
-        }
-
-        //Just perform for this client's records: 
-        $this->_set_owner_id();
-
-        $result = $this->_database->select(array($key, $value))
-                           ->get($this->_table)
-                           ->result();
-
-        $options = array();
-
-        foreach ($result as $row)
-        {
-            $options[$row->{$key}] = $row->{$value};
-        }
-
-        $options = $this->trigger('after_dropdown', $options);
-
-        return $options;
-    }
-
+    
     /**
      * Fetch a count of rows based on an arbitrary WHERE call.
      */
@@ -1074,6 +981,27 @@ class MY_Model extends CI_Model
     }
 
     /**
+     * Set LIKE parameters, cleverly
+     */
+    public function set_like($params, $or = FALSE)
+    {
+        // if (is_array($params) && ! $or)
+        // {
+        //     $this->_database->or_like($params);
+        // }
+        // elseif (is_array($params))
+        // {
+        //     $this->_database->or_like($params);
+        // }
+        if (is_array($params))
+        {
+            $this->_database->or_like($params);
+        }
+
+
+    }
+
+    /**
      * Return the method name for the current return type
      */
     protected function _return_type($multi = FALSE)
@@ -1112,36 +1040,83 @@ class MY_Model extends CI_Model
      * @param string $type either multiple_record or single_record (this determines the fields to get in either get_all(), or get($id) respectively)    
      * @param array $cols a comma separated list of columns to return
      */
-    public function set_select($type = 'single_record', $cols = FALSE)
+    public function set_select($type = 'single', $cols = FALSE)
     {
-       // Allow us to overwrite the default cols
-       if ( ! $cols ) $cols = $this->_cols;
+    // Allow us to overwrite the default cols
 
-       //If no columns are set, then we're getting them all
-       if ( ! count($cols[$type]))
-       {
-            $cols[$type] = $this->_database->list_fields($this->_table);
-       }
+        if ( ! $cols ) $cols = $this->_cols;
 
-       //Now add in the table name
-       $proper_cols = array();
-       foreach ( $cols[$type] as $k => $col )
-       {
-            $proper_cols[] = $this->_table . '.' . $col;
-       }
-
-       //Do we have any join cols?
-       if ( isset($this->_cols['join_fields']) && isset($this->_join['join_table']) )
-       {
-            foreach ($this->_cols['join_fields'] as $k => $col)
+        switch ($type) {
+            case 'ajax':
+            $cols = array_values($cols);
+            break;
+            
+            case 'join':
+            $cols = array_values($cols);
+            break;
+            
+            case 'single':
+            case 'multiple':
+            if (count($cols[$type . '_record']) >= 1)
             {
-                $proper_cols[] = $col;
+                $cols = array_values($cols[$type . '_record']);
+                break;
+            }
+
+            default:
+            $cols = $this->_database->list_fields($this->_table);
+            break;
+        }
+
+       //loop through and prepend with this tablename (ignore those already prepended)
+       foreach ($cols as $k => $col)
+       {
+            if ( ! strpos($col, '.'))
+            {
+                $cols[$k] = $this->_table . '.' . $col;
             }
        }
 
-       $this->_database->select(array_values($proper_cols));
+       $this->_database->select($cols);
+
+       // if ($type == 'ajax')
+       // {
+       //       $this->_database->select(array_values($cols));
+       //       
+       // }
+
+       // //If no columns are set, then we're getting them all
+       // if ( ! count($cols[$type]))
+       // {
+       //      $cols[$type] = $this->_database->list_fields($this->_table);
+       // }
+
+       // //Now add in the table name
+       // $proper_cols = array();
+       // foreach ( $cols[$type] as $k => $col )
+       // {
+       //      $proper_cols[] = $this->_table . '.' . $col;
+       // }
+
+       // //Do we have any join cols?
+       // if ( isset($this->_cols['join_fields']) && isset($this->_join['join_table']) )
+       // {
+       //      foreach ($this->_cols['join_fields'] as $k => $col)
+       //      {
+       //          $proper_cols[] = $col;
+       //      }
+       // }
+
+       // $this->_database->select(array_values($proper_cols));
    }
    
+   protected function _join($table, $join_statement, $join_type = NULL)
+   {
+       $this->_database->join($table, $join_statement, $join_type);
+   }
+
+
+
     /**
      * Wrapper for the group_by() active record method
      * @param  mixed $params Can be an array of col names or a single col 

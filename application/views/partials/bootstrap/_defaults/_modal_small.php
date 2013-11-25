@@ -5,7 +5,7 @@
 
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title"><?= $contact->get_full_name(); ?></h4>
+        <h4 class="modal-title"><?= ${controller(TRUE)}->get_full_name(); ?></h4>
       </div>
 
       <div id="modal-alert" class="alert-error hide">
@@ -13,7 +13,7 @@
           Uh oh. Something went wrong. Please try again.
         </div>
       </div>
-
+      <div class="modal-loader"></div>
       <div class="modal-body">
         <!-- The rest of the form is added in modal window -->
       </div>

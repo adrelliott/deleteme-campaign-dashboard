@@ -13,6 +13,18 @@ $config['owner']['owner_id']	= '22220';
 // What layout folder are we using? (Either bootstrap or Sangam)
 $config['layout_folder']	= 'bootstrap';
 
+// Extra config itesm
+$config['extras']	= array(
+	'include_in_header' => array(
+		//E.g. 'script' => 'Path_to_script' (from site_url())
+		'stylesheet' => 'assets/clients/' . $config['owner']['owner_id'] . '/extra_css.css',
+		),
+	'include_in_footer' => array(
+		//E.g. 'script' => 'Path_to_script' (from site_url())
+		),
+	);
+
+
 // Set up the pageheaders
 $config['pageheaders']	= array(
 	'dashboard' => '',
@@ -51,6 +63,117 @@ $config['pageheaders']	= array(
 				),
 			),
 	
+	);
+
+
+
+/* pills */
+$config['pills'] = array(
+	'dashboard' => array(
+		'column_1' => array(
+			//'id' => 'Name' - note, the id is also the partial name,
+			//e.g 'overview' => 'Overview' pulls in _row_overview.php partial
+			'contacts' => 'Contacts',
+			'leads' => 'Leads',
+			'orders' => 'Orders',
+			),	
+		'column_2' => array(
+			//'id' => 'Name' - note, the id is also the partial name,
+			//e.g 'overview' => 'Overview' pulls in _row_overview.php partial
+			'tasks' => 'Tasks',
+			'stats' => 'Statistics',
+			),
+		),
+	'contacts' => array(
+		'column_1' => array(
+			'overview' => 'Overview',
+			'indepth' => 'In-Depth',
+			'optins' => 'Opt-Ins',
+			'notes' => 'Notes',
+			'links' => 'Links',
+			),	
+		'column_2' => array(
+			//'id' => 'Name' - note, the id is also the partial name,
+			//e.g 'overview' => 'Overview' pulls in _row_overview.php partial
+			'tasks' => 'Tasks1',
+			'orders' => 'Orders2',
+			'roles' => 'Roles3',
+			'tags' => 'Tags',
+			'leads' => 'Leads',
+			),
+		),
+	'leads' => array(
+		'column_1' => array(
+			'overview' => 'Overview',
+			// 'indepth' => 'In-Depth',
+			// 'optins' => 'Opt-Ins',
+			// 'notes' => 'Notes',
+			// 'links' => 'Links',
+			),	
+		'column_2' => array(
+			//'id' => 'Name' - note, the id is also the partial name,
+			//e.g 'overview' => 'Overview' pulls in _row_overview.php partial
+			'tasks' => 'Tasks',
+			// 'orders' => 'Orders2',
+			// 'roles' => 'Roles3',
+			// 'tags' => 'Tags',
+			// 'leads' => 'Leads',
+			),
+		),
+		
+	);
+
+/* Dropdowns */
+$config['dropdowns'] = array(
+	'relationship_types' => array(
+		//'value' => 'Display This', 
+		'parent' => 'The Parent of...',
+		'spouse' => 'Is married to...',
+		'sibling' => 'Is brother/sister of...',
+		'business_partner' => 'Is in business with...',
+		),
+
+	);
+
+
+
+// Set up the extra actions (these are the dropdowns on the top right of each page)
+$config['extraactions']	= array(
+	'dashboard' => array(
+		'index' => array(
+			'dropdown' => array(
+				'contacts/create' => '..create a new contact',
+				'xx'	=> '..create a new lead',
+				'' => '...send some emaisl to contacts'				),
+			),
+		),
+	'contacts' => array(
+		'index' => array(
+			'dropdown' => array(
+				'contacts/create1' => 'Create a new Contact',
+				'contacts/create2' => 'Create a new Contact22',
+				'contacts/create3' => 'Create a new Contact33',
+				),
+			),
+		'show' => array(
+			'dropdown' => array(
+				'contacts/create' => 'Create a new Contact',
+				),
+			),
+		),
+	'leads' => array(
+		'index' => array(
+			/*'dropdown' => array(
+				'contacts/create' => 'Create a new Contact',
+				'contacts/delete' => 'Delete a new Contact',
+				),*/
+			),
+		'show' => array(
+			'dropdown' => array(
+				'contacts/create' => 'Create a new Contact lead/show',
+				),
+			),
+		),
 	);
 
 
@@ -119,14 +242,14 @@ $config['tables'] = array(
 			//'data-toggleclass' => 'completed',	//The class to apply if the data-toggleurl is passed and is 1
 			'data-linkclass' => 'open-modal', //'open-modal, or blank for _target'
 			//'data-modalsource' => site_url('leads/show'), //to load a view inside modal
-			'data-ajaxsource' => site_url('ajax/contacts/get_table/id/first_name/last_name'), //Ajax output of JSON array
+			'data-ajaxsource' => site_url('ajax/leads/get_table/id/lead_title/contact_id'), //Ajax output of JSON array
 			// 'data-column' => '1',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
 			'data-showid' => 'true',	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
 			),
 		'columns' => array(
 			'id' => '#',//Mandatory
-			'first_name' => 'First name',
-			'last_name' => 'Last name'
+			'lead_title' => 'Lead Title',
+			'contact_id' => 'Name'
 			),
 		),
 	'order_table' => array(
@@ -152,6 +275,9 @@ $config['tables'] = array(
 
 
 
+
+
+
 	//Contact Action tables
 	'task_table' => array(
 		'attributes' => array(
@@ -159,7 +285,7 @@ $config['tables'] = array(
 			'id' => 'task-table',
 			'data-linkurl' => '#',
 			'data-deleteurl' => site_url('contact_actions/delete'),
-			'data-toggleurl' => site_url('contact_actions/toggle/COL_NAME'),
+			'data-toggleurl' => site_url('contact_actions/toggle/completed'),
 			'data-toggleclass' => 'completed',	//The class to apply if the data-toggleurl is passed and is 1
 			'data-linkclass' => 'open-modal', //'open-modal, or blank for _target'
 			'data-modalsource' => site_url('contact_actions/show'), //to load a view inside modal
@@ -169,7 +295,7 @@ $config['tables'] = array(
 			),
 		'columns' => array(
 			'id' => '#',//Mandatory
-			'action_title' => 'Task6',
+			'action_title' => 'Task',
 			'completed' => 'Complete?'
 			),
 		),
@@ -219,21 +345,22 @@ $config['tables'] = array(
 		'attributes' => array(
 			'class' => 'table data-table',
 			'id' => 'relationship_table',
-			// 'data-linkurl' => '#',
-			'data-deleteurl' => site_url('contact_actions/delete'),
+			'data-linkurl' => '#',
+			'data-deleteurl' => site_url('relationships/delete'),
 			// 'data-toggleurl' => site_url('contact_actions/toggle/COL_NAME'),
 			// 'data-toggleclass' => 'completed',	//The class to apply if the data-toggleurl is passed and is 1
-			//'data-linkclass' => 'open-modal', //'open-modal, or blank for _target'
-			//'data-modalsource' => site_url('contact_actions/show'), //to load a view inside modal
+			'data-linkclass' => 'open-modal', //'open-modal, or blank for _target'
+			'data-modalsource' => site_url('relationships/show'), //to load a view inside modal
 			// 'data-ajaxsource' => site_url('path/to/JSON'), //Ajax output of JSON array
 			'data-column' => '1',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
 			'data-showid' => true,	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
 			),
 		'columns' => array(
 			'id' => '#',//Mandatory
-			'created_at' => 'Date',
-			'type' => 'Note',
-			// 'completed' => 'Complete?'
+			// 'created_at' => 'Date',
+			'first_name' => 'First Name',
+			'last_name' => 'Last Name',
+			'type' => 'Type'
 			),
 		),
 	
@@ -247,114 +374,6 @@ $config['tables'] = array(
 
 
 
-
-/* pills */
-$config['pills'] = array(
-	'dashboard' => array(
-		'column_1' => array(
-			//'id' => 'Name' - note, the id is also the partial name,
-			//e.g 'overview' => 'Overview' pulls in _row_overview.php partial
-			'contacts' => 'Contacts',
-			'leads' => 'Leads',
-			'orders' => 'Orders',
-			),	
-		'column_2' => array(
-			//'id' => 'Name' - note, the id is also the partial name,
-			//e.g 'overview' => 'Overview' pulls in _row_overview.php partial
-			'tasks' => 'Tasks',
-			'stats' => 'Statistics',
-			),
-		),
-	'contacts' => array(
-		'column_1' => array(
-			'overview' => 'Overview',
-			'indepth' => 'In-Depth',
-			'optins' => 'Opt-Ins',
-			'notes' => 'Notes',
-			'links' => 'Links',
-			),	
-		'column_2' => array(
-			//'id' => 'Name' - note, the id is also the partial name,
-			//e.g 'overview' => 'Overview' pulls in _row_overview.php partial
-			'tasks' => 'Tasks1',
-			'orders' => 'Orders2',
-			'roles' => 'Roles3',
-			'tags' => 'Tags',
-			'leads' => 'Leads',
-			),
-		),
-	'leads' => array(
-		'column_1' => array(
-			'overview' => 'Overview',
-			'indepth' => 'In-Depth',
-			'optins' => 'Opt-Ins',
-			'notes' => 'Notes',
-			'links' => 'Links',
-			),	
-		'column_2' => array(
-			//'id' => 'Name' - note, the id is also the partial name,
-			//e.g 'overview' => 'Overview' pulls in _row_overview.php partial
-			'tasks' => 'Tasks1',
-			'orders' => 'Orders2',
-			'roles' => 'Roles3',
-			'tags' => 'Tags',
-			'leads' => 'Leads',
-			),
-		),
-		
-	);
-
-
-// Extra config itesm
-$config['extras']	= array(
-	'include_in_header' => array(
-		//E.g. 'script' => 'Path_to_script' (from site_url())
-		'stylesheet' => 'assets/clients/' . $config['owner']['owner_id'] . '/extra_css.css',
-		),
-	'include_in_footer' => array(
-		//E.g. 'script' => 'Path_to_script' (from site_url())
-		),
-	);
-
-
-// Set up the extra actions (these are the dropdowns on the top right of each page)
-$config['extraactions']	= array(
-	'dashboard' => array(
-		'index' => array(
-			'dropdown' => array(
-				'contacts/create' => '..create a new contact',
-				'xx'	=> '..create a new lead',
-				'' => '...send some emaisl to contacts'				),
-			),
-		),
-	'contacts' => array(
-		'index' => array(
-			'dropdown' => array(
-				'contacts/create1' => 'Create a new Contact',
-				'contacts/create2' => 'Create a new Contact22',
-				'contacts/create3' => 'Create a new Contact33',
-				),
-			),
-		'show' => array(
-			'dropdown' => array(
-				'contacts/create' => 'Create a new Contact',
-				),
-			),
-		),
-	'leads' => array(
-		'index' => array(
-			/*'dropdown' => array(
-				'contacts/create' => 'Create a new Contact',
-				'contacts/delete' => 'Delete a new Contact',
-				),*/
-			),
-		'show' => array(
-			'dropdown' => array(
-				'contacts/create' => 'Create a new Contact lead/show',
-				),
-			),
-		),
-	);
 
 
 

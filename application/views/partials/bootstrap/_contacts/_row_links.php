@@ -13,7 +13,7 @@
 </div>
 <div class="row">
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <a class="btn btn-primary pull-right open-modal" href="#" data-source="<?= site_url('contact_actions/create/relationship/' . $contact->id() ); ?>"  ><i class="fa fa-plus"></i> Create New Relationship</a>
+    <a class="btn btn-primary pull-right open-modal" href="#" data-source="<?= site_url('relationships/create/' . $contact->id() ); ?>"  data-column="1" ><i class="fa fa-plus"></i> Create New Relationship</a>
   </div>
 </div>
 <code>To do:
@@ -21,3 +21,4 @@
 <br>2. Create a relationships modal that has typeahead for contacts and reason dropdown
 
 </code>
+<?// dump($contact->get_contacts_records('relationships'));

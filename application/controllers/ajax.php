@@ -12,6 +12,9 @@
 class Ajax extends MY_Controller
 {
 
+	//We don't need a presenter here
+	protected $_presenter = FALSE;
+
 	public function __construct()
     {
         parent::__construct();
@@ -78,16 +81,86 @@ class Ajax extends MY_Controller
 	 *
 	 * e.g. domain.com/ajax/contacts/id/first_name?owner_id=222
 	 */
+	public function typeahead_contacts()
+	{
+		$cols = $this->set_cols();
+
+		//set up thew wildcard search
+		$like = array();
+
+		if (count($_GET))
+		{
+			
+			//Has the user typed 2 names?
+			if (strpos($_GET['q'], ' '))
+			{
+				//YES... search for both names
+				$q = explode(' ', $_GET['q']);
+				$this->m->set_like(array('first_name' => $q[0]));
+				$this->m->set_like(array('last_name' => $q[1]));
+			} 
+			else
+			{
+				//NO... just search for input as either first or last
+				$q = $_GET['q'];
+				$this->m->set_like(array('first_name' => $q));
+				$this->m->set_like(array('last_name' => $q), TRUE);
+			}
+
+		}
+		//set the cols & sort order
+		$this->m->set_select('ajax', $cols);
+		$this->m->order_by('first_name');
+
+		$q = $this->m->get_all();
+		
+		//Now format the array into datums (https://github.com/twitter/typeahead.js#datum)
+		$dataset = array();;
+		foreach ($q as $o)
+		{
+			$datum = array();
+			// dump($o);
+			$datum['value'] = $o->first_name . ' ' . $o->last_name;
+			if ($o->postal_code) $datum['value'] .= ' (' . strtoupper($o->postal_code) . ')';
+			$datum['tokens'] = array($o->id, $o->first_name, $o->last_name);
+			$datum['id'] = $o->id;
+			// $datum['postal_code'] = $o->postal_code;
+
+			$dataset[] = $datum;
+			//
+		}		
+//dump(json_encode($dataset));
+// $this->output->enable_profiler(TRUE);
+
+		echo json_encode($dataset);			
+	}
+
+
+
 	public function typeahead()
 	{
 		$cols = $this->set_cols();
-		$where = $_GET;
+
+		//set up thew wildcard search
+		$like = array();
+
+		if (count($_GET))
+		{
+			foreach ($_GET as $k => $v)
+			{
+				$this->m->set_like(array($k => $v), TRUE);
+			}
+
+		}
+		die(dump($this->m));
+
+		//$where = $_GET;
 
 		//set the cols
-		$this->m->set_select('multiple_record', $cols);
+		$this->m->set_select('ajax', $cols);
 		$this->m->order_by('first_name');
 		
-		echo json_encode($this->m->get_all());
+		echo json_encode($this->m->get_many_like($like));
 		//do the query
 
 		//Send to the datatables library

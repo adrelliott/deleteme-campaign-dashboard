@@ -18,10 +18,13 @@ $('form.ajax_form.modal_form').on('submit', function(e) {
             type: type,
             data: data,
             success: function(response) {
+                response_parsed = $.parseJSON(response);
+                console.log('thisnis the message:', response_parsed.message);
+                // console.log('this is the data:', response_parsed.q);
+
                 console.log(response);
-                // console.log('line 21');
-                if ( response.length < 3 ){//I know - this is horrible. Just want to see if the response is null
-                    console.log('unhide the error');
+                if ( response_parsed.message == '[uhoh]' ){
+                    console.log('theres an error');
                     $('#modal-alert').removeClass('hide');
                 }
                 else {
@@ -36,4 +39,27 @@ $('form.ajax_form.modal_form').on('submit', function(e) {
         });
 
         return false;
+    });
+
+    // Typeahead
+    $('input.contact-search').typeahead({
+      name: 'contact',
+      limit: 100,
+      // local: ['timtrueman', 'JakeHarding', 'vskarich']
+      remote: {
+        url: 'http://campaigndashboard.dev/ajax/contacts/typeahead_contacts/id/first_name/last_name/postal_code/?q=%QUERY',
+        },
+      // template: [
+      //   '<p class="typeahead-fullname">{{first_name}} {{last_name}}</p>',
+      //   '<p class="typeahead-postalcode">{{postal_code}}</p>',
+      // ].join(''),
+      // engine: Hogan,
+    
+        //The .on() scales the dropdown menu to dynamically scale the dropdown
+    }).on('typeahead:opened',function(){
+        $('.tt-dropdown-menu').css('width',$(this).width() + 'px');
+    }).on('typeahead:selected', function(datum, dataset){
+        console.log('id', dataset.id);
+        $('input[name="other_contact_id"]').val(dataset.id);
+        //console.log('dataset', dataset);
     });

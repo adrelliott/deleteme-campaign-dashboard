@@ -29,7 +29,15 @@ if (!function_exists('view')) {
 }
 
 
-
+//Eg will find 'relationship' in config['dropdowns'] by passing 
+//    config('dropdowns', 'relationship')
+//    
+//    You can define a cusom_index too and pass it, e.g. 
+//    $config['dropdowns'] = array(
+//      'custom_index' => array(
+//          'relationship' => {values},
+//      )
+//    )
 if (!function_exists('config')) {
     
     function config($element, $config_item, $custom_index = FALSE)
@@ -77,6 +85,27 @@ if (!function_exists('controller')) {
 
         //Return the controller name
         return $c;
+    }
+}
+
+// Gets the id (usually the last segment)
+if (!function_exists('id')) {
+    
+    function id($pos = FALSE)
+    {
+        return get_segment($pos);
+    }
+}
+
+// Gets a segment from the URI - default to the last segment (often the id)
+if (!function_exists('get_segment')) {
+    
+    function get_segment($pos = FALSE)
+    {
+        $uri = get_instance()->uri->segment_array();
+        if ( ! $pos ) $pos = count($uri);
+
+        return $uri[$pos];
     }
 }
 

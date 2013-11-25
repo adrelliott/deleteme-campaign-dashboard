@@ -40,8 +40,13 @@
 
 $route['default_controller'] = "dashboard";
 $route['(:any)/list'] = "$1/index";
+
 $route['contact'] = "contacts";
 $route['contacts/(:num)'] = "contacts/show/$1";
+
+$route['search'] = "saved_searches";
+
+
 $route['404_override'] = '';
 
 

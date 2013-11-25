@@ -1,7 +1,6 @@
 <div class="row"><!-- Encosing Row -->
   <div class="col-xs-12"><!-- 12 columns -->
-
-    <?  if(strtolower($this->uri->segment(2) == 'create')): ?>
+    <?  if(strtolower(get_segment(2) == 'create')): ?>
     <div class="row">
       <div class="col-lg-8 col-md-10 col-sm-10 col-xs-12">
         <div class="page-header">
@@ -80,7 +79,7 @@
           <?= partial('_pills_body', array('position'=>'column_1')); ?>
 
           <div class="row">
-            <a class="text-danger" href="#" ><i class="fa fa-trash-o"></i> Delete this record...</a>
+          <a class="text-danger del" href="<?= site_url(controller() . '/delete/' . id()); ?>" ><i class="fa fa-trash-o"></i> Delete this record...</a>
           </div>
 
         </div><!-- /Tab Content -->

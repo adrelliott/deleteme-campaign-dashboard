@@ -8,7 +8,7 @@ class Contact_action_model extends MY_Model {
     'id', 'contact_id', 'action_type', 'action_subtype', 'action_title', 'action_description', 'action_status', 'user_id', 'action_enddate', 'completed', 'owner_id'),
    
    'multiple_record' => array(
-    'id', 'contact_id', 'action_type', 'action_subtype', 'action_title', 'action_description',  'action_status', 'user_id', 'action_enddate', 'completed', 'created_at', 'owner_id'),
+    'id', 'owner_id', 'contact_id', 'action_type', 'action_subtype', 'action_title', 'action_description',  'action_status', 'user_id', 'action_enddate', 'completed', 'created_at', 'owner_id'),
    
    'join_fields' => array(
     'users.first_name')
@@ -49,16 +49,17 @@ class Contact_action_model extends MY_Model {
      * @return array             an array of objects, sorted into action type
      * e.g. retval['tasks'] = array([0] -> OBJECT)
      */
-    public function get_contacts_records($id, $col = 'contact_id')
+    public function get_associated_records($id, $col = 'contact_id')
     {
         //Intp what do we want these actions grouped? (I.e. what are all the contact_action types?)
       $retval = array('note' => array(), 'tweet' => array(), 'email' => array(), 'task'  => array(), 'appointment' => array(), 'TEST' => array());
 
       //Set the Join table (Leave blank to have no join)
-      $this->_join['join_table'] = 'users';
+      // $this->_join['join_table'] = 'users';
 
         //Get the actions...
-      $actions = $this->as_array()->order_by(array('id' => 'DESC', 'completed' => 'ASC'))->join_by()->get_many_by($col, $id);
+      // $actions = $this->as_array()->order_by(array('id' => 'DESC', 'completed' => 'ASC'))->join_by()->get_many_by($col, $id);
+      $actions = $this->as_array()->order_by(array('id' => 'DESC', 'completed' => 'ASC'))->get_many_by($col, $id);
 
         //put them in an assoc array by action type
       foreach ($actions as $row => $array)
@@ -73,9 +74,11 @@ class Contact_action_model extends MY_Model {
     
     public function toggle_value($id, $field_name)
     {
-      $q = $this->get($id, array($field_name));
+      $q = $this->get($id);
 
-    	//Get current value
+// dump('The existing value is '. $q->$field_name);
+
+    	//Set default and get current value
       $new_value = 1;
       if ($q->$field_name == 1)
       {
@@ -84,8 +87,9 @@ class Contact_action_model extends MY_Model {
 
         //insert new_value
       $this->update($id, array($field_name => $new_value));
-
-      return $new_value;
+      $q->$field_name = $new_value;
+// dump('The changed value is '.$new_value);
+      return $q;
     }
 
   }
