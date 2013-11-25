@@ -271,9 +271,9 @@ class My_Controller extends CI_Controller
         {
             $this->_presenter = $this->main_model;
         }
-        $this->_presenter = $this->main_model . '_Presenter';
+        $this->_presenter = $this->main_model . '_presenter';
 
-        require_once (APPPATH . 'presenters/' . $this->_presenter . '.php');
+        require_once (APPPATH . 'presenters/' . strtolower($this->_presenter) . '.php');
 
     }
 
