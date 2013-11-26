@@ -40,8 +40,12 @@ class MY_Table extends CI_Table {
 			$attr .= $k . '="' . $v . '" ';
 		}
 
+		//Set up a csv of fields in this table
+		$cols = join(',', array_keys($cols));
+		//dump($cols);
+
 		//Set up the template
-		$template['table_open'] = '<table ' . $attr . '>';
+		$template['table_open'] = '<table ' . $attr . ' cols="' . $cols . '" >';
 		$this->set_template($template);
 
 		//return table

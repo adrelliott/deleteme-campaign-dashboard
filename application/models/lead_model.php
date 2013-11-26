@@ -8,25 +8,9 @@ class Lead_model extends MY_Model {
 			'id','contact_id', 'lead_title', 'deleted', 'owner_id', 'created_at', 'updated_at'),
 		'multiple_record' => array(
 			'id','contact_id', 'lead_title', 'deleted', 'owner_id', 'created_at', 'updated_at'),
-		// 'join_fields' => array(
-    		//'users.first_name')
 		);
 
 	protected $_sort = array('leads.id' => 'DESC');
-
-	//What are the foreign keys for each table?
-	protected $_foreign_key = array(
-		'order' => 'lead_id',
-		);
-
-	//Define the join - can be overidden within a method
-	protected $_join = array(
-				// 'join_table' => '',	//e.g. 'orders'
-				// 'join_key' => '',	//usually '{jointablename}_id'
-        		// 'join_type' => 'INNER',  //defaults to LEFT
-				//  i.e. JOIN `orders` ON `orders`.`orders_id`=`{this_table}`.`id`
-				);
-
 	
 	/*
 		You can set observers to call methods before create, update, get and delete
@@ -38,20 +22,29 @@ class Lead_model extends MY_Model {
 			parent::__construct();
 		}
 
-		public function get_contacts_records($id)
+		public function get($id)
 		{
-			//Over-ride sort order:
-			// $this->_sort = array('leads.id' => 'ASC');
-
-			//Set the Join table (Leave blank to have no join)
-			// $this->_join['join_table'] = 'orders';
-
-
-			//Get the records
-        	$q = $this->as_array()->order_by()->join_by()->get_many_by($this->_table . '.contact_id', $id);
-        	return $q;
+			$this->join_on_contacts();
+			return parent::get($id);
 		}
 
+		public function get_associated_records($id, $col = 'contact_id')
+		{
+
+			//get the records
+			 $q = $this->as_array()->order_by(array('leads.id' => 'DESC'))->get_many_by($col, $id);
+
+			 return $q;
+		}
+
+		public function join_on_contacts($foreign_key = 'contact_id')
+		{
+			//join on contacts
+			$join_fields = array('contacts.first_name', 'contacts.last_name');
+			$this->_join('contacts', 'contacts.id=relationships.' . $foreign_key);
+			$this->set_select('join', $join_fields);
+		}
+		
 		
 
 	}

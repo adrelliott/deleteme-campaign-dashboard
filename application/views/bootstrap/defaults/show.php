@@ -44,17 +44,20 @@
   </div><!-- /Top line -->
 
   <div class="row"><!-- Main Content-->
+    <div class="form-fail alert alert-danger hide">
+            Uh oh. Something went wrong. Please try again.
+          </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><!-- Column 1-->
       <div class="well"><!-- Well -->
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><!-- /col-->
 
           <!-- Alert messages -->
-          <div class="form-fail column1 alert alert-danger  hide">
+         <!--  <div class="form-fail column1 alert alert-danger  hide">
             Uh oh. Something went wrong. Please try again.
           </div>
           <div class="form-success column1 alert alert-success  hide">
             Woo Hoo! Saved your changes!
-          </div>
+          </div> -->
           <!-- /Alert messages -->
 
           <!-- Pills -->
@@ -78,7 +81,7 @@
 
           <?= partial('_pills_body', array('position'=>'column_1')); ?>
 
-          <div class="row">
+          <div class="row margin_top_30">
           <a class="text-danger del" href="<?= site_url(controller() . '/delete/' . id()); ?>" ><i class="fa fa-trash-o"></i> Delete this record...</a>
           </div>
 
@@ -93,12 +96,12 @@
 
 
     <!-- Alert messages -->
-    <div class="form-fail alert alert-danger column2 hide ">
+    <!-- <div class="form-fail alert alert-danger column2 hide ">
       Uh oh. Something went wrong. Please try again.
     </div>
     <div class="form-success alert alert-success column2 hide">
       Woo Hoo! Saved your changes!
-    </div>
+    </div> -->
     <!-- /Alert messages -->
 
 

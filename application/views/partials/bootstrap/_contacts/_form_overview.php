@@ -19,6 +19,6 @@
 </div>
 
 <div class="form-group col-lg-12 col-md-12 col-sm-12  col-xs-12">
-	<label for="email">Email address</label>
-	<input type="email" class="form-control input-lg" name="email" id="email" placeholder="E.g. lionel@GiveUsAclue.com"  value="<?= $contact->email(); ?>">
+	<label for="email_1">Email address</label>
+	<input type="email" class="form-control input-lg" name="email_1" id="email_1" placeholder="E.g. lionel@GiveUsAclue.com"  value="<?= $contact->email_1(); ?>">
 </div>

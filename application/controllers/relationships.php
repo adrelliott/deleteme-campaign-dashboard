@@ -10,7 +10,10 @@ class Relationships extends MY_Controller
 	public $models = array('relationship');
 
 	//Set the layout to false (we're loading into a modal window)
-	public $layout = FALSE;
+	public $layout = 'modal';
+
+	//Overwrite default views (defaults ot the name of the method)
+	public $view_settings = array('create' => 'show', 'edit' => 'no-view', 'delete' => 'no-view');
 
 
 	public function __construct()
@@ -25,42 +28,32 @@ class Relationships extends MY_Controller
 
 	public function show($id = FALSE)
 	{
-		//Get the Id, if passed, and load the record
-		if (!$id) $id = $this->input->post('id');
-		//Join on contacts
-		$q = $this->relationship->get($id);
-
-		//If we return a record, then set up the record...
-		if (isset($q->id))
-		{
-			$this->data['relationship'] = new Relationship_Presenter($q);
-		}
-		//...otherwise, set a message and go to index
-		else
-		{
-			$this->session->set_flashdata(array('message' => '[not_found]'));
-		}
-
-		$this->layout = 'modal';
-		//Autoloads the view 'Relationships/show' which includes the right partial for $action_type
-		// dump('got here');
+		
 	}
 
-	public function create($contact_id)
+	public function create()
 	{
-		//Set up an object to pass to relationship_presenter
-		$a->contact_id = $contact_id;
-		$this->data['relationship'] = new Relationship_Presenter($a);
+		$this->set_view('create');
+		//Convert the $_POST array into an object
+		$post = $this->array_to_object($this->input->post());
+		$this->data['relationship'] = new Relationship_Presenter($post);
+	}
+	// public function create2($contact_id)
+	// {
+	// 	//Set up an object to pass to relationship_presenter
+	// 	$a->contact_id = $contact_id;
+	// 	$this->data['relationship'] = new Relationship_Presenter($a);
 
-		$this->layout = 'modal';
+	// 	$this->layout = 'modal';
 // die(dump($this->data));
 		//Autoloads the view 'Relationships/create'
-	}
+	// }
 
 
 	public function edit($id = FALSE)
 	{
 		$this->view = FALSE;
+		$this->layout = FALSE;
 		$message = array('message' => '[uhoh]');
 
 		if ($id && $this->input->post())
@@ -112,7 +105,13 @@ class Relationships extends MY_Controller
 
 	public function delete($id, $contact_id = NULL)
 	{
+		$this->view = FALSE;
+		$this->layout = FALSE;
 		// Destroy a record (not really - 'softdelete' it!)
+		// 
+		// do;t forget to delete the relationship record for the other person too!
+		// 
+		// 
 		$this->relationship->delete($id);
 		$this->session->set_userdata('message', '[deleted]');
 

@@ -77,16 +77,16 @@ class Contact_presenter extends Presenter
 
 
 
-	public function get_contact_actions($action_type)
-	{
-		//Note - the indexes of the contact_actions array are always singular
-		return $this->contact->contact_actions[$action_type];
-	}
+	// public function get_contact_actions($action_type)
+	// {
+	// 	//Note - the indexes of the contact_actions array are always singular
+	// 	return $this->contact->contact_actions[$action_type];
+	// }
 	
 	public function get_contacts_records($type)
 	{
-		//Note - the indexes of the contact array are always plural
-		return (array)$this->contact->{$type};
+		if (isset($this->contact->{$type}))
+			return (array)$this->contact->{$type};
 	}
 
 

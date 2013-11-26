@@ -1,7 +1,10 @@
   <div class="row">
   	<legend>Overview</legend>
+    <div class="form-success alert alert-success alert-overview hide">
+      Woo Hoo! Saved your changes!
+    </div>
     <div class=" form-inline">
-      <?= form_open(site_url('contacts/edit/' . $contact->id()), 'role="form" class="ajax_form" data-column="1"'); ?>
+      <?= form_open(site_url('contacts/edit/' . $contact->id()), 'role="form" class="ajax_form" alert-class="overview"'); ?>
 
       <?= partial('_form_overview'); ?>
 

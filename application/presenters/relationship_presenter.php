@@ -17,7 +17,12 @@ class Relationship_presenter extends Presenter
 	
 	public function other_contact_full_name()
 	{
-		if( ! $this->relationship->first_name) return $this->relationship->last_name;
+		if( ! isset($this->relationship->first_name) && ! isset($this->relationship->last_name) )
+			return '';
+		
+		elseif( ! isset($this->relationship->first_name))
+			return $this->relationship->last_name;
+
 		else return $this->relationship->first_name . ' ' . $this->relationship->last_name;
 	}
 	

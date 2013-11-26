@@ -11,7 +11,7 @@ class Contacts extends MY_Controller
 	public $models = array('contact');
 
 	//What other tables are assoc with these records?
-	protected $_assoc_models = array('contact_action', 'relationship');
+	protected $_assoc_models = array('contact_action', 'relationship', 'order', 'tag_join', 'lead');
 
 	// protected $_presenter = ''; //Define a new name or pass FALSE
 	// 
@@ -29,25 +29,35 @@ class Contacts extends MY_Controller
 
 	public function show($id = NULL)
 	{
-		$this->set_view('show');
+		$this->set_view($this->input->post('view'));
+
+		//Get the Id, if passed, and load the record
+		if (!$id) $id = $this->input->post('id');
 
 		//Query contacts table for a record where 'id' = $id
-		$this->_q = $this->{$this->main_model}->get($id);
+		$this->q = $this->{$this->main_model}->get($id);
 		
 		//If we return a record, then set up the record...
-		if (isset($this->_q->id))
+		if (isset($this->q->id))
 		{
-			$id = $this->_q->id;
+			$id = $this->q->id;
 
 			//Get associated records
 			foreach ($this->_assoc_models as $m)
 			{
 				//$this->load->model($m);
-				$this->_q->{plural($m)} = $this->{$m}->get_associated_records($id);	
+				// $this->q->{plural($m)} = $this->{$m}->get_associated_records($id);	
+				$this->{$m}->get_associated_records($id);
 			}
 
+			//Get other datasets
+			## Get tags
+			# get users
+			# 
+
 			//Create a Presenter object to handle this data
-			$this->data[$this->main_model] = new $this->_presenter($this->_q);
+			$this->q = (object)array_merge((array)$this->input->post(), (array) $this->q);
+			$this->data[$this->main_model] = new $this->_presenter($this->q);
 		}
 
 		//...otherwise, set a message and go to index
@@ -60,10 +70,10 @@ class Contacts extends MY_Controller
 		
 		
 
-	public function create($contact_id = FALSE)
+	public function create()
 	{
 		//Set the view and create an empty presenter object
-		$this->set_view('create');
+		$this->set_view($this->input->post('view'));
 		$this->data[$this->main_model] = new $this->_presenter();
 	}
 

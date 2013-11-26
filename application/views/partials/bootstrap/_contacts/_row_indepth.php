@@ -1,8 +1,10 @@
 <div class="row">
 	<legend>Other Details</legend>
 	<div class="form-inline"><!-- .form-inline-->
-	<div class="message-overview"></div>
-	<?= form_open(site_url('contacts/edit/' . $contact->id()), 'role="form" class="ajax_form" data-column="1"'); ?>
+	<div class="form-success alert alert-success alert-indepth hide">
+      Woo Hoo! Saved your changes!
+    </div>
+	<?= form_open(site_url('contacts/edit/' . $contact->id()), 'role="form" class="ajax_form" alert-class="indepth"'); ?>
 
 		<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<label for="gender">Gender</label><br>

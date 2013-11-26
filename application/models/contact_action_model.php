@@ -5,31 +5,15 @@ class Contact_action_model extends MY_Model {
 	//define what columns to return in a search
 	protected $_cols = array(
    'single_record' => array(
-    'id', 'contact_id', 'action_type', 'action_subtype', 'action_title', 'action_description', 'action_status', 'user_id', 'action_enddate', 'completed', 'owner_id'),
+    'id', 'contact_id', 'action_type', 'action_subtype', 'action_other_notes', 'action_title', 'action_description', 'action_status', 'user_id', 'action_enddate', 'completed', 'owner_id'),
    
    'multiple_record' => array(
-    'id', 'owner_id', 'contact_id', 'action_type', 'action_subtype', 'action_title', 'action_description',  'action_status', 'user_id', 'action_enddate', 'completed', 'created_at', 'owner_id'),
-   
-   'join_fields' => array(
-    'users.first_name')
+    'id', 'owner_id', 'contact_id', 'action_type', 'action_subtype', 'action_other_notes', 'action_title', 'action_description',  'action_status', 'user_id', 'action_enddate', 'completed', 'created_at', 'owner_id'),
    );
 
   protected $_sort = array('id' => 'DESC');
 
-  //What are the foreign keys for each table?
-  protected $_foreign_key = array(
-    'users' => 'user_id',
-    'leads' => 'lead_id',
-    'orders' => 'order_id',
-    );
-
-  //Define the join - can be overidden within a method
-  protected $_join = array(
-        // 'join_table' => '',  //e.g. 'orders'
-        // 'join_key' => '',  //usually '{jointablename}_id'
-        // 'join_type' => 'inner',  //defaults to LEFT
-        //  i.e. JOIN `orders` ON `orders`.`orders_id`=`{this_table}`.`id`
-    );
+  
 
 
 	/*
@@ -60,15 +44,23 @@ class Contact_action_model extends MY_Model {
         //Get the actions...
       // $actions = $this->as_array()->order_by(array('id' => 'DESC', 'completed' => 'ASC'))->join_by()->get_many_by($col, $id);
       $actions = $this->as_array()->order_by(array('id' => 'DESC', 'completed' => 'ASC'))->get_many_by($col, $id);
+// (dump($actions));
 
+      $sorted_actions = array();
         //put them in an assoc array by action type
       foreach ($actions as $row => $array)
       {
-        $action_type = $array['action_type'];
-        $id = $array['id'];
-        $retval[$action_type][$id] = $array;
+        //generate an array for each action
+        $sorted_actions[$array['action_type']][$array['id']] = $array;
+        // $action_type = ;
+        // $id = $array['id'];
+        // $retval[$action_type][$id] = $array;
+        
       }
-      return $retval;
+
+      foreach ($sorted_actions as $type => $array)
+        $this->q->$type = $array;
+      // return $retval;
     }
     
     

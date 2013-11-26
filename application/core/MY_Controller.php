@@ -65,7 +65,7 @@ class My_Controller extends CI_Controller
     protected $helpers = array();
 
     //Vars used in the base methods defined below - see end of class
-    protected $_q;  //used to hold the data returned
+    public $q;  //used to hold the data returned
     protected $_presenter = '';  //The presenter for this class
     // protected $_class_name; //The name of this class
 
@@ -306,15 +306,43 @@ class My_Controller extends CI_Controller
      * These methods are the base methods for all controllers
      */
     
-    public function set_view($method = 'index')
+    public function set_view($view = FALSE)
     {
-        $view = element($method, $this->view_settings, 'none-returned');
+        //View defaults to this method's name if no extra view passed
+        if ( ! $view)
+            $view  = $this->router->method;
 
-        if ($view == 'no-view')
-            $this->view = FALSE;
+        //Check to see if its been over-ridden by the $view_settings in the controller
+        if ( $v = element($this->router->method, $this->view_settings, FALSE) )
+        {
+            if ($v == 'no-view')
+                $view = FALSE;
+            else
+                $view = $v;
+        }
+
+        $this->view = $view;
+
+        // $view = element($method, $this->view_settings, 'none-returned');
+
+        // if ($view == 'no-view')
+        //     $this->view = FALSE;
         
-        elseif ($view !== 'none-returned')
-            $this->view = $view;
+        // elseif ($view !== 'none-returned')
+        //     $this->view = $view;
+    }
+
+    public function array_to_object($array)
+    {
+        $object;
+        if (is_array($array))
+        {
+            foreach ($array as $k => $v)
+            {
+                $object->$k = $v;
+            }
+        }
+        return $object;
     }
 
     public function index()
@@ -332,22 +360,22 @@ class My_Controller extends CI_Controller
     // {
     //     //Query contacts table for a record where 'id' = $id
     //     if (!$id) $id = $this->input->post('id');
-    //     $this->_q = $this->{$this->main_model}->get($id);
+    //     $this->q = $this->{$this->main_model}->get($id);
         
     //     //If we return a record, then set up the record...
-    //     if (isset($this->_q->id))
+    //     if (isset($this->q->id))
     //     {
-    //         $id = $this->_q->id;
+    //         $id = $this->q->id;
 
     //         //Get associated records
     //         foreach ($this->_assoc_models as $m)
     //         {
     //             //$this->load->model($m);
-    //             $this->_q->{plural($m)} = $this->{$m}->get_associated_records($id); 
+    //             $this->q->{plural($m)} = $this->{$m}->get_associated_records($id); 
     //         }
 
     //         //Create a Presenter object to handle this data
-    //         $this->data[$this->main_model] = new $this->_presenter($this->_q);
+    //         $this->data[$this->main_model] = new $this->_presenter($this->q);
     //     }
 
     //     //...otherwise, set a message and go to index

@@ -8,7 +8,7 @@
         <h4 class="modal-title"><?= ${controller(TRUE)}->get_full_name(); ?></h4>
       </div>
 
-      <div id="modal-alert" class="alert-error hide">
+      <div  class="alert-error modal-fail hide">
         <div class="alert alert-danger">
           Uh oh. Something went wrong. Please try again.
         </div>

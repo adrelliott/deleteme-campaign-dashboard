@@ -29,39 +29,42 @@ class Contact_actions extends MY_Controller
 
 	public function show($id = FALSE)
 	{
-		$this->set_view('show');
+		//$view = element('modal', $this->input->post(), $this->router->method);
+		$this->set_view($this->input->post('view'));
 
 		//Get the Id, if passed, and load the record
 		if (!$id) $id = $this->input->post('id');
+
 		$q = $this->contact_action->get($id);
 		
 		//If we return a record, then set up the record...
 		if (isset($q->id))
 		{
+			$q = (object)array_merge((array)$this->input->post(), (array) $q);
 			$this->data['contact_action'] = new Contact_action_Presenter($q);
-			$this->data['action_type'] = $q->action_type;
+			//$this->data['action_type'] = $q->action_type;
 		}
 		//...otherwise, set a message and go to index
 		else
 		{
+			show_error('No record found with that id');
 			$this->session->set_flashdata(array('message' => '[not_found]'));
+			//This should never happen!
 		}
 
 		//Autoloads the view 'contact_actions/show' which includes the right partial for $action_type
 	}
 
-	public function create($action_type, $contact_id)
+	public function create()
 	{
-		$this->set_view('create');
-		//Set up an object to pass to Contact_action_presenter
-		$a->action_type = $action_type;
-		$a->contact_id = $contact_id;
-		$this->data['contact_action'] = new Contact_action_Presenter($a);
+		$this->set_view($this->input->post('view'));
 
-		//$this->layout = 'modal';
-//die(dump($this->data));
-		//Autoloads the view 'contact_actions/create'
+		//Convert the $_POST array into an object
+		$post = $this->array_to_object($this->input->post());
+		$this->data['contact_action'] = new Contact_action_Presenter($post);
 	}
+
+
 
 
 	public function edit($id = FALSE)
@@ -146,8 +149,35 @@ class Contact_actions extends MY_Controller
 		 
 	}
 
+	public function delete($id)
+	{
+		$this->set_view('delete');
+		$this->session->unset_userdata('message');
+		$retval = array('message' => '[uhoh]', 'post' => $this->input->post());
 
-	public function delete($id, $contact_id = NULL)
+		if ( ! $id) $id = $_POST['id'];
+		
+		// Destroy a record (not really - 'softdelete' it!)
+		if ($this->{$this->main_model}->delete($id))
+		{
+			$retval['message'] = '[deleted]';
+			$retval['q'] = ($this->{$this->main_model}->get($id));
+		}
+		
+		if ($this->input->is_ajax_request())
+		{
+			echo json_encode($retval);
+		}
+
+		else
+		{
+			//Set the message to show the user
+			$this->session->set_userdata($retval);
+			redirect(site_url($this->router->class));
+		}
+	}
+
+	public function delete_old($id, $contact_id = NULL)
 	{
 		$this->set_view('show');
 		// Destroy a record (not really - 'softdelete' it!)
@@ -158,12 +188,14 @@ class Contact_actions extends MY_Controller
 		else redirect(site_url('contacts/show/' . $contact_id));
 	}
 
-	public function toggle($col, $id, $contact_id = NULL)
+	public function toggle($col, $id = NULL, $contact_id = NULL)
 	{
 		$this->set_view('toggle');
 		$this->session->unset_userdata('message');
 		$retval = array('message' => '[uhoh]', 'post' => $this->input->post());
 
+		if ( ! $id) $id = $_POST['id'];
+		
 		$val = $this->{$this->main_model}->toggle_value($id, $col);
 		$retval['message'] = '[updated]';
 		$retval['q'] = $val;

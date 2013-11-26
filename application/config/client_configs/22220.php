@@ -133,9 +133,35 @@ $config['dropdowns'] = array(
 		'business_partner' => 'Is in business with...',
 		),
 
+	'seasons' => array(
+		//'value' => 'Display This', 
+		'2005/06' => '2005/06',
+		'2006/07' => '2006/07',
+		'2007/08' => '2007/08',
+		'2008/09' => '2008/09',
+		'2009/10' => '2009/10',
+		'2010/11' => '2010/11',
+		'2011/12' => '2011/12',
+		'2012/13' => '2012/13',
+		'2013/14' => '2013/14',
+		//'2014/15' => '2014/15',
+		),
+
+	'role_types' => array(
+		//'value' => 'Display This', 
+		"Volunteer (Office)" => "Volunteer (Office)", 
+		"Volunteer (Matchday)" => "Volunteer (Matchday)", 
+		"Paid Office Staff" => "Paid Office Staff", 
+		"Community Staff" => "Community Staff", 
+		"Board Member" => "Board Member", 
+		"External Supplier" => "External Supplier", 
+		"Coaching/Backroom Staff" => "Coaching/Backroom Staff", 
+		"1st Team Player" => "1st Team Player", 
+		"Youth Team Player" => "Youth Team Player", 
+		"Women's Team Player" => "Women's Team Player",
+		),
+
 	);
-
-
 
 // Set up the extra actions (these are the dropdowns on the top right of each page)
 $config['extraactions']	= array(
@@ -189,8 +215,9 @@ $config['tables'] = array(
 	// 		'data-linkclass' => 'open-modal', //'open-modal, or blank for _target'
 	// 		'data-modalsource' => site_url('path/to/view'), //to load a view inside modal
 	// 		'data-ajaxsource' => site_url('path/to/JSON'), //Ajax output of JSON array
-			// 'data-column' => '1',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
+			// 'data-alertclass' => '1',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
 			'data-showid' => true,	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
+			//'data-view' => 'show-modal', //Define the view to load in the modal. leave blank for default
 			//Below these can be used ot overide certain default vals of the dataTable options
 		// "data-DisplayLength" => 5,
 		// "data-bDestroy" => true,
@@ -223,8 +250,9 @@ $config['tables'] = array(
 			// 'data-linkclass' => 'open-modal', //'open-modal, or blank for _target'
 			//'data-modalsource' => site_url('contacts/show'), //to load a view inside modal
 			'data-ajaxsource' => site_url('ajax/contacts/get_table/id/first_name/last_name'), //Ajax output of JSON array
-			// 'data-column' => '1',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
+			// 'data-alertclass' => '1',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
 			'data-showid' => 'true',	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
+			//'data-view' => 'show-modal', //Define the view to load in the modal. leave blank for default
 			),
 		'columns' => array(
 			'id' => '#',//Mandatory
@@ -243,8 +271,9 @@ $config['tables'] = array(
 			'data-linkclass' => 'open-modal', //'open-modal, or blank for _target'
 			//'data-modalsource' => site_url('leads/show'), //to load a view inside modal
 			'data-ajaxsource' => site_url('ajax/leads/get_table/id/lead_title/contact_id'), //Ajax output of JSON array
-			// 'data-column' => '1',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
+			// 'data-alertclass' => '1',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
 			'data-showid' => 'true',	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
+			//'data-view' => 'show-modal', //Define the view to load in the modal. leave blank for default
 			),
 		'columns' => array(
 			'id' => '#',//Mandatory
@@ -263,8 +292,9 @@ $config['tables'] = array(
 			'data-linkclass' => 'open-modal', //'open-modal, or blank for _target'
 			//'data-modalsource' => site_url('orders/show'), //to load a view inside modal
 			'data-ajaxsource' => site_url('ajax/orders/get_table/id/order_title/contact_id'), //Ajax output of JSON array
-			// 'data-column' => '1',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
+			// 'data-alertclass' => '1',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
 			'data-showid' => 'true',	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
+			//'data-view' => 'show-modal', //Define the view to load in the modal. leave blank for default
 			),
 		'columns' => array(
 			'id' => '#',//Mandatory
@@ -290,8 +320,9 @@ $config['tables'] = array(
 			'data-linkclass' => 'open-modal', //'open-modal, or blank for _target'
 			'data-modalsource' => site_url('contact_actions/show'), //to load a view inside modal
 			// 'data-ajaxsource' => site_url('path/to/JSON'), //Ajax output of JSON array
-			'data-column' => '1',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
+			'data-alertclass' => 'task',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
 			// 'data-showid' => true,	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
+			'data-view' => 'show_modal', //Define the view to load in the modal. leave blank for default
 			),
 		'columns' => array(
 			'id' => '#',//Mandatory
@@ -304,18 +335,20 @@ $config['tables'] = array(
 			'class' => 'table data-table',
 			'id' => 'role_table',
 			'data-linkurl' => '#',
-			//'data-deleteurl' => site_url('contact_actions/delete'),
+			'data-deleteurl' => site_url('contact_actions/delete'),
 			// 'data-toggleurl' => site_url('contact_actions/toggle/COL_NAME'),
 			//'data-toggleclass' => 'completed',	//The class to apply if the data-toggleurl is passed and is 1
 			'data-linkclass' => 'open-modal', //'open-modal, or blank for _target'
 			'data-modalsource' => site_url('contact_actions/show'), //to load a view inside modal
 			// 'data-ajaxsource' => site_url('path/to/JSON'), //Ajax output of JSON array
-			'data-column' => '2',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
-			'data-showid' => true,	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
+			'data-alertclass' => 'role',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
+			// 'data-showid' => true,	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
+			'data-view' => 'show_modal', //Define the view to load in the modal. leave blank for default
 			),
 		'columns' => array(
 			'id' => '#',//Mandatory
-			'action_title' => 'Role',
+			'action_subtype' => 'Role',
+			'action_other_notes' => 'Season',
 			// 'completed' => 'Complete?'
 			),
 		),
@@ -330,8 +363,9 @@ $config['tables'] = array(
 			// 'data-linkclass' => 'open-modal', //'open-modal, or blank for _target'
 			// 'data-modalsource' => site_url('contact_actions/show'), //to load a view inside modal
 			// 'data-ajaxsource' => site_url('path/to/JSON'), //Ajax output of JSON array
-			'data-column' => '1',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
+			'data-alertclass' => 'note',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
 			// 'data-showid' => true,	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
+			'data-view' => 'show_modal', //Define the view to load in the modal. leave blank for default
 			"data-DisplayLength" => '2',
 			),
 		'columns' => array(
@@ -345,15 +379,16 @@ $config['tables'] = array(
 		'attributes' => array(
 			'class' => 'table data-table',
 			'id' => 'relationship_table',
-			'data-linkurl' => '#',
+			// 'data-linkurl' => '#',
 			'data-deleteurl' => site_url('relationships/delete'),
 			// 'data-toggleurl' => site_url('contact_actions/toggle/COL_NAME'),
 			// 'data-toggleclass' => 'completed',	//The class to apply if the data-toggleurl is passed and is 1
 			'data-linkclass' => 'open-modal', //'open-modal, or blank for _target'
 			'data-modalsource' => site_url('relationships/show'), //to load a view inside modal
 			// 'data-ajaxsource' => site_url('path/to/JSON'), //Ajax output of JSON array
-			'data-column' => '1',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
-			'data-showid' => true,	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
+			'data-alertclass' => 'relationship',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
+			// 'data-showid' => true,	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
+			//'data-view' => 'show-modal', //Define the view to load in the modal. leave blank for default
 			),
 		'columns' => array(
 			'id' => '#',//Mandatory
@@ -361,6 +396,27 @@ $config['tables'] = array(
 			'first_name' => 'First Name',
 			'last_name' => 'Last Name',
 			'type' => 'Type'
+			),
+		),
+	'tag_table' => array(
+		'attributes' => array(
+			'class' => 'table data-table',
+			'id' => 'tag_table',
+			// 'data-linkurl' => '#',
+			'data-deleteurl' => site_url('tags/delete'),
+			// 'data-toggleurl' => site_url('contact_actions/toggle/COL_NAME'),
+			// 'data-toggleclass' => 'completed',	//The class to apply if the data-toggleurl is passed and is 1
+			// 'data-linkclass' => 'open-modal', //'open-modal, or blank for _target'
+			// 'data-modalsource' => site_url('tags/show'), //to load a view inside modal
+			// 'data-ajaxsource' => site_url('path/to/JSON'), //Ajax output of JSON array
+			'data-alertclass' => 'tag',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
+			// 'data-showid' => true,	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
+			//'data-view' => 'show-modal', //Define the view to load in the modal. leave blank for default
+			),
+		'columns' => array(
+			'id' => '#',//Mandatory
+			// 'created_at' => 'Date',
+			'tag_name' => 'Tag Name',
 			),
 		),
 	

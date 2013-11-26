@@ -12,6 +12,6 @@
 </div>
 <div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		<a class="btn btn-primary pull-right open-modal" href="#" data-source="<?= site_url('contact_actions/create/lead/' . $contact->id() ); ?>"  ><i class="fa fa-plus"></i> Create New Task</a>
+		<a class="btn btn-primary pull-right open-modal" href="#" data-source="<?= site_url('contact_actions/create/lead/' . $contact->id() ); ?>" data-view="show_modal" ><i class="fa fa-plus"></i> Create New Task</a>
 	</div>
 </div>

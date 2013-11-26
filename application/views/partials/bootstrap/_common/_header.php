@@ -40,6 +40,9 @@
 
     <!-- Styles for Typeahead -->
     <link href="<? echo site_url('assets/bootstrap-3/css/typeahead.css'); ?>" rel="stylesheet">
+    
+    <!-- Styles for Tagsinput -->
+    <link href="<? echo site_url('assets/bootstrap-3/css/bootstrap-tagsinput.css'); ?>" rel="stylesheet">
 
     <!-- Include any custom style sheets/scripts/meta etc for this client -->
     <?

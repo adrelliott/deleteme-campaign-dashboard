@@ -1,7 +1,8 @@
+
 <div class="row">
 	<div class=" form-inline">
-		<?= form_open('relationships/edit/' . $relationship->id(), 'class="form-horizontal ajax_form modal_form" role="form" data-section="relationship" data-column="' . $_POST['column'] . '" '); ?>
-		<?= form_input('contact_id', $relationship->contact_id()); ?>
+		<?= form_open('relationships/edit/' . $relationship->id(), 'class="form-horizontal ajax_form modal_form" role="form" data-section="relationship" alert-class="' . $relationship->alert_class() . '" '); ?>
+		<?= form_hidden('contact_id', $relationship->contact_id()); ?>
 
 		<?//= partial('_form_relationships'); ?>
 

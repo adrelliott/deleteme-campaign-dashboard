@@ -8,7 +8,7 @@ class Contact_model extends MY_Model {
 	     	//Leave balnk to get all fields
 	                      ),
 	     'multiple_record' => array(
-	                      'id', 'first_name', 'last_name', 'email', 'owner_id')
+	                      'id', 'first_name', 'last_name', 'email_1', 'owner_id')
 	);
 
 	// protected $_sort = array('id' => 'DESC');
