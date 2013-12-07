@@ -5,7 +5,7 @@
 
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title"><?= ${controller(TRUE)}->get_full_name(); ?></h4>
+        <h4 class="modal-title"><?= $p->get_full_name(); ?></h4>
       </div>
 
       <div  class="alert-error modal-fail hide">

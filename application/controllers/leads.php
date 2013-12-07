@@ -6,116 +6,59 @@
 
 class Leads extends MY_Controller
 {
-	//What models should we load?
-	public $models = array('lead', 'contact_action');
+/* --------------------------------------------------------------
+     * VARIABLES
+     * ------------------------------------------------------------ */
 
-	//What other tables are assoc with these records?
-	protected $_assoc_models = array('contact_action');
+    /**
+     * These vars can overwrite the default ones set in MY_Controller
+     *
+     * NOTE: Set the scope as 'protected' here
+     */
+    
+    protected $_models = array(
+        'contact_action' => array(
+            'where' => array(
+                array('lead_id' => '%id%'),
+                ),
+            ),
+            // 'join' => array(
+            //  array(
+            //      'table' => 'users',
+            //      'join_on' => 'users.id=contacts.user_id',
+            //      'join_type' => '',
+            //      'join_fields' => array('tags.tag_id', 'tags.tag_id')
+            //      ),
+            //'other' => array(   //ensure this is a valid active record method
+                // 'limit' => 4,
+                // ),         
+                // ),
+        
+              
+        );
 
-	// protected $_presenter = ''; //Define a new name or pass FALSE
+    // protected $_layout = FALSE;  //Defaults to 'application' - override here with false or another name
+    
+    // protected $_view_settings = array();     //Defaults to 'application' - override here with false or another name
+    
+    // protected $_presenter = FALSE;   //Defaults to $this->main_model - override here with false or another name
+    
+    // protected $_main_model = FALSE;  //Defaults to class name, but overwrite or set to FALSE
 
-	//What views are we using? Defaults to views/__CLASS__/__METHOD__
-	//public $view ; //FALSE = load no view, 'view_name' = load view_name.php instead
+    
 
-	public function __construct()
-	{
-		parent::__construct();
-	}
+    /* --------------------------------------------------------------
+     * METHODS
+     * ------------------------------------------------------------ */
 
-	public function index()
-	{
-		//die('the view = ' . $this->view);
-		$this->data['lead'] = new Lead_Presenter();
-	}
-
-	public function show($id = NULL)
-	{
-		$this->data['lead'] = new Lead_Presenter();
-		return;
-		//Query contacts table for a record where 'id' = $id
-		$q = $this->lead->get($id);
-		
-		//If we return a record, then set up the record...
-		if (isset($q->id))
-		{
-			$id = $q->id;
-
-			//Get the other associated records
-			$q->contact_actions = $this->contact_action->get_records($id, 'lead_id');
-			$q->orders = array();
-			$q->tags = array();
-			$q->products = array();
-
-			//Create a Presenter object to handle this data
-			$this->data['contact'] = new Lead_Presenter($q);
-		}
-		//...otherwise, set a message and go to index
-		else
-		{
-			$this->session->set_userdata(array('message' => '[not_found]'));
-			redirect(site_url('leads'));
-		}
-	}
-		
-		
-
-	public function create()
-	{
-		//Shows a blank record with the form action = create/edit
-		$this->data['lead'] = new Lead_Presenter();
-		$this->view = 'leads/show';
-	}
-
-
-	public function edit($id = FALSE)
-	{
-		//Don't autoload a view
-		$this->view = FALSE;
-
-		if ($id && $this->input->post())
-		{
-			//update
-			$this->contact->update($id, $this->input->post());
-			$message = array('message' => '[updated]');
-		}
-		elseif (!$id && $this->input->post())
-		{
-			//Insert
-			$id = $this->contact->insert($this->input->post());
-			$message = array('message' => '[created]');
-		}
-		else 
-		{
-			$message = array('message' => '[uhoh]');
-		}
-
-		//Set the message to show the user
-		$this->session->set_userdata($message);
-
-		if ($this->input->is_ajax_request())
-		{
-			
-			echo $this->messages->show();
-	/********************************** Remove this line! ***********/
-	$this->output->enable_profiler(FALSE);
-		}
-		else redirect(site_url('contacts/show/' . $id));
-	}
-
-	public function delete($id)
-	{
-		// Destroy a record (not really - 'softdelete' it!)
-		$this->contact->delete($id);
-		$this->session->set_userdata('message', '[deleted]');
-
-		redirect(site_url('contacts'));
-	}
-
-
-	public function show_board()
-	{
-		$this->view = 'show_board';
-		$this->index();
-	}
+    /**
+     * These methods are defined in MY_Controller. You can extend them (return parent::{method_name}() ) or over-ride them by defning a new method here.
+     *
+     */
+    
+    public function __construct()
+    {
+        parent::__construct();
+    }
 	
 }

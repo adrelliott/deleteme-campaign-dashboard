@@ -12,17 +12,88 @@
 class Ajax extends MY_Controller
 {
 
+
+	/* --------------------------------------------------------------
+     * VARIABLES
+     * ------------------------------------------------------------ */
+
+    /**
+     * These vars can overwrite the default ones set in MY_Controller
+     *
+     * NOTE: Set the scope as 'protected' here
+     */
+    
+	protected $_models = array(
+		'test' => array(
+			'join' => array(
+				array(
+					'table' => 'contacts',
+					'join_on' => 'contacts.id=tests.contact_id',
+					'join_type' => '',
+					'join_fields' => array('tags.tag_id', 'tags.tag_id')
+					),
+				),
+			),
+		
+		// 'contact' => array(
+		// 	'where' => array(
+		// 		array('contact_id' => '%id%'),
+		// 		),
+		// 	'join' => array(
+		// 		array(
+		// 			'table' => 'users',
+		// 			'join_on' => 'users.id=contacts.user_id',
+		// 			'join_type' => '',
+		// 			'join_fields' => array('tags.tag_id', 'tags.tag_id')
+		// 			),
+		// 		),
+		
+		);
+
+	
+
+	protected $_layout = FALSE; 	//Defaults to 'application' - override here with false or another name
+	
+	// protected $_view_settings = array(); 	//Defaults to 'application' - override here with false or another name
+	
+	protected $_presenter = FALSE; 	//Defaults to $this->main_model - override here with false or another name
+	
+	protected $_main_model = FALSE;	//Defaults to class name, but overwrite or set to FALSE
+	// 
+	
+	protected $_datum_structure = array();	//the structure of the datum
+	protected $_like = array();	//used for searching for queries, as in 'remote'
+	protected $_cols = array();	//The cols to return
+	//protected $_like = array();	//The cols to return
+
+	
+
+	/* --------------------------------------------------------------
+     * METHODS
+     * ------------------------------------------------------------ */
+
+    /**
+     * These methods are defined in MY_Controller. You can extend them (return parent::{method_name}() ) or over-ride them by defning a new method here.
+     *
+     */
+    
+
 	//We don't need a presenter here
-	protected $_presenter = FALSE;
+	// protected $_presenter = FALSE;
+	// public $q;	//Holds the datat returned by the query
+	// public $_datum_structure = array();	//the structure of the datum
+	// public $like = array();	//used for searching for queries, as in 'remote'
+	// public $cols = array();	//The cols to return
 
 	public function __construct()
-    {
-        parent::__construct();
+    {        
+    	parent::__construct();
         $this->output->enable_profiler(FALSE);
 	}
 
 	public function _remap($table, $params = array())
 	{
+		$this->view = FALSE;
 	    //Load the model
 	    $model_name = singular($table) . '_model';
 	    $this->load->model($model_name, 'm');
@@ -34,7 +105,11 @@ class Ajax extends MY_Controller
 	        return call_user_func_array(array($this, $method), $params);
 	    }
 	    show_404();
+
+
+    	$this->view = FALSE;
 	}
+
 	
 	/**
 	 * Return a JSON array.
@@ -46,28 +121,26 @@ class Ajax extends MY_Controller
 	 */
 	public function get_table()
 	{
+		$this->view = FALSE;
 		//is there a join passed?
-		if (isset($_GET['join']))
+		if (isset($_GET['join_table']))
 		{
-			$params = explode(',', $_GET['join']);
-			//dump($params);
-			$join = array(
-              	'table' => $params[0],
-              	'fk' => $params[1],
-              	);
+			$join['join_table'] = $_GET['join_table'];
+			$join['join_fk'] = $_GET['join_fk'];
+			$join['join_pk'] = $_GET['join_pk'];
 
-			$where['deleted'] = 0;
-			$where['owner_id'] = OWNER_ID;
-
-			unset($_GET['join']);
+			unset($_GET['join_table']);
+			unset($_GET['join_fk']);
+			unset($_GET['join_pk']);
+			//http://campaigndashboard.dev/ajax/orders/get_table/id/order_title/contact_id/order_type/grand_total?join_table=contacts&join_fk=contacts.id&join_pk=orders.contact_id
 
 		}
 		else $join = FALSE;
 
 		//Now get the data (using datatables library)
-		$cols = $this->set_cols(TRUE);
+		$this->set_cols(TRUE);
 		$where = $_GET;
-		$output = $this->m->get_datatables_ajax($cols, $where, $join);
+		$output = $this->m->get_datatables_ajax($this->cols, $where, $join);
 
 		echo $output;
 	}
@@ -83,156 +156,112 @@ class Ajax extends MY_Controller
 	 */
 	public function typeahead_contacts()
 	{
-		$cols = $this->set_cols();
+		$this->view = FALSE;
+		$this->_datum_structure = array (
+			'value' => '%first_name% %last_name% %postal_code%',
+			'tokens' => array('%first_name%', '%last_name%'),
+			'id' => '%id%'
+			);
 
-// Write a UNION to search for both first names and last names
-
-		//explode the query by a space...
-		//
-		//
-
-		//set up thew wildcard search
-		$like = array();
-
-		if (count($_GET))
-		{
-			
-			//Has the user typed 2 names?
-			if (strpos($_GET['q'], ' '))
-			{
-				//YES... search for both names
-				$q = explode(' ', $_GET['q']);
-				//$this->m->set_like(array('first_name' => $q[0]));
-				$this->m->set_like(array('last_name' => $q[1]));
-			} 
-			else
-			{
-				//NO... just search for input as either first or last
-				$q = $_GET['q'];
-				//$this->m->set_like(array('first_name' => $q));
-				$this->m->set_like(array('last_name' => $q));
-			}
-
+		//set up the wildcard search
+		// $this->like =  array(
+		// 	'CONCAT(first_name, " ", last_name)' => $_GET['q']
+		// 	);
+		// $this->like =  array('CONCAT(first_name, " ", last_name)' => $_GET['q']);
+		$s = explode(' ', $_GET['q']);
+		//if the search has first and last name, then set this up as like statements
+		foreach ($s as $l =>$v)
+		{	
+			$this->like[] = array(
+				'first_name' => $v,
+				'last_name' => $v,
+				'CONCAT(first_name, " ", last_name)' => $v
+				);
 		}
-		//set the cols & sort order
-		$this->m->set_select('ajax', $cols);
-		$this->m->order_by('first_name');
 
-		$q = $this->m->get_all();
-		
-		//Now format the array into datums (https://github.com/twitter/typeahead.js#datum)
-		$dataset = array();;
-		foreach ($q as $o)
-		{
-			$datum = array();
-			// dump($o);
-			$datum['value'] = $o->first_name . ' ' . $o->last_name;
-			if ($o->postal_code) $datum['value'] .= ' (' . strtoupper($o->postal_code) . ')';
-			$datum['tokens'] = array($o->id, $o->first_name, $o->last_name, $o->owner_id);
-			$datum['id'] = $o->id;
-			// $datum['postal_code'] = $o->postal_code;
-
-			$dataset[] = $datum;
-			//
-		}		
-//dump(json_encode($dataset));
-// $this->output->enable_profiler(TRUE);
-
-		echo json_encode($dataset);			
+		echo $this->typeahead_core();
 	}
 
+	
 	public function typeahead_tags()
 	{
-		$cols = $this->set_cols();
+		$this->view = FALSE;
+		$this->_datum_structure = array (
+			'value' => '%tag_name%',
+			'tokens' => array('%tag_name%'),
+			'tag_name' => '%tag_name%',
+			'id' => '%id%',
+			);
 
-		$this->m->set_select('ajax', $cols);
-		$this->m->order_by('tag_name');
-
-		$q = $this->m->get_all();
-		
-		//Now format the array into datums (https://github.com/twitter/typeahead.js#datum)
-		$dataset = array();;
-		foreach ($q as $o)
-		{
-			$datum = array();
-			// dump($o);
-			$datum['value'] = $o->tag_name;
-			$datum['tokens'] = array($o->id, $o->tag_name);
-			$datum['id'] = $o->id;
-			$datum['tag_name'] = $o->tag_name;
-			// $datum['postal_code'] = $o->postal_code;
-
-			$dataset[] = $datum;
-			//
-		}		
-//dump(json_encode($dataset));
-// $this->output->enable_profiler(TRUE);
-
-		echo json_encode($dataset);			
-
-		
-
-
-
-
-		$a = array(
-			array('value' => 'tag1', 'tokens' => array('1', 'tag1'), 'id' => '1'),
-			array('value' => 'tag2', 'tokens' => array('2', 'tag2'), 'id' => '2'),
-			array('value' => 'tag3', 'tokens' => array('3', 'tag3'), 'id' => '3'),
-			array('value' => 'tag4', 'tokens' => array('4', 'tag4'), 'id' => '4'),
-			array('value' => 'tag5', 'tokens' => array('5', 'tag5'), 'id' => '5'),
-		);
-
-		echo json_encode($a);
-
-// 		echo '[ { "value": 1 , "text": "Amsterdam"   , "continent": "Europe"    },
-//   { "value": 2 , "text": "London"      , "continent": "Europe"    },
-//   { "value": 3 , "text": "Paris"       , "continent": "Europe"    },
-//   { "value": 4 , "text": "Washington"  , "continent": "America"   },
-//   { "value": 5 , "text": "Mexico City" , "continent": "America"   },
-//   { "value": 6 , "text": "Buenos Aires", "continent": "America"   },
-//   { "value": 7 , "text": "Sydney"      , "continent": "Australia" },
-//   { "value": 8 , "text": "Wellington"  , "continent": "Australia" },
-//   { "value": 9 , "text": "Canberra"    , "continent": "Australia" },
-//   { "value": 10, "text": "Beijing"     , "continent": "Asia"      },
-//   { "value": 11, "text": "New Delhi"   , "continent": "Asia"      },
-//   { "value": 12, "text": "Kathmandu"   , "continent": "Asia"      },
-//   { "value": 13, "text": "Cairo"       , "continent": "Africa"    },
-//   { "value": 14, "text": "Cape Town"   , "continent": "Africa"    },
-//   { "value": 15, "text": "Kinshasa"    , "continent": "Africa"    }
-// ]';
+		echo $this->typeahead_core();
 	}
 
-
-	public function typeahead()
+	public function typeahead_products()
 	{
-		$cols = $this->set_cols();
+		$this->view = FALSE;
+		$this->_datum_structure = array (
+			'value' => '%product_name%',
+			'tokens' => array('%id%', '%product_name%'),
+			'product_name' => '%product_name%',
+			'id' => '%id%',
+			'product_price' => '%product_price%',
+			);
 
-		//set up thew wildcard search
-		$like = array();
-
-		if (count($_GET))
-		{
-			foreach ($_GET as $k => $v)
-			{
-				$this->m->set_like(array($k => $v), TRUE);
-			}
-
-		}
-		die(dump($this->m));
-
-		//$where = $_GET;
-
-		//set the cols
-		$this->m->set_select('ajax', $cols);
-		$this->m->order_by('first_name');
-		
-		echo json_encode($this->m->get_many_like($like));
-		//do the query
-
-		//Send to the datatables library
-		//echo $this->m->get_datatables_ajax($cols, $where);
+		echo $this->typeahead_core();
 	}
+
+
+	public function typeahead_core()
+	{
+		$this->view = FALSE;
+		$this->set_cols();
+
+		$this->m->set_select('ajax', $this->cols);
+		if ( count($this->like) )
+		{
+			foreach ($this->like as $k => $l)
+			{
+				$this->m->set_like($l, TRUE);
+			}
+		}
+		$this->m->order_by($this->cols[0], 'ASC');
+		
+		$this->q = $this->m->get_all();
+
+		return json_encode($this->set_up_datum());
+	}
+
+	public function set_up_datum()
+	{
+		$this->view = FALSE;
+		$datum = array();
+		$count = 0;
+
+		//Set up the datum
+		foreach ($this->q as $obj)
+		{
+			$t = $this->_datum_structure;
+			foreach ($obj as $prop => $val)
+			{
+				//set up the 'tokens' array
+				foreach ($t['tokens'] as $k => $v)
+				{
+					$t['tokens'][$k] = str_replace('%' . $prop . '%', $val, $t['tokens'][$k]);
+				}
+
+				//Now str_replace in the remaining array indexes
+				foreach ($t as $k => $v)
+				{
+					$t[$k] = str_replace('%' . $prop . '%', $val, $t[$k]);
+				}
+				$datum[$count] = $t;
+			}
+			$count++;
+		}
+
+		return $datum;
+	}
+
 
 	/**
 	 * Set the columns for the query. They are passed as URI paramaters
@@ -241,13 +270,128 @@ class Ajax extends MY_Controller
 	 */
 	protected function set_cols($csv = FALSE)
 	{
-		$cols = array_slice($this->uri->rsegment_array(), 3);
-		if ($csv) return implode(',', $cols);
-		else return $cols;
+		$this->cols = array_slice($this->uri->rsegment_array(), 3);
+		if ($csv) $this->cols = implode(',', $this->cols);
 	}
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+	// public function do_query()
+	// {
+	// $this->view = FALSE;
+	// 	$this->set_cols();
+	// 	if ( count($this->like) )
+	// 	{
+	// 		foreach ($this->like as $k => $l)
+	// 		{
+	// 			$this->m->set_like($l, TRUE);
+	// 		}
+	// 	}
+
+	// 	$this->m->set_select('ajax', $this->cols);
+	// 	$this->m->order_by($this->cols[0]);
+		
+	// 	$this->q = $this->m->get_all();
+	// }
+
+
+
+
+
+
+
+// public function typeahead_tags7()
+// 	{
+// 		$cols = $this->set_cols();
+
+// 		$this->m->set_select('ajax', $cols);
+// 		$this->m->order_by('tag_name');
+
+// 		$q = $this->m->get_all();
+		
+// 		//Now format the array into datums (https://github.com/twitter/typeahead.js#datum)
+// 		$dataset = array();;
+// 		foreach ($q as $o)
+// 		{
+// 			$datum = array();
+// 			// dump($o);
+// 			$datum['value'] = $o->tag_name;
+// 			$datum['tokens'] = array($o->id, $o->tag_name);
+// 			$datum['id'] = $o->id;
+// 			$datum['tag_name'] = $o->tag_name;
+// 			// $datum['postal_code'] = $o->postal_code;
+
+// 			$dataset[] = $datum;
+// 			//
+// 		}		
+// //dump(json_encode($dataset));
+// // $this->output->enable_profiler(TRUE);
+
+// 		echo json_encode($dataset);			
+
+		
+
+// 	}
+
+
+// public function typeahead_contacts()
+// 	{
+// 		$_datum_structure = array (
+// 			'value' => '%first_name% %last_name% %postal_code%',
+// 			'tokens' => array('%first_name%', '%last_name%'),
+// 			'id' => '%id%'
+// 			);
+
+
+// 		//set up thew wildcard search
+// 		$like = array();
+// 		$s = explode(' ', $_GET['q']);
+// 		foreach ($s as $l =>$v)
+// 		{	$like[] = array(
+// 				'first_name' => $v,
+// 				'last_name' => $v);
+// 		}
+// 		// if (count($_GET))
+// 		// {
+// 		// 	//Has the user typed 2 names?
+// 		// 	if (strpos($_GET['q'], ' '))
+// 		// 	{
+// 		// 		//YES... search for both names
+// 		// 		$q = explode(' ', $_GET['q']);
+// 		// 		$this->m->set_like(array('first_name' => $q[0]));
+// 		// 		$this->m->set_like(array('last_name' => $q[1]));
+// 		// 	} 
+// 		// 	else
+// 		// 	{
+// 		// 		//NO... just search for input as either first or last
+// 		// 		$q = $_GET['q'];
+// 		// 		$this->m->set_like(array('first_name' => $q));
+// 		// 		$this->m->set_like(array('last_name' => $q));
+// 		// 	}
+// 		// }
+
+// 		//set the cols & sort order
+// 		$q = $this->do_query($like);
+		
+// 		//Now format the array into datums (https://github.com/twitter/typeahead.js#datum)
+// 		$dataset = $this->set_up_datum($q, $_datum_structure);
+// 		$this->output->enable_profiler(TRUE);
+
+// 		echo json_encode($dataset);			
+// 	}
 
 	
 

@@ -1,0 +1,39 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Contact_model extends MY_Model {
+
+	//define what columns to return in a search
+	protected $_cols = array(
+	     'single_record' => array(
+	     	//Leave blank to get all fields
+	                      ),
+	     'multiple_record' => array(
+	                      'id', 'first_name', 'last_name', 'email_1', 'owner_id')
+	);
+
+	
+	/*
+		You can set observers to call methods before create, update, get and delete
+		See here: https://github.com/jamierumbelow/codeigniter-base-model
+	 */
+
+	public function __construct() 
+	{ 
+        parent::__construct();
+    }
+
+    public function list_records()
+    {
+    	# Lists all the records according to $where & $join
+    }
+
+    public function show_record()
+    {
+    	# code...
+    }
+
+    
+}
+
+/* End of file xxxxxx.php */
+/* Location: ./application/controllers/welcome.php */

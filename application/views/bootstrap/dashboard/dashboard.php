@@ -1,29 +1,36 @@
 <div class="row"><!-- Encosing Row -->
     <div class="col-xs-12"><!-- 12 columns -->
-
         <div class="row"><!-- Top row-->
-            <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12"><!-- Column 1, top row-->
-                <div class="jumbotron">
+            <div class="col-lg-8 col-md-6 col-sm-7 col-xs-12"><!-- Column 1, top row-->
+                <div class="jumbotron dashboard_panel">
                     <div class="container">
                         <div class="row">
                             <?= $this->messages->show(); ?> 
                         </div>
-                        <h1>Hi Al!</h1>
-                        <p>What do you fancy doing today?</p>
-                        <div class="btn-group pull-right">
-                            <button type="button" class="btn btn-lg btn-default dropdown-toggle" data-toggle="dropdown">
-                                We could... <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <?= partial('_button_extraactions_dropdown'); ?>
-                            </ul>
+                        <h1 class="hidden-sm">Hi <?= $p->user_first_name(); ?>!</h1>
+                        <h2 class="visible-sm">Hi <?= $p->user_first_name(); ?>!</h2>
+                        <p class="hidden-xs">Good to see you again. (I <i>like</i> your hair. Have you changed conditioners recently?)</p>
+                        <span class="visible-xs ">
+                            <h3>Good to see you again.</h3>
+                            <p>I <i>like</i> your hair.</p>
+                            <p>Have you changed conditioners recently? You're looking fabulous these days!</p>
+                        </span>
+                        <div class="row">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-lg btn-default dropdown-toggle" data-toggle="dropdown">
+                                    What do you fancy doing today...?<span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <?= partial('_button_extraactions_dropdown'); ?>
+                                </ul>
+                            </div>
                         </div>
                     </div>  
                 </div>
             </div><!-- /Column 1, toP Row-->
 
-            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"><!-- Column 2, top row-->
-                <div class="well"><!-- Well -->
+            <div class="col-lg-4 col-md-6 col-sm-5 col-xs-12"><!-- Column 2, top row-->
+                <div class="well dashboard_panel"><!-- Well -->
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><!-- /col-->
                     <!-- Pills -->
 

@@ -1,0 +1,119 @@
+<style>
+	input.order_item {
+	border:none;
+}
+</style>
+
+<div class="row">
+	<div class=" form-inline">
+		<div class="row">
+
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12  panel panel-default ">
+				<div class="panel-body">
+					<address>
+						<strong>Customer Name</strong><br/>
+						110, Ducie House,<br/>
+						Long long longlong long address line<br/>
+						Village<br/>
+						City<br/>
+						M1 2JW<br/>
+
+						<em>t: 017626622222</em><br/>
+						<em>t: 017626622222</em><br/>
+					</address>
+				</div>
+			</div>
+
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+				<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<label class="" for="order_ref">Order Ref</label>
+					<input type="text" class="form-control input-sm" name="order_ref" id="order_ref"  value="<?//= $p->order_ref(); ?>">
+				</div>
+				<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<label class="" for="order_date">Order Date</label>
+					<input type="date" class="form-control input-sm" name="order_date" id="order_date"  value="<?//= $p->order_date(); ?>">
+				</div>
+
+				<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+					<label class="" for="order_payment_method">Payment:</label>
+					<?= form_dropdown('order_payment_method', config('payment_types', 'dropdowns'), $p->order_payment_method(), 'class="form-control input-sm" id="order_payment_method"'); ?>
+				</div>
+				<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+					<label class="" for="order_source">Source:</label>
+					<?= form_dropdown('order_source', config('order_source', 'dropdowns'), $p->order_source(), 'class="form-control input-sm" id="order_source"'); ?>
+				</div>
+			</div>
+
+		</div>
+		
+		<div class="row margin_top_30">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-sx-12 order_item_row">
+				<table class="table" id="order_items_table">
+					<thead>
+						<tr>
+							<th class="col-lg-5 col-md-5 col-sm-5 col-xs-5">Item</th>
+							<!-- <th>Season</th> -->
+							<th class="col-lg-2 col-md-2 col-sm-2 col-xs-2">£</th>
+							<th class="col-lg-2 col-md-2 col-sm-2 col-xs-2">QTY</th>
+							<th class="col-lg-3 col-md-3 col-sm-3 col-xs-3">Total</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr id="row_1" class="row_1">
+							<td>
+								<label class="sr-only" for="product_name">Product Name</label>
+								<input type="text" class="form-control input-sm typeahead" data-prefetch="http://campaigndashboard.dev/ajax/tags/typeahead_tags/id/tag_name" name="product_name[]" data-name="product_list" data-limit="4" onselected="id=product_id" idfield="product_id_row1"  id="product_name[]"  value="<?//= $p->order_items('product_name'); ?>">
+							</td>
+							<td>
+								<label class="sr-only" for="product_price">Product Price</label>
+								<input type="text" class="form-control input-sm" name="product_price[]" id="product_price[]"  value="<?//= $p->order_items('product_price'); ?>">
+							</td>
+							<td>
+								<label class="sr-only" for="qty">Quantity</label>
+								<input type="text" class="form-control input-sm" name="qty[]" id="qty[]"  value="<?//= $p->order_items('qty'); ?>">
+							</td>
+							<td>
+								<label class="sr-only" for="line_total">Line Total</label>
+								<input type="text" id="product_id_row1" class="form-control input-sm" name="line_total[]" id="line_total[]"  value="<?//= $p->order_items('line_total'); ?>">
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<a type="button" href="#" class="btn btn-default btn-xs pull-right add_row" data-tableid="order_items_table" >Add row</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row margin_top_30 ">
+			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-lg-offset-4 col-md-offset-4 col-sm-offset-4">
+				<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+					<label class="" for="order_postage">Postage & Packing</label>
+					<input type="text" class="form-control input-sm" name="order_postage" id="order_postage"  value="<?//= $p->order_postage(); ?>">
+				</div>
+				<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+					<label class="" for="order_discount">Discount</label>
+					<input type="text" class="form-control input-sm" name="order_discount" id="order_discount"  value="<?//= $p->order_discount(); ?>">
+				</div>
+				<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 col-lg-offset-6 col-md-offset-6 col-sm-offset-6">
+					<label class="" for="order_grand_total">Grand Total</label>
+					<input type="text" class="form-control input-lg" name="order_grand_total" id="order_grand_total"  value="<?//= $p->order_grand_total(); ?>">
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="form-group col-lg-12 col-md-12 col-sm-12  col-xs-12">
+					<label class="" for="order_notes">Order/Delivery Notes</label>
+					<textarea class="form-control input-sm" id="order_notes" name="order_notes" placeholder="E.g. Make sure you include a free rubber duck" rows="3"><?= $p->order_notes(); ?></textarea>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<? //dump($order);

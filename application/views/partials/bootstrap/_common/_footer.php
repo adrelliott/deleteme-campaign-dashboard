@@ -16,6 +16,9 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
 
+
+  <script src="<?= site_url('assets/bootstrap-3/js/bootstrap/wysihtml5-0.3.0_rc2.min.js'); ?>"></script>
+
   <? 
     /* Get local copies of libraries if its a local version... */ 
   if (ENVIRONMENT === 'development') :
@@ -35,15 +38,20 @@
 
 
   <!-- Now get the Bootstrap JS files -->
+  <script src="<?= site_url('assets/bootstrap-3/js/libs/moment/moment.min.js'); ?>"></script>
+  <script src="<?= site_url('assets/bootstrap-3/js/libs/handlebars/handlebars.runtime.min.js"'); ?>"></script>
+
   <script src="<?= site_url('assets/bootstrap-3/js/bootstrap/bootstrap-datepicker.js'); ?>"></script>
+  <script src="<?= site_url('assets/bootstrap-3/js/bootstrap/bootstrap3-wysihtml5.min.js'); ?>"></script>
   <script src="<?= site_url('assets/bootstrap-3/js/libs/typeahead/typeahead.min.js'); ?>"></script>
   <script src="<?= site_url('assets/bootstrap-3/js/bootstrap/bootstrap-tagsinput.min.js'); ?>"></script>
+  <script src="<?= site_url('assets/bootstrap-3/js/libs/daterangepicker/daterangepicker.js'); ?>"></script>
   
   <!-- Get all Datatables files -->
   <script src="<?= base_url('assets/bootstrap-3/js/libs/dataTables/jquery.dataTables.js'); ?>"></script>
   <script src="<?= base_url('assets/bootstrap-3/js/libs/dataTables/dataTables.bootstrapPagination.js'); ?>"></script>
   <script src="<?php echo base_url('assets/bootstrap-3/js/libs/dataTables/dataTables.editor.min.js'); ?>"></script>
-  <script src="<?php echo base_url('assets/bootstrap-3/js/libs/dataTables/dataTables.editor.min.js'); ?>"></script>
+  
 
 
   <script src="<?= site_url('assets/bootstrap-3/js/libs/app/app.js'); ?>"></script>

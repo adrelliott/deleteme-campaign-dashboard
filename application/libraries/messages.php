@@ -52,8 +52,8 @@
 
     public function show()
     {
-        $this->message = $this->ci->session->userdata('message');
-        $this->ci->session->unset_userdata('message');
+        $this->message = $this->ci->session->flashdata('message');
+        // $this->ci->session->unset_userdata('message');
 
         if ($this->message)
         {

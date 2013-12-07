@@ -6,60 +6,47 @@
 class Saved_search_presenter extends Presenter
 {
 
-
-
-
-
-
-	public function get_results($type = 'data', $row = NULL)
+	public function get_results($paginate = TRUE)
 	{
-		switch ($type) {
-			case 'links':
-				return $this->saved_search->data->links;	
-				break;
+		//Get stat data as an object
+		$d = $this->saved_search;
 
-			case 'description':
-				$start = $this->saved_search->data->pagination['offset'];
-				$number_returned = $this->saved_search->data->results->num_rows;
-				$end = $start + $number_returned;
-				$total_returned =  $this->saved_search->data->pagination['total_rows'];
 
-				return '<p class="lead">Showing ' . $start . ' to ' . $end . ' of ' . $total_returned . ' entries</p>';
-				break;
+		//Set up config for paginate
+		if ($paginate)
+		{
+			$offset = 0;
+			$config = array(
+				'base_url' => site_url('search/results/' . $this->id),
+				'per_page' => 5,
+				'uri_segment' => 4
+				);
+			$d->id_as_key = TRUE;
+
+
+			if ($offset = $this->uri->segment($config['uri_segment']));
 			
-			case 'data':
-				return $this->saved_search->data->results->result_array;	
-				break;
-
-			case 'headers':
-				$cols = array();
-				$sample_row = $this->saved_search->data->results->result_array[0];
-
-				foreach ($sample_row as $col_name => $v)
-				{
-					$cols[humanize($col_name)] = $col_name;
-				}
-
-				return $cols;
-				break;
-			
-			// case 'row':
-			// 	$headers = array_keys($this->saved_search->data->results->result_array[0]);	
-			// 	$data = $this->saved_search->data->results->result_array;
-			// 	$html = '';
-
-			// 	foreach ($headers as $header)
-			// 	{
-			// 		$html .= '<td>' . $data[$row][$header] . '</td>';
-			// 	}
-
-			// 	return $html;
-			// 	break;
-			
-			default:
-				# code...
-				break;
+			$d->offset = (int) $offset;
+			$d->limit = $config['per_page'];
 		}
+
+		//Load model
+		$m = strtolower($d->model_name . '_model');
+		$this->load->model($m);
+
+		//Do the saved search
+		$q = $this->$m->do_saved_search($d);
+
+		//Do we need to paginate?
+		if ($paginate)
+		{
+			//Get the total rows
+			$config['total_rows'] = $d->total_rows = $this->$m->do_saved_search($d, 'count');
+			$this->pagination->initialize($config);
+			$this->saved_search->pag_links = $this->pagination->create_links();
+		}
+
+		return $q;
 	}
 
 }

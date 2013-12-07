@@ -5,12 +5,12 @@ class Saved_search_model extends MY_Model {
 	//define what columns to return in a search
 	protected $_cols = array(
          'single_record' => array(
-                          'id', 'search_name', 'search_description', 'search_type', 'query', 'owner_id'),
+                          ),
          'multiple_record' => array(
-                          'id', 'search_name', 'search_description', 'search_type', 'query', 'owner_id')
+                          )
     );
 
-    // protected $_sort = array('id' => 'DESC');
+    protected $_sort = array('id' => 'DESC');
 
   //What are the foreign keys for each table?
   protected $_foreign_key = array(
@@ -27,6 +27,8 @@ class Saved_search_model extends MY_Model {
         //  i.e. JOIN `orders` ON `orders`.`orders_id`=`{this_table}`.`id`
     );
 
+//Keep this!!!!!!!!!!!!!!!!!!!!!!!!
+// public $num_rows = '';
 
 
     //private $_result;
@@ -42,10 +44,10 @@ class Saved_search_model extends MY_Model {
     }
 
 
-    public function num_rows_in_query($sql)
-    {
-        return  $this->do_query($sql)->num_rows();
-    }
+    // public function num_rows_in_query($sql)
+    // {
+    //     return  $this->do_query($sql)->num_rows();
+    // }
 
 
 
@@ -54,19 +56,19 @@ class Saved_search_model extends MY_Model {
      * @param  int $id Id of the search
      * @return mixed     Can be an integer/float
      */
-    public function get_stat($id)
-    {
-    	//get the stat id
-    	$stat = $this->get($id);
+  //   public function get_stat($id)
+  //   {
+  //   	//get the stat id
+  //   	$stat = $this->get($id);
 
-    	//Run that query
-    	if ($stat->query)
-		{
-			$stat = $stat->query;
-			$result = $this->db->query($stat)->row();
-			return reset($result);	//Just returns the valueof $result[0]
-		}
-    }
+  //   	//Run that query
+  //   	if ($stat->query)
+		// {
+		// 	$stat = $stat->query;
+		// 	$result = $this->db->query($stat)->row();
+		// 	return reset($result);	//Just returns the valueof $result[0]
+		// }
+  //   }
 
     /**
      * Calculates change between two stats
@@ -75,14 +77,14 @@ class Saved_search_model extends MY_Model {
      * @param  string $type Type fo change, e.g. percentage
      * @return number      can be a percentage, an integer or a float
      */
-    public function get_change($id1, $id2, $type = 'pecentage')
-    {
-    	//do the two searches
-    	//
-    	//then calculate the change
-    	//
-    	//then return as percentage/integer/float as defined in $type
-    }
+    // public function get_change($id1, $id2, $type = 'percentage')
+    // {
+    // 	//do the two searches
+    // 	//
+    // 	//then calculate the change
+    // 	//
+    // 	//then return as percentage/integer/float as defined in $type
+    // }
 
 }
 

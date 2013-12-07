@@ -4,7 +4,7 @@
       Woo Hoo! Saved your changes!
     </div>
     <div class=" form-inline">
-      <?= form_open(site_url('contacts/edit/' . $contact->id()), 'role="form" class="ajax_form" alert-class="overview"'); ?>
+      <?= form_open(site_url('contacts/edit/' . $p->id()), 'role="form" class="ajax_form" alert-class="overview"'); ?>
 
       <?= partial('_form_overview'); ?>
 

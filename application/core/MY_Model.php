@@ -65,6 +65,12 @@ class MY_Model extends CI_Model
      */
     protected $protected_attributes = array('id', 'owner_id');
 
+    //Gets a row count when doing get_all();
+    public $row_count = FALSE;
+
+    public $return_object = FALSE;
+
+
 
 
 ####### deleteme ############################################################
@@ -150,10 +156,12 @@ class MY_Model extends CI_Model
         //Is it a get query?
         if ($query_type === 'insert')
         {
-            $data['owner_id'] = OWNER_ID;
+            // $data['owner_id'] = OWNER_ID;
+            $data['owner_id'] = $this->owner_id;
             return $data;
         } 
-        else $this->_database->where($this->_table . '.owner_id', OWNER_ID);
+        else $this->_database->where($this->_table . '.owner_id', $this->owner_id);
+        // else $this->_database->where($this->_table . '.owner_id', OWNER_ID);
         
     }
 
@@ -168,6 +176,7 @@ class MY_Model extends CI_Model
      */
     public function get($primary_value, $where = FALSE)
     {
+        
         $this->trigger('before_get');
 
         if ($this->soft_delete && $this->_temporary_with_deleted !== TRUE)
@@ -196,7 +205,7 @@ class MY_Model extends CI_Model
 
         $row = $this->trigger('after_get', $row);
 
-        $this->_with = array();
+        // $this->_with = array();
         return $row;
     }
 
@@ -306,27 +315,31 @@ class MY_Model extends CI_Model
         }
 
         //Set the columns
-        $this->set_select('multiple');
+        if ( ! count($this->_database->ar_select)) $this->set_select('multiple');
 
-         //Decide what fields to retrieve (set up in each model)
-         //(Check to see if they have been set first)
-        // if (is_array($this->_cols['multiple_record']) && count($this->_database->ar_select) == 0) $this->set_select('multiple_record');
-            // $this->_database->select(array_values($this->_cols['multiple_record']));
-
-
+       
         //Just perform for this client's records: 
         $this->_set_owner_id();
+// dump($this->_return_type(1));
+// 
 
-        $result = $this->_database->get($this->_table)
-                           ->{$this->_return_type(1)}();
-        $this->_temporary_return_type = $this->return_type;
-
-        foreach ($result as $key => &$row)
+        if ($this->return_object !== FALSE)
         {
-            $row = $this->trigger('after_get', $row, ($key == count($result) - 1));
+            $result = $this->_database->get($this->_table);
         }
+        else 
+        {
+            $result = $this->_database->get($this->_table)->{$this->_return_type(1)}();
+            $this->_temporary_return_type = $this->return_type;
 
-        $this->_with = array();
+            foreach ($result as $key => &$row)
+            {
+                $row = $this->trigger('after_get', $row, ($key == count($result) - 1));
+            }
+        }
+        
+
+        //$this->_with = array();
         return $result;
     }
 
@@ -957,28 +970,7 @@ class MY_Model extends CI_Model
         }
     }
 
-    /**
-     * Set WHERE parameters, cleverly
-     */
-    protected function _set_where($params)
-    {
-        if (count($params) == 1)
-        {
-            $this->_database->where($params[0]);
-        }
-        else if(count($params) == 2)
-        {
-            $this->_database->where($params[0], $params[1]);
-        }
-        else if(count($params) == 3)
-        {
-            $this->_database->where($params[0], $params[1], $params[2]);
-        }
-        else
-        {
-            $this->_database->where($params);
-        }
-    }
+    
 
     /**
      * Set LIKE parameters, cleverly
@@ -1016,14 +1008,15 @@ class MY_Model extends CI_Model
     public function get_datatables_ajax($cols, $where = array(), $join = array())
     {
         if ( !isset($where['deleted'])) $where['deleted'] = 0;
-        if ( !isset($where['owner_id'])) $where['owner_id'] = OWNER_ID;
+        if ( !isset($where['owner_id'])) $where['owner_id'] = $this->owner_id;
+        // if ( !isset($where['owner_id'])) $where['owner_id'] = OWNER_ID;
 
         $this->load->library('datatables');
 
         //if $join has been passed...
         if ($join)
         {
-            $this->datatables->join($join['table'], $join['fk']);
+            $this->datatables->join($join['join_table'], $join['join_fk'] = $join['join_pk']);
         }
         
         //Set the rest of the query
@@ -1077,7 +1070,7 @@ class MY_Model extends CI_Model
             }
        }
 
-       $this->_database->select($cols);
+       $this->_database->select($cols, FALSE);
 
        // if ($type == 'ajax')
        // {
@@ -1165,5 +1158,338 @@ class MY_Model extends CI_Model
         
         return $this;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+################## New imporved MY_MODEL!!!
+
+// Vars to set up:
+// $_protected sort 
+
+
+
+
+    public function list_records($attr = array())
+    {        
+        //Set up the where and join statements
+        if (count($attr))
+        {
+            //Set the where statement(s)
+            if (isset($attr['where']))
+            {
+                foreach ($attr['where'] as $w)
+                {
+                    foreach ($w as $k => $v)
+                    {
+                        //Replace placeholders with actual values form the query
+                        if (strpos($v, '%') !== FALSE)
+                        {
+                            $col = str_replace('%', '', $v);
+                            $w[$k] = $this->q->$col;
+                        }
+                    }
+                    $this->_set_where(array($w));
+                }
+            }
+
+            //Set the where statement(s)
+            if (isset($attr['join']))
+            {
+                foreach ($attr['join'] as $j)
+                {
+                    $this->_set_join($j);
+                }
+            }
+
+            //Set any other query settings, e.g. LIMIT etc 
+            ////May need to have some verification here that $k is a valid command?
+            if (isset($attr['other']))
+            {
+                foreach ($attr['other'] as $k => $v)
+                {
+                    $this->_database->{$k}($v);
+                }
+            }
+        }
+
+        //Set the select statement
+        $this->_set_select('multiple');
+
+        //Set the order_by statement
+        //order_by()->
+        
+        $q = $this->as_array()->get_all();
+        if (isset($attr['id_as_key']) && $attr['id_as_key'] !== FALSE)
+        {
+            $t = array(); //temp array
+            foreach ($q as $k => $array)
+            {
+                $t[$array['id']] = $array;
+            }
+            $q = $t;
+        }
+        
+        return $q;
+        
+    }
+
+     /**
+     * Updated a record based on the primary value.
+     */
+    public function update_record($primary_value, $data, $skip_validation = FALSE)
+    {
+        $data = $this->trigger('before_update', $data);
+
+        if ($skip_validation === FALSE)
+        {
+            $data = $this->validate($data);
+        }
+
+        if ($data !== FALSE)
+        {
+            $result = $this->_database->where($this->primary_key, $primary_value)
+                               ->set($data)
+                               ->update($this->_table);
+
+            $this->trigger('after_update', array($data, $result));
+
+            return $result;
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
+
+    /**
+     * Insert a new row into the table. $data should be an associative array
+     * of data to be inserted. Returns newly created ID.
+     */
+    public function insert_record($data, $skip_validation = FALSE)
+    {
+        if ($skip_validation === FALSE)
+        {
+            $data = $this->validate($data);
+        }
+
+        if ($data !== FALSE)
+        {
+            $data = $this->trigger('before_create', $data);
+
+            //Just perform for this client's records: 
+            $data = $this->_set_owner_id('insert', $data);
+
+            $this->_database->insert($this->_table, $data);
+            $insert_id = $this->_database->insert_id();
+
+            $this->trigger('after_create', $insert_id);
+
+            return $insert_id;
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
+
+
+    /**
+     * Delete a row from the table by the primary value
+     */
+    public function delete_record($id)
+    {
+        $this->trigger('before_delete', $id);
+
+        $this->_database->where($this->primary_key, $id);
+
+        //Just perform for this client's records: 
+        $this->_set_owner_id();
+
+        $result = $this->_database->update($this->_table, array('deleted' => 1));
+
+        $this->trigger('after_delete', $result);
+
+        return $result;
+    }
+
+    protected function toggle_value($col)
+    {
+        $q = $this->get($id);
+
+// dump('The existing value is '. $q->$col);
+
+        //Set default and get current value
+      $new_value = 1;
+      if ($q->$col == 1)
+      {
+        $new_value = 0;
+      }
+
+        //insert new_value
+      $this->update($id, array($col => $new_value));
+      $q->$col = $new_value;
+// dump('The changed value is '.$new_value);
+      return $q;
+    }
+
+
+    //do saved search
+    public function do_saved_search($attr = array(), $result_type = 'array')
+    {
+        //If $attr is an object, turn it into an array
+        if (is_object($attr)) $attr = (array) $attr;
+        
+        //Is attr empty?
+        if ( is_array($attr) && ! count($attr)) return FALSE;
+
+        //Set up the query
+        $q;
+        $query_components = array('select', 'join', 'where', 'like', 'order_by', 'group_by', 'having');
+        
+        foreach ($query_components as $comp)
+        {
+            if (isset($attr[$comp]) && ! empty($attr[$comp]))
+            {
+                $this->_database->{$comp}($attr[$comp]);
+            }
+        }
+
+        if ($result_type == 'count') return count($this->get_all());//Is this a straight count?
+        if ($result_type == 'export')
+        {
+            $this->return_object = TRUE;
+            return $this->get_all();  
+        } 
+
+        //Have we passed a limit/offset?
+        if (isset($attr['limit']))
+        {
+            $offset = '';
+            if ( isset($attr['offset'])) $offset = $attr['offset'];
+            $this->_database->limit($attr['limit'], $offset);
+        }
+
+        //Do query
+        $q = $this->as_array()->get_all();
+        
+        //Make the keyfo the results array the id of the record
+       if (isset($attr['id_as_key']) && $attr['id_as_key'] !== FALSE)
+        {
+            $t = array(); //temp array
+            foreach ($q as $k => $array)
+            {
+                $t[$array['id']] = $array;
+            }
+            $q = $t;
+        }
+        
+        return $q;
+    }
+
+
+
+
+
+
+
+
+
+
+    protected function _set_join($join_array)
+   {
+       if (
+        isset($join_array['table']) 
+        && isset($join_array['join_on']) 
+        && isset($join_array['join_type'])
+        ) $this->_database->join($join_array['table'], $join_array['join_on'], $join_array['join_type']);
+
+        if (count($join_array['join_fields'])) $this->set_select('join', $join_array['join_fields']);
+   }
+
+   /**
+     * Set WHERE parameters
+     */
+    protected function _set_where($params)
+    {
+        if (count($params) == 1)
+        {
+            $this->_database->where($params[0]);
+        }
+        else if(count($params) == 2)
+        {
+            $this->_database->where($params[0], $params[1]);
+        }
+        else if(count($params) == 3)
+        {
+            $this->_database->where($params[0], $params[1], $params[2]);
+        }
+        else
+        {
+            $this->_database->where($params);
+        }
+    }
+
+    /**
+     * Sets the columns to return (used mainly in the Ajax class)
+     * @param string $type either multiple_record or single_record (this determines the fields to get in either get_all(), or get($id) respectively)    
+     * @param array $cols a comma separated list of columns to return
+     */
+    protected function _set_select($type = 'single', $cols = FALSE)
+    {
+    // Allow us to overwrite the default cols
+
+        if ( ! $cols ) $cols = $this->_cols;
+
+        switch ($type) {
+            case 'ajax':
+            $cols = array_values($cols);
+            break;
+
+            case 'join':
+            $cols = array_values($cols);
+            break;
+           
+            case 'single':
+            case 'multiple':
+            if (count($cols[$type . '_record']) >= 1)
+            {
+                $cols = array_values($cols[$type . '_record']);
+                break;
+            }
+
+            default:
+            $cols = $this->_database->list_fields($this->_table);
+            break;
+        }
+
+       //loop through and prepend with this tablename (ignore those already with a period on them)
+       foreach ($cols as $k => $col)
+       {
+            if ( ! strpos($col, '.'))
+            {
+                $cols[$k] = $this->_table . '.' . $col;
+            }
+       }
+
+       $this->_database->select($cols, FALSE);
+    }
+
+
+
+
+
+
 
 }

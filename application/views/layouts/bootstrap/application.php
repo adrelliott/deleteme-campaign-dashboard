@@ -6,7 +6,13 @@
 	include (APPPATH . 'views/partials/bootstrap/_common/_navbar.php');
 
 	//Load the body
-	include (APPPATH . 'views/partials/bootstrap/_common/_body.php');
-
-	//finally include the footer
+    ?>
+    <!-- Begin page content -->
+    <div class="container">'
+        <?= $yield; ?>
+    <!-- End page content -->
+    </div>
+    <?
+    
+    //finally include the footer
 	include (APPPATH . 'views/partials/bootstrap/_common/_footer.php');

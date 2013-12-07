@@ -52,16 +52,54 @@ class Presenter
 	}
 
 
-	/*   User name functions */
-	
-	/**
-	 * Echos logged in user's name
-	 * @return [string] e.g. Al
-	 */
-	public function user_first_name()
+//Urls
+	public function form_url()
 	{
-
+		return site_url($this->router->class . '/edit/' . $this->id());
 	}
+
+	public function delete_url()
+	{
+		return site_url($this->router->class . '/delete/' . $this->id());
+	}
+
+	public function toggle_url($col = 'completed')
+	{
+		return site_url($this->router->class . '/toggle/' . $col . '/' . $this->id());
+	}
+
+
+
+// getting stuff out of the presenter object
+    public function get_results($type, $sub_type = FALSE)
+    {
+        $array = $this->{$this->_objectName}->$type;
+
+        //if we have passed a sub_type then get that
+        if ($sub_type) $array = $array[$sub_type];
+        
+        return $array;
+    }
+
+
+    //Gets a record from the 
+    // public function get_row($type, $row, $sub_type)
+    // {
+    //     # code...
+    // }
+
+    public function get_contact_action_records($type)
+    {
+        if (isset($this->contact->contact_actions[$type]))
+            return (array)$this->contact->contact_actions[$type];
+    }
+
+
+
+
+
+
+	
 
 
 	public function load_partial($partial_name)

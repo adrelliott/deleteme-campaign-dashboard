@@ -15,6 +15,9 @@
 
         //Set up the default settings
         var o = {
+            oLanguage: {
+                "sEmptyTable": "<p class='lead'>This table is emptier than your hamster's momma's bed!</p><p><i>Actually, we never actually checked if your hamster's mother is going through any kind of trial separation or divorce. No offence was meant. It was just something we heard some men say at the local pub and we thought it would be cool to copy them. <br/>Really sorry if we upset you or any of your rodents.</i></p>"
+            },
             aoColumnDefs: [],
             iDisplayLength: 5,
             bDestroy: true,
@@ -168,13 +171,14 @@
         if ( url ) {
             $('.modal-body').html('');
             $('.modal-loader').addClass('loader');
+            console.log('url', url);
             //Now post the data to the url...
             $.post(
                 url,
                 post,
                 function(html) {
                     //...and on success, set up the modal
-                    console.log('html', html);
+                    //console.log('html', html);
                     $('.modal-body').html(html);
                     $('.modal-loader').removeClass('loader');
                 }
@@ -305,6 +309,84 @@
         window.location=$(this).find("a").attr("href");
         return false;
     });
+
+    $('.wysihtml5').each(function() {
+        $(this).wysihtml5();
+    });
+    
+
+
+    $('input.daterangepicker').each(function() {
+        $(this).daterangepicker(
+            {
+                format: 'DD/MM/YYYY',
+                showDropdowns: true,
+                opens: 'left',
+                startDate: moment(),
+                endDate: moment(),
+                separator: ' to '
+            }
+            // function(start, end) {
+            //     if (start._a == end._a) {
+            //         console.log('they are both the same');
+            //         end = undefined;
+            //     }
+            //     console.log('start=',start._a);
+            //     console.log('end=',end);
+                // var now = moment();
+                // console.log('now=',now);
+                // // console.log('end=',end);
+                // alert('A date range was chosen: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+            // }
+            );
+    });
+
+
+
+    /* Add rows to a table (used for searches, order forms etc) */
+    $(document).on( 'click', '.add_row', function(e) {
+        e.preventDefault();
+
+        //get table & rows
+        var tableId = $(this).data('tableid');
+        var table = $('table#'+tableId);
+        var row = table.find("tbody tr:last").clone();
+
+        //empty the inputs
+        row.find('input').val('');
+
+        //If there is a typahead the reinitilaise the typeahead
+       
+        //append ot the table as last row
+        $('tr:last', table).after(row);
+    });
+
+    
+    /* Add list itmes to a <ul> for search page */
+    $(document).on( 'click', '.add_li_item', function(e) {
+        e.preventDefault();
+        var ulId = $(this).attr('ul-id');
+
+        $('#'+ulId+' li:last').clone().removeClass('hide').insertBefore('#'+ulId+' li:last');
+    });
+
+    /* Remove a row */
+    $(document).on( 'click', '.remove_li_item', function(e) {
+        e.preventDefault();
+        $(this).closest('li').remove();
+        // $(this).parent().remove();
+    });
+
+    //Unhide a div
+    $(document).on( 'click', '.unhide_div', function(e) {
+        e.preventDefault();
+        var divClass = $(this).attr('div-class');
+        $('.'+divClass).removeClass('hide');
+
+    });
+
+
+
 
 
     /* Typeaheads */

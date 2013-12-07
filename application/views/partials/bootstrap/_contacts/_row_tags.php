@@ -21,13 +21,13 @@
     </div> 
 
     <div id="container-tag-table">
-      <?= $this->table->gen_table('tag_table', $contact->get_contacts_records('tags')); ?>
+      <?= $this->table->gen_table('tag_table', $p->get_contacts_records('tag_joins')); ?>
     </div>
 
   </div>
 </div>
 <div class="row">
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <a class="btn btn-primary pull-right open-modal" href="#" modal-source="<?= site_url('contact_actions/create'); ?>" data-alert_class="tag" data-contact_id="<?= $contact->id();?>" data-action_type="tag" data-view="show_modal"  ><i class="fa fa-plus"></i> Create New tag</a>
+    <a class="btn btn-primary pull-right open-modal" href="#" modal-source="<?= site_url('contact_actions/create'); ?>" data-alert_class="tag" data-contact_id="<?= $p->id();?>" data-action_type="tag" data-view="show_modal"  ><i class="fa fa-plus"></i> Create New tag</a>
   </div>
 </div>

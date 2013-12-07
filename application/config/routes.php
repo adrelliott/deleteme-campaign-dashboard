@@ -44,7 +44,7 @@ $route['(:any)/list'] = "$1/index";
 $route['contact'] = "contacts";
 $route['contacts/(:num)'] = "contacts/show/$1";
 
-$route['search'] = "saved_searches";
+$route['saved_searches'] = "search";
 
 
 $route['404_override'] = '';

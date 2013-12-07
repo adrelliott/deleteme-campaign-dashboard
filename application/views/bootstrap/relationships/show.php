@@ -4,6 +4,18 @@
 		<?= form_open('relationships/edit/' . $relationship->id(), 'class="form-horizontal ajax_form modal_form" role="form" data-section="relationship" alert-class="' . $relationship->alert_class() . '" '); ?>
 		<?= form_hidden('contact_id', $relationship->contact_id()); ?>
 
+
+
+<div class="form-group col-lg-12 col-md-12 col-sm-12  col-xs-12">
+	<label class="" for="">test....</label>
+	<input type="text" class="form-control input-lg typeahead" data-source="<?= site_url('ajax/contacts/typeahead_contacts/first_name/id/last_name/postal_code'); ?>" name="" id="" placeholder="Start typing a first or last name..."  value="">
+</div>
+<input type="text" name="test_id" id="test_id" value="">
+
+
+
+
+
 		<?//= partial('_form_relationships'); ?>
 
 		<div class="form-group col-lg-12 col-md-12 col-sm-12  col-xs-12">

@@ -89,6 +89,12 @@ class Contact_presenter extends Presenter
 			return (array)$this->contact->{$type};
 	}
 
+	public function get_contact_action_records($type)
+	{
+		if (isset($this->contact->contact_actions[$type]))
+			return (array)$this->contact->contact_actions[$type];
+	}
+
 
 	
 	// public function get_contact_actions_old($action_type)

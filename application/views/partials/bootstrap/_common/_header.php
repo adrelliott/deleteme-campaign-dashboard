@@ -29,8 +29,9 @@
 
     <? endif; ?>
 
-    <!-- CSS for the datepicker -->
+    <!-- CSS for the datepickers -->
     <link href="<? echo site_url('assets/bootstrap-3/css/datepicker.css'); ?>" rel="stylesheet">
+    <link href="<? echo site_url('assets/bootstrap-3/css/daterangepicker-bs3.css'); ?>" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="<? echo site_url('assets/bootstrap-3/css/custom.css'); ?>" rel="stylesheet">
@@ -42,9 +43,12 @@
     <link href="<? echo site_url('assets/bootstrap-3/css/typeahead.css'); ?>" rel="stylesheet">
     
     <!-- Styles for Tagsinput -->
-    <link href="<? echo site_url('assets/bootstrap-3/css/bootstrap-tagsinput.css'); ?>" rel="stylesheet">
+    <link href="<? echo site_url('assets/bootstrap-3/css/bootstrap-tagsinput.css'); ?>" rel="stylesheet"> 
 
-    <!-- Include any custom style sheets/scripts/meta etc for this client -->
+    <!-- Styles for wysihtml5 -->
+    <link href="<? echo site_url('assets/bootstrap-3/css/bootstrap3-wysihtml5.css'); ?>" rel="stylesheet">
+
+    <!-- Include any custom style sheets/scripts/meta etc for this client-->
     <?
       if ($element = config('include_in_header', 'extras'))
       {

@@ -26,8 +26,9 @@
            <li class="dropdown">
             <a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bolt "></i> Marketing<b class="caret"></b></a>
             <ul class="dropdown-menu">
-             <?= nav_bar_item('campaigns', 'comments'); ?>
-             <?= nav_bar_item('reports', 'bar-chart-o'); ?>
+             <?= nav_bar_item('broadcasts', 'bullhorn'); ?>
+             <?//= nav_bar_item('campaigns', 'comments'); ?>
+             <?//= nav_bar_item('reports', 'bar-chart-o'); ?>
            </ul>
          </li>
        </ul>
@@ -47,7 +48,7 @@
   </div>
 </div>
 
-<div class="row"><div class="col-xs-12 hidden-sm"><br/><br/></div></div>
+<div class="row"><div class="col-xs-12"><br/><br/></div></div>
 
 <div class="container">
   

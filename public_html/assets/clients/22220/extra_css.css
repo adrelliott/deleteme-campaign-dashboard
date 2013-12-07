@@ -1,2 +1,5 @@
 /* Include any client-specific css here */
 
+.dashboard_panel {
+    min-height: 360px;
+}

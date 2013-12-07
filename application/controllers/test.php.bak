@@ -1,0 +1,468 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+/**
+* Controller for contacts table
+*/
+
+class Test extends CI_Controller
+{
+########################### move these to MY_Controller
+	//Set up the vars - move to MY_Controller
+	public $id = FALSE;
+	public $data = array();
+	public $view = FALSE;
+	public $layout = 'application';
+	public $presenter = '';
+	public $main_model = '';
+	public $owner_id = '';
+	public $q;	//Object to hold the results of all queries
+
+	public $view_settings = array(	//Note: ifnot set here, it defaults to the method name
+		'create' => 'show', 'edit' => 'no-view', 'delete' => 'no-view', 'toggle' => 'no-view'
+		);
+
+	public $models = array(
+		'users' => array(),
+		'products' => array()
+		);
+
+	public $retval;
+
+
+// ######################## Settings for this class only 
+
+	//What models should we load and what joins?
+	private $_models = array(
+		'test' => array(
+			'join' => array(
+				array(
+					'table' => 'contacts',
+					'join_on' => 'contacts.id=tests.contact_id',
+					'join_type' => '',
+					'join_fields' => array('tags.tag_id', 'tags.tag_id')
+					),
+				),
+			),
+		
+		// 'contact' => array(
+		// 	'where' => array(
+		// 		array('contact_id' => '%id%'),
+		// 		),
+		// 	'join' => array(
+		// 		array(
+		// 			'table' => 'users',
+		// 			'join_on' => 'users.id=contacts.user_id',
+		// 			'join_type' => '',
+		// 			'join_fields' => array('tags.tag_id', 'tags.tag_id')
+		// 			),
+		// 		),
+		
+		);
+
+	// private $_layout = FALSE; 	//Defaults to 'application' - override here with false or another name
+	
+	private $_view_settings = array(); 	//Defaults to 'application' - override here with false or another name
+	
+	// private $_presenter = FALSE; 	//Defaults to $this->main_model - override here with false or another name
+
+	
+
+	public function __construct()
+	{
+		parent::__construct();
+
+		//Set up the views, models, & layouts
+		array_merge($this->view_settings, $this->_view_settings);
+		$this->set_view();
+		$this->set_models();
+		$this->set_layout();
+
+		//Set up id if passed & numeric., otherwise set to $_POST (defaults as FALSE)
+		$this->set_owner_id();
+
+        //Set up other vars & load other classes
+        $this->load_presenter();
+		$this->load_main_model();
+		$this->retval->message = '[uhoh]';
+
+        //Show profiler if requested (in dev env only)
+        $this->output->enable_profiler(ENVIRONMENT === 'development' && isset($_GET['debug']));
+
+
+        ###### debug #######
+        // $_POST = array('viewr' => 'fkjdvbajb');
+        // echo "<br/>The view is :";dump($this->view); 
+        // echo ", the layout is:"; dump($this->layout);
+        // echo ", the presnter is:"; dump($this->presenter);
+        ###### debug #######
+
+	}
+
+
+	/* --------------------------------------------------------------
+     * CORE METHODS
+     * ------------------------------------------------------------ */
+
+    /**
+     * These methods are the base methods for all controllers
+     */
+
+	public function index()
+	{
+		$this->create_presenter();
+	}
+
+	public function show($id = FALSE)
+	{
+		$this->set_id($id);
+
+		//Get the main record
+		$this->q = $this->m->get($this->id);
+		unset($this->models[$this->main_model]);
+
+		//If we've not got a record of that id, go to index...
+		if (! isset($this->q->id))
+		{
+			$this->retval->message = '[not_found]';
+			$this->redirect('index');
+		}
+		else 
+		{
+			//Set id & get associated records
+			$this->id = $this->q->id;
+			foreach ($this->models as $m => $attr)
+			{
+				$this->load->model($this->_model_name($m), 'm');
+				$this->q->{plural($m)} = $this->m->list_records($this->models[$m]);
+			}
+
+			//create presenter object & hand over to the layout
+			$this->create_presenter();	
+		}	
+		
+	}
+
+
+	public function create()
+	{
+		$this->create_presenter();
+	}
+
+	public function edit($id = FALSE)
+	{
+		$this->set_id($id);
+
+		//Is it an UPDATE...
+		if ($id && $this->input->post())
+		{
+			//If we have passed an id and we have POST data, then its an update
+			if ($this->m->update($id, $this->input->post()))
+			{
+				$this->retval->message = '[updated]';
+				//Query again for the data - don't trust input!
+				$this->retval->q = $this->m->get($id);
+			}
+		}
+			//...Must be an INSERT...
+		elseif (!$id && $this->input->post())
+		{
+			//Otherwise, if we only have POST data its an insert
+			if ($id = $this->m->insert($this->input->post()))
+			{
+				$this->retval->message = '[created]';
+				//Query again for the data - don't trust input!
+				$this->retval->q = $this->m->get($id);
+				$this->id = $this->retval->q->id;
+			}	
+		}
+		//...no idea what it is - show error
+		else return show_error('Uh oh. Something bad has happened (no POST or id');
+
+		//...sooooo... what now?
+		$this->redirect('show');
+	}
+
+
+	public function delete($id = FALSE)
+	{
+		$this->set_id($id);
+
+		if ($this->m->delete_record($this->id))
+		{
+			$this->retval->message = '[deleted]';
+			$this->redirect();
+		}
+		else show_error('delete failed');
+	}
+
+	public function toggle($col = 'completed', $id = FALSE)
+	{
+		$this->set_id($id);
+
+		//toggle the field
+		if ($val = $this->m->toggle_value($col))
+			$this->redirect('view');
+		
+		//error management!!!!
+	}
+
+
+
+	 /* --------------------------------------------------------------
+     * BASE METHODS
+     * ------------------------------------------------------------ */
+
+    /**
+     * These methods are the base methods for all controllers
+     */
+    
+
+    /**
+     * Override CodeIgniter's despatch mechanism and route the request
+     * through to the appropriate action. Support custom 404 methods and
+     * autoload the view into the layout.
+     */
+    public function _remap($method)
+    {
+        if (method_exists($this, $method))
+        {
+            call_user_func_array(array($this, $method), array_slice($this->uri->rsegments, 2));
+        }
+        else
+        {
+            if (method_exists($this, '_404'))
+            {
+                call_user_func_array(array($this, '_404'), array($method));
+            }
+            else
+            {
+                show_404(strtolower(get_class($this)).'/'.$method);
+            }
+        }
+
+        $this->_load_view();
+    }
+
+    /**
+     * Automatically load the view. Looks for it in 
+     * 1. 
+     */
+    protected function _load_view()
+    {
+        // If $this->view == FALSE, we don't want to load anything
+        if ($this->view !== FALSE)
+        {
+            //pass through the contents of $this->data for debug
+            if (ENVIRONMENT !== 'production') $this->data['debug'] = $this->data;
+
+            // If $this->view isn't empty, load it. If it is, try and guess based on the controller and action name 
+            // (****NOTE*** view() is in helpers/partial_helper.php)
+            $view = (! empty($this->view)) ? view($this->view) : view($this->router->method);
+
+            // Load the view into $yield
+            $data['yield'] = $this->load->view($view, $this->data, TRUE);
+
+            
+
+            // Load in our existing data with the asides and view
+            $data = array_merge($this->data, $data);
+            $layout = FALSE;
+
+            // If we didn't specify the layout, try to guess it
+            if (!isset($this->layout))
+            {
+                if (file_exists(APPPATH . 'views/layouts/' . $this->config->item('layout_folder') . '/' . $this->router->class . '.php'))
+                {
+                    $layout = 'layouts/' . $this->config->item('layout_folder')  . '/' . $this->router->class;
+                }
+                else
+                {
+                    $layout = 'layouts/' . $this->config->item('layout_folder') .'/application';
+                }
+            }
+
+            // If we did, use it
+            else if ($this->layout !== FALSE)
+            {
+                $layout = 'layouts/' . $this->config->item('layout_folder') .'/' . $this->layout;
+            }
+
+            // If $layout is FALSE, we're not interested in loading a layout, so output the view directly
+            if ($layout == FALSE)
+            {
+                $this->output->set_output($data['yield']);
+            }
+
+            // Otherwise? Load away :)
+            else
+            {
+                $this->load->view($layout, $data);
+            }
+        }
+    }
+
+    public function set_layout()
+    {
+    	$layout = 'application';
+
+    	if ($this->input->post('modal'))	//...Is it a modal?
+			$layout = 'modal';
+		elseif (isset($this->_layout))
+			$layout = $this->_layout;
+
+		$this->layout = $layout;	//...Nope? default to 'application'
+    }
+
+    public function set_models()
+    {
+    	$models = $this->_models;
+    	$this->main_model = singular($this->router->class);
+    	
+    	//Merge the two arrays...
+    	foreach ($this->models as $m => $attr)
+    		$models[$m] = $attr;
+    	$this->models = $models;
+    }
+
+
+
+    public function set_view()
+    {
+        //Merge in this class's private view array with the defaultone set in MY_Controller
+        $view_settings = $this->view_settings;
+        if (isset($this->_view_settings) && is_array($this->_view_settings))
+        {
+        	foreach ($this->_view_settings as $v => $attr)
+        	{
+        		$view_settings[$v] = $attr;
+        	}	
+        }
+
+        //Now test for $_POST['view'] & set it if passed...
+        if ( ! $view = $this->input->post('view'))
+        {
+            $view  = $this->router->method;
+
+            //... else look up the view in $view_settings and set it
+            if ( $v = element($view, $view_settings, FALSE) )
+            {
+                if ($v == 'no-view')
+                    $view = FALSE;
+
+                else $view = $v;
+            }
+        }
+        
+        $this->view = $view;
+    }
+
+    public function set_owner_id()
+    {
+    	$owner_id = 22220;
+    	//define ('OWNER_ID', $owner_id); ///////////////////////////////////Set this on login!
+    	
+    	$this->owner_id = $owner_id;
+        $this->config->load('client_configs/' . $owner_id);
+    }
+
+    public function array_to_object($array)
+    {
+        $object = '';
+        if (is_array($array))
+        {
+            foreach ($array as $k => $v)
+            {
+                $object->$k = $v;
+            }
+        }
+        return $object;
+    }
+
+    public function set_id($id)
+    {
+    	//Checks for an id passed, and sets to post if none passed
+    	if ( ! $this->id = $id) $this->id = $this->input->post('id');
+    }
+
+   
+
+     /**
+     * Load presenter based on the $this->presenter var
+     */
+    public function load_presenter()
+    {
+        //Set up the $presenter var
+        $presenter = $this->presenter;
+        if (isset($this->_presenter))
+        	$presenter = $this->_presenter;
+
+        //If we've set $this->_presenter as false, then exit
+        if ($presenter === FALSE) return;
+
+        if ($presenter !== '')
+        {
+            $this->presenter = $presenter;
+        }
+        else $this->presenter = $this->main_model;
+
+        //load the presenter
+        require_once (APPPATH . 'presenters/' . strtolower($this->presenter  . '_presenter') . '.php');
+
+    }
+
+    public function load_main_model()
+    {
+    	$main_model = $this->main_model;
+    	if (isset($this->_main_model))
+    		$main_model = $this->_main_model;
+
+    	if ($main_model === FALSE) return;
+
+    	$this->load->model($this->_model_name($main_model), 'm');
+    }
+
+    public function create_presenter()
+    {
+    	if ($post = $this->input->post())
+				$this->q->post = $post;
+		
+		//Create the presenter name ready to load it
+		$p = $this->presenter . '_presenter';
+		$this->data['p'] = new $p($this->q);	
+    }
+
+    
+    /**
+     * Returns the loadable model name appended with '_model'
+     */
+    protected function _model_name($model)
+    {
+        return $model . '_model';
+    }
+
+
+    public function redirect($view = 'index')
+    {
+    	//if its ajax, just echo the retval...
+    	if ($this->input->is_ajax_request())
+    	{
+    		echo json_encode($this->retval);
+    		return;
+    	}
+
+    	//...else redirect the page
+    	$url = $this->router->class;
+    	//Set up the URL
+	    if ($view == 'show')
+    	{
+    		$url = $url . '/show/' . $this->id;
+    	}
+
+    	//redirect
+    	$this->session->set_flashdata($this->retval);
+    	redirect(site_url($url));
+    }
+
+
+
+}

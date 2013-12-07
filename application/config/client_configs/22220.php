@@ -13,6 +13,24 @@ $config['owner']['owner_id']	= '22220';
 // What layout folder are we using? (Either bootstrap or Sangam)
 $config['layout_folder']	= 'bootstrap';
 
+// Current Season
+$config['current_season']	= '2013/14';
+
+// app-wide variables
+// $config['app_settings']	= array(
+// 	'contacts' => array(
+// 		'model_list' => array(
+// 			'contact_actions' => array(
+// 				'where' => array(
+// 					'contact_id' => '%id%'
+// 					),
+// 				),
+// 			),
+// 		),
+// 	);
+
+
+
 // Extra config itesm
 $config['extras']	= array(
 	'include_in_header' => array(
@@ -57,11 +75,69 @@ $config['pageheaders']	= array(
 			'subtext' => 'Use this screen to track all activity associated to this sales opportunity'
 			),
 		'show_board' => array(
-				'icon' => 'briefcase',
-				'header' => 'All your leads', 
-				'subtext' => 'Click on a lead to open a brief overview'
-				),
+			'icon' => 'briefcase',
+			'header' => 'All your leads', 
+			'subtext' => 'Click on a lead to open a brief overview'
 			),
+		),
+	'search' => array(
+		'index' => array(
+			'icon' => 'search',
+			'header' => 'All Your Saved Searches', 
+			'subtext' => 'Each one these little beauties leads to a whole world of possiblities! (Actually, they\'re just search templates, but don\'t tell them that)'
+			),
+		'show' => array(
+			'icon' => 'search',
+			'header' => 'In-Depth', 
+			'subtext' => 'Edit this search here (remember to save your changes!)'
+			),
+		'create' => array(
+			'icon' => 'search',
+			'header' => 'Create a Search', 
+			'subtext' => 'Use the following section to create a new search'
+			),
+		'results' => array(
+			'icon' => 'search',
+			'header' => 'It worked!', 
+			'subtext' => 'Look! These are the results of the search you just did. Aren\'t you clever?'
+			),
+		),
+	'broadcasts' => array(
+		'index' => array(
+			'icon' => 'bullhorn',
+			'header' => 'All Your Broadcasts', 
+			'subtext' => 'This is a list of all the email boradcasts you ever sent. Brings back memories, eh?'
+			),
+		'show' => array(
+			'icon' => 'bullhorn',
+			'header' => 'In-Depth', 
+			'subtext' => 'Edit this broadcast here (remember to save your changes!)'
+			),
+		'create' => array(
+			'icon' => 'bullhorn',
+			'header' => 'Create a Broadcast', 
+			'subtext' => 'Name your broadcast here...'
+			),
+		
+		),
+	'smiles' => array(
+		'index' => array(
+			'icon' => 'bullhorn',
+			'header' => 'All Your Broadcasts', 
+			'subtext' => 'This is a list of all the email boradcasts you ever sent. Brings back memories, eh?'
+			),
+		'show' => array(
+			'icon' => 'coffee',
+			'header' => 'Stop... Its coffee time!', 
+			'subtext' => 'Get a coffee and a Hob Nob, and take 5 minutes off. (We won\'t tell anyone)'
+			),
+		'create' => array(
+			'icon' => 'bullhorn',
+			'header' => 'Create a Broadcast', 
+			'subtext' => 'Name your broadcast here...'
+			),
+		
+		),
 	
 	);
 
@@ -80,8 +156,8 @@ $config['pills'] = array(
 		'column_2' => array(
 			//'id' => 'Name' - note, the id is also the partial name,
 			//e.g 'overview' => 'Overview' pulls in _row_overview.php partial
-			'tasks' => 'Tasks',
 			'stats' => 'Statistics',
+			'tasks' => 'Tasks',
 			),
 		),
 	'contacts' => array(
@@ -120,6 +196,13 @@ $config['pills'] = array(
 			// 'leads' => 'Leads',
 			),
 		),
+	'search' => array(
+		'column_1' => array(
+			'basic' => 'Basic Search',
+			'advanced' => 'Advanced Search',
+			'saved' => 'List of Saved Searches',
+			),
+		),
 		
 	);
 
@@ -135,6 +218,7 @@ $config['dropdowns'] = array(
 
 	'seasons' => array(
 		//'value' => 'Display This', 
+		'' => 'Choose a Season',
 		'2005/06' => '2005/06',
 		'2006/07' => '2006/07',
 		'2007/08' => '2007/08',
@@ -161,6 +245,56 @@ $config['dropdowns'] = array(
 		"Women's Team Player" => "Women's Team Player",
 		),
 
+	'payment_types' => array(
+		//'value' => 'Display This', 
+		'cash' => 'Cash',
+		'cheque' => 'Cheque',
+		'card' => 'Credit/Debit Card',
+		'standing order' => 'Standing Order',
+		'paypal' => 'Paypal',
+		),
+
+	'order_source' => array(
+		//'value' => 'Display This', 
+		'online' => 'Online',
+		'post' => 'Post',
+		'telephone' => 'Telephone',
+		'office' => 'Office',
+		'stall' => 'Stall',
+		),
+
+	'broadcast_from' => array(
+		//'value' => 'Display This', 
+		'FC United|office@fc-utd.co.uk' => 'FC Utd (office@fc-utd.co.uk',
+		'Paul Haworth|paul.h@fc-utd.co.uk' => 'Paul Haworth (paul.h@fc-utd.co.uk',
+		'Karl Marginson|karl.m@fc-utd.co.uk' => 'Karl Marginson (karl.m@fc-utd.co.uk',
+		),
+
+	'broadcast_type' => array(
+		//'value' => 'Display This', 
+		'email' => 'Email Broadcast',
+		// 'letter' => 'Direct Mail Broadcast',
+		),
+
+	'email_template' => array(
+		//'value' => 'Display This', 
+		'plain-text' => 'Plain Text',
+		'html-text' => 'HTML Format',
+		'pink' => 'FC Pink',
+		'black' => 'FC Black',
+		'white' => 'FC White',
+		),
+
+	'lead_stages' => array(
+		//'value' => 'Display This', 
+		'Potential' => 'Potential',
+		'Lead' => 'Lead',
+		'Prospect' => 'Prospect',
+		'Won' => 'Won',
+		'Snoozing' => 'Snoozing',
+		'Not Interested' => 'Not Interested',
+		),
+	
 	);
 
 // Set up the extra actions (these are the dropdowns on the top right of each page)
@@ -168,9 +302,11 @@ $config['extraactions']	= array(
 	'dashboard' => array(
 		'index' => array(
 			'dropdown' => array(
-				'contacts/create' => '..create a new contact',
-				'xx'	=> '..create a new lead',
-				'' => '...send some emaisl to contacts'				),
+				'contacts/create' => 'We could create a new Contact,',
+				'leads/create'	=> 'We could create a new Lead,',
+				'broadcasts' => 'We could send some emails out,',				
+				'smiles/show/1' => 'Or... we could watch a goat riding a giant turtle',
+				),
 			),
 		),
 	'contacts' => array(
@@ -200,6 +336,32 @@ $config['extraactions']	= array(
 				),
 			),
 		),
+	'search' => array(
+		'index' => array(
+			'dropdown' => array(
+				'search/create' => 'Create a new Saved Search',
+				'search/search' => 'Find something/someone...',
+				),
+			),
+		'show' => array(
+			'dropdown' => array(
+				'search/create' => 'Create a new Saved Search',
+				'search/search' => 'Find something/someone...',
+				),
+			),
+		'create' => array(
+			'dropdown' => array(
+				'search/create' => 'Create a new Contact lead/show',
+				'search/search' => 'Find something/someone...',
+				),
+			),
+		'results' => array(
+			'dropdown' => array(
+				'search/create' => 'Create a new Contact lead/show',
+				'search/search' => 'Find something/someone...',
+				),
+			),
+		),
 	);
 
 
@@ -217,7 +379,7 @@ $config['tables'] = array(
 	// 		'data-ajaxsource' => site_url('path/to/JSON'), //Ajax output of JSON array
 			// 'data-alertclass' => '1',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
 			'data-showid' => true,	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
-			//'data-view' => 'show-modal', //Define the view to load in the modal. leave blank for default
+			//'data-view' => 'show_modal', //Define the view to load in the modal. leave blank for default
 			//Below these can be used ot overide certain default vals of the dataTable options
 		// "data-DisplayLength" => 5,
 		// "data-bDestroy" => true,
@@ -252,12 +414,13 @@ $config['tables'] = array(
 			'data-ajaxsource' => site_url('ajax/contacts/get_table/id/first_name/last_name'), //Ajax output of JSON array
 			// 'data-alertclass' => '1',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
 			'data-showid' => 'true',	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
-			//'data-view' => 'show-modal', //Define the view to load in the modal. leave blank for default
+			//'data-view' => 'show_modal', //Define the view to load in the modal. leave blank for default
 			),
 		'columns' => array(
 			'id' => '#',//Mandatory
 			'first_name' => 'First name',
-			'last_name' => 'Last name'
+			'last_name' => 'Last name',
+			//'concat' => ' name'
 			),
 		),
 	'lead_table' => array(
@@ -268,12 +431,12 @@ $config['tables'] = array(
 			// 'data-deleteurl' => site_url('leads/delete'),
 			// 'data-toggleurl' => site_url('leads/toggle/COL_NAME'),
 			//'data-toggleclass' => 'completed',	//The class to apply if the data-toggleurl is passed and is 1
-			'data-linkclass' => 'open-modal', //'open-modal, or blank for _target'
+			'data-linkclass' => '', //'open-modal, or blank for _target'
 			//'data-modalsource' => site_url('leads/show'), //to load a view inside modal
 			'data-ajaxsource' => site_url('ajax/leads/get_table/id/lead_title/contact_id'), //Ajax output of JSON array
 			// 'data-alertclass' => '1',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
 			'data-showid' => 'true',	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
-			//'data-view' => 'show-modal', //Define the view to load in the modal. leave blank for default
+			//'data-view' => 'show_modal', //Define the view to load in the modal. leave blank for default
 			),
 		'columns' => array(
 			'id' => '#',//Mandatory
@@ -289,12 +452,12 @@ $config['tables'] = array(
 			// 'data-deleteurl' => site_url('orders/delete'),
 			// 'data-toggleurl' => site_url('orders/toggle/COL_NAME'),
 			//'data-toggleclass' => 'completed',	//The class to apply if the data-toggleurl is passed and is 1
-			'data-linkclass' => 'open-modal', //'open-modal, or blank for _target'
+			'data-linkclass' => '', //'open-modal, or blank for _target'
 			//'data-modalsource' => site_url('orders/show'), //to load a view inside modal
-			'data-ajaxsource' => site_url('ajax/orders/get_table/id/order_title/contact_id'), //Ajax output of JSON array
+			'data-ajaxsource' => site_url('ajax/orders/get_table/id/order_title/contact_id/order_type/grand_total'), //Ajax output of JSON array
 			// 'data-alertclass' => '1',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
 			'data-showid' => 'true',	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
-			//'data-view' => 'show-modal', //Define the view to load in the modal. leave blank for default
+			//'data-view' => 'show_modal', //Define the view to load in the modal. leave blank for default
 			),
 		'columns' => array(
 			'id' => '#',//Mandatory
@@ -302,6 +465,73 @@ $config['tables'] = array(
 			'contact_id' => 'Contact Id'
 			),
 		),
+	'search_table' => array(
+		'attributes' => array(
+			'class' => 'table data-table',
+			'id' => 'saved_search_table',
+			'data-linkurl' => site_url('search/results'),
+			// 'data-deleteurl' => site_url('contacts/delete'),
+			// 'data-toggleurl' => site_url('contacts/toggle/COL_NAME'),
+			//'data-toggleclass' => 'completed',	//The class to apply if the data-toggleurl is passed and is 1
+			// 'data-linkclass' => 'open-modal', //'open-modal, or blank for _target'
+			//'data-modalsource' => site_url('contacts/show'), //to load a view inside modal
+			'data-ajaxsource' => site_url('ajax/saved_searches/get_table/id/search_name/search_description/?search_type=search'), //Ajax output of JSON array
+			// 'data-alertclass' => '1',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
+			'data-showid' => 'true',	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
+			//'data-view' => 'show_modal', //Define the view to load in the modal. leave blank for default
+			),
+		'columns' => array(
+			'id' => '#',//Mandatory
+			'search_name' => 'Search',
+			'search_description' => 'Description',
+			//'concat' => ' name'
+			),
+		),
+	'broadcast_table' => array(
+			'attributes' => array(
+				'class' => 'table data-table',
+				'id' => 'broadcast_search_table',
+				'data-linkurl' => site_url('broadcasts/show'),
+				// 'data-deleteurl' => site_url('contacts/delete'),
+				// 'data-toggleurl' => site_url('contacts/toggle/COL_NAME'),
+				//'data-toggleclass' => 'completed',	//The class to apply if the data-toggleurl is passed and is 1
+				// 'data-linkclass' => 'open-modal', //'open-modal, or blank for _target'
+				//'data-modalsource' => site_url('contacts/show'), //to load a view inside modal
+				'data-ajaxsource' => site_url('ajax/broadcasts/get_table/id/broadcast_name/broadcast_description/?broadcast_type=email'), //Ajax output of JSON array
+				// 'data-alertclass' => '1',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
+				'data-showid' => 'true',	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
+				//'data-view' => 'show_modal', //Define the view to load in the modal. leave blank for default
+				),
+			'columns' => array(
+				'id' => '#',//Mandatory
+				'broadcast_name' => 'Name',
+				'broadcast_description' => 'Description',
+				//'concat' => ' name'
+				),
+			),
+
+	'smile_table' => array(
+			'attributes' => array(
+				'class' => 'table data-table',
+				'id' => 'smile_table',
+				'data-linkurl' => site_url('smiles/show'),
+				// 'data-deleteurl' => site_url('contacts/delete'),
+				// 'data-toggleurl' => site_url('contacts/toggle/COL_NAME'),
+				//'data-toggleclass' => 'completed',	//The class to apply if the data-toggleurl is passed and is 1
+				// 'data-linkclass' => 'open-modal', //'open-modal, or blank for _target'
+				//'data-modalsource' => site_url('contacts/show'), //to load a view inside modal
+				'data-ajaxsource' => site_url('ajax/smiles/get_table/id/smile_title'), //Ajax output of JSON array
+				// 'data-alertclass' => '1',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
+				'data-showid' => 'true',	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
+				//'data-view' => 'show_modal', //Define the view to load in the modal. leave blank for default
+				),
+			'columns' => array(
+				'id' => '#',//Mandatory
+				'smile_name' => 'Name',
+				// 'broadcast_description' => 'Description',
+				//'concat' => ' name'
+				),
+			),
 
 
 
@@ -370,7 +600,8 @@ $config['tables'] = array(
 			),
 		'columns' => array(
 			'id' => '#',//Mandatory
-			'created_at' => 'Date',
+			'date' => 'Date',
+			// 'created_at' => 'Date',
 			'action_description' => 'Note',
 			// 'completed' => 'Complete?'
 			),
@@ -388,7 +619,7 @@ $config['tables'] = array(
 			// 'data-ajaxsource' => site_url('path/to/JSON'), //Ajax output of JSON array
 			'data-alertclass' => 'relationship',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
 			// 'data-showid' => true,	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
-			//'data-view' => 'show-modal', //Define the view to load in the modal. leave blank for default
+			//'data-view' => 'show_modal', //Define the view to load in the modal. leave blank for default
 			),
 		'columns' => array(
 			'id' => '#',//Mandatory
@@ -396,6 +627,30 @@ $config['tables'] = array(
 			'first_name' => 'First Name',
 			'last_name' => 'Last Name',
 			'type' => 'Type'
+			),
+		),	
+	'contact_order_table' => array(
+		'attributes' => array(
+			'class' => 'table data-table',
+			'id' => 'order_table',
+			'data-linkurl' => '#',
+			'data-deleteurl' => site_url('orders/delete'),
+			// 'data-toggleurl' => site_url('contact_actions/toggle/COL_NAME'),
+			// 'data-toggleclass' => 'completed',	//The class to apply if the data-toggleurl is passed and is 1
+			'data-linkclass' => 'open-modal', //'open-modal, or blank for _target'
+			'data-modalsource' => site_url('orders/show'), //to load a view inside modal
+			// 'data-ajaxsource' => site_url('path/to/JSON'), //Ajax output of JSON array
+			'data-alertclass' => 'order',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
+			// 'data-showid' => true,	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
+			'data-view' => 'show_modal', //Define the view to load in the modal. leave blank for default
+			),
+		'columns' => array(
+			'id' => '#',//Mandatory
+			// 'created_at' => 'Date',
+			'order_title' => 'Order Title',
+			'grand_total' => '£',
+			// 'contact_id' => 'Last Name',
+			// 'type' => 'Type'
 			),
 		),
 	'tag_table' => array(
@@ -411,7 +666,7 @@ $config['tables'] = array(
 			// 'data-ajaxsource' => site_url('path/to/JSON'), //Ajax output of JSON array
 			'data-alertclass' => 'tag',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
 			// 'data-showid' => true,	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
-			//'data-view' => 'show-modal', //Define the view to load in the modal. leave blank for default
+			//'data-view' => 'show_modal', //Define the view to load in the modal. leave blank for default
 			),
 		'columns' => array(
 			'id' => '#',//Mandatory
