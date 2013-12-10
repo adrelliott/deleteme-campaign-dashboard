@@ -51,6 +51,12 @@ class Presenter
 		}
 	}
 
+//Users
+    public function user_info($property = 'id')
+    {
+        return $this->{$this->_objectName}->the_user->$property;
+    }
+
 
 //Urls
 	public function form_url()
@@ -110,98 +116,98 @@ class Presenter
 	}
 
 
-	/*  	Table Functions */
+	// /*  	Table Functions */
 	
-	/**
-	 * Generates the <thead> .. </thead> part of the table
-	 * @param  array $cols An array of cols to show in format ('col_name' => 'Col Title')
-	 *                     e.g. array('contact_id' => 'The Contact/'s Id')
-	 * @return string       HTML of the top part of the table
-	 */
-	public function table_header($cols, $extra_cols = FALSE)
-	{
-		//Build the head part of the table
-		$html = '<thead><tr>';
-		foreach ($cols as $nice_name => $field)
-		{
-			$html .= '<th>' . $nice_name . '</th>';
-		}
+	// /**
+	//  * Generates the <thead> .. </thead> part of the table
+	//  * @param  array $cols An array of cols to show in format ('col_name' => 'Col Title')
+	//  *                     e.g. array('contact_id' => 'The Contact/'s Id')
+	//  * @return string       HTML of the top part of the table
+	//  */
+	// public function table_header($cols, $extra_cols = FALSE)
+	// {
+	// 	//Build the head part of the table
+	// 	$html = '<thead><tr>';
+	// 	foreach ($cols as $nice_name => $field)
+	// 	{
+	// 		$html .= '<th>' . $nice_name . '</th>';
+	// 	}
 
-		//Do we want any extra columns?
-		if (is_array($extra_cols))
-		{
-			foreach ($extra_cols as $col_name)
-			{
-				$html .= '<th>' . $col_name . '</th>';
-			}
-		}
+	// 	//Do we want any extra columns?
+	// 	if (is_array($extra_cols))
+	// 	{
+	// 		foreach ($extra_cols as $col_name)
+	// 		{
+	// 			$html .= '<th>' . $col_name . '</th>';
+	// 		}
+	// 	}
 
-		//Finish and output
-		$html .= '</tr></thead>';
-		return $html;
-	}
+	// 	//Finish and output
+	// 	$html .= '</tr></thead>';
+	// 	return $html;
+	// }
 
 
-	public function table_body($data, $cols, $url = FALSE, $attr = FALSE, $delete = FALSE, $completed = FALSE, $extra_cols = FALSE)
-	{
-		$rows = array();
-		$att = array();
-		$cell = '';
+	// public function table_body($data, $cols, $url = FALSE, $attr = FALSE, $delete = FALSE, $completed = FALSE, $extra_cols = FALSE)
+	// {
+	// 	$rows = array();
+	// 	$att = array();
+	// 	$cell = '';
 
-		//Go through each column and set up the row
-		foreach ($data as $row => $array)
-		{
-			$rows[$row] = '<tr>';
-			$id = $array['id'];
+	// 	//Go through each column and set up the row
+	// 	foreach ($data as $row => $array)
+	// 	{
+	// 		$rows[$row] = '<tr>';
+	// 		$id = $array['id'];
 			
-			foreach ($cols as $nice_name => $field)
-			{
-				$cell = $array[$field];
+	// 		foreach ($cols as $nice_name => $field)
+	// 		{
+	// 			$cell = $array[$field];
 
-				//Have we passed a URL..?
-				if ($url)
-				{
-					$cell = '<a data-id="' . $id . '" ';
-					$cell .= 'href="' . $url . '" ';
+	// 			//Have we passed a URL..?
+	// 			if ($url)
+	// 			{
+	// 				$cell = '<a data-id="' . $id . '" ';
+	// 				$cell .= 'href="' . $url . '" ';
 					
-					//Have we passed any attributes for this <a tag..?
-					if (is_array($attr))
-					{
-						foreach ($attr as $tag => $val)
-						{
-                			$att[] = $tag . '="' . $val . '"';
-						}
+	// 				//Have we passed any attributes for this <a tag..?
+	// 				if (is_array($attr))
+	// 				{
+	// 					foreach ($attr as $tag => $val)
+	// 					{
+ //                			$att[] = $tag . '="' . $val . '"';
+	// 					}
 
-						//Join the array of attributes with a space between each
-						$cell .= implode(' ', $att);
-					}
-					//Complete the link..
-					$cell .= ' >' . $array[$field] . '</a>';
-				}
-				$rows[$row] .= '<td>' . $cell . '</td>';
-			}
-			//Did we want a 'delete' button...?
-			if ($delete)
-			{
-				//swap out 'record_id' for this id
-				$r_id = str_replace('record_id', $id, $delete);
-				$rows[$row] .= '<td>' . $r_id . '</td>';
-			}
+	// 					//Join the array of attributes with a space between each
+	// 					$cell .= implode(' ', $att);
+	// 				}
+	// 				//Complete the link..
+	// 				$cell .= ' >' . $array[$field] . '</a>';
+	// 			}
+	// 			$rows[$row] .= '<td>' . $cell . '</td>';
+	// 		}
+	// 		//Did we want a 'delete' button...?
+	// 		if ($delete)
+	// 		{
+	// 			//swap out 'record_id' for this id
+	// 			$r_id = str_replace('record_id', $id, $delete);
+	// 			$rows[$row] .= '<td>' . $r_id . '</td>';
+	// 		}
 			
-			//Did we want a 'mark as completed' button (used for tasks)...?
-			if ($completed)
-			{
-				//swap out 'record_id' for this id
-				$r_id = str_replace('record_id', $id, $completed);
-				$rows[$row] .= '<td>' . $r_id . '</td>';
-			}
-			$rows[$row] .= '</tr>';
-		}
+	// 		//Did we want a 'mark as completed' button (used for tasks)...?
+	// 		if ($completed)
+	// 		{
+	// 			//swap out 'record_id' for this id
+	// 			$r_id = str_replace('record_id', $id, $completed);
+	// 			$rows[$row] .= '<td>' . $r_id . '</td>';
+	// 		}
+	// 		$rows[$row] .= '</tr>';
+	// 	}
 
-		//Now combine to make the full HTML
-		$html = '<tbody>' . implode('', $rows) . '</tbody>';
+	// 	//Now combine to make the full HTML
+	// 	$html = '<tbody>' . implode('', $rows) . '</tbody>';
 
-		return $html;
-	}
+	// 	return $html;
+	// }
 
 }

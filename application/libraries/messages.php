@@ -68,6 +68,9 @@
     public function set_content()
     {
         //$this->message = $this->ci->session->flashdata('message');
+        //have we passed a custom message?
+        
+                
 
         //See if we've passed a message shortcode
         switch ($this->message)
@@ -102,9 +105,19 @@
                 $this->css = 'danger';
                 break;
 
+            
             default:
-              $this->css = 'danger';
-
+            //default is that we pass the message preceded by the css class, 
+            //eg. [danger]This is the danger message
+            //1, get the css
+            preg_match('/\[.*\]/', $this->message, $css);
+            $this->css = str_replace(array('[', ']'), '', $css[0]);
+            //2. Get the message
+            $this->message = str_replace($css[0], '', $this->message);
+            
+                // dump($this->css);
+                // (dump($this->message));
+               
         } 
     }
 

@@ -43,6 +43,7 @@ class MY_Model extends CI_Model
     protected $_temporary_with_deleted = FALSE;
     protected $_temporary_only_deleted = FALSE;
 
+    protected $_return_type = 'as_object';
     /**
      * The various callbacks available to the model. Each are
      * simple lists of method names (methods will be run on $this).
@@ -184,10 +185,7 @@ class MY_Model extends CI_Model
             $this->_database->where($this->_table . '.' . $this->soft_delete_key, (bool)$this->_temporary_only_deleted);
         }
 
-         //Decide what fields to retrieve (set up in each model)
-        // if ( !$where && is_array($this->_cols['single_record']) && count($this->_database->ar_select) == 0)
-        //     $this->set_select();
-        
+      
         //Set the columns
         $this->set_select('single');
 
@@ -201,6 +199,7 @@ class MY_Model extends CI_Model
         $row = $this->_database->where($this->_table .'.'.$this->primary_key, $primary_value)
                         ->get($this->_table)
                         ->{$this->_return_type()}();
+
         $this->_temporary_return_type = $this->return_type;
 
         $row = $this->trigger('after_get', $row);
@@ -1198,6 +1197,8 @@ class MY_Model extends CI_Model
                         {
                             $col = str_replace('%', '', $v);
                             $w[$k] = $this->q->$col;
+                            
+                            // $w[$k] = $this->q->{$this->main_model}->$col;
                         }
                     }
                     $this->_set_where(array($w));

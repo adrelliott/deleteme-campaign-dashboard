@@ -21,7 +21,8 @@ class MY_Controller extends CI_Controller
     public $main_model = '';    //Holds the main model name. Can be set to FALSE to not load a model
     public $owner_id = '';  //The id fo the owner of the data
     public $q;  //Object to hold the results of all queries
-    public $current_user;  //Object to hold the details of the current user
+    protected $the_user;  //Object to hold the details of the current user
+    protected $users;  //list of all users
 
 
     public $view_settings = array(  //Note: if not set here, it defaults to the method name, Overwite in controllers
@@ -29,16 +30,14 @@ class MY_Controller extends CI_Controller
         );
 
     public $models = array( //Get all records from these tables every tmie the page loads
-        'user' => array(
-            'id_as_key' => TRUE),
+        // 'ion_auth' => array(
+        //     'id_as_key' => TRUE),
         'product' => array(
             'id_as_key' => TRUE)
         );
 
     public $retval; //Holds the message and the returned data that's passed to redirect() or back via ajax 
 
-
-    public $test = 'from MY_COntrollr';
 
     /* --------------------------------------------------------------
      * ALL METHODS
@@ -53,24 +52,32 @@ class MY_Controller extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+
         //Test to see if we are logged in
-        //$this->current_user->id = 0;    // ******** this needs fixing!!!!!!!!!!!!!!!!!!!**************
+        if ( ! $this->ion_auth->logged_in() && strtolower($this->uri->segment(1)) !== 'site' )
+        {
+            redirect('site/login');
+            return;
+        }
         
-        $this->q->user_id = 1;
-        $this->q->user_first_name = 'Admin';
+        //If we're logged in do the logggyiny things..
+        if ( $this->ion_auth->logged_in() )
+        {
+            //Now set up this user and a list of all other users
+            $this->the_user = $this->ion_auth->user()->row();
+            $this->set_owner_id();
+            $this->users = $this->ion_auth->list_records(array('id_as_key' => TRUE));   
+        }
 
-
-        // die();
-
+        //Else just load the default configs
+        else $this->config->load('client_configs/11110');
+      
         //Set up the views, models, & layouts
         $this->set_view();
         $this->set_models();
         $this->set_main_model();
         $this->set_layout();
         $this->set_presenter();
-
-        //Set up id if passed & numeric., otherwise set to $_POST (defaults as FALSE)
-        $this->set_owner_id();
 
         //Set up other vars & load other classes
         $this->load_presenter();
@@ -79,29 +86,6 @@ class MY_Controller extends CI_Controller
 
         //Show profiler if requested (in dev env only)
         $this->output->enable_profiler(ENVIRONMENT === 'development' && isset($_GET['debug']));
-
-        ###### debug #######
-        // $_POST = array('viewr' => 'fkjdvbajb');
-        // echo "<br/>The view is :";dump($this->view); 
-        // echo ", the layout is:"; dump($this->layout);
-        // echo ", the presnter is:"; dump($this->presenter);
-        // echo '<p>Herecomes PRVATE modesl, layout, viewsettings, presneter and main model</p>';
-        // dump($this->_models);
-        // dump($this->_layout);
-        // dump($this->_view_settings);
-        // dump($this->_presenter);
-        // dump($this->_main_model);
-
-        // dump($this->models);
-        // dump($this->layout);
-        // dump($this->view_settings);
-        // dump($this->presenter);
-        // dump($this->main_model);
-        
-        // $_POST['test'] = 'from_post';
-        // dump($this->test);
-
-        ###### debug #######
 
     }
 
@@ -158,11 +142,11 @@ class MY_Controller extends CI_Controller
 
     public function create()
     {
-        foreach ($this->models as $model => $attr)
-        {   
-            $this->load->model($this->_model_name($model), $model);
-            $this->q->{plural($model)} = $this->$model->list_records($this->models[$model]);
-        }
+        // foreach ($this->models as $model => $attr)
+        // {   
+        //     $this->load->model($this->_model_name($model), $model);
+        //     $this->q->{plural($model)} = $this->$model->list_records($this->models[$model]);
+        // }
         
         $this->create_presenter();
     }
@@ -190,7 +174,9 @@ class MY_Controller extends CI_Controller
             {
                 $this->retval->message = '[created]';
                 //Query again for the data - don't trust input!
+               
                 $this->retval->q = $this->m->get($id);
+                //echo 'xxxx';dump($this->retval->q);
                 $this->id = $this->retval->q->id;
             }   
         }
@@ -225,6 +211,7 @@ class MY_Controller extends CI_Controller
         //error management!!!!
     }
 
+    
 
     /* --------------------------------------------------------------
      * BASE METHODS
@@ -312,36 +299,6 @@ class MY_Controller extends CI_Controller
     }
     
 
-    // public function set_presenter_old()
-    // {
-    //     //Set up the $presenter var
-    //     $presenter = $this->presenter;
-    //     dump($presenter);
-    //     dump($this->_presenter);
-
-    //     //Override with the presenter passed in this class, if set
-    //     if (isset($this->_presenter) && $this->presenter === 'FALSE' )
-    //     {
-    //         $presenter = $this->_presenter;
-    //         echo ',,this presenter is set';
-    //     }
-            
-
-
-    //     dump($presenter);
-    //     //If we've set $this->_presenter as false, then exit
-    //     if ($presenter === FALSE) return;
-
-    //     //If no presenter has been set, then set the presenter as the singular router class name
-    //     if ($presenter === '')
-    //     {
-    //         $presenter = singular($this->router->class);
-    //     }
-
-    //     dump($presenter);
-    //     $this->presenter = $presenter;
-    // }
-
 
 
     public function set_view()
@@ -370,18 +327,19 @@ class MY_Controller extends CI_Controller
                 else $view = $v;
             }
         }
-        
+
         $this->view = $view;
     }
 
 
     public function set_owner_id()
     {
-        $owner_id = 22220;
-        //define ('OWNER_ID', $owner_id); ///////////////////////////////////Set this on login!
         
-        $this->owner_id = $owner_id;
-        $this->config->load('client_configs/' . $owner_id);
+        //define ('OWNER_ID', $owner_id); ///////////////////////////////////Set this on login!
+        if ( ! isset($this->the_user->owner_id)) die('The owner_id is not set. This is very bad. Call Al');
+        
+        $this->owner_id = $this->the_user->owner_id;
+        $this->config->load('client_configs/' . $this->owner_id);
     }
 
 
@@ -413,18 +371,7 @@ class MY_Controller extends CI_Controller
         }
     }
 
-    // public function load_main_model()
-    // {
-    //     $main_model = $this->main_model;
-    //     if (isset($this->_main_model))
-    //         $main_model = $this->_main_model;
-
-    //     if ($main_model === FALSE) return;
-    //     elseif ($main_model === '') $main_model = singular($this->router->class);
-
-    //     $this->load->model($this->_model_name($main_model), 'm');
-    // }
-
+    
 
     /**
      * Automatically load the view. Looks for it in 
@@ -504,6 +451,13 @@ class MY_Controller extends CI_Controller
         if ($post = $this->input->post())
                 $this->q = (object)array_merge((array)$this->input->post(), (array) $this->q);
         
+        if ($this->presenter === FALSE) return;
+
+        //Add in the_user objects
+        $this->q->user_id = $this->the_user->id;
+        $this->q->the_user = $this->the_user;
+        $this->q->users = $this->users;
+
         //Create the presenter name ready to load it
         $p = $this->presenter . '_presenter';
         $this->data['p'] = new $p($this->q);    

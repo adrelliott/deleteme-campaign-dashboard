@@ -6,7 +6,50 @@
 class Order_presenter extends Presenter
 {
 
+    public function get_address($contact_id)
+    {
+        // $this->output->enable_profiler(TRUE);
+        $this->load->model('contact_model');
+        $q = $this->contact_model->get($contact_id);
 
+        $retval = '<strong>' . $q->first_name . ' ' . $q->last_name . '</strong><br/>';
+        
+        //easy enought o get this form the config file to customise for each client
+        $address_segments = array(
+            'org_name', 
+            'address_1', 
+            'address_2', 
+            'address_3', 
+            'city', 
+            'county', 
+            'postal_code', 
+            'country'
+            );
+        $contact_segments = array(
+            'telephone_1', 
+            'telephone_2', 
+            // 'telephone_3', 
+            // 'telephone_4'
+            );
+
+        foreach ($address_segments as $a)
+        {
+            if ( isset($q->a) && ! empty($q->a) )
+            {
+                $retval .= $q->a . '<br/>';
+            }
+        }
+        
+        foreach ($contact_segments as $c)
+        {
+            if ( isset($q->c) && ! empty($q->c) )
+            {
+                $retval .= '<em>' . $q->c . '</em><br/>';
+            }
+        }
+
+        return $retval;
+    }
 	
 
 

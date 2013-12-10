@@ -157,7 +157,7 @@ $config['pills'] = array(
 			//'id' => 'Name' - note, the id is also the partial name,
 			//e.g 'overview' => 'Overview' pulls in _row_overview.php partial
 			'stats' => 'Statistics',
-			'tasks' => 'Tasks',
+			// 'tasks' => 'Tasks',
 			),
 		),
 	'contacts' => array(
@@ -171,11 +171,11 @@ $config['pills'] = array(
 		'column_2' => array(
 			//'id' => 'Name' - note, the id is also the partial name,
 			//e.g 'overview' => 'Overview' pulls in _row_overview.php partial
-			'tasks' => 'Tasks1',
-			'orders' => 'Orders2',
-			'roles' => 'Roles3',
-			'tags' => 'Tags',
-			'leads' => 'Leads',
+			'tasks' => 'Tasks',
+			'orders' => 'Orders',
+			'roles' => 'Roles',
+			// 'tags' => 'Tags',
+			// 'leads' => 'Leads',
 			),
 		),
 	'leads' => array(
@@ -294,7 +294,7 @@ $config['dropdowns'] = array(
 		'Snoozing' => 'Snoozing',
 		'Not Interested' => 'Not Interested',
 		),
-	
+
 	);
 
 // Set up the extra actions (these are the dropdowns on the top right of each page)
@@ -533,13 +533,15 @@ $config['tables'] = array(
 				),
 			),
 
+	
+
 
 
 
 
 
 	//Contact Action tables
-	'task_table' => array(
+	'contact_task_table' => array(
 		'attributes' => array(
 			'class' => 'table data-table new',
 			'id' => 'task-table',
@@ -560,7 +562,7 @@ $config['tables'] = array(
 			'completed' => 'Complete?'
 			),
 		),
-	'role_table' => array(
+	'contact_role_table' => array(
 		'attributes' => array(
 			'class' => 'table data-table',
 			'id' => 'role_table',
@@ -582,7 +584,7 @@ $config['tables'] = array(
 			// 'completed' => 'Complete?'
 			),
 		),
-	'note_table' => array(
+	'contact_note_table' => array(
 		'attributes' => array(
 			'class' => 'table data-table',
 			'id' => 'note_table',
@@ -597,6 +599,7 @@ $config['tables'] = array(
 			// 'data-showid' => true,	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
 			'data-view' => 'show_modal', //Define the view to load in the modal. leave blank for default
 			"data-DisplayLength" => '2',
+			'data-postprocess' =>'note',
 			),
 		'columns' => array(
 			'id' => '#',//Mandatory
@@ -606,7 +609,7 @@ $config['tables'] = array(
 			// 'completed' => 'Complete?'
 			),
 		),
-	'relationship_table' => array(
+	'contact_relationship_table' => array(
 		'attributes' => array(
 			'class' => 'table data-table',
 			'id' => 'relationship_table',
@@ -653,7 +656,32 @@ $config['tables'] = array(
 			// 'type' => 'Type'
 			),
 		),
-	'tag_table' => array(
+
+	'contact_lead_table' => array(
+		'attributes' => array(
+			'class' => 'table data-table',
+			'id' => 'lead_table',
+			'data-linkurl' => '#',
+			'data-deleteurl' => site_url('leads/delete'),
+			// 'data-toggleurl' => site_url('contact_actions/toggle/COL_NAME'),
+			// 'data-toggleclass' => 'completed',	//The class to apply if the data-toggleurl is passed and is 1
+			'data-linkclass' => 'open-modal', //'open-modal, or blank for _target'
+			'data-modalsource' => site_url('leads/show'), //to load a view inside modal
+			// 'data-ajaxsource' => site_url('path/to/JSON'), //Ajax output of JSON array
+			'data-alertclass' => 'lead',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
+			// 'data-showid' => true,	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
+			'data-view' => 'show_modal', //Define the view to load in the modal. leave blank for default
+			),
+		'columns' => array(
+			'id' => '#',//Mandatory
+			// 'created_at' => 'Date',
+			'lead_title' => 'lead Title',
+			// 'grand_total' => '£',
+			// 'contact_id' => 'Last Name',
+			// 'type' => 'Type'
+			),
+		),
+	'contact_tag_table' => array(
 		'attributes' => array(
 			'class' => 'table data-table',
 			'id' => 'tag_table',
@@ -675,6 +703,28 @@ $config['tables'] = array(
 			),
 		),
 	
+	'task_table' => array(
+			'attributes' => array(
+				'class' => 'table data-table',
+				'id' => 'task_table',
+				'data-linkurl' => site_url('tasks/show'),
+				'data-deleteurl' => site_url('contacts/delete'),
+				'data-toggleurl' => site_url('contacts/toggle/COL_NAME'),
+				'data-toggleclass' => 'completed',	//The class to apply if the data-toggleurl is passed and is 1
+				'data-linkclass' => 'open-modal', //'open-modal, or blank for _target'
+				'data-modalsource' => site_url('contact_actions/show/task'), //to load a view inside modal
+				// 'data-ajaxsource' => site_url('ajax/contact_actions/get_table/id/action_title/completed?action_type=task'), //Ajax output of JSON array
+				// 'data-alertclass' => '1',	//Is this table in column 1 or column 2 (used to control what message is shown when the form is submitted)
+				'data-showid' => 'true',	//Used to show ID of records on a table. cannot use in conjunction with data-deleteurl
+				'data-view' => 'show_modal', //Define the view to load in the modal. leave blank for default
+				),
+			'columns' => array(
+				'id' => '#',//Mandatory
+				'action_title' => 'Name',
+				// 'broadcast_description' => 'Description',
+				//'concat' => ' name'
+				),
+			),
 
 	
 

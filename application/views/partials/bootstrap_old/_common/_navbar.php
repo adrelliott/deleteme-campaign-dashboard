@@ -37,7 +37,7 @@
          <li class="dropdown">
           <a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs "></i> Settings<b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <?= nav_bar_item('log_out', 'off', 'Log Out'); ?>
+            <?= nav_bar_item('site/login/logout', 'off', 'Log Out'); ?>
             <?= nav_bar_item('profile', 'pencil', 'Edit your Profile'); ?>
             <?= nav_bar_item('products', 'shopping-cart', 'Edit Products'); ?>
           </ul>

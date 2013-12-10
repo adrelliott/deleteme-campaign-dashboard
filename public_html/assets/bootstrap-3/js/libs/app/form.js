@@ -5,8 +5,17 @@ $('form.ajax_form').on('submit', function(e) {
         type = that.attr('method'),
         alertClass = that.attr('alert-class');
         tableId = that.attr('table-id'); // the id of the current table
+        tableCols = that.attr('table-cols'); // the id of the current table
         table = '';
         
+        table = $('table#'+tableId);
+        cols = table.attr('data-cols');
+
+        $("#"+tableId).css('color', 'red');
+        console.log('the table = ', table);
+        console.log('the table cols = ', cols);
+        
+
         //Is it a modal?
         modal = '';
         if( that.hasClass('modal_form') ) {
@@ -39,11 +48,23 @@ $('form.ajax_form').on('submit', function(e) {
 
                         //Do we have a table to redraw?
                         if ( tableId ) {
-                            console.log('yes! table id exists: ', tableId);
-                            var table = $('table#'+tableId).dataTable();
-                            console.log('table = ', table);
+                            //get the cols
+                            
+                            var cols = $('#'+tableId).attr('cols');
+                            console.log('cols=', cols);
+
+                            //Remove all the unwanted indices
+                    //          $.each(cols, function( c, v ) {
+                    //     rowArray.push(json.q[v]);
+                    // });
+// console.log('rowarray is', rowArray);
+                    // table.fnUpdate( rowArray, row[0] );
+                    // row.toggleClass('completed');
+
+                            //var table = $('#'+tableId).dataTable();
+                            console.log('table with id pf #'+tableId+' = ', table);
                             // table.fnStandingRedraw();
-                            $('table#'+tableId).fnDraw();
+                            // $('table#'+tableId).fnDraw();
                             // table.fnDraw();
                         }
                     }

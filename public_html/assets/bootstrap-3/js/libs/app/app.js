@@ -16,7 +16,7 @@
         //Set up the default settings
         var o = {
             oLanguage: {
-                "sEmptyTable": "<p class='lead'>This table is emptier than your hamster's momma's bed!</p><p><i>Actually, we never actually checked if your hamster's mother is going through any kind of trial separation or divorce. No offence was meant. It was just something we heard some men say at the local pub and we thought it would be cool to copy them. <br/>Really sorry if we upset you or any of your rodents.</i></p>"
+                "sEmptyTable": '<p class="lead">Bit quiet round here, isn\'t it?</p><p>I couldn\'t find any matching records <i>anywhere</i>. <br>(I even looked under the bed...)<p>',
             },
             aoColumnDefs: [],
             iDisplayLength: 5,
@@ -51,6 +51,7 @@
             showid: false,
             alertclass: "",
             view: "",
+            postprocess: false,
             // unavailablecols: [] //Used to determine which colmsn have not got links
         };
 
@@ -101,6 +102,7 @@
         } );
        }
 
+
        //Set up the links
         if ( a.linkurl ) {
             o.aoColumnDefs.push( {
@@ -140,7 +142,7 @@
     // $('a.redraw-table').click(function(e) {
     $(document).on( 'click', '.redraw-table', function(e) {
         e.preventDefault();
-        console.log('clikced on redraw');
+        console.log('clicked on redraw');
 
         // var table = $('table#task-table').dataTable();
         // var table = $('#task-table').dataTable();
@@ -157,6 +159,7 @@
     // $('a.open-modal').click(function(e) {
     $(document).on( 'click', '.open-modal', function(e) {
         e.preventDefault();
+
         var url = $(this).attr('modal-source');
         var post = {modal: 'modal'};
 
@@ -164,7 +167,18 @@
         $.each($(this).data(), function(k,v) {
             post[k] = v;
         });
-        console.log('post:', post);
+
+        /* check we are logged in */
+        $.ajax({ 
+            url: '/ajax/contacts/check_login', 
+            success: function (data) {
+                r = $.parseJSON(data);
+                if ( r.logged_in == false) {
+                    window.location = '/site/login';
+                }
+            } 
+        });
+
 
         $('#modal').modal('show');
         //if we have a url, the load the view from that url
@@ -186,14 +200,7 @@
         }
     });
 
-
-    //Delete confirmation
-    // $(".del").click(function(){
-    //     if (!confirm("Do you want REALLY want to delete this?")){
-    //       return false;
-    //     }
-    //   });
-
+/* Delete check */
     $(document).on( 'click', '.del', function(e) {
         if (!confirm("Do you want REALLY want to delete this?")){
           return false;
@@ -215,7 +222,7 @@
         var row = $(this).parents('tr');
         var url = $(this).attr('url');
         var id = $(this).attr('data-id');
-        var cols = jqTable.attr('cols').split(',');
+        var cols = jqTable.data('cols').split(',');
         // var correctJson ={};
         var rowArray =[];
 
@@ -236,7 +243,7 @@
                     $.each(cols, function( c, v ) {
                         rowArray.push(json.q[v]);
                     });
-
+                    
                     table.fnUpdate( rowArray, row[0] );
                     row.toggleClass('completed');
                 }
@@ -252,8 +259,6 @@
           return false;
           
         }
-
-
         console.log('about to delete a record');
 
         //set up the vars

@@ -45,7 +45,7 @@ class MY_Table extends CI_Table {
 		//dump($cols);
 
 		//Set up the template
-		$template['table_open'] = '<table ' . $attr . ' cols="' . $cols . '" >';
+		$template['table_open'] = '<table ' . $attr . ' data-cols="' . $cols . '" >';
 		$this->set_template($template);
 
 		//return table

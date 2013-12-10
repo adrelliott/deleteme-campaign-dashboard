@@ -77,6 +77,9 @@ class Dashboard extends MY_Controller
 	public function __construct()
 	{
 		parent::__construct();
+        //If we're logged in (this is checked in MY_Controller) but uri->segment(1) !== 'dashboard', then go to dashboard
+        if ($this->uri->segment(1) !== 'dashboard') 
+            redirect('dashboard');
 	}
 
 	public function index()

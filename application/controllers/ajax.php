@@ -9,7 +9,7 @@
  * 	
  */
 
-class Ajax extends MY_Controller
+class Ajax extends CI_Controller
 {
 
 
@@ -24,16 +24,16 @@ class Ajax extends MY_Controller
      */
     
 	protected $_models = array(
-		'test' => array(
-			'join' => array(
-				array(
-					'table' => 'contacts',
-					'join_on' => 'contacts.id=tests.contact_id',
-					'join_type' => '',
-					'join_fields' => array('tags.tag_id', 'tags.tag_id')
-					),
-				),
-			),
+		// 'test' => array(
+		// 	'join' => array(
+		// 		array(
+		// 			'table' => 'contacts',
+		// 			'join_on' => 'contacts.id=tests.contact_id',
+		// 			'join_type' => '',
+		// 			'join_fields' => array('tags.tag_id', 'tags.tag_id')
+		// 			),
+		// 		),
+		// 	),
 		
 		// 'contact' => array(
 		// 	'where' => array(
@@ -60,7 +60,8 @@ class Ajax extends MY_Controller
 	
 	protected $_main_model = FALSE;	//Defaults to class name, but overwrite or set to FALSE
 	// 
-	
+    public $owner_id = '';
+	public $the_user = array();
 	protected $_datum_structure = array();	//the structure of the datum
 	protected $_like = array();	//used for searching for queries, as in 'remote'
 	protected $_cols = array();	//The cols to return
@@ -89,6 +90,14 @@ class Ajax extends MY_Controller
     {        
     	parent::__construct();
         $this->output->enable_profiler(FALSE);
+
+        //Check we are logged on
+        if ($this->ion_auth->logged_in())
+        {
+            $this->the_user = $this->ion_auth->user()->row();
+            $this->owner_id = $this->the_user->owner_id;  
+        }
+
 	}
 
 	public function _remap($table, $params = array())
@@ -110,6 +119,11 @@ class Ajax extends MY_Controller
     	$this->view = FALSE;
 	}
 
+    public function check_login()
+    {
+        // dump($this->ion_auth->logged_in());
+        echo json_encode(array('logged_in' => $this->ion_auth->logged_in()));
+    }
 	
 	/**
 	 * Return a JSON array.

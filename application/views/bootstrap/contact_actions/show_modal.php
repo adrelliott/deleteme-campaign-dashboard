@@ -1,6 +1,6 @@
-<!-- <div class="row"> -->
+<div class="row">
 	<div class=" form-inline">
-		<?= form_open('contact_actions/edit/' . $p->id(), 'class="form-horizontal ajax_form modal_form" role="form" alert-class="' . $p->alert_class() . '" '); ?>
+		<?= form_open('contact_actions/edit/' . $p->id(), 'class="form-horizontal ajax_form modal_form" role="form" alert-class="' . $p->alert_class() . '" table-id="' . $p->tableId() . '"'); ?>
 			<?= form_hidden('contact_id', $p->contact_id()); ?>
 			<?= form_hidden('action_type', $p->action_type()); ?>
 
@@ -11,7 +11,8 @@
 			</div>
 		<?= form_close(); ?>
 	</div>
-<!-- </div> -->
+</div>
 
 
-<? //dump($p); ?>
+    
+<? dump($p); ?>

@@ -28,7 +28,6 @@
       </div>
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><!-- Column 1-->
         <div class="well"><!-- Well -->
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><!-- /col-->
 
             <!-- Pills -->
 
@@ -52,9 +51,8 @@
             <?= partial('_pills_body', array('position'=>'column_1')); ?>
 
           </div><!-- /Tab Content -->
-
           <!-- /Pills -->
-        </div><!-- /col-->
+          
       </div><!-- /Well -->   
     </div><!-- /Column 1-->
     

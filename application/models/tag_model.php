@@ -22,14 +22,7 @@ class Tag_model extends MY_Model {
 			parent::__construct();
 		}
 
-		public function get($id)
-		{
-			//$this->join_on_tags();
-			return parent::get($id);
-		}
-
-		
-		
+	
 		
 
 	}

@@ -60,5 +60,32 @@ class Leads extends MY_Controller
     {
         parent::__construct();
     }
+
+    public function show_board()
+    {
+        //Get all current leads
+        $attr = array(
+            'join' => array(
+             array(
+                 'table' => 'contacts',
+                 'join_on' => 'contacts.id=leads.contact_id',
+                 'join_type' => '',
+                 'join_fields' => array('contacts.first_name', 'contacts.last_name', 'contacts.org_name')
+                 ),
+            'id_as_key' => TRUE,
+            ),
+        );
+        $q = $this->m->list_records($attr);
+        $sorted_q = array();
+        
+        //Sort them into stages
+        foreach ($q as $id => $row)
+        {
+            $sorted_q[$row['lead_stage']][$id] = $row;
+        }
+        $this->q->sorted_by_type = $sorted_q;
+
+        parent::index();
+    }
 	
 }

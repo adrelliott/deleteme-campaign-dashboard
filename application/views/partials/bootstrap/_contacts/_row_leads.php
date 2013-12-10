@@ -6,7 +6,7 @@
 			</div>
 		</div>
 		<div id="container-lead-table">
-			<?= $this->table->gen_table('lead_table', $p->get_contacts_records('leads')); ?>
+			<?= $this->table->gen_table('contact_lead_table', $p->get_contacts_records('leads')); ?>
 		</div>
 	</div>
 </div>

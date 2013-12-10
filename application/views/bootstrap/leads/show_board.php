@@ -27,15 +27,10 @@
         <div class="well list"><!-- Well -->
           <legend>Potential</legend>
           <div class="row margin_top_30 pre-scrollable">
-            
-            <?= partial('_card_lead'); ?>
-            <?= partial('_card_lead'); ?>
-            <?= partial('_card_lead'); ?>
-            <?= partial('_card_lead'); ?>
-            <?= partial('_card_lead'); ?>
-            <?= partial('_card_lead'); ?>
-            <?= partial('_card_lead'); ?>
-            <?= partial('_card_lead'); ?>
+
+            <? foreach ($p->get_leads_by_type('Potential') as $lead => $array): ?>
+                <?= partial('_card_lead', array('card' => $array)); ?>
+            <? endforeach; ?>
 
           </div>
         </div>
@@ -43,10 +38,12 @@
       
       <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12"><!-- Column 2-->
         <div class="well list"><!-- Well -->
-          <legend>Potential</legend>
+          <legend>Lead</legend>
           <div class="row margin_top_30 pre-scrollable">
             
-            <?= partial('_card_lead'); ?>
+            <? foreach ($p->get_leads_by_type('Lead') as $lead => $array): ?>
+                <?= partial('_card_lead', array('card' => $array)); ?>
+            <? endforeach; ?>
 
           </div>
         </div>
@@ -54,10 +51,12 @@
       
       <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12"><!-- Column 3-->
         <div class="well list"><!-- Well -->
-          <legend>Potential</legend>
+          <legend>Prospect</legend>
           <div class="row margin_top_30 pre-scrollable">
             
-            <?= partial('_card_lead'); ?>
+            <? foreach ($p->get_leads_by_type('Prospect') as $lead => $array): ?>
+                <?= partial('_card_lead', array('card' => $array)); ?>
+            <? endforeach; ?>
 
           </div>
         </div>
@@ -65,26 +64,26 @@
       
       <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12"><!-- Column 4-->
         <div class="well list"><!-- Well -->
-          <legend>Potential</legend>
+          <legend>Won</legend>
           <div class="row margin_top_30 pre-scrollable">
             
-            <?= partial('_card_lead'); ?>
+            <? foreach ($p->get_leads_by_type('Won') as $lead => $array): ?>
+                <?= partial('_card_lead', array('card' => $array)); ?>
+            <? endforeach; ?>
 
           </div>
         </div>
       </div><!-- / Column 4-->
       
       
-      <div class="row clearfix">
-        <div class="col-xs-12 hidden-lg hidden-md hidden-sm visible-xs">
-          <div class="btn-group pull-right margin_top_30">
-            <button type="button" class="btn btn-lg btn-default dropdown-toggle " data-toggle="dropdown">
-              Extra Actions<span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-              <?= partial('_button_extraactions_dropdown'); ?>
-            </ul>
-          </div>
+      <div class="row margin_top_30">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h2>All leads</h2>
+          
+            <!-- Order table-->
+            <?= partial('_table_index'); ?>
+            <!-- /Order table-->
+
         </div>
       </div>
 

@@ -39,6 +39,13 @@ class Contact_action_presenter extends Presenter
 	}
 	
 	
+    //Used ot get tasks from the object on /tasks/index
+    //DO NOT DELETE!
+    public function get_tasks()
+    {
+        $a = $this->{$this->_objectName};
+        return $a->task['task'];
+    }
 
 	
 

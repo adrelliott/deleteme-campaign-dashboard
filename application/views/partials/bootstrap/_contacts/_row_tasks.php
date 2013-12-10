@@ -4,7 +4,7 @@
 			Woo Hoo! Saved your changes!
 		</div>
 		<div id="container-task-table">
-			<?= $this->table->gen_table('task_table', $p->get_contact_action_records('task')); ?>
+			<?= $this->table->gen_table('contact_task_table', $p->get_contact_action_records('task')); ?>
 		</div>
 	</div>
 </div>

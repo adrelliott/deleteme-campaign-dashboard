@@ -18,20 +18,8 @@ class Saved_searches extends MY_Controller
      */
     
 	protected $_models = array(
-		// 'saved_search' => array(
-			// 'where' => array(
-			// 	array('contact_id' => '%id%'),
-			// 	),
-			// 'join' => array(
-			// 	array(
-			// 		'table' => 'contacts',
-			// 		'join_on' => 'relationships.other_contact_id=contacts.id',
-			// 		'join_type' => '',
-			// 		'join_fields' => array('contacts.first_name', 'contacts.last_name')
-			// 		),
-			// 	),
-			// ),
-				
+		'products' => array(
+            ),	
 		);
 
 	// protected $_layout = FALSE; 	//Defaults to 'application' - override here with false or another name
@@ -58,6 +46,17 @@ class Saved_searches extends MY_Controller
 		parent::__construct();
 		$this->load->library('pagination');
 	}
+
+    public function create()
+    {
+        foreach ($this->models as $model => $attr)
+        {   
+            $this->load->model($this->_model_name($model), $model);
+            $this->q->{plural($model)} = $this->$model->list_records($this->models[$model]);
+        }
+        dump($this->models);
+        parent::create();
+    }
 
 	public function results($id)
 	{

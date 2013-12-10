@@ -10,7 +10,7 @@ if (!function_exists('partial')) {
     	//set up the paths
     	$path = get_path($name, 'partial');
     	$template = hunt_file($path);
-    	
+        
     	//load the view and return it as a string
     	return get_instance()->load->view($template, $data, TRUE);
     }

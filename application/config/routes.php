@@ -38,7 +38,10 @@
 |
 */
 
-$route['default_controller'] = "dashboard";
+$route['default_controller'] = 'dashboard/index';
+
+$route['404_override'] = '';
+
 $route['(:any)/list'] = "$1/index";
 
 $route['contact'] = "contacts";
@@ -47,7 +50,6 @@ $route['contacts/(:num)'] = "contacts/show/$1";
 $route['saved_searches'] = "search";
 
 
-$route['404_override'] = '';
 
 
 /* End of file routes.php */

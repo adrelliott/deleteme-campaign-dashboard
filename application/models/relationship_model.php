@@ -23,29 +23,6 @@ class Relationship_model extends MY_Model {
 			parent::__construct();
 		}
 
-		public function get($id)
-		{
-			$this->join_on_contacts();
-			return parent::get($id);
-		}
-
-		public function get_associated_records($id, $col = 'contact_id')
-		{
-			$this->join_on_contacts('other_contact_id');
-
-			//get the records
-			 $this->q->relationships = $this->as_array()->order_by(array('contacts.last_name' => 'DESC'))->get_many_by($col, $id);
-
-			 // return $q;
-		}
-
-		public function join_on_contacts($foreign_key = 'contact_id')
-		{
-			//join on contacts
-			$join_fields = array('contacts.first_name', 'contacts.last_name');
-			$this->_join('contacts', 'contacts.id=relationships.' . $foreign_key);
-			$this->set_select('join', $join_fields);
-		}
 		
 
 	}

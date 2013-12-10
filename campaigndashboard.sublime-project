@@ -11,7 +11,7 @@
 				"application/errors",
 				"application/cache",
 				"application/hooks",
-				"application/language",
+				// "application/language",
 				"application/observers",
 				"application/third_party",
 				"application/views/default",

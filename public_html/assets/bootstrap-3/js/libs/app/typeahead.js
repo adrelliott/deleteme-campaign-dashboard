@@ -60,7 +60,8 @@
           console.log('on:selected - putting id in ', idField);
           if (idField) {
              $('#'+idField).val(dataset.id);
-             console.log('putthis val in idFields', dataset.id);
+             console.log('target is #', idField);
+             console.log('value is:', dataset);
           }
         });
 

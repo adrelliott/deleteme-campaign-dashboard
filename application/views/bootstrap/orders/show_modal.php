@@ -11,16 +11,9 @@
 
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12  panel panel-default ">
 				<div class="panel-body">
+                    <p>Address:</p>
 					<address>
-						<strong>Customer Name</strong><br/>
-						110, Ducie House,<br/>
-						Long long longlong long address line<br/>
-						Village<br/>
-						City<br/>
-						M1 2JW<br/>
-
-						<em>t: 017626622222</em><br/>
-						<em>t: 017626622222</em><br/>
+						<?= $p->get_address($p->contact_id()); ?>
 					</address>
 				</div>
 			</div>
@@ -139,4 +132,4 @@
 	</div>
 </div>
 
-<? //dump($p);
+<? dump($p);

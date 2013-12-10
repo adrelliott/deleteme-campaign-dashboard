@@ -7,8 +7,8 @@
                         <div class="row">
                             <?= $this->messages->show(); ?> 
                         </div>
-                        <h1 class="hidden-sm">Hi <?= $p->user_first_name(); ?>!</h1>
-                        <h2 class="visible-sm">Hi <?= $p->user_first_name(); ?>!</h2>
+                        <h1 class="hidden-sm">Hi <?= $p->user_info('first_name'); ?>!</h1>
+                        <h2 class="visible-sm">Hi <?= $p->user_info('first_name'); ?>!</h2>
                         <p class="hidden-xs">Good to see you again. (I <i>like</i> your hair. Have you changed conditioners recently?)</p>
                         <span class="visible-xs ">
                             <h3>Good to see you again.</h3>

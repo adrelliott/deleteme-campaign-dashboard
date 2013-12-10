@@ -33,7 +33,7 @@
 
 		<div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
 			<label for="legacy_id">Membership Number</label>
-			<input type="text" class="form-control input-sm" id="legacy_id" name="legacy_id" value="<?= $p->legacy_id(); ?>" placeholder="E.g. 24342">
+			<input type="text" disabled class="form-control input-sm" id="legacy_id" name="legacy_id" value="<?= $p->legacy_id(); ?>" placeholder="E.g. 24342">
 		</div>
 
 		<legend>Address Details</legend>

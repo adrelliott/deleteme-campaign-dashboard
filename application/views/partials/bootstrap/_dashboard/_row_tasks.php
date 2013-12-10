@@ -8,7 +8,7 @@
                     <li class="list-group-item"><?= word_limiter($array['action_title'], 45); ?></li>
                 <? endforeach;?>
             </ul>
-            <a href="#" class="text-primary pull-right">See all your tasks</a>
+            <a href="tasks" class="text-primary pull-right">See all your tasks</a>
         </div>
     </div>
 </div>
