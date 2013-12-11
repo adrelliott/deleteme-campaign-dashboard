@@ -3,12 +3,12 @@
 <div class=" form-inline">
 	<?= form_open(site_url('broadcasts/edit'), 'role="form"'); ?>
 
-	<div class="form-group col-lg-6 col-md-12 col-sm-12  col-xs-12">
+	<div class="form-group col-lg-8 col-md-8 col-sm-12  col-xs-12">
 		<label class="" for="broadcast_name">Broadcast Name</label>
 		<input type="text" class="form-control input-lg" name="broadcast_name" id="broadcast_name" placeholder="E.g. Newsletter <?= date('d/m/y'); ?>"  value="<?= $p->broadcast_name(); ?>">
 	</div>
 
-	<div class="form-group col-lg-6 col-md-12 col-sm-12  col-xs-12">
+	<div class="form-group col-lg-4 col-md-4 col-sm-12  col-xs-12">
 		<label class="" for="broadcast_type">Type of Broadcast</label>
 		<?= form_dropdown('broadcast_type', config('broadcast_type', 'dropdowns'), '', 'class="form-control input-lg" input-sm'); ?>
 	</div>

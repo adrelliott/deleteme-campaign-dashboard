@@ -302,10 +302,10 @@ $config['extraactions']	= array(
 	'dashboard' => array(
 		'index' => array(
 			'dropdown' => array(
-				'contacts/create' => 'We could create a new Contact,',
-				'leads/create'	=> 'We could create a new Lead,',
-				'broadcasts' => 'We could send some emails out,',				
-				'smiles/show/1' => 'Or... we could watch a goat riding a giant turtle',
+				'contacts/create' => '...we could create a new Contact,',
+				'leads/create'	=> '...we could create a new Lead,',
+				'broadcasts' => '...or we could send some emails out?',				
+				// 'smiles/show/1' => 'Or... we could watch a goat riding a giant turtle',
 				),
 			),
 		),
@@ -313,8 +313,8 @@ $config['extraactions']	= array(
 		'index' => array(
 			'dropdown' => array(
 				'contacts/create1' => 'Create a new Contact',
-				'contacts/create2' => 'Create a new Contact22',
-				'contacts/create3' => 'Create a new Contact33',
+				// 'contacts/create2' => 'Create a new Contact',
+				// 'contacts/create3' => 'Create a new Contact',
 				),
 			),
 		'show' => array(

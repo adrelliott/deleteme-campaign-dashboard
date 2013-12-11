@@ -71,8 +71,8 @@
 								<input type="text" id="product_id_row1" class="form-control input-sm" name="line_total[]" id="line_total[]"  value="<?//= $p->order_items('line_total'); ?>">
 							</td>
 						</tr>
-						<?if (count($p->order_items())) : ?>
-							<? foreach ($p->order_items() as $row => $array) : ?>
+						<?if (count($p->get_order_items())) : ?>
+							<? foreach ($p->get_order_items() as $row => $array) : ?>
 								<tr id="row_<?= $row; ?>">
 									<td>
 									<label class="sr-only" for="product_name">Product Name</label>

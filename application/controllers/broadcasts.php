@@ -19,6 +19,7 @@ class Broadcasts extends MY_Controller
     
 	protected $_models = array(
 		'saved_search' => array(
+            'id_as_key' => true,
 			),
 		'template' => array(
 			),

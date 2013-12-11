@@ -52,7 +52,19 @@ class Order_presenter extends Presenter
     }
 	
 
+    public function get_order_items()
+    {
+        $retval = array();
 
+        //if none exist, then return empty array
+        if ( isset($this->{$this->_objectName}->order_items))
+        {
+            if (is_array($this->{$this->_objectName}->order_items))
+                return $this->{$this->_objectName}->order_items;
+            else return $retval;
+        }
+        else return $retval;
+    }
 
 
 

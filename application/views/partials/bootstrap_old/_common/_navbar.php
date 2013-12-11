@@ -19,7 +19,7 @@
              <li class="dropdown">
               <a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-signal "></i> Sales<b class="caret"></b></a>
               <ul class="dropdown-menu">
-               <?= nav_bar_item('leads', 'briefcase'); ?>
+               <?//= nav_bar_item('leads', 'briefcase'); ?>
                <?= nav_bar_item('orders', 'gbp'); ?>
              </ul>
            </li>
@@ -27,7 +27,7 @@
             <a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bolt "></i> Marketing<b class="caret"></b></a>
             <ul class="dropdown-menu">
              <?= nav_bar_item('campaigns', 'comments'); ?>
-             <?= nav_bar_item('reports', 'bar-chart-o'); ?>
+             <?//= nav_bar_item('reports', 'bar-chart-o'); ?>
            </ul>
          </li>
        </ul>

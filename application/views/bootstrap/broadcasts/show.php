@@ -10,8 +10,9 @@
         </div>
         <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12"><!-- Column 1-->
             <div class="well">
-                <?= partial('_form_create'); ?>
-
+                <div class="row">
+                    <?= partial('_form_create'); ?>    
+                </div>
             </div>
         </div><!-- /Column 1-->
         <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12"><!-- Column 2-->
@@ -56,20 +57,26 @@
         <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12"><!-- Column 1-->
             <div class="well"><!-- Well -->
                 <div class="row">
+                    <?= form_open(site_url('broadcasts/edit/' . $p->id(), ' role="form" class=""')); ?>
                     <div class="form-group col-lg-12 col-md-12 col-sm-12  col-xs-12">
-                        <label class="" for="test_to">Who's this email to:</label>
-                        <?= form_dropdown('test_to', to_dropdown($p->saved_searches(), 'search_name', 'Choose a saved search'), '', 'class="form-control input-lg"'); ?>
+                        <label class="" for="saved_search_id">Who's this email to:</label>
+                        <?= form_dropdown('saved_search_id', to_dropdown($p->saved_searches(), 'search_name', 'Choose a saved search'),$p->saved_search_id(), 'class="form-control input-lg"'); ?>
                     </div>
 
                     <div class="form-group col-lg-12 col-md-12 col-sm-12  col-xs-12">
-                        <label class="" for="email_subject">Subject line</label>
-                        <input type="text" class="form-control input-lg" name="email_subject" id="email_subject" placeholder="E.g. Have you seen how cheap apples are at the moment? <?= date('d/m/y'); ?>"  value="<?= $p->email_subject(); ?>">
+                        <label class="" for="subject_line">Subject line</label>
+                        <input type="text" class="form-control input-lg" name="subject_line" id="subject_line" placeholder="E.g. Have you seen how cheap apples are at the moment? <?= date('d/m/y'); ?>"  value="<?= $p->subject_line(); ?>">
                     </div>
 
                     <div class="form-group col-lg-12 col-md-12 col-sm-12  col-xs-12">
-                        <label class="" for="email_body">Your email</label>
-                        <textarea class="form-control input-lg wysihtml5" rows="40" placeholder="Hi. Get to Asda as soon as you can. No time to explain." name="email_body" id="email_body"><?= $p->email_body(); ?></textarea>
+                        <label class="" for="body">Your email</label>
+                        <textarea class="form-control input-lg wysihtml5" rows="40" placeholder="Hi. Get to Asda as soon as you can. No time to explain." name="body" id="body"><?= $p->body(); ?></textarea>
                     </div>
+
+                     <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                        <button type="submit" class="btn btn-lg btn-success pull-right"><i class="fa fa-check"></i> Save Changes</button>
+                    </div>
+                    <?= form_close(); ?>
                 </div>
             </div><!-- /Well -->   
         </div><!-- /Column 1-->
@@ -82,7 +89,7 @@
                     <h3 class="panel-title">About this Broadcast</h3>
                 </div>
                 <div class="panel-body">
-
+                    <?= form_open(site_url('broadcasts/edit/' . $p->id(), ' role="form" class=""')); ?>
                     <div class="form-group col-lg-12 col-md-12 col-sm-12  col-xs-12">
                         <label class="" for="broadcast_name">Broadcast Name</label>
                         <input type="text" class="form-control input-sm" name="broadcast_name" id="broadcast_name" placeholder="E.g. Newsletter <?= date('d/m/y'); ?>"  value="<?= $p->broadcast_name(); ?>">
@@ -95,18 +102,18 @@
 
                     <div class="form-group col-lg-12 col-md-12 col-sm-12  col-xs-12">
                         <label class="" for="broadcast_from">The email is from:</label>
-                        <?= form_dropdown('broadcast_from', config('broadcast_from', 'dropdowns'), '', 'class="form-control" input-sm'); ?>
+                        <?= form_dropdown('broadcast_from', config('broadcast_from', 'dropdowns'), $p->broadcast_from(), 'class="form-control" input-sm'); ?>
                     </div>
 
                     <div class="form-group col-lg-12 col-md-12 col-sm-12  col-xs-12">
                         <label class="" for="broadcast_from">Email format</label>
-                        <?= form_dropdown('email_template', config('email_template', 'dropdowns'), '', 'class="form-control" input-sm'); ?>
+                        <?= form_dropdown('email_template', config('email_template', 'dropdowns'), $p->email_template(), 'class="form-control" input-sm'); ?>
                     </div>
 
                     <div class="form-group col-lg-12 col-md-12 col-sm-12">
                         <button type="submit" class="btn btn-sm btn-success pull-right"><i class="fa fa-check"></i> Save Changes</button>
                     </div>
-
+                    <?= form_close(); ?>
                 </div>
             </div>
             <!-- /Panel 1 -->
@@ -134,7 +141,7 @@
 
                         <div class="form-group col-lg-12 col-md-12 col-sm-12  col-xs-12">
                             <label class="" for="test_email">Email</label>
-                            <input type="text" class="form-control input-sm" name="test_email" id="test_email" placeholder="E.g. Martha " >
+                            <input type="text" class="form-control input-sm" name="test_email" id="test_email" placeholder="E.g. Martha@TheFoundry.com " >
                         </div>
                     </div>
 
@@ -207,6 +214,5 @@
 
 </div><!-- /12 columns -->
 </div><!-- /Enclosing row -->
-
 <?= partial('_modal_small'); ?>
 <?= partial('_debug_footer'); ?>
