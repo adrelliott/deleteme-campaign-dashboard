@@ -1,18 +1,21 @@
 $('form.ajax_form').on('submit', function(e) {
         e.preventDefault();
-        
-        //Set up vars
         var that = $(this),
         url = that.attr('action'),
         type = that.attr('method'),
-        alertClass = that.attr('alert-class');  //This tells us what alert to show when modal closes
+        alertClass = that.attr('alert-class');
         tableId = that.attr('table-id'); // the id of the current table
+        tableCols = that.attr('table-cols'); // the id of the current table
+        table = '';
         
-        //Can we grab the data-cols form the table even though we are in ?
-        // table = $('table#'+tableId);
-        // cols = table.attr('data-cols');
+        table = $('table#'+tableId);
+        cols = table.attr('data-cols');
 
-    
+        $("#"+tableId).css('color', 'red');
+        console.log('the table = ', table);
+        console.log('the table cols = ', cols);
+        
+
         //Is it a modal?
         modal = '';
         if( that.hasClass('modal_form') ) {
@@ -28,15 +31,10 @@ $('form.ajax_form').on('submit', function(e) {
             type: type,
             data: data,
             success: function(response) {
-                //response is an array of the updated/created record
                 response_parsed = $.parseJSON(response);
                 console.log(response);
-                
-                //if update/insert fails, then we see this message
                 if ( response_parsed.message == '[uhoh]' ){
                     //console.log('theres an error');
-                    //
-                    //Show some errors
                     if ( modal == 'modal' ) {
                         $('.modal-fail').removeClass('hide');
                     }
@@ -44,35 +42,33 @@ $('form.ajax_form').on('submit', function(e) {
                        $('.form-fail').removeClass('hide');
                     }
                 }
-
-                //Else... woo hoo! Itw worked...
                 else {
                     if ( modal == 'modal' ) {
                         $('#modal').modal('hide');
 
                         //Do we have a table to redraw?
                         if ( tableId ) {
+                            //get the cols
                             
-                            //We need to remove unwanted index of response_parsed
-                            //(This is so it just just shows the data currently displayed in this table)
-
-
-                            //get the cols for this table - DOESN'T WORK!
-                            // var cols = $('#'+tableId).attr('cols');
-                            // console.log('cols=', cols);
+                            var cols = $('#'+tableId).attr('cols');
+                            console.log('cols=', cols);
 
                             //Remove all the unwanted indices
-                            //$.each(cols, function( c, v ) {
-                            //     rowArray.push(json.q[v]);
-                            // });
-                            
-                            //Now we've got an object with the right strcutrue, pass it to fnAddData() and fnRedraw()?
+                    //          $.each(cols, function( c, v ) {
+                    //     rowArray.push(json.q[v]);
+                    // });
+// console.log('rowarray is', rowArray);
+                    // table.fnUpdate( rowArray, row[0] );
+                    // row.toggleClass('completed');
 
+                            //var table = $('#'+tableId).dataTable();
+                            console.log('table with id pf #'+tableId+' = ', table);
+                            // table.fnStandingRedraw();
+                            // $('table#'+tableId).fnDraw();
+                            // table.fnDraw();
                         }
                     }
-
-                    //Now show some success messages
-                    $('.form-fail').addClass('hide');   //Just in case we had an error before
+                    $('.form-fail').addClass('hide');
                     $('.form-success.alert-'+alertClass).removeClass('hide');
                     window.setTimeout(function() {
                         $('.form-success.alert-'+alertClass).addClass('hide');
