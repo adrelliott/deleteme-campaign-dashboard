@@ -118,6 +118,11 @@ $config['pageheaders']	= array(
 			'header' => 'Create a Broadcast', 
 			'subtext' => 'Name your broadcast here...'
 			),
+		'analytics' => array(
+			'icon' => 'bullhorn',
+			'header' => 'Broadcast Analytics', 
+			'subtext' => 'See behind the scenes...'
+			),
 		
 		),
 	'smiles' => array(

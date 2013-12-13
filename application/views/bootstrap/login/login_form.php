@@ -10,7 +10,8 @@
             <p>Glad you could make it. You know what to do...</p> 
             <?= form_open('site/login', 'role="form"');?>
             <div class="form-group col-lg-8 col-md-8 col-sm-12">
-                <label for="inputUsernameEmail">What's your username?</label>
+                <label for="inputUsernameEmail" class="visible-lg visible-md visible-sm">What's your username?</label>
+                <label for="inputUsernameEmail" class="visible-xs">Username:</label>
                 <?= form_input('identity', $identity['value'], 'class="form-control input-lg" id="identity"'); ?>
                 <!-- <input type="text"  value=""> -->
             </div>

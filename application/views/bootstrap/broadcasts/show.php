@@ -76,7 +76,7 @@
                      <div class="form-group col-lg-12 col-md-12 col-sm-12">
                         <button type="submit" class="btn btn-lg btn-success pull-right"><i class="fa fa-check"></i> Save Changes</button>
                     </div>
-                    <?= form_close(); ?>
+                    <?//= form_close(); ?>
                 </div>
             </div><!-- /Well -->   
         </div><!-- /Column 1-->
@@ -89,7 +89,7 @@
                     <h3 class="panel-title">About this Broadcast</h3>
                 </div>
                 <div class="panel-body">
-                    <?= form_open(site_url('broadcasts/edit/' . $p->id(), ' role="form" class=""')); ?>
+                    <?//= form_open(site_url('broadcasts/edit/' . $p->id(), ' role="form" class=""')); ?>
                     <div class="form-group col-lg-12 col-md-12 col-sm-12  col-xs-12">
                         <label class="" for="broadcast_name">Broadcast Name</label>
                         <input type="text" class="form-control input-sm" name="broadcast_name" id="broadcast_name" placeholder="E.g. Newsletter <?= date('d/m/y'); ?>"  value="<?= $p->broadcast_name(); ?>">
@@ -110,6 +110,18 @@
                         <?= form_dropdown('email_template', config('email_template', 'dropdowns'), $p->email_template(), 'class="form-control" input-sm'); ?>
                     </div>
 
+                    <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label for="optin_email">Ready to send?</label>
+                        <div>
+                            <label class="radio-inline">
+                                <input type="radio" name="ready_to_send" id="ready_to_send_yes" value="1"  <?= set_radio('ready_to_send', 1, $p->ready_to_send() == 1); ?> > <i class="fa fa-thumbs-o-up "></i> Yes<br>
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="ready_to_send" id="ready_to_send_no" value="0"  <?= set_radio('ready_to_send', 0, $p->ready_to_send() == 0); ?> > <i class="fa fa-thumbs-o-down "></i> No<br>
+                            </label>  
+                        </div>
+                    </div>
+
                     <div class="form-group col-lg-12 col-md-12 col-sm-12">
                         <button type="submit" class="btn btn-sm btn-success pull-right"><i class="fa fa-check"></i> Save Changes</button>
                     </div>
@@ -121,16 +133,16 @@
             <!-- Panel 2 -->
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Testing</h3>
+                    <h3 class="panel-title">Sending</h3>
                 </div>
                 <div class="panel-body">
-
+                    <?= form_open(site_url('broadcasts/send/' . $p->id() )); ?>
                     <div class="form-group col-lg-12 col-md-12 col-sm-12  col-xs-12">
                         <label class="" for="test_to">Send a test email to:</label>
                         <?= form_dropdown('test_to', to_dropdown($p->users(), 'email', 'Choose a recipient'), '', 'class="form-control"'); ?>
                     </div>
                     <div class="form-group col-lg-12 col-md-12 col-sm-12  col-xs-12">
-                        <small><a href="#" class="unhide_div" div-class="test_other">Want to send to someone not on this list</a>?</small>
+                        <small><a href="#" class="unhide_div" div-class="test_other">Send to someone not on this list?</a></small>
                     </div>
 
                     <div class="test_other hide">
@@ -149,50 +161,38 @@
                         <button type="submit" class="btn btn-sm btn-success pull-right"><i class="fa fa-thumbs-o-up"></i> Send Test Email</button>
                     </div>
 
-                </div>
-            </div>
-            <!-- /Panel 2 -->
+                    <?= form_close(); ?>
 
-            <!-- Panel 3 -->
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Sending</h3>
                 </div>
-                <div class="panel-body">
 
-                    <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <label for="optin_email">Ready to send?</label>
-                        <div>
-                            <label class="radio-inline">
-                                <input type="radio" name="ready_to_send" id="ready_to_send_yes" value="1"  <?= set_radio('ready_to_send', 1, $p->ready_to_send() == 1); ?> > <i class="fa fa-thumbs-o-up "></i> Yes<br>
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="ready_to_send" id="ready_to_send_no" value="0"  <?= set_radio('ready_to_send', 0, $p->ready_to_send() == 0); ?> > <i class="fa fa-thumbs-o-down "></i> No<br>
-                            </label>  
+                <? if ($p->ready_to_send()): ?>
+                    <div class="panel-footer">
+                        <div class="row center-block">
+                            <!-- <div class="form-group col-lg-12 col-md-12 col-sm-12"> -->
+                                <a href="<?= site_url('broadcasts/send_broadcast/' . $p->id()); ?>" class="btn btn-primary btn-lg"><i class="fa fa-envelope-o"></i> Send The Broadcast!</a>
+                            <!-- </div>     -->
                         </div>
                     </div>
 
-                    <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                        <button type="submit" value="send_now" class="btn btn-primary pull-right"><i class="fa fa-thumbs-o-up"></i> Send Email Now</button>
-                    </div>
+                <? endif; ?>
 
-                </div>
             </div>
-            <!-- /Panel 3 -->
+             <!-- /Panel 2 -->
 
-            <!-- Panel 4 -->
+            <div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"></div></div>
+           
+        <? if ($p->sent()): ?>
+            <!-- Panel 3 -->
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Analytics</h3>
                 </div>
                 <div class="panel-body">
-                    <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                        <button type="submit" class="btn btn-default pull-right"><i class="fa fa--o-up"></i> Get Analytics</button>
-                    </div>
-
+                    <a href="<?= site_url('broadcasts/analytics'); ?>" class="text-primary"><i class="fa fa-wrench"></i> View Analytics...</a>
                 </div>
             </div>
-            <!-- /Panel 4 -->
+            <!-- /Panel 3 -->
+        <? endif; ?>
 
         </div><!-- /Column 2-->
 

@@ -18,7 +18,8 @@
                         <div class="row">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-lg btn-default dropdown-toggle" data-toggle="dropdown">
-                                    What do you fancy doing today...?<span class="caret"></span>
+                                    What now...?
+                                    <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <?= partial('_button_extraactions_dropdown'); ?>
