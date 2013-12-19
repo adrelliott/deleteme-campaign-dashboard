@@ -6,20 +6,11 @@ $('form.ajax_form').on('submit', function(e) {
         url = that.attr('action'),
         type = that.attr('method'),
         alertClass = that.attr('alert-class');  //This tells us what alert to show when modal closes
-        
-/* Tellenis 15/12/13 */
-        indRow =  that.closest('tr').attr('id'); //Get the id of the closest <tr>?
-
-
         tableId = that.attr('table-id'); // the id of the current table
-
-
-/* Tellenis 15/12/13 */
-        var row = that.parents( 'tr' );
         
-        //var indRow = $(this).index(); // this worked
-        var indRow = parseInt($( "#rowIndex" ).html());
-
+        //Can we grab the data-cols form the table even though we are in ?
+        // table = $('table#'+tableId);
+        // cols = table.attr('data-cols');
 
     
         //Is it a modal?
@@ -40,14 +31,6 @@ $('form.ajax_form').on('submit', function(e) {
                 //response is an array of the updated/created record
                 response_parsed = $.parseJSON(response);
                 console.log(response);
-
-                for(var key in response) {
-
-                    // value is empty string
-                    if(response[key] === 'id') {
-                        delete response[key];
-                    }
-                }
                 
                 //if update/insert fails, then we see this message
                 if ( response_parsed.message == '[uhoh]' ){
@@ -66,38 +49,12 @@ $('form.ajax_form').on('submit', function(e) {
                 else {
                     if ( modal == 'modal' ) {
                         $('#modal').modal('hide');
-                        tableId = 'task-table';
+
                         //Do we have a table to redraw?
                         if ( tableId ) {
                             
                             //We need to remove unwanted index of response_parsed
                             //(This is so it just just shows the data currently displayed in this table)
-
-                            var data_rows;
-                            var rowArray =[];
-                            var cols = $('#'+tableId).attr('data-cols');
-                             delete response_parsed['message'];
-                             $.each(response_parsed['q'], function( c, v ) {           
-                                var rem;
-                                if (jQuery.inArray(c, cols.replace(/,\s+/g, ',').split(',')) < 0) {
-                                    rem=c;                      
-                                    delete response_parsed['q'][rem];
-                                }
-                                else{
-                                    rowArray.push(response_parsed['q'][c]);
-                                // data_rows = ["6382","gggg","0"]; // format accepted by datatable for fnAddData
-                                    }
-                             });
-                        
-                            data_rows=rowArray;
-                            //console.log("RES-"+json.q.row);
-                            var dTable = $('#'+tableId).dataTable({ bRetrieve : true });    
-                            
-                            if(indRow>=0)
-                            dTable.fnUpdate(data_rows,indRow);
-                            else
-                            dTable.fnAddData(data_rows);
-
 
 
                             //get the cols for this table - DOESN'T WORK!

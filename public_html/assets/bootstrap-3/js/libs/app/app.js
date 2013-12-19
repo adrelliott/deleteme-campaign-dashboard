@@ -163,6 +163,15 @@
         var url = $(this).attr('modal-source');
         var post = {modal: 'modal'};
 
+        /* Tellenis 15/12/13 */
+        var ind = $(this).parent().index("a")
+        var listItem =  $(this).closest('tr').attr('id'); 
+        
+        var index = $( "tr" ).index( this );
+        var indRow = $(this).index();
+
+
+
         //Now turn the 'data-xxx' attributes into $_POST array
         $.each($(this).data(), function(k,v) {
             post[k] = v;
@@ -194,6 +203,9 @@
                     //...and on success, set up the modal
                     //console.log('html', html);
                     $('.modal-body').html(html);
+
+                    /* Tellenis 15.12.13 */
+                    $("#rowIndex").html(listItem); // added by tellenis to get the row index from datatables    
                     $('.modal-loader').removeClass('loader');
                 }
             );
